@@ -476,7 +476,8 @@ namespace PROJECT
                         {
                             case DialogResult.Yes:
                                 Connection.CloseConnection();
-                                commands(13);
+                                commands(14);
+                                command.Connection = Connection.connect;
                                 Connection.OpenConnection();
                                 MySqlDataReader read_data = command.ExecuteReader();
                                 read_data.Read();
@@ -521,33 +522,34 @@ namespace PROJECT
                     {
                         Connection.CloseConnection();
                         commands(13);
+                        command.Connection = Connection.connect;
                         Connection.OpenConnection();
-                        MySqlDataReader read_data = command.ExecuteReader();
-                        read_data.Read();
+                        MySqlDataReader read_secondVerif = command.ExecuteReader();
+                        read_secondVerif.Read();
                         ClearItemsInTesterBox();
                         Test_system.Items.Clear();
                         Boards.Items.Clear();
                         all_controls();
 
-                        Revision.Text = read_data["REVISION"].ToString();
-                        Boards.Items.Add(read_data["BOARD"].ToString());
-                        DIE_TYPE.Text = read_data["TEST PROGRAM"].ToString();
-                        Test_system.Items.Add(read_data["TESTER PLATFORM"].ToString());
-                        Failed_during.Text = read_data["FAILED DURING"].ToString();
-                        Failed_during_others.Text = read_data["FAILED DURING OTHERS"].ToString();
-                        Failure_mode.Text = read_data["FAILURE MODE"].ToString();
-                        Failure_mode_others.Text = read_data["FAILURE MODE OTHERS"].ToString();
-                        Test_option.Text = read_data["TEST OPTION"].ToString();
-                        Remarks.Text = read_data["REMARKS"].ToString();
-                        data = (byte[])read_data["FIRST DATALOG"];
-                        First_tester.Items.Add(read_data["FIRST TESTER"]);
-                        First_Site.Items.Add(read_data["FIRST SITE"].ToString());
-                        First_board_slot.Text = read_data["FIRST SLOT"].ToString();
-                        first_endorser.Text = read_data["FIRST ENDORSER"].ToString();
-                        FileName = read_data["FILENAME 1"].ToString();
-                        Area.Text = read_data["AREA"].ToString();
-                        FirstDate.Text = read_data["FIRST DATE"].ToString();
-                        FirstTime.Text = read_data["FIRST TIME"].ToString();
+                        Revision.Text = read_secondVerif["REVISION"].ToString();
+                        Boards.Items.Add(read_secondVerif["BOARD"].ToString());
+                        DIE_TYPE.Text = read_secondVerif["TEST PROGRAM"].ToString();
+                        Test_system.Items.Add(read_secondVerif["TESTER PLATFORM"].ToString());
+                        Failed_during.Text = read_secondVerif["FAILED DURING"].ToString();
+                        Failed_during_others.Text = read_secondVerif["FAILED DURING OTHERS"].ToString();
+                        Failure_mode.Text = read_secondVerif["FAILURE MODE"].ToString();
+                        Failure_mode_others.Text = read_secondVerif["FAILURE MODE OTHERS"].ToString();
+                        Test_option.Text = read_secondVerif["TEST OPTION"].ToString();
+                        Remarks.Text = read_secondVerif["REMARKS"].ToString();
+                        data = (byte[])read_secondVerif["FIRST DATALOG"];
+                        First_tester.Items.Add(read_secondVerif["FIRST TESTER"]);
+                        First_Site.Items.Add(read_secondVerif["FIRST SITE"].ToString());
+                        First_board_slot.Text = read_secondVerif["FIRST SLOT"].ToString();
+                        first_endorser.Text = read_secondVerif["FIRST ENDORSER"].ToString();
+                        FileName = read_secondVerif["FILENAME 1"].ToString();
+                        Area.Text = read_secondVerif["AREA"].ToString();
+                        FirstDate.Text = read_secondVerif["FIRST DATE"].ToString();
+                        FirstTime.Text = read_secondVerif["FIRST TIME"].ToString();
                         Connection.CloseConnection();
                         UpdateCheck = 1;
                         disable_control();
@@ -632,10 +634,7 @@ namespace PROJECT
                             break;
                     }
                 }
-            }
-            else Connection.CloseConnection();
-                
-            
+            }         
         }
         private void commands(int Pick)
         {
@@ -744,6 +743,12 @@ namespace PROJECT
                     break;
                 case 13:  // FOR CHECKING THE LAST TRANSACTION
                     command = new MySqlCommand("SELECT * FROM `boards_for_verification`.`board details` WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' and `PART NUMBER` = '" + Part_number.Text + "') " +
+                        "ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
+                    break;
+                case 14:  // FOR CHECKING THE LAST TRANSACTION
+                    command = new MySqlCommand("SELECT `REVISION`,`TESTER PLATFORM`,`BOARD`" +
+                        " FROM `boards_for_verification`.`board details` " +
+                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' and `PART NUMBER` = '" + Part_number.Text + "') " +
                         "ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     break;
             }
