@@ -519,6 +519,11 @@ namespace PROJECT
                     }
                     else
                     {
+                        Connection.CloseConnection();
+                        commands(13);
+                        Connection.OpenConnection();
+                        MySqlDataReader read_data = command.ExecuteReader();
+                        read_data.Read();
                         ClearItemsInTesterBox();
                         Test_system.Items.Clear();
                         Boards.Items.Clear();
