@@ -94,7 +94,7 @@
             this.Boards = new System.Windows.Forms.ComboBox();
             this.Area = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.PHYSICAL_DEFECTIVE = new System.Windows.Forms.RadioButton();
             this.Second_box.SuspendLayout();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
@@ -963,18 +963,18 @@
             this.label19.Text = "AREA";
             this.label19.Visible = false;
             // 
-            // radioButton1
+            // PHYSICAL_DEFECTIVE
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.radioButton1.Location = new System.Drawing.Point(30, 621);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(193, 25);
-            this.radioButton1.TabIndex = 63;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "PHYSICAL DEFECTIVE";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.PHYSICAL_DEFECTIVE.AutoSize = true;
+            this.PHYSICAL_DEFECTIVE.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PHYSICAL_DEFECTIVE.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.PHYSICAL_DEFECTIVE.Location = new System.Drawing.Point(30, 621);
+            this.PHYSICAL_DEFECTIVE.Name = "PHYSICAL_DEFECTIVE";
+            this.PHYSICAL_DEFECTIVE.Size = new System.Drawing.Size(193, 25);
+            this.PHYSICAL_DEFECTIVE.TabIndex = 63;
+            this.PHYSICAL_DEFECTIVE.TabStop = true;
+            this.PHYSICAL_DEFECTIVE.Text = "PHYSICAL DEFECTIVE";
+            this.PHYSICAL_DEFECTIVE.UseVisualStyleBackColor = true;
             // 
             // ADD
             // 
@@ -982,7 +982,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1196, 687);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.PHYSICAL_DEFECTIVE);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.Area);
             this.Controls.Add(this.Boards);
@@ -1104,6 +1104,6 @@
         private System.Windows.Forms.Label FirstTime;
         private System.Windows.Forms.Label SecondTime;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton PHYSICAL_DEFECTIVE;
     }
 }
