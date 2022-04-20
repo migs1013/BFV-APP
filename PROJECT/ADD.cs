@@ -973,33 +973,10 @@ namespace PROJECT
             }
         }
 
-        private void PHYSICAL_DAMAGE_CheckedChanged(object sender, EventArgs e)
-        {
-            if (PHYSICAL_DAMAGE.Checked)
-            {
-                SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
-                second_verif_link.Text = " ";
-            }
-            else
-            {
-                Add_second_verif.Visible = true;
-                SecondDate.Text = " ";
-                SecondTime.Text = " ";
-                second_verif_link.Text = " ";
-            }
-        }
-
         private void INSTALL_TO_TESTER_CheckedChanged(object sender, EventArgs e)
         {
-            PHYSICAL_DAMAGE.Visible = false;
             SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
-        }
-
-        private void BRG_CheckedChanged(object sender, EventArgs e)
-        {
-            PHYSICAL_DAMAGE.Visible = true;
         }
 
         private void Key_PartNumber(object sender, KeyEventArgs e)
@@ -1021,7 +998,6 @@ namespace PROJECT
 
         private void FAILURE_CHANGED_CheckedChanged(object sender, EventArgs e)
         {
-            PHYSICAL_DAMAGE.Checked = false;
             SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
         }

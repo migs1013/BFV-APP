@@ -65,7 +65,6 @@
             this.Second_box = new System.Windows.Forms.GroupBox();
             this.SecondTime = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.PHYSICAL_DAMAGE = new System.Windows.Forms.CheckBox();
             this.label23 = new System.Windows.Forms.Label();
             this.SecondDate = new System.Windows.Forms.Label();
             this.Second_tester = new System.Windows.Forms.ComboBox();
@@ -95,6 +94,7 @@
             this.Boards = new System.Windows.Forms.ComboBox();
             this.Area = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.Second_box.SuspendLayout();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
@@ -305,7 +305,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label8.Location = new System.Drawing.Point(142, 553);
+            this.label8.Location = new System.Drawing.Point(142, 534);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(82, 25);
             this.label8.TabIndex = 22;
@@ -543,7 +543,6 @@
             this.Second_box.BackColor = System.Drawing.Color.Gray;
             this.Second_box.Controls.Add(this.SecondTime);
             this.Second_box.Controls.Add(this.label24);
-            this.Second_box.Controls.Add(this.PHYSICAL_DAMAGE);
             this.Second_box.Controls.Add(this.label23);
             this.Second_box.Controls.Add(this.SecondDate);
             this.Second_box.Controls.Add(this.Second_tester);
@@ -584,18 +583,6 @@
             this.label24.Size = new System.Drawing.Size(37, 13);
             this.label24.TabIndex = 41;
             this.label24.Text = "TIME";
-            // 
-            // PHYSICAL_DAMAGE
-            // 
-            this.PHYSICAL_DAMAGE.AutoSize = true;
-            this.PHYSICAL_DAMAGE.Location = new System.Drawing.Point(214, 31);
-            this.PHYSICAL_DAMAGE.Name = "PHYSICAL_DAMAGE";
-            this.PHYSICAL_DAMAGE.Size = new System.Drawing.Size(149, 17);
-            this.PHYSICAL_DAMAGE.TabIndex = 40;
-            this.PHYSICAL_DAMAGE.Text = "PHYSICAL DAMAGE?";
-            this.PHYSICAL_DAMAGE.UseVisualStyleBackColor = true;
-            this.PHYSICAL_DAMAGE.Visible = false;
-            this.PHYSICAL_DAMAGE.CheckedChanged += new System.EventHandler(this.PHYSICAL_DAMAGE_CheckedChanged);
             // 
             // label23
             // 
@@ -864,7 +851,7 @@
             this.SPARES.AutoSize = true;
             this.SPARES.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SPARES.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.SPARES.Location = new System.Drawing.Point(37, 581);
+            this.SPARES.Location = new System.Drawing.Point(30, 562);
             this.SPARES.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SPARES.Name = "SPARES";
             this.SPARES.Size = new System.Drawing.Size(85, 25);
@@ -879,7 +866,7 @@
             this.BRG.AutoSize = true;
             this.BRG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BRG.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.BRG.Location = new System.Drawing.Point(37, 613);
+            this.BRG.Location = new System.Drawing.Point(30, 594);
             this.BRG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BRG.Name = "BRG";
             this.BRG.Size = new System.Drawing.Size(61, 25);
@@ -888,14 +875,13 @@
             this.BRG.Text = "BRG";
             this.BRG.UseVisualStyleBackColor = true;
             this.BRG.Visible = false;
-            this.BRG.CheckedChanged += new System.EventHandler(this.BRG_CheckedChanged);
             // 
             // FOR_SECOND_VERIF
             // 
             this.FOR_SECOND_VERIF.AutoSize = true;
             this.FOR_SECOND_VERIF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FOR_SECOND_VERIF.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.FOR_SECOND_VERIF.Location = new System.Drawing.Point(37, 646);
+            this.FOR_SECOND_VERIF.Location = new System.Drawing.Point(30, 649);
             this.FOR_SECOND_VERIF.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FOR_SECOND_VERIF.Name = "FOR_SECOND_VERIF";
             this.FOR_SECOND_VERIF.Size = new System.Drawing.Size(179, 25);
@@ -910,7 +896,7 @@
             this.FAILURE_CHANGED.AutoSize = true;
             this.FAILURE_CHANGED.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FAILURE_CHANGED.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.FAILURE_CHANGED.Location = new System.Drawing.Point(177, 581);
+            this.FAILURE_CHANGED.Location = new System.Drawing.Point(177, 562);
             this.FAILURE_CHANGED.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FAILURE_CHANGED.Name = "FAILURE_CHANGED";
             this.FAILURE_CHANGED.Size = new System.Drawing.Size(167, 25);
@@ -926,7 +912,7 @@
             this.INSTALL_TO_TESTER.AutoSize = true;
             this.INSTALL_TO_TESTER.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.INSTALL_TO_TESTER.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.INSTALL_TO_TESTER.Location = new System.Drawing.Point(177, 613);
+            this.INSTALL_TO_TESTER.Location = new System.Drawing.Point(177, 594);
             this.INSTALL_TO_TESTER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.INSTALL_TO_TESTER.Name = "INSTALL_TO_TESTER";
             this.INSTALL_TO_TESTER.Size = new System.Drawing.Size(170, 25);
@@ -977,12 +963,26 @@
             this.label19.Text = "AREA";
             this.label19.Visible = false;
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.radioButton1.Location = new System.Drawing.Point(30, 621);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(193, 25);
+            this.radioButton1.TabIndex = 63;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "PHYSICAL DEFECTIVE";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1196, 687);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.Area);
             this.Controls.Add(this.Boards);
@@ -1100,10 +1100,10 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label SecondDate;
-        private System.Windows.Forms.CheckBox PHYSICAL_DAMAGE;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label FirstTime;
         private System.Windows.Forms.Label SecondTime;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
