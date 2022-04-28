@@ -228,7 +228,7 @@ namespace PROJECT
                 }
                 else
                 {
-                    if (second_endorser.SelectedIndex == -1 || Second_tester.SelectedIndex == -1 || Second_Site.SelectedIndex == - 1 || string.IsNullOrWhiteSpace(Second_slot.Text))
+                    if (second_endorser.SelectedIndex == -1 || Second_tester.SelectedIndex == -1 || Second_Site.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Second_slot.Text))
                     {
                         error();
                         return;
@@ -251,7 +251,7 @@ namespace PROJECT
                 }
                 else
                 {
-                    if (second_endorser.SelectedIndex == -1 || Second_tester.SelectedIndex == -1 || Second_Site.SelectedIndex == - 1 || string.IsNullOrWhiteSpace(Second_slot.Text))
+                    if (second_endorser.SelectedIndex == -1 || Second_tester.SelectedIndex == -1 || Second_Site.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Second_slot.Text))
                     {
                         error();
                         return;
@@ -262,23 +262,8 @@ namespace PROJECT
             }
             else if (BRG.Checked)
             {
-                if (PHYSICAL_DAMAGE.Checked)
-                {
-                    if (second_endorser.SelectedIndex == -1)
-                    {
-                        error(); return;
-                    }
-                    else
-                    { 
-                        status = "BRG";
-                        Save_data(11);
-                    }
-                }
-                else if (ForSecondVerif())
-                {
-                    status = "BRG";
-                    Save_data(3);
-                }
+                status = "BRG";
+                Save_data(3);
             }
             else if (SPARES.Checked)
             {
@@ -308,18 +293,7 @@ namespace PROJECT
                 if (ForFirstVerif())
                 {
                     status = "BRG";
-                    if (PHYSICAL_DAMAGE.Checked)
-                    {
-                        if (second_endorser.SelectedIndex == -1)
-                        {
-                            error(); return;
-                        }
-                        else
-                        {
-                            Save_data(12);
-                        }
-                    }
-                    else if (ForSecondVerif())
+                    if (ForSecondVerif())
                     {
                         Save_data(4);
                     }

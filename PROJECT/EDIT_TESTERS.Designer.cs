@@ -96,6 +96,7 @@ namespace PROJECT
             this.Tester_platforms.Location = new System.Drawing.Point(169, 30);
             this.Tester_platforms.Name = "Tester_platforms";
             this.Tester_platforms.Size = new System.Drawing.Size(130, 21);
+            this.Tester_platforms.Sorted = true;
             this.Tester_platforms.TabIndex = 4;
             this.Tester_platforms.SelectedIndexChanged += new System.EventHandler(this.Tester_platforms_SelectedIndexChanged);
             // 
@@ -158,6 +159,7 @@ namespace PROJECT
             this.Mode.Location = new System.Drawing.Point(169, 7);
             this.Mode.Name = "Mode";
             this.Mode.Size = new System.Drawing.Size(130, 21);
+            this.Mode.Sorted = true;
             this.Mode.TabIndex = 10;
             this.Mode.SelectedIndexChanged += new System.EventHandler(this.Option_selection);
             // 

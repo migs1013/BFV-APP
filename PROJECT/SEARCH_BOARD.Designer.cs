@@ -33,6 +33,15 @@
             this.search_text = new System.Windows.Forms.TextBox();
             this.Add_btn = new System.Windows.Forms.Button();
             this.dataGridViewList = new System.Windows.Forms.DataGridView();
+            this.SERIAL_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PART_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BOARD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TESTER_PLATFORMS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TEST_PROGRAM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FIRST_DATE_VERIF = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STATUS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AGING_DAYS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ENDORSEMENT_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.REFRESH = new System.Windows.Forms.Button();
             this.EDIT = new System.Windows.Forms.Button();
             this.FROM_DATE = new System.Windows.Forms.DateTimePicker();
@@ -54,15 +63,6 @@
             this.BACK = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.TO_DATE = new System.Windows.Forms.DateTimePicker();
-            this.SERIAL_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PART_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOARD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TESTER_PLATFORMS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TEST_PROGRAM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FIRST_DATE_VERIF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STATUS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AGING_DAYS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ENDORSEMENT_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,6 +134,72 @@
             this.dataGridViewList.Size = new System.Drawing.Size(1142, 432);
             this.dataGridViewList.TabIndex = 4;
             this.dataGridViewList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Click_data);
+            // 
+            // SERIAL_NUMBER
+            // 
+            this.SERIAL_NUMBER.DataPropertyName = "SERIAL NUMBER";
+            this.SERIAL_NUMBER.HeaderText = "SERIAL NUMBER";
+            this.SERIAL_NUMBER.Name = "SERIAL_NUMBER";
+            this.SERIAL_NUMBER.ReadOnly = true;
+            // 
+            // PART_NUMBER
+            // 
+            this.PART_NUMBER.DataPropertyName = "PART NUMBER";
+            this.PART_NUMBER.HeaderText = "PART NUMBER";
+            this.PART_NUMBER.Name = "PART_NUMBER";
+            this.PART_NUMBER.ReadOnly = true;
+            // 
+            // BOARD
+            // 
+            this.BOARD.DataPropertyName = "BOARD";
+            this.BOARD.HeaderText = "BOARD";
+            this.BOARD.Name = "BOARD";
+            this.BOARD.ReadOnly = true;
+            // 
+            // TESTER_PLATFORMS
+            // 
+            this.TESTER_PLATFORMS.DataPropertyName = "TESTER PLATFORM";
+            this.TESTER_PLATFORMS.HeaderText = "TESTER PLATFORM";
+            this.TESTER_PLATFORMS.Name = "TESTER_PLATFORMS";
+            this.TESTER_PLATFORMS.ReadOnly = true;
+            // 
+            // TEST_PROGRAM
+            // 
+            this.TEST_PROGRAM.DataPropertyName = "TEST PROGRAM";
+            this.TEST_PROGRAM.HeaderText = "DIE TYPE";
+            this.TEST_PROGRAM.Name = "TEST_PROGRAM";
+            this.TEST_PROGRAM.ReadOnly = true;
+            // 
+            // FIRST_DATE_VERIF
+            // 
+            this.FIRST_DATE_VERIF.DataPropertyName = "FIRST DATE";
+            this.FIRST_DATE_VERIF.HeaderText = "FIRST DATE VERIFIED";
+            this.FIRST_DATE_VERIF.Name = "FIRST_DATE_VERIF";
+            this.FIRST_DATE_VERIF.ReadOnly = true;
+            this.FIRST_DATE_VERIF.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.FIRST_DATE_VERIF.ToolTipText = "FIRST";
+            // 
+            // STATUS
+            // 
+            this.STATUS.DataPropertyName = "STATUS";
+            this.STATUS.HeaderText = "STATUS";
+            this.STATUS.Name = "STATUS";
+            this.STATUS.ReadOnly = true;
+            // 
+            // AGING_DAYS
+            // 
+            this.AGING_DAYS.DataPropertyName = "AGING DAYS";
+            this.AGING_DAYS.HeaderText = "AGING DAYS";
+            this.AGING_DAYS.Name = "AGING_DAYS";
+            this.AGING_DAYS.ReadOnly = true;
+            // 
+            // ENDORSEMENT_NUMBER
+            // 
+            this.ENDORSEMENT_NUMBER.DataPropertyName = "ENDORSEMENT NUMBER";
+            this.ENDORSEMENT_NUMBER.HeaderText = "ENDORSEMENT NUMBER";
+            this.ENDORSEMENT_NUMBER.Name = "ENDORSEMENT_NUMBER";
+            this.ENDORSEMENT_NUMBER.ReadOnly = true;
+            this.ENDORSEMENT_NUMBER.Visible = false;
             // 
             // REFRESH
             // 
@@ -259,12 +325,13 @@
             this.AREA.FormattingEnabled = true;
             this.AREA.Items.AddRange(new object[] {
             "",
-            "A2",
             "A1",
+            "A2",
             "B2"});
             this.AREA.Location = new System.Drawing.Point(517, 44);
             this.AREA.Name = "AREA";
             this.AREA.Size = new System.Drawing.Size(64, 21);
+            this.AREA.Sorted = true;
             this.AREA.TabIndex = 34;
             this.AREA.SelectionChangeCommitted += new System.EventHandler(this.AreaIndexChanged);
             // 
@@ -412,72 +479,6 @@
             this.TO_DATE.TabIndex = 45;
             this.TO_DATE.CloseUp += new System.EventHandler(this.TO_DATE_select);
             this.TO_DATE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TO_DATE_KeyDown);
-            // 
-            // SERIAL_NUMBER
-            // 
-            this.SERIAL_NUMBER.DataPropertyName = "SERIAL NUMBER";
-            this.SERIAL_NUMBER.HeaderText = "SERIAL NUMBER";
-            this.SERIAL_NUMBER.Name = "SERIAL_NUMBER";
-            this.SERIAL_NUMBER.ReadOnly = true;
-            // 
-            // PART_NUMBER
-            // 
-            this.PART_NUMBER.DataPropertyName = "PART NUMBER";
-            this.PART_NUMBER.HeaderText = "PART NUMBER";
-            this.PART_NUMBER.Name = "PART_NUMBER";
-            this.PART_NUMBER.ReadOnly = true;
-            // 
-            // BOARD
-            // 
-            this.BOARD.DataPropertyName = "BOARD";
-            this.BOARD.HeaderText = "BOARD";
-            this.BOARD.Name = "BOARD";
-            this.BOARD.ReadOnly = true;
-            // 
-            // TESTER_PLATFORMS
-            // 
-            this.TESTER_PLATFORMS.DataPropertyName = "TESTER PLATFORM";
-            this.TESTER_PLATFORMS.HeaderText = "TESTER PLATFORM";
-            this.TESTER_PLATFORMS.Name = "TESTER_PLATFORMS";
-            this.TESTER_PLATFORMS.ReadOnly = true;
-            // 
-            // TEST_PROGRAM
-            // 
-            this.TEST_PROGRAM.DataPropertyName = "TEST PROGRAM";
-            this.TEST_PROGRAM.HeaderText = "DIE TYPE";
-            this.TEST_PROGRAM.Name = "TEST_PROGRAM";
-            this.TEST_PROGRAM.ReadOnly = true;
-            // 
-            // FIRST_DATE_VERIF
-            // 
-            this.FIRST_DATE_VERIF.DataPropertyName = "FIRST DATE";
-            this.FIRST_DATE_VERIF.HeaderText = "FIRST DATE VERIFIED";
-            this.FIRST_DATE_VERIF.Name = "FIRST_DATE_VERIF";
-            this.FIRST_DATE_VERIF.ReadOnly = true;
-            this.FIRST_DATE_VERIF.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.FIRST_DATE_VERIF.ToolTipText = "FIRST";
-            // 
-            // STATUS
-            // 
-            this.STATUS.DataPropertyName = "STATUS";
-            this.STATUS.HeaderText = "STATUS";
-            this.STATUS.Name = "STATUS";
-            this.STATUS.ReadOnly = true;
-            // 
-            // AGING_DAYS
-            // 
-            this.AGING_DAYS.DataPropertyName = "AGING DAYS";
-            this.AGING_DAYS.HeaderText = "AGING DAYS";
-            this.AGING_DAYS.Name = "AGING_DAYS";
-            this.AGING_DAYS.ReadOnly = true;
-            // 
-            // ENDORSEMENT_NUMBER
-            // 
-            this.ENDORSEMENT_NUMBER.DataPropertyName = "ENDORSEMENT NUMBER";
-            this.ENDORSEMENT_NUMBER.HeaderText = "ENDORSEMENT NUMBER";
-            this.ENDORSEMENT_NUMBER.Name = "ENDORSEMENT_NUMBER";
-            this.ENDORSEMENT_NUMBER.ReadOnly = true;
-            this.ENDORSEMENT_NUMBER.Visible = false;
             // 
             // SEARCH_BOARD
             // 
