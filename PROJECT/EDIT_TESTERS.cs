@@ -331,10 +331,7 @@ namespace PROJECT
         {
             if (USERS.Checked)
             {
-                Tester_platforms.SelectedIndex = -1;
-                AddOrDelete.Items.Clear();
-                Current_List.Items.Clear();
-                database = boards;
+                LoadBoards();
             }
             else return;
         }
@@ -374,6 +371,9 @@ namespace PROJECT
                     if (Tester.Checked)
                         Command = new MySqlCommand(string.Format("SELECT * FROM `{0}`.`{1}`",
                         database, Tester_platform.ToLower()), Connection.connect);               //LOAD TESTER
+                    else if (USERS.Checked)
+                        Command = new MySqlCommand(string.Format("SELECT * FROM `{0}`.`{1}`",    //LOAD USERS
+                        database,"USERS", Connection.connect));
                     else
                         Command = new MySqlCommand(string.Format("SELECT * FROM `{0}`.`{1}`",    //LOAD BOARD
                         database, Tester_platform.ToLower()), Connection.ConnectBoards);
@@ -400,7 +400,7 @@ namespace PROJECT
                         Command = new MySqlCommand(FullCommand, Connection.ConnectBoards);   //INSERT NEW BOARDS
                     break;
 
-                case 3:  //DELETE TESTERS OR BOARDS IN THE CHOSEN TESTER PLATFORM
+                case 3:  //DELETE USERS, TESTERS, OR BOARDS
                     for (int ListCount = 0; ListCount < AddOrDelete.Items.Count; ListCount++)
                     {
                         AddOrDelete.SelectedIndex = ListCount;
