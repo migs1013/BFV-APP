@@ -101,7 +101,7 @@
             this.Add_btn.Name = "Add_btn";
             this.Add_btn.Size = new System.Drawing.Size(130, 51);
             this.Add_btn.TabIndex = 2;
-            this.Add_btn.Text = "ADD/UPDATE BOARD";
+            this.Add_btn.Text = "TRANSACT";
             this.Add_btn.UseVisualStyleBackColor = false;
             this.Add_btn.Click += new System.EventHandler(this.Add_btn_Click);
             // 
@@ -292,7 +292,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label2.Location = new System.Drawing.Point(587, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 16);
+            this.label2.Size = new System.Drawing.Size(72, 16);
             this.label2.TabIndex = 31;
             this.label2.Text = "STATUS:";
             // 
@@ -343,7 +343,7 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label3.Location = new System.Drawing.Point(458, 47);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 16);
+            this.label3.Size = new System.Drawing.Size(52, 16);
             this.label3.TabIndex = 33;
             this.label3.Text = "AREA:";
             // 
@@ -407,7 +407,7 @@
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label6.Location = new System.Drawing.Point(844, 46);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 16);
+            this.label6.Size = new System.Drawing.Size(54, 16);
             this.label6.TabIndex = 39;
             this.label6.Text = "FROM:";
             // 
