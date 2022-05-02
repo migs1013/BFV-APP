@@ -379,7 +379,7 @@ namespace PROJECT
                         database, Tester_platform.ToLower()), Connection.ConnectBoards);
                     break;
 
-                case 2:  //INSERT NEW TESTERS OR BOARDS IN THE CHOSEN TESTER PLATFORM
+                case 2:  //INSERT NEW TESTERS, BOARDS, OR USER
                     for (int ListCount = 0; ListCount < AddOrDelete.Items.Count; ListCount++)
                     {
                         AddOrDelete.SelectedIndex = ListCount;
@@ -389,14 +389,18 @@ namespace PROJECT
                     }
                     List_AddOrDelete = List_AddOrDelete.Remove(List_AddOrDelete.Length - 1, 1);
                     FullCommand = string.Format("INSERT INTO `{0}`.`{1}`(`{2}`) VALUES {3}"
-                        , database, Tester_platform.ToLower(), Tester_platform.ToUpper(), List_AddOrDelete);
+                        ,database, Tester_platform.ToLower(), Tester_platform.ToUpper(), List_AddOrDelete);
                     if (Tester.Checked)
                         Command = new MySqlCommand(FullCommand, Connection.connect);   //INSERT NEW TESTER
+                    else if (USERS.Checked)
+                    {
+                        Command = new MySqlCommand(FullCommand, Connection.connect);   //INSERT NEW USERS
+                    }
                     else
                         Command = new MySqlCommand(FullCommand, Connection.ConnectBoards);   //INSERT NEW BOARDS
                     break;
 
-                case 3:  ///DELETE TESTERS OR BOARDS IN THE CHOSEN TESTER PLATFORM
+                case 3:  //DELETE TESTERS OR BOARDS IN THE CHOSEN TESTER PLATFORM
                     for (int ListCount = 0; ListCount < AddOrDelete.Items.Count; ListCount++)
                     {
                         AddOrDelete.SelectedIndex = ListCount;
@@ -407,6 +411,10 @@ namespace PROJECT
                     }
                     if (Tester.Checked)
                         Command = new MySqlCommand(FullCommand, Connection.connect);    //DELETE TESTER
+                    else if (USERS.Checked)
+                    {
+                        Command = new MySqlCommand(FullCommand, Connection.connect);   //DELETE USERS
+                    }
                     else
                         Command = new MySqlCommand(FullCommand, Connection.ConnectBoards);   //DELETE BOARD
                     break;
