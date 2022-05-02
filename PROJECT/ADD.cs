@@ -715,11 +715,12 @@ namespace PROJECT
             "'" + FirstTime.Text + "','" + SecondTime.Text + "')");
                     command.Parameters.Add("@FIRST_DATA", MySqlDbType.VarBinary).Value = SaveFile(first_verif_link.Text);
                     break;
-                case 13:  // FOR CHECKING THE LAST TRANSACTION
-                    command = new MySqlCommand("SELECT * FROM `boards_for_verification`.`board details` WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' and `PART NUMBER` = '" + Part_number.Text + "') " +
+                case 13:  // FOR CHECKING THE LAST TRANSACTION FOR 2ND VERIF
+                    command = new MySqlCommand("SELECT * FROM `boards_for_verification`.`board details`" +
+                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' and `PART NUMBER` = '" + Part_number.Text + "') " +
                         "ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     break;
-                case 14:  // FOR CHECKING THE LAST TRANSACTION
+                case 14:  // FOR CHECKING THE LAST TRANSACTION FOR NEW BOARD FAILURE
                     command = new MySqlCommand("SELECT `REVISION`,`TESTER PLATFORM`,`BOARD`" +
                         " FROM `boards_for_verification`.`board details` " +
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' and `PART NUMBER` = '" + Part_number.Text + "') " +

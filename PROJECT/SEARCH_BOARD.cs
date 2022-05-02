@@ -35,6 +35,34 @@ namespace PROJECT
 
         private async void LoadData()
         {
+            commands(6);
+            if (Connection.OpenConnection())
+            {
+                MySqlDataReader read_data = command.ExecuteReader();
+                while (read_data.Read())
+                {
+                    Tester_platform.Invoke((MethodInvoker)(() => Tester_platform.Items.Add(read_data.GetString("Tester platforms"))));
+                }
+                Connection.CloseConnection();
+            }
+            else
+            {
+                Connection.CloseConnection();
+                CheckForUpdates();
+                this.Close();
+            }
+            commands(2);
+            if (Connection.OpenConnection())
+            {
+                check = command.ExecuteScalar().ToString();
+                Connection.CloseConnection();
+            }
+            else
+            {
+                Connection.CloseConnection();
+                CheckForUpdates();
+                this.Close();
+            }
             await Task.Run(() =>
             {
                 FROM_DATE.Invoke((MethodInvoker)(()=> FROM_DATE.CustomFormat = " "));
@@ -48,34 +76,6 @@ namespace PROJECT
                 if (Connection.OpenConnection())
                 {
                     all = command.ExecuteScalar().ToString();
-                    Connection.CloseConnection();
-                }
-                else
-                {
-                    Connection.CloseConnection();
-                    CheckForUpdates();
-                    this.Close();
-                }
-                commands(6);
-                if (Connection.OpenConnection())
-                {
-                    MySqlDataReader read_data = command.ExecuteReader();
-                    while (read_data.Read())
-                    {
-                        Tester_platform.Invoke((MethodInvoker)(()=> Tester_platform.Items.Add(read_data.GetString("Tester platforms"))));
-                    }
-                    Connection.CloseConnection();
-                }
-                else
-                {
-                    Connection.CloseConnection();
-                    CheckForUpdates();
-                    this.Close();
-                }
-                commands(2);
-                if (Connection.OpenConnection())
-                {
-                    check = command.ExecuteScalar().ToString();
                     Connection.CloseConnection();
                 }
                 else

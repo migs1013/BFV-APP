@@ -327,6 +327,18 @@ namespace PROJECT
             }
         }
 
+        private void USERS_CLICK(object sender, EventArgs e)
+        {
+            if (USERS.Checked)
+            {
+                Tester_platforms.SelectedIndex = -1;
+                AddOrDelete.Items.Clear();
+                Current_List.Items.Clear();
+                database = boards;
+            }
+            else return;
+        }
+
         private void Tester_platforms_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Tester.Checked)
