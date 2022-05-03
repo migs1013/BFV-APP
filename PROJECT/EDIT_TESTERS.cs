@@ -331,7 +331,22 @@ namespace PROJECT
         {
             if (USERS.Checked)
             {
-                LoadBoards();
+                if (Mode.SelectedIndex == -1)
+                    return;
+                Tester_platforms.SelectedIndex = -1;
+                AddOrDelete.Items.Clear();
+                Current_List.Items.Clear();
+                database = boards;
+                Commands(1);
+                if (Connection.OpenConnectionForBoards())
+                {
+                    MySqlDataReader readUSERS = Command.ExecuteReader();
+                    while (readUSERS.Read())
+                    {
+                        Current_List.Items.Add(readUSERS.GetString("USERS"));
+                    }
+                    Connection.CloseConnectionForBoards();
+                }
             }
             else return;
         }
@@ -372,8 +387,8 @@ namespace PROJECT
                         Command = new MySqlCommand(string.Format("SELECT * FROM `{0}`.`{1}`",
                         database, Tester_platform.ToLower()), Connection.connect);               //LOAD TESTER
                     else if (USERS.Checked)
-                        Command = new MySqlCommand(string.Format("SELECT * FROM `{0}`.`{1}`",    //LOAD USERS
-                        database,"USERS", Connection.connect));
+                        Command = new MySqlCommand(string.Format("SELECT * FROM `{0}`.`users`",    //LOAD USERS
+                        database, Connection.connect));
                     else
                         Command = new MySqlCommand(string.Format("SELECT * FROM `{0}`.`{1}`",    //LOAD BOARD
                         database, Tester_platform.ToLower()), Connection.ConnectBoards);
