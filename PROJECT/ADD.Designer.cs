@@ -94,6 +94,7 @@
             this.Boards = new System.Windows.Forms.ComboBox();
             this.Area = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.NEW_STATUS = new System.Windows.Forms.ComboBox();
             this.Second_box.SuspendLayout();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
@@ -407,7 +408,7 @@
             this.Remarks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Remarks.Multiline = true;
             this.Remarks.Name = "Remarks";
-            this.Remarks.Size = new System.Drawing.Size(795, 232);
+            this.Remarks.Size = new System.Drawing.Size(370, 232);
             this.Remarks.TabIndex = 31;
             this.Remarks.Visible = false;
             // 
@@ -888,12 +889,27 @@
             this.label19.Text = "AREA";
             this.label19.Visible = false;
             // 
+            // NEW_STATUS
+            // 
+            this.NEW_STATUS.FormattingEnabled = true;
+            this.NEW_STATUS.Items.AddRange(new object[] {
+            "BRG",
+            "INCOMING",
+            "INSTALL TO TESTER",
+            "SPARES"});
+            this.NEW_STATUS.Location = new System.Drawing.Point(30, 650);
+            this.NEW_STATUS.Name = "NEW_STATUS";
+            this.NEW_STATUS.Size = new System.Drawing.Size(223, 24);
+            this.NEW_STATUS.Sorted = true;
+            this.NEW_STATUS.TabIndex = 63;
+            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1196, 687);
+            this.Controls.Add(this.NEW_STATUS);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.Area);
             this.Controls.Add(this.Boards);
@@ -1015,5 +1031,6 @@
         private System.Windows.Forms.Label FirstTime;
         private System.Windows.Forms.Label SecondTime;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ComboBox NEW_STATUS;
     }
 }
