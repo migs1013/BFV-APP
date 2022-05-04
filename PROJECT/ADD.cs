@@ -698,7 +698,7 @@ namespace PROJECT
             foreach (Control c in this.Controls)
             {
                 if (c == Remarks || c == Save_btn || c == Update_Button || c == Exit_btn || c == Serial_number
-                    || c == Second_box || c is RadioButton || c == Part_number)
+                    || c == Second_box || c is RadioButton || c == Part_number || c == STATUS)
                 {
                     continue;
                 }
@@ -913,12 +913,6 @@ namespace PROJECT
             }
         }
 
-        private void INSTALL_TO_TESTER_CheckedChanged(object sender, EventArgs e)
-        {
-            SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
-        }
-
         private void Key_PartNumber(object sender, KeyEventArgs e)
         {
             UpdateCheck = 0;
@@ -956,6 +950,21 @@ namespace PROJECT
                 }
             }
         }
+
+        private void status(object sender, EventArgs e)
+        {
+            if (STATUS.Text == "INSTALL TO TESTER")
+            {
+                SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
+            }
+            else
+            {
+                SecondDate.Text = " ";
+                SecondTime.Text = " ";
+            }    
+        }
+
         private void Second_tester_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Test_system.Text == "TMT")

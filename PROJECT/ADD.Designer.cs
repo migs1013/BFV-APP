@@ -824,6 +824,7 @@
             this.STATUS.Sorted = true;
             this.STATUS.TabIndex = 63;
             this.STATUS.Visible = false;
+            this.STATUS.SelectedIndexChanged += new System.EventHandler(this.status);
             // 
             // ADD
             // 
