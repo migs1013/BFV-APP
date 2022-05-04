@@ -443,7 +443,7 @@ namespace PROJECT
                         Command = new MySqlCommand(FullCommand, Connection.connect);    //DELETE TESTER
                     else if (USERS.Checked)
                     {
-                        Command = new MySqlCommand(FullCommand, Connection.ConnectBoards);   //DELETE USERS
+                        Command = new MySqlCommand(FullCommand, Connection.ConnectBoards);   //DELETE USER
                     }
                     else
                         Command = new MySqlCommand(FullCommand, Connection.ConnectBoards);   //DELETE BOARD
