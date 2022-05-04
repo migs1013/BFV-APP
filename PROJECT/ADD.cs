@@ -726,6 +726,9 @@ namespace PROJECT
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' and `PART NUMBER` = '" + Part_number.Text + "') " +
                         "ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     break;
+                case 15:  //LOAD USERS 
+                    command = new MySqlCommand("SELECT * FROM `boards_of_testers`.`user`",Connection.ConnectBoards);
+                    break;
             }
         }
         private void disable_control()
@@ -1020,8 +1023,24 @@ namespace PROJECT
         private void ADD_Load(object sender, EventArgs e)
         {
             LoadTesterPlatforms();
+            LoadUsers();
         }
 
+        private void LoadUsers()
+        {
+            commands(15);
+            if (Connection.OpenConnectionForBoards())
+            {
+                MySqlDataReader read_data = command.ExecuteReader();
+                while (read_data.Read())
+                {
+                   first_endorser.Items.Add(read_data.GetString("USERS"));
+                   second_endorser.Items.Add(read_data.GetString("USERS"));
+                }
+                Connection.CloseConnectionForBoards();
+            }
+            else return;
+        }
         private void LoadTesterPlatforms()
         {
             Boards.Items.Clear();

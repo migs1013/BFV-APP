@@ -94,7 +94,6 @@
             this.Boards = new System.Windows.Forms.ComboBox();
             this.Area = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.Second_box.SuspendLayout();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
@@ -336,44 +335,6 @@
             // 
             this.first_endorser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.first_endorser.FormattingEnabled = true;
-            this.first_endorser.Items.AddRange(new object[] {
-            "AIDA NAMOG",
-            "ARJANE GARCIA",
-            "AUGETTE MERIDA",
-            "BABYLYN HILARIO",
-            "BRYAN FELICIANO",
-            "DONALD DINAWANAO",
-            "EJ ACCION",
-            "ERWIN DESEO",
-            "FREDERICK VELASQUEZ",
-            "GYVER GELLECANAO",
-            "IAN LUCERO",
-            "JACOB LORESCO",
-            "JAMES ANORA",
-            "JAYSON MATIAS",
-            "JEREMY ANGWAY",
-            "JOHN CHRISTOPHER CALICA",
-            "JOHN MICHAEL SO",
-            "JONRELL CANETE",
-            "KEVIN KERK",
-            "LEIU BLANCO",
-            "LEOMAR VIDAL",
-            "LEVI LEBIN",
-            "LOREN ZARAGOZA",
-            "MARCO LOPEZ",
-            "MARVIN CHAVEZ",
-            "MARVIN VILLANUEVA",
-            "MELVIN IGNACIO",
-            "MELVIN NOVESTRO",
-            "NIKKO ORGANO",
-            "RALPH ARVIN CANDA",
-            "RAYMOND CRUZIN",
-            "RAYMOND ROMERO",
-            "RENATO SUPERO",
-            "ROSVE VIRAY",
-            "SUSANA SAN GABRIEL",
-            "VHON BUGTAY",
-            "VJ TOLENTINO"});
             this.first_endorser.Location = new System.Drawing.Point(146, 284);
             this.first_endorser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.first_endorser.Name = "first_endorser";
@@ -386,44 +347,6 @@
             // 
             this.second_endorser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.second_endorser.FormattingEnabled = true;
-            this.second_endorser.Items.AddRange(new object[] {
-            "AIDA NAMOG",
-            "ARJANE GARCIA",
-            "AUGETTE MERIDA",
-            "BABYLYN HILARIO",
-            "BRYAN FELICIANO",
-            "DONALD DINAWANAO",
-            "EJ ACCION",
-            "ERWIN DESEO",
-            "FREDERICK VELASQUEZ",
-            "GYVER GELLECANAO",
-            "IAN LUCERO",
-            "JACOB LORESCO",
-            "JAMES ANORA",
-            "JAYSON MATIAS",
-            "JEREMY ANGWAY",
-            "JOHN CHRISTOPHER CALICA",
-            "JOHN MICHAEL SO",
-            "JONRELL CANETE",
-            "KEVIN KERK",
-            "LEIU BLANCO",
-            "LEOMAR VIDAL",
-            "LEVI LEBIN",
-            "LOREN ZARAGOZA",
-            "MARCO LOPEZ",
-            "MARVIN CHAVEZ",
-            "MARVIN VILLANUEVA",
-            "MELVIN IGNACIO",
-            "MELVIN NOVESTRO",
-            "NIKKO ORGANO",
-            "RALPH ARVIN CANDA",
-            "RAYMOND CRUZIN",
-            "RAYMOND ROMERO",
-            "RENATO SUPERO",
-            "ROSVE VIRAY",
-            "SUSANA SAN GABRIEL",
-            "VHON BUGTAY",
-            "VJ TOLENTINO"});
             this.second_endorser.Location = new System.Drawing.Point(148, 284);
             this.second_endorser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.second_endorser.Name = "second_endorser";
@@ -883,7 +806,7 @@
             this.FOR_SECOND_VERIF.AutoSize = true;
             this.FOR_SECOND_VERIF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FOR_SECOND_VERIF.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.FOR_SECOND_VERIF.Location = new System.Drawing.Point(30, 649);
+            this.FOR_SECOND_VERIF.Location = new System.Drawing.Point(30, 623);
             this.FOR_SECOND_VERIF.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FOR_SECOND_VERIF.Name = "FOR_SECOND_VERIF";
             this.FOR_SECOND_VERIF.Size = new System.Drawing.Size(179, 25);
@@ -965,25 +888,12 @@
             this.label19.Text = "AREA";
             this.label19.Visible = false;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "NO 2ND DATALOG",
-            "NO 1ST AND 2ND DATALOG",
-            "WITH DATALOG"});
-            this.comboBox1.Location = new System.Drawing.Point(30, 623);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(215, 24);
-            this.comboBox1.TabIndex = 63;
-            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1196, 687);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.Area);
             this.Controls.Add(this.Boards);
@@ -1105,6 +1015,5 @@
         private System.Windows.Forms.Label FirstTime;
         private System.Windows.Forms.Label SecondTime;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
