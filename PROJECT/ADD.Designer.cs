@@ -902,6 +902,7 @@
             this.NEW_STATUS.Size = new System.Drawing.Size(223, 24);
             this.NEW_STATUS.Sorted = true;
             this.NEW_STATUS.TabIndex = 63;
+            this.NEW_STATUS.Visible = false;
             // 
             // ADD
             // 
