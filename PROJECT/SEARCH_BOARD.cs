@@ -558,11 +558,11 @@ namespace PROJECT
             }
             if (Stats.SelectedIndex != 0)                                                                 //STATUS
             {
-                if (Stats.SelectedIndex == 5)
+                if (Stats.Text == "OVERDUE")
                 {
                     S = string.Format("((select abs(datediff(`FIRST DATE`,current_date()))) > 2) and (`STATUS` = 'FOR SECOND VERIF')");
                 }
-                else if (Stats.SelectedIndex == 4)
+                else if (Stats.Text == "INSTALL TO A TESTER")
                 {
                     S = string.Format("(`STATUS` REGEXP 'INSTALL')");
                 }

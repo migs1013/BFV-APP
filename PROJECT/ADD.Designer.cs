@@ -90,6 +90,9 @@
             this.Area = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.STATUS = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.Second_box.SuspendLayout();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
@@ -247,7 +250,7 @@
             // 
             this.Add_first_verif.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Add_first_verif.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Add_first_verif.Location = new System.Drawing.Point(21, 23);
+            this.Add_first_verif.Location = new System.Drawing.Point(22, 23);
             this.Add_first_verif.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Add_first_verif.Name = "Add_first_verif";
             this.Add_first_verif.Size = new System.Drawing.Size(167, 30);
@@ -386,11 +389,11 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label10.Location = new System.Drawing.Point(385, 343);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(192, 21);
+            this.label10.Size = new System.Drawing.Size(179, 19);
             this.label10.TabIndex = 30;
             this.label10.Text = "PROBLEM DESCRIPTION";
             this.label10.Visible = false;
@@ -420,7 +423,7 @@
             // 
             this.First_Site.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.First_Site.FormattingEnabled = true;
-            this.First_Site.Location = new System.Drawing.Point(159, 213);
+            this.First_Site.Location = new System.Drawing.Point(159, 214);
             this.First_Site.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.First_Site.Name = "First_Site";
             this.First_Site.Size = new System.Drawing.Size(140, 21);
@@ -524,7 +527,7 @@
             // 
             this.Second_tester.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Second_tester.FormattingEnabled = true;
-            this.Second_tester.Location = new System.Drawing.Point(160, 182);
+            this.Second_tester.Location = new System.Drawing.Point(160, 184);
             this.Second_tester.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Second_tester.Name = "Second_tester";
             this.Second_tester.Size = new System.Drawing.Size(140, 21);
@@ -800,7 +803,7 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label19.Location = new System.Drawing.Point(30, 511);
+            this.label19.Location = new System.Drawing.Point(30, 509);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(50, 19);
             this.label19.TabIndex = 62;
@@ -818,7 +821,7 @@
             "INCOMING",
             "INSTALL TO TESTER",
             "SPARES"});
-            this.STATUS.Location = new System.Drawing.Point(177, 562);
+            this.STATUS.Location = new System.Drawing.Point(177, 556);
             this.STATUS.Name = "STATUS";
             this.STATUS.Size = new System.Drawing.Size(161, 21);
             this.STATUS.Sorted = true;
@@ -826,12 +829,48 @@
             this.STATUS.Visible = false;
             this.STATUS.SelectedIndexChanged += new System.EventHandler(this.status);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.label1.Location = new System.Drawing.Point(789, 371);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(146, 19);
+            this.label1.TabIndex = 64;
+            this.label1.Text = "3RD VERIFICATION";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.label2.Location = new System.Drawing.Point(791, 443);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(144, 19);
+            this.label2.TabIndex = 65;
+            this.label2.Text = "4TH VERIFICATION";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.label22.Location = new System.Drawing.Point(789, 523);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(144, 19);
+            this.label22.TabIndex = 66;
+            this.label22.Text = "5TH VERIFICATION";
+            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1196, 687);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.STATUS);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.Area);
@@ -945,5 +984,8 @@
         private System.Windows.Forms.Label SecondTime;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.ComboBox STATUS;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label22;
     }
 }

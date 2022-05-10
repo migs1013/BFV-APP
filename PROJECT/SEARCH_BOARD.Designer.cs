@@ -227,7 +227,7 @@
             this.EDIT.Name = "EDIT";
             this.EDIT.Size = new System.Drawing.Size(130, 50);
             this.EDIT.TabIndex = 24;
-            this.EDIT.Text = "EDIT";
+            this.EDIT.Text = "TESTER / BOARDS / USERS";
             this.EDIT.UseVisualStyleBackColor = false;
             this.EDIT.Click += new System.EventHandler(this.EDIT_Click);
             // 
@@ -305,7 +305,6 @@
             this.Stats.Items.AddRange(new object[] {
             "",
             "BRG",
-            "FAILURE CHANGED",
             "FOR SECOND VERIF",
             "INSTALL TO A TESTER",
             "OVERDUE",
