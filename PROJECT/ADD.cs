@@ -214,8 +214,13 @@ namespace PROJECT
         }
         private void Update_Button_Click(object sender, EventArgs e)
         {
-            
-            if (STATUS.SelectedIndex == 3)
+            if (STATUS.Text == "FOR SECOND VERIF" || STATUS.Text == "INCOMING")
+            {
+                MessageBox.Show("INVALID STATUS");
+                STATUS.SelectedIndex = -1;
+                return;
+            }
+            else if (STATUS.Text == "INSTALL TO TESTER")
             {
                 if (Second_Site.Items.Count == 0)
                 {
@@ -236,11 +241,7 @@ namespace PROJECT
                     Save_data(10);
                 }
             }
-            else if (STATUS.SelectedIndex == 0)
-            {
-                Save_data(3);
-            }
-            else if (STATUS.SelectedIndex == 4)
+            else if (STATUS.Text == "SPARES")
             {
                 if (ForSecondVerif())
                 {
@@ -254,14 +255,14 @@ namespace PROJECT
         }
         private void Save_btn_Click(object sender, EventArgs e)
         {
-            if (STATUS.SelectedIndex == 1)
+            if (STATUS.Text == "FOR SECOND VERIF")
             {
                 if (ForFirstVerif())
                 {
                     Save_data(2);
                 }
             }
-            else if (STATUS.SelectedIndex == 0)
+            else if (STATUS.Text == "SPARES")
             {
                 if (ForFirstVerif())
                 {
@@ -271,7 +272,7 @@ namespace PROJECT
                     }
                 }
             }
-            else if (STATUS.SelectedIndex == 4)
+            else if (STATUS.Text == "BRG")
             {
                 if (ForFirstVerif())
                 {
