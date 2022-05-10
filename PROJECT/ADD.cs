@@ -274,12 +274,25 @@ namespace PROJECT
             }
             else if (STATUS.Text == "BRG")
             {
-                if (ForFirstVerif())
+                if (DLOG.SelectedIndex == 0)
                 {
-                    if (ForSecondVerif())
+                    if (ForFirstVerif())
                     {
-                        Save_data(4);
+                        if (ForSecondVerif())
+                        {
+                            Save_data(4);
+                        }
                     }
+                }
+                else if (DLOG.SelectedIndex == 1)
+                {
+                    FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
+                }
+                else
+                {
+                    MessageBox.Show("choose if with datalog or not");
+                    return;
                 }
             }
             else
