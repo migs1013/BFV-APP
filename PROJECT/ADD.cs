@@ -162,11 +162,23 @@ namespace PROJECT
                 }
                 else continue;
             }
-            if (first_verif_link.Text == string.Empty || First_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(First_board_slot.Text)
-                || first_endorser.SelectedIndex == -1)
+            if (STATUS.Text == "BRG")
             {
-                error();
-                return false;
+                if (First_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(First_board_slot.Text)
+                  || first_endorser.SelectedIndex == -1)
+                {
+                    error();
+                    return false;
+                }
+            }
+            else if (STATUS.Text != "BRG")
+            {
+                if (first_verif_link.Text == string.Empty || First_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(First_board_slot.Text)
+               || first_endorser.SelectedIndex == -1)
+                {
+                    error();
+                    return false;
+                }
             }
             else if (First_board_slot.Text.Length > 5)
             {
@@ -274,25 +286,12 @@ namespace PROJECT
             }
             else if (STATUS.Text == "BRG")
             {
-                if (DLOG.SelectedIndex == 0)
+                if (ForFirstVerif())
                 {
-                    if (ForFirstVerif())
+                    if (ForSecondVerif())
                     {
-                        if (ForSecondVerif())
-                        {
-                            Save_data(4);
-                        }
+                        Save_data(4);
                     }
-                }
-                else if (DLOG.SelectedIndex == 1)
-                {
-                    FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                    SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
-                }
-                else
-                {
-                    MessageBox.Show("choose if with datalog or not");
-                    return;
                 }
             }
             else

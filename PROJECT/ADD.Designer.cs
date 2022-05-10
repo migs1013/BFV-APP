@@ -90,7 +90,6 @@
             this.Area = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.STATUS = new System.Windows.Forms.ComboBox();
-            this.DLOG = new System.Windows.Forms.ComboBox();
             this.Second_box.SuspendLayout();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
@@ -827,24 +826,12 @@
             this.STATUS.Visible = false;
             this.STATUS.SelectedIndexChanged += new System.EventHandler(this.status);
             // 
-            // DLOG
-            // 
-            this.DLOG.FormattingEnabled = true;
-            this.DLOG.Items.AddRange(new object[] {
-            "WITH DATALOG",
-            "NO DATALOG"});
-            this.DLOG.Location = new System.Drawing.Point(198, 598);
-            this.DLOG.Name = "DLOG";
-            this.DLOG.Size = new System.Drawing.Size(140, 24);
-            this.DLOG.TabIndex = 64;
-            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1196, 687);
-            this.Controls.Add(this.DLOG);
             this.Controls.Add(this.STATUS);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.Area);
@@ -958,6 +945,5 @@
         private System.Windows.Forms.Label SecondTime;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.ComboBox STATUS;
-        private System.Windows.Forms.ComboBox DLOG;
     }
 }
