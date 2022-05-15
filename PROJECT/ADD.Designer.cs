@@ -818,6 +818,7 @@
             this.STATUS.Items.AddRange(new object[] {
             "BRG",
             "FOR SECOND VERIF",
+            "FOR VERIFICATION",
             "INCOMING",
             "INSTALL TO TESTER",
             "SPARES"});
