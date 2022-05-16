@@ -274,6 +274,16 @@ namespace PROJECT
                     Save_data(2);
                 }
             }
+            else if (STATUS.Text == "FOR VERIFICATION")
+            {
+                if (string.IsNullOrWhiteSpace(Revision.Text))
+                {
+                    error(); return;
+                }
+                FirstDate.Text = DateTime.Now.ToString("yyyy - MM - dd");
+                FirstTime.Text = DateTime.Now.ToString("hh: mm tt");
+                Save_data(6);
+            }
             else if (STATUS.Text == "SPARES")
             {
                 if (ForFirstVerif())
@@ -632,14 +642,10 @@ namespace PROJECT
                 case 5:  //FOR THE TESTER PLATFORMS
                     command = new MySqlCommand("SELECT * FROM `boards_for_verification`.`tester platforms`", Connection.connect);
                     break;
-                case 6:  // IF THE SECOND VERIFICATION FAILURE CHANGES
-                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` " +
-                        "SET `SECOND TESTER` = '" + Second_tester.Text + "',`SECOND SLOT` = '" + Second_slot.Text + "'," +
-                        "`SECOND ENDORSER` = '" + second_endorser.Text + "'," +
-                        "`STATUS` = 'FAILURE CHANGED',`REMARKS` = '" + Remarks.Text + "',`SECOND DATE` = '" + SecondDate.Text + "'," +
-                        "`SECOND TIME` = '" + SecondTime.Text + "'" +
-                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' and `PART NUMBER` = '" + Part_number.Text + "')" +
-                        "ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
+                case 6:  //FOR VERIFICATION
+                    command = new MySqlCommand("INSERT INTO `boards_for_verification`.`board details` " +
+                        "(`SERIAL NUMBER`,`PART NUMBER`,`REVISION`,`STATUS`,`FIRST DATE`,`FIRST TIME`) VALUES ('" + Serial_number.Text + "', '" + Part_number.Text + "'," +
+                        "'" + Revision.Text + "','" + STATUS.Text + "','" + FirstDate.Text + "','" + FirstTime.Text + "'");
                     break;
                 case 7:  // IF THE SECOND VERIFICATION PASSED AND INSTALLED ALREADY TO THE TESTER
                     command = new MySqlCommand(string.Format("UPDATE `boards_for_verification`.`board details` " +

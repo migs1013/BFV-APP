@@ -93,6 +93,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog4 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog5 = new System.Windows.Forms.OpenFileDialog();
+            this.THIRD_VERIF = new System.Windows.Forms.LinkLabel();
+            this.FOURTH_VERIF = new System.Windows.Forms.LinkLabel();
+            this.FIFTH_VERIF = new System.Windows.Forms.LinkLabel();
             this.Second_box.SuspendLayout();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
@@ -817,10 +823,14 @@
             this.STATUS.FormattingEnabled = true;
             this.STATUS.Items.AddRange(new object[] {
             "BRG",
+            "FOR SCRAP",
             "FOR SECOND VERIF",
             "FOR VERIFICATION",
-            "INCOMING",
+            "HARD DOWN",
+            "INACTIVE",
             "INSTALL TO TESTER",
+            "MISSING",
+            "OUTSOURCE REPAIR",
             "SPARES"});
             this.STATUS.Location = new System.Drawing.Point(177, 556);
             this.STATUS.Name = "STATUS";
@@ -863,12 +873,48 @@
             this.label22.TabIndex = 66;
             this.label22.Text = "5TH VERIFICATION";
             // 
+            // THIRD_VERIF
+            // 
+            this.THIRD_VERIF.AutoSize = true;
+            this.THIRD_VERIF.LinkColor = System.Drawing.Color.Yellow;
+            this.THIRD_VERIF.Location = new System.Drawing.Point(792, 404);
+            this.THIRD_VERIF.Name = "THIRD_VERIF";
+            this.THIRD_VERIF.Size = new System.Drawing.Size(59, 16);
+            this.THIRD_VERIF.TabIndex = 67;
+            this.THIRD_VERIF.TabStop = true;
+            this.THIRD_VERIF.Text = "linkLabel1";
+            // 
+            // FOURTH_VERIF
+            // 
+            this.FOURTH_VERIF.AutoSize = true;
+            this.FOURTH_VERIF.LinkColor = System.Drawing.Color.Yellow;
+            this.FOURTH_VERIF.Location = new System.Drawing.Point(792, 490);
+            this.FOURTH_VERIF.Name = "FOURTH_VERIF";
+            this.FOURTH_VERIF.Size = new System.Drawing.Size(59, 16);
+            this.FOURTH_VERIF.TabIndex = 68;
+            this.FOURTH_VERIF.TabStop = true;
+            this.FOURTH_VERIF.Text = "linkLabel2";
+            // 
+            // FIFTH_VERIF
+            // 
+            this.FIFTH_VERIF.AutoSize = true;
+            this.FIFTH_VERIF.LinkColor = System.Drawing.Color.Yellow;
+            this.FIFTH_VERIF.Location = new System.Drawing.Point(792, 561);
+            this.FIFTH_VERIF.Name = "FIFTH_VERIF";
+            this.FIFTH_VERIF.Size = new System.Drawing.Size(59, 16);
+            this.FIFTH_VERIF.TabIndex = 69;
+            this.FIFTH_VERIF.TabStop = true;
+            this.FIFTH_VERIF.Text = "linkLabel3";
+            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1196, 687);
+            this.Controls.Add(this.FIFTH_VERIF);
+            this.Controls.Add(this.FOURTH_VERIF);
+            this.Controls.Add(this.THIRD_VERIF);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -988,5 +1034,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.OpenFileDialog openFileDialog3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog4;
+        private System.Windows.Forms.OpenFileDialog openFileDialog5;
+        private System.Windows.Forms.LinkLabel THIRD_VERIF;
+        private System.Windows.Forms.LinkLabel FOURTH_VERIF;
+        private System.Windows.Forms.LinkLabel FIFTH_VERIF;
     }
 }
