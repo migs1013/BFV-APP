@@ -645,7 +645,7 @@ namespace PROJECT
                 case 6:  //FOR VERIFICATION
                     command = new MySqlCommand("INSERT INTO `boards_for_verification`.`board details` " +
                         "(`SERIAL NUMBER`,`PART NUMBER`,`REVISION`,`STATUS`,`FIRST DATE`,`FIRST TIME`) VALUES ('" + Serial_number.Text + "', '" + Part_number.Text + "'," +
-                        "'" + Revision.Text + "','" + STATUS.Text + "','" + FirstDate.Text + "','" + FirstTime.Text + "'");
+                        "'" + Revision.Text + "','" + STATUS.Text + "','" + FirstDate.Text + "','" + FirstTime.Text + "')");
                     break;
                 case 7:  // IF THE SECOND VERIFICATION PASSED AND INSTALLED ALREADY TO THE TESTER
                     command = new MySqlCommand(string.Format("UPDATE `boards_for_verification`.`board details` " +
