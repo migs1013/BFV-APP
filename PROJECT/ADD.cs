@@ -469,7 +469,6 @@ namespace PROJECT
                                 Test_system.SelectedIndex = 0;
                                 Testers();
                                 DIE_TYPE.Focus();
-                                Connection.CloseConnection();
                                 return;
                             case DialogResult.No:
                                 Connection.CloseConnection();
