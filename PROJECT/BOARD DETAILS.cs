@@ -51,15 +51,12 @@ namespace PROJECT
                 Test_option.Text = read_data["TEST OPTION"].ToString();
                 Remarks.Text = read_data["REMARKS"].ToString();
                 Status.Text = read_data["STATUS"].ToString();
-                Data1 = (byte[])read_data["FIRST DATALOG"];
                 First_date.Text = read_data["FIRST DATE"].ToString();
                 First_tester.Text = read_data["FIRST TESTER"].ToString();
                 First_site.Text = read_data["FIRST SITE"].ToString();
                 First_slot.Text = read_data["FIRST SLOT"].ToString();
                 First_endorser.Text = read_data["FIRST ENDORSER"].ToString();
                 Second_verif_link.Text = read_data["SECOND DATALOG"].ToString();
-                if (Second_verif_link.Text != String.Empty)
-                    Data2 = (byte[])read_data["SECOND DATALOG"];
                 Second_tester.Text = read_data["SECOND TESTER"].ToString();
                 Second_site.Text = read_data["SECOND SITE"].ToString();
                 Second_slot.Text = read_data["SECOND SLOT"].ToString();
@@ -139,6 +136,26 @@ namespace PROJECT
                     DayCount = string.Format("select abs(datediff(`FIRST DATE`,{0})) as `DAYS INTERVAL` from `board details` where `endorsement number` = '" + Endorsement_number + "'",Second);
                     command = new MySqlCommand(DayCount,Connection.connect);
                     break;
+                case 2:
+                    command = new MySqlCommand("SELECT `FIRST DATALOG` FROM `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS` " +
+                        "WHERE (`ENDORSEMENT NUMBER` = '" + Endorsement_number + "')");
+                    break;
+                case 3:
+                    command = new MySqlCommand("SELECT `SECOND DATALOG` FROM `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS` WHERE" +
+                        "(`ENDORSEMENT NUMBER` = '" + Endorsement_number + "')");
+                    break;
+                case 4:
+                    command = new MySqlCommand("SELECT `THIRD DATALOG` FROM `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS` WHERE" +
+                        "(`ENDORSEMENT NUMBER` = '" + Endorsement_number + "')");
+                    break;
+                case 5:
+                    command = new MySqlCommand("SELECT `FOURTH DATALOG` FROM `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS` WHERE" +
+                        "(`ENDORSEMENT NUMBER` = '" + Endorsement_number + "')");
+                    break;
+                case 6:
+                    command = new MySqlCommand("SELECT `FIFTH DATALOG` FROM `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS` WHERE" +
+                        "(`ENDORSEMENT NUMBER` = '" + Endorsement_number + "')");
+                    break;
             }
           
         }
@@ -149,6 +166,19 @@ namespace PROJECT
 
         private void First_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            Commands(2);
+            Commands(0);
+            command.Connection = Connection.connect;
+
+            if (Connection.OpenConnection())
+            {
+                MySqlDataReader read_data = command.ExecuteReader();
+                read_data.Read();
+
+                Data1 = (byte[])read_data["FIRST DATALOG"];
+                Connection.CloseConnection();
+            }
+
             string file1 = string.Format(@"C:\Users\{0}\Desktop\{1}", Environment.UserName, FileName1);
             File.WriteAllBytes(file1, Data1);
             System.Diagnostics.Process.Start(file1);
@@ -156,6 +186,18 @@ namespace PROJECT
 
         private void Second_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            Commands(3);
+            command.Connection = Connection.connect;
+
+            if (Connection.OpenConnection())
+            {
+                MySqlDataReader read_data = command.ExecuteReader();
+                read_data.Read();
+
+                Data2 = (byte[])read_data["SECOND DATALOG"];
+                Connection.CloseConnection();
+            }
+
             string file2 = string.Format(@"C:\Users\{0}\Desktop\{1}", Environment.UserName, Filename2);
             File.WriteAllBytes(file2, Data2);
             System.Diagnostics.Process.Start(file2);

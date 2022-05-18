@@ -276,12 +276,12 @@ namespace PROJECT
             }
             else if (STATUS.Text == "FOR VERIFICATION")
             {
-                if (string.IsNullOrWhiteSpace(Revision.Text))
+                if (string.IsNullOrWhiteSpace(Revision.Text) || Test_system.SelectedIndex == -1)
                 {
                     error(); return;
                 }
-                FirstDate.Text = DateTime.Now.ToString("yyyy - MM - dd");
-                FirstTime.Text = DateTime.Now.ToString("hh: mm tt");
+                FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
                 Save_data(6);
             }
             else if (STATUS.Text == "SPARES")
@@ -292,6 +292,13 @@ namespace PROJECT
                     {
                         Save_data(4);
                     }
+                }
+            }
+            else if (STATUS.Text == "INSTALL TO TESTER")
+            {
+                if (ForFirstVerif())
+                {
+                    Save_data(2);
                 }
             }
             else if (STATUS.Text == "BRG")
@@ -419,6 +426,10 @@ namespace PROJECT
                         MessageBox.Show("NO INPUT");
                         return;
                     }
+                    STATUS.Items.Remove("FOR SECOND VERIF");
+                    STATUS.Items.Remove("FOR VERIFICATION");
+                    STATUS.Items.Add("FOR SECOND VERIF");
+                    STATUS.Items.Add("FOR VERIFICATION");
                     LoadBoardDetails();
                 }
             }
@@ -436,8 +447,10 @@ namespace PROJECT
                 try
                 {
                     get_status = read_status["STATUS"].ToString();
-                    if (get_status == "SPARES" || get_status == "BRG" || get_status.Contains("INSTALL") || get_status == "FAILURE CHANGED")
+                    if (get_status == "SPARES" || get_status == "BRG" || get_status.Contains("INSTALL") || get_status == "FAILURE CHANGED" || get_status == "FOR VERIFICATION")
                     {
+                        if (get_status == "FOR VERIFICATION")
+                            STATUS.Items.Remove("FOR VERIFICATION");
                         DialogResult yes_no = MessageBox.Show("LAST TRANSACTION: " + get_status + ", ADD NEW?", "ATTENTION!",
                             MessageBoxButtons.YesNo);
                         switch (yes_no)
@@ -456,7 +469,6 @@ namespace PROJECT
                                 Test_system.Items.Add(read_data["TESTER PLATFORM"].ToString());
                                 Boards.Items.Add(read_data["BOARD"].ToString());
                                 Connection.CloseConnection();
-                                Boards.SelectedIndex = 0;
                                 Boards.SelectedIndex = 0;
                                 Update_Button.Visible = false;
                                 DoNotLoadBoard = 1;
@@ -484,6 +496,8 @@ namespace PROJECT
                     else
                     {
                         Connection.CloseConnection();
+                        STATUS.Items.Remove("FOR VERIFICATION");
+                        STATUS.Items.Remove("FOR SECOND VERIF");
                         commands(13);
                         command.Connection = Connection.connect;
                         Connection.OpenConnection();
@@ -643,8 +657,10 @@ namespace PROJECT
                     break;
                 case 6:  //FOR VERIFICATION
                     command = new MySqlCommand("INSERT INTO `boards_for_verification`.`board details` " +
-                        "(`SERIAL NUMBER`,`PART NUMBER`,`REVISION`,`STATUS`,`FIRST DATE`,`FIRST TIME`) VALUES ('" + Serial_number.Text + "', '" + Part_number.Text + "'," +
-                        "'" + Revision.Text + "','" + STATUS.Text + "','" + FirstDate.Text + "','" + FirstTime.Text + "')");
+                        "(`SERIAL NUMBER`,`PART NUMBER`,`REVISION`,`TESTER PLATFORM`,`BOARD`,`TEST PROGRAM`,`STATUS`,`FIRST DATE`,`FIRST TIME`) " +
+                        "VALUES ('" + Serial_number.Text + "', '" + Part_number.Text + "'," +
+                        "'" + Revision.Text + "','" + Test_system.Text + "','" + Boards.Text + "','N/A','" + STATUS.Text + "'," +
+                        "'" + FirstDate.Text + "','" + FirstTime.Text + "')");
                     break;
                 case 7:  // IF THE SECOND VERIFICATION PASSED AND INSTALLED ALREADY TO THE TESTER
                     command = new MySqlCommand(string.Format("UPDATE `boards_for_verification`.`board details` " +
@@ -943,6 +959,10 @@ namespace PROJECT
                         MessageBox.Show("NO INPUT");
                         return;
                     }
+                    STATUS.Items.Remove("FOR SECOND VERIF");
+                    STATUS.Items.Remove("FOR VERIFICATION");
+                    STATUS.Items.Add("FOR SECOND VERIF");
+                    STATUS.Items.Add("FOR VERIFICATION");
                     LoadBoardDetails();
                 }
             }

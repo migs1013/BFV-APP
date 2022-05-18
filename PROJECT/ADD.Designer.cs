@@ -823,14 +823,7 @@
             this.STATUS.FormattingEnabled = true;
             this.STATUS.Items.AddRange(new object[] {
             "BRG",
-            "FOR SCRAP",
-            "FOR SECOND VERIF",
-            "FOR VERIFICATION",
-            "HARD DOWN",
-            "INACTIVE",
             "INSTALL TO TESTER",
-            "MISSING",
-            "OUTSOURCE REPAIR",
             "SPARES"});
             this.STATUS.Location = new System.Drawing.Point(177, 556);
             this.STATUS.Name = "STATUS";
@@ -850,6 +843,7 @@
             this.label1.Size = new System.Drawing.Size(146, 19);
             this.label1.TabIndex = 64;
             this.label1.Text = "3RD VERIFICATION";
+            this.label1.Visible = false;
             // 
             // label2
             // 
@@ -861,6 +855,7 @@
             this.label2.Size = new System.Drawing.Size(144, 19);
             this.label2.TabIndex = 65;
             this.label2.Text = "4TH VERIFICATION";
+            this.label2.Visible = false;
             // 
             // label22
             // 
@@ -872,6 +867,7 @@
             this.label22.Size = new System.Drawing.Size(144, 19);
             this.label22.TabIndex = 66;
             this.label22.Text = "5TH VERIFICATION";
+            this.label22.Visible = false;
             // 
             // THIRD_VERIF
             // 
@@ -883,6 +879,7 @@
             this.THIRD_VERIF.TabIndex = 67;
             this.THIRD_VERIF.TabStop = true;
             this.THIRD_VERIF.Text = "linkLabel1";
+            this.THIRD_VERIF.Visible = false;
             // 
             // FOURTH_VERIF
             // 
@@ -894,6 +891,7 @@
             this.FOURTH_VERIF.TabIndex = 68;
             this.FOURTH_VERIF.TabStop = true;
             this.FOURTH_VERIF.Text = "linkLabel2";
+            this.FOURTH_VERIF.Visible = false;
             // 
             // FIFTH_VERIF
             // 
@@ -905,6 +903,7 @@
             this.FIFTH_VERIF.TabIndex = 69;
             this.FIFTH_VERIF.TabStop = true;
             this.FIFTH_VERIF.Text = "linkLabel3";
+            this.FIFTH_VERIF.Visible = false;
             // 
             // ADD
             // 

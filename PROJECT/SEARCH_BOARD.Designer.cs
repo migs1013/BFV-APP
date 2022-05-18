@@ -306,6 +306,7 @@
             "",
             "BRG",
             "FOR SECOND VERIF",
+            "FOR VERIFICATION",
             "INSTALL TO A TESTER",
             "OVERDUE",
             "SPARES"});
