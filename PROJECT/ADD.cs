@@ -226,13 +226,7 @@ namespace PROJECT
         }
         private void Update_Button_Click(object sender, EventArgs e)
         {
-            if (STATUS.Text == "FOR SECOND VERIF" || STATUS.Text == "INCOMING")
-            {
-                MessageBox.Show("INVALID STATUS");
-                STATUS.SelectedIndex = -1;
-                return;
-            }
-            else if (STATUS.Text == "INSTALL TO TESTER")
+           if (STATUS.Text == "INSTALL TO TESTER")
             {
                 if (Second_Site.Items.Count == 0)
                 {
@@ -260,6 +254,11 @@ namespace PROJECT
                     Save_data(3);
                 }
             }
+            else if (STATUS.Text == "BRG")
+            {
+                if (ForSecondVerif())
+                    Save_data(3);
+            }
             else
             {
                 MessageBox.Show("CHOOSE STATUS");
@@ -271,12 +270,12 @@ namespace PROJECT
             {
                 if (ForFirstVerif())
                 {
-                    Save_data(2);
+                    Save_data(16);
                 }
             }
             else if (STATUS.Text == "FOR VERIFICATION")
             {
-                if (string.IsNullOrWhiteSpace(Revision.Text) || Test_system.SelectedIndex == -1)
+                if (string.IsNullOrWhiteSpace(Revision.Text) || Test_system.SelectedIndex == -1 || Boards.SelectedIndex == -1)
                 {
                     error(); return;
                 }
@@ -288,9 +287,14 @@ namespace PROJECT
             {
                 if (ForFirstVerif())
                 {
-                    if (ForSecondVerif())
+                    if (get_status == "FOR VERIFICATION")
+                        Save_data(16);
+                    else
                     {
-                        Save_data(4);
+                        if (ForSecondVerif())
+                        {
+                            Save_data(4);
+                        }
                     }
                 }
             }
@@ -307,7 +311,10 @@ namespace PROJECT
                 {
                     if (ForSecondVerif())
                     {
-                        Save_data(4);
+                        if (get_status == "FOR VERIFICATION")
+                            Save_data(16);
+                        else
+                            Save_data(4);
                     }
                 }
             }
@@ -627,7 +634,6 @@ namespace PROJECT
             "'" + Filename(first_verif_link.Text) + "','" + Area.Text + "','" + FirstDate.Text + "','" + FirstTime.Text + "')");
                     command.Parameters.Add("@FIRST_DATA", MySqlDbType.VarBinary).Value = SaveFile(first_verif_link.Text);
                     break;
-
                 case 3:  // FOR UPDATING THE LAST TRANSACTION
                     command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + STATUS.Text + "',`SECOND DATALOG` = @SECOND_DATA," +
                         "`SECOND TESTER` = '" + Second_tester.Text + "',`SECOND SITE` = '" + Second_Site.Text + "'," +
@@ -724,6 +730,18 @@ namespace PROJECT
                     break;
                 case 15:  //LOAD USERS 
                     command = new MySqlCommand("SELECT * FROM `boards_of_testers`.`user`",Connection.ConnectBoards);
+                    break;
+                case 16: //UPDATE BOARD WHEN LOGGED AS FOR VERIFICATION
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `TEST PROGRAM` = '" + DIE_TYPE.Text + "'," +
+                        "`FAILED DURING` = '" + Failed_during.Text + "',`FAILED DURING OTHERS` = '" + Failed_during_others.Text + "',`FAILURE MODE` = '" + Failure_mode.Text + "'," +
+                        "`FAILURE MODE OTHERS` = '" + Failure_mode_others.Text + "',`TEST OPTION` = '" + Test_option.Text + "',`AREA` = '" + Area.Text + "',`STATUS` = '" + STATUS.Text + "',REMARKS = '" + Remarks.Text + "'," +
+                        "`FIRST DATALOG` = @FIRST_DATA,`FIRST TESTER` = '" + First_tester.Text + "',`FIRST SITE` = '" + First_Site.Text + "',`FIRST SLOT` = '" + First_board_slot.Text + "'," +
+                        "`FIRST ENDORSER` = '" + first_endorser.Text + "',`FIRST TIME` = '" + FirstTime.Text + "',`FIRST DATE` = '" + FirstDate.Text + "',`FILENAME 1` = '" + Filename(first_verif_link.Text) + "'," +
+                        "`SECOND ENDORSER` = '" + second_endorser.Text + "',`FILENAME 2` = '" + Filename(second_verif_link.Text) + "',`SECOND DATALOG` =  @SECOND_DATA,`SECOND TIME` = '" + SecondDate.Text + "'," +
+                        "`SECOND DATE` = '" + SecondDate.Text + "',`SECOND TESTER` = '" + Second_tester.Text + "',`SECOND SITE` = '" + Second_Site.Text + "',`SECOND SLOT` = '" + Second_slot.Text + "'" +
+                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
+                    command.Parameters.Add("@FIRST_DATA", MySqlDbType.VarBinary).Value = SaveFile(first_verif_link.Text);
+                    command.Parameters.Add("@SECOND_DATA", MySqlDbType.VarBinary).Value = SaveFile(second_verif_link.Text);
                     break;
             }
         }
