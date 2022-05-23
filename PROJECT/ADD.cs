@@ -271,10 +271,21 @@ namespace PROJECT
         {
             if (STATUS.Text == "FOR SECOND VERIF")
             {
-                input_status = STATUS.Text;
-                if (ForFirstVerif())
+                if (get_status == "FOR VERIFICATION")
                 {
-                    Save_data(2);
+                    input_status = STATUS.Text;
+                    if (ForFirstVerif())
+                    {
+                        Save_data(16);
+                    }
+                }
+                else
+                {
+                    input_status = STATUS.Text;
+                    if (ForFirstVerif())
+                    {
+                        Save_data(2);
+                    }
                 }
             }
             else if (STATUS.Text == "FOR VERIFICATION")
@@ -740,12 +751,9 @@ namespace PROJECT
                         "`FAILED DURING` = '" + Failed_during.Text + "',`FAILED DURING OTHERS` = '" + Failed_during_others.Text + "',`FAILURE MODE` = '" + Failure_mode.Text + "'," +
                         "`FAILURE MODE OTHERS` = '" + Failure_mode_others.Text + "',`TEST OPTION` = '" + Test_option.Text + "',`AREA` = '" + Area.Text + "',`STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "'," +
                         "`FIRST DATALOG` = @FIRST_DATA,`FIRST TESTER` = '" + First_tester.Text + "',`FIRST SITE` = '" + First_Site.Text + "',`FIRST SLOT` = '" + First_board_slot.Text + "'," +
-                        "`FIRST ENDORSER` = '" + first_endorser.Text + "',`FIRST TIME` = '" + FirstTime.Text + "',`FIRST DATE` = '" + FirstDate.Text + "',`FILENAME 1` = '" + Filename(first_verif_link.Text) + "'," +
-                        "`SECOND ENDORSER` = '" + second_endorser.Text + "',`FILENAME 2` = '" + Filename(second_verif_link.Text) + "',`SECOND DATALOG` =  @SECOND_DATA,`SECOND TIME` = '" + SecondDate.Text + "'," +
-                        "`SECOND DATE` = '" + SecondDate.Text + "',`SECOND TESTER` = '" + Second_tester.Text + "',`SECOND SITE` = '" + Second_Site.Text + "',`SECOND SLOT` = '" + Second_slot.Text + "'" +
+                        "`FIRST ENDORSER` = '" + first_endorser.Text + "',`FIRST TIME` = '" + FirstTime.Text + "',`FIRST DATE` = '" + FirstDate.Text + "',`FILENAME 1` = '" + Filename(first_verif_link.Text) + "'" +
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     command.Parameters.Add("@FIRST_DATA", MySqlDbType.VarBinary).Value = SaveFile(first_verif_link.Text);
-                    command.Parameters.Add("@SECOND_DATA", MySqlDbType.VarBinary).Value = SaveFile(second_verif_link.Text);
                     break;
             }
         }
