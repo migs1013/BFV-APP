@@ -68,11 +68,12 @@
             // 
             // Search_button
             // 
+            this.Search_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Search_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Search_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Search_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Search_button.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Search_button.Location = new System.Drawing.Point(7, 5);
+            this.Search_button.Location = new System.Drawing.Point(847, 4);
             this.Search_button.Name = "Search_button";
             this.Search_button.Size = new System.Drawing.Size(150, 21);
             this.Search_button.TabIndex = 0;
@@ -82,9 +83,10 @@
             // 
             // search_text
             // 
+            this.search_text.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.search_text.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.search_text.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_text.Location = new System.Drawing.Point(163, 5);
+            this.search_text.Location = new System.Drawing.Point(1003, 4);
             this.search_text.Name = "search_text";
             this.search_text.Size = new System.Drawing.Size(147, 20);
             this.search_text.TabIndex = 1;
@@ -203,12 +205,11 @@
             // 
             // REFRESH
             // 
-            this.REFRESH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.REFRESH.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.REFRESH.Cursor = System.Windows.Forms.Cursors.Hand;
             this.REFRESH.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.REFRESH.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.REFRESH.Location = new System.Drawing.Point(999, 5);
+            this.REFRESH.Location = new System.Drawing.Point(7, 4);
             this.REFRESH.Name = "REFRESH";
             this.REFRESH.Size = new System.Drawing.Size(150, 22);
             this.REFRESH.TabIndex = 5;
@@ -304,7 +305,8 @@
             this.Stats.FormattingEnabled = true;
             this.Stats.Items.AddRange(new object[] {
             "",
-            "BRG",
+            "BRG (INCOMING)",
+            "BRG (REPAIRED)",
             "FOR SECOND VERIF",
             "FOR VERIFICATION",
             "INSTALL TO A TESTER",
@@ -416,7 +418,7 @@
             this.OVERDUE.AutoSize = true;
             this.OVERDUE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OVERDUE.ForeColor = System.Drawing.Color.Lime;
-            this.OVERDUE.Location = new System.Drawing.Point(316, 9);
+            this.OVERDUE.Location = new System.Drawing.Point(192, 7);
             this.OVERDUE.Name = "OVERDUE";
             this.OVERDUE.Size = new System.Drawing.Size(0, 16);
             this.OVERDUE.TabIndex = 40;
@@ -426,7 +428,7 @@
             this.Count_search.AutoSize = true;
             this.Count_search.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Count_search.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Count_search.Location = new System.Drawing.Point(639, 9);
+            this.Count_search.Location = new System.Drawing.Point(593, 8);
             this.Count_search.Name = "Count_search";
             this.Count_search.Size = new System.Drawing.Size(0, 16);
             this.Count_search.TabIndex = 41;
@@ -437,7 +439,7 @@
             this.FORWARD.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FORWARD.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FORWARD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.FORWARD.Location = new System.Drawing.Point(599, 5);
+            this.FORWARD.Location = new System.Drawing.Point(553, 4);
             this.FORWARD.Name = "FORWARD";
             this.FORWARD.Size = new System.Drawing.Size(34, 24);
             this.FORWARD.TabIndex = 42;
@@ -450,7 +452,7 @@
             this.BACK.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BACK.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BACK.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.BACK.Location = new System.Drawing.Point(559, 5);
+            this.BACK.Location = new System.Drawing.Point(513, 4);
             this.BACK.Name = "BACK";
             this.BACK.Size = new System.Drawing.Size(34, 24);
             this.BACK.TabIndex = 43;

@@ -92,6 +92,10 @@ namespace PROJECT
                     Second = "`SECOND DATE`";
                     Count();
                 }
+                if (Status.Text == "BRG (INCOMING)")
+                {
+                    REPAIR_BTN.Visible = true;
+                }
             }
             else
                 this.Close();
@@ -121,6 +125,42 @@ namespace PROJECT
             else
                 AGING.ForeColor = System.Drawing.Color.Red;
         }
+
+        private void REPAIR_BTN_Click(object sender, EventArgs e)
+        {
+            DialogResult yes_no = MessageBox.Show("ARE YOU SURE THIS IS REPAIRED?", "ATTENTION", MessageBoxButtons.YesNo);
+            switch (yes_no)
+            {
+                case DialogResult.Yes:
+                    Commands(7);
+                    break;
+                case DialogResult.No:
+                    return;
+            }
+            command.Connection = Connection.connect;
+            if (Connection.OpenConnection())
+            {
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (MySqlException m)
+                {
+                    MessageBox.Show(m.ToString());
+                    Connection.CloseConnection();
+                    return;
+                }
+                if (Connection.CloseConnection())
+                {
+                    MessageBox.Show("FILE SAVED SUCCESSFULLY, THIS WINDOW WILL CLOSE AND REFRESH THE DATA");
+                    this.Close();
+                }
+                else return;
+            }
+            else
+                return;
+        }
+
         private void Commands(int pick)
         {
             switch (pick)
@@ -155,6 +195,10 @@ namespace PROJECT
                 case 6:
                     command = new MySqlCommand("SELECT `FIFTH DATALOG` FROM `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS` WHERE" +
                         "(`ENDORSEMENT NUMBER` = '" + Endorsement_number + "')");
+                    break;
+                case 7:
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = 'BRG (REPAIRED)'" +
+                        "where `endorsement number` = '" + Endorsement_number + "'");
                     break;
             }
           

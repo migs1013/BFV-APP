@@ -20,7 +20,7 @@ namespace PROJECT
     public partial class ADD : Form
     {
         MySqlCommand command;
-        public string tester_platform, get_status, inputBox,FileName,displayStatus,boardQuery,database,tester;
+        public string tester_platform, get_status, inputBox,FileName,displayStatus,boardQuery,database,tester,input_status;
         public int sites, DoNotLoadBoard,UpdateCheck;
         public DateTime FIRST_DATE = new DateTime();
         public DateTime SECOND_DATE = new DateTime();
@@ -228,6 +228,7 @@ namespace PROJECT
         {
            if (STATUS.Text == "INSTALL TO TESTER")
             {
+                input_status = STATUS.Text;
                 if (Second_Site.Items.Count == 0)
                 {
                     if (second_endorser.SelectedIndex == -1 || Second_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Second_slot.Text))
@@ -249,6 +250,7 @@ namespace PROJECT
             }
             else if (STATUS.Text == "SPARES")
             {
+                input_status = STATUS.Text;
                 if (ForSecondVerif())
                 {
                     Save_data(3);
@@ -256,6 +258,7 @@ namespace PROJECT
             }
             else if (STATUS.Text == "BRG")
             {
+                input_status = "BRG (INCOMING)";
                 if (ForSecondVerif())
                     Save_data(3);
             }
@@ -268,13 +271,15 @@ namespace PROJECT
         {
             if (STATUS.Text == "FOR SECOND VERIF")
             {
+                input_status = STATUS.Text;
                 if (ForFirstVerif())
                 {
-                    Save_data(16);
+                    Save_data(2);
                 }
             }
             else if (STATUS.Text == "FOR VERIFICATION")
             {
+                input_status = STATUS.Text;
                 if (string.IsNullOrWhiteSpace(Revision.Text) || Test_system.SelectedIndex == -1 || Boards.SelectedIndex == -1)
                 {
                     error(); return;
@@ -285,6 +290,7 @@ namespace PROJECT
             }
             else if (STATUS.Text == "SPARES")
             {
+                input_status = STATUS.Text;
                 if (ForFirstVerif())
                 {
                     if (get_status == "FOR VERIFICATION")
@@ -300,6 +306,7 @@ namespace PROJECT
             }
             else if (STATUS.Text == "INSTALL TO TESTER")
             {
+                input_status = STATUS.Text;
                 if (ForFirstVerif())
                 {
                     Save_data(2);
@@ -307,6 +314,7 @@ namespace PROJECT
             }
             else if (STATUS.Text == "BRG")
             {
+                input_status = "BRG (INCOMING)";
                 if (ForFirstVerif())
                 {
                     if (ForSecondVerif())
@@ -454,7 +462,7 @@ namespace PROJECT
                 try
                 {
                     get_status = read_status["STATUS"].ToString();
-                    if (get_status == "SPARES" || get_status == "BRG" || get_status.Contains("INSTALL") || get_status == "FAILURE CHANGED" || get_status == "FOR VERIFICATION")
+                    if (get_status == "SPARES" || get_status == "BRG (REPAIRED)" || get_status.Contains("INSTALL") || get_status == "FAILURE CHANGED" || get_status == "FOR VERIFICATION")
                     {
                         if (get_status == "FOR VERIFICATION")
                             STATUS.Items.Remove("FOR VERIFICATION");
@@ -629,13 +637,13 @@ namespace PROJECT
             "`board details`(`SERIAL NUMBER`,`PART NUMBER`,REVISION,BOARD,`TEST PROGRAM`,`FAILED DURING`,`FAILED DURING OTHERS`,`FAILURE MODE`,`FAILURE MODE OTHERS`," +
             "`TEST OPTION`,STATUS,REMARKS,`FIRST DATALOG`,`FIRST TESTER`,`FIRST SITE`,`FIRST SLOT`,`FIRST ENDORSER`,`TESTER PLATFORM`,`FILENAME 1`,`AREA`,`FIRST DATE`,`FIRST TIME`) VALUES('" + Serial_number.Text + "'," +
             "'" + Part_number.Text + "','" + Revision.Text + "','" + Boards.Text + "','" + DIE_TYPE.Text + "','" + Failed_during.Text + "','" + Failed_during_others.Text + "'," +
-            "'" + Failure_mode.Text + "','" + Failure_mode_others.Text + "','" + Test_option.Text + "','" + STATUS.Text + "','" + Remarks.Text + "',@FIRST_DATA," +
+            "'" + Failure_mode.Text + "','" + Failure_mode_others.Text + "','" + Test_option.Text + "','" + input_status + "','" + Remarks.Text + "',@FIRST_DATA," +
             "'" + First_tester.Text + "','" + First_Site.Text + "','" + First_board_slot.Text + "','" + first_endorser.Text + "','" + Test_system.Text + "'," +
             "'" + Filename(first_verif_link.Text) + "','" + Area.Text + "','" + FirstDate.Text + "','" + FirstTime.Text + "')");
                     command.Parameters.Add("@FIRST_DATA", MySqlDbType.VarBinary).Value = SaveFile(first_verif_link.Text);
                     break;
                 case 3:  // FOR UPDATING THE LAST TRANSACTION
-                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + STATUS.Text + "',`SECOND DATALOG` = @SECOND_DATA," +
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + input_status + "',`SECOND DATALOG` = @SECOND_DATA," +
                         "`SECOND TESTER` = '" + Second_tester.Text + "',`SECOND SITE` = '" + Second_Site.Text + "'," +
                         "`SECOND SLOT` = '" + Second_slot.Text + "',`SECOND ENDORSER` = '" + second_endorser.Text + "',`REMARKS` = '" + Remarks.Text + "'," +
                         "`FILENAME 2` = '" + Filename(second_verif_link.Text) + "',`SECOND DATE` = '" + SecondDate.Text + "'," +
@@ -650,7 +658,7 @@ namespace PROJECT
             "`TEST OPTION`,STATUS,REMARKS,`FIRST DATALOG`,`FIRST TESTER`,`FIRST SITE`,`FIRST SLOT`,`FIRST ENDORSER`,`SECOND DATALOG`," +
             "`SECOND TESTER`,`SECOND SITE`,`SECOND SLOT`,`SECOND ENDORSER`,`TESTER PLATFORM`,`FILENAME 1`,`FILENAME 2`,`AREA`,`FIRST DATE`,`SECOND DATE`,`FIRST TIME`,`SECOND TIME`) " +
             "VALUES('" + Serial_number.Text + "','" + Part_number.Text + "','" + Revision.Text + "','" + Boards.Text + "','" + DIE_TYPE.Text + "','" + Failed_during.Text + "','" + Failed_during_others.Text + "'," +
-            "'" + Failure_mode.Text + "','" + Failure_mode_others.Text + "','" + Test_option.Text + "','" + STATUS.Text + "','" + Remarks.Text + "',@FIRST_DATA," +
+            "'" + Failure_mode.Text + "','" + Failure_mode_others.Text + "','" + Test_option.Text + "','" + input_status + "','" + Remarks.Text + "',@FIRST_DATA," +
             "'" + First_tester.Text + "','" + First_Site.Text + "','" + First_board_slot.Text + "','" + first_endorser.Text + "',@SECOND_DATA," +
             "'" + Second_tester.Text + "','" + Second_Site.Text + "','" + Second_slot.Text + "','" + second_endorser.Text + "','" + Test_system.Text + "'," +
             "'" + Filename(first_verif_link.Text )+ "','" + Filename(second_verif_link.Text )+ "','" + Area.Text + "','" + FirstDate.Text + "','" + SecondDate.Text + "',"+
@@ -665,7 +673,7 @@ namespace PROJECT
                     command = new MySqlCommand("INSERT INTO `boards_for_verification`.`board details` " +
                         "(`SERIAL NUMBER`,`PART NUMBER`,`REVISION`,`TESTER PLATFORM`,`BOARD`,`TEST PROGRAM`,`STATUS`,`FIRST DATE`,`FIRST TIME`) " +
                         "VALUES ('" + Serial_number.Text + "', '" + Part_number.Text + "'," +
-                        "'" + Revision.Text + "','" + Test_system.Text + "','" + Boards.Text + "','N/A','" + STATUS.Text + "'," +
+                        "'" + Revision.Text + "','" + Test_system.Text + "','" + Boards.Text + "','N/A','" + input_status + "'," +
                         "'" + FirstDate.Text + "','" + FirstTime.Text + "')");
                     break;
                 case 7:  // IF THE SECOND VERIFICATION PASSED AND INSTALLED ALREADY TO THE TESTER
@@ -681,14 +689,10 @@ namespace PROJECT
                     tester_platform = string.Format("SELECT * FROM `boards_for_verification`.`{0}`", Test_system.Text.ToLower());
                     command = new MySqlCommand(tester_platform, Connection.connect);
                     break;
-                case 9:   // IF SECOND VERIF FAILURE CHANGES WITH SITE
-                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` " +
-                        "SET `SECOND TESTER` = '" + Second_tester.Text + "',`SECOND SITE` = '" + Second_Site.Text + "'," +
-                        "`SECOND SLOT` = '" +Second_slot.Text + "'," +
-                        "`SECOND ENDORSER` = '" + second_endorser.Text + "'," +
-                        "`STATUS` = 'FAILURE CHANGED',`REMARKS` = '" + Remarks.Text + "',`SECOND DATE` = '" + SecondDate.Text + "'," +
-                        "`SECOND TIME` = '" + SecondTime.Text + "'" +
-                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "')ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
+                case 9:
+
+                    // BLANK
+
                     break;
                 case 10:  // INSTALL TO A TESTER WITH SITE
                     command = new MySqlCommand(string.Format("UPDATE `boards_for_verification`.`board details` " +
@@ -701,7 +705,7 @@ namespace PROJECT
                     break;
                 case 11: //UPDATE SECOND VERIF WITH PHYSICAL DAMAGE BOARD
                     command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `SECOND ENDORSER` = '" + second_endorser.Text + "'," +
-                        "`REMARKS` = '" + Remarks.Text + "',`STATUS` = '" + STATUS.SelectedText + "',`SECOND DATE` = '" + SecondDate.Text + "'," +
+                        "`REMARKS` = '" + Remarks.Text + "',`STATUS` = '" + input_status + "',`SECOND DATE` = '" + SecondDate.Text + "'," +
                         "`SECOND TIME` = '" + SecondTime.Text + "'" +
                         " WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     break;
@@ -711,7 +715,7 @@ namespace PROJECT
             "`TEST OPTION`,STATUS,REMARKS,`FIRST DATALOG`,`FIRST TESTER`,`FIRST SITE`,`FIRST SLOT`,`FIRST ENDORSER`," +
             "`SECOND ENDORSER`,`TESTER PLATFORM`,`FILENAME 1`,`AREA`,`FIRST DATE`,`SECOND DATE`,`FIRST TIME`,`SECOND TIME`) " +
             "VALUES ('" + Serial_number.Text + "','" + Part_number.Text + "','" + Revision.Text + "','" + Boards.Text + "','" + DIE_TYPE.Text + "','" + Failed_during.Text + "','" + Failed_during_others.Text + "'," +
-            "'" + Failure_mode.Text + "','" + Failure_mode_others.Text + "','" + Test_option.Text + "','" + STATUS.Text + "','" + Remarks.Text + "',@FIRST_DATA," +
+            "'" + Failure_mode.Text + "','" + Failure_mode_others.Text + "','" + Test_option.Text + "','" + input_status + "','" + Remarks.Text + "',@FIRST_DATA," +
             "'" + First_tester.Text + "','" + First_Site.Text + "','" + First_board_slot.Text + "','" + first_endorser.Text + "','" + second_endorser.Text + "','" + Test_system.Text + "'," +
             "'" + Filename(first_verif_link.Text) + "','" + Area.Text + "','" + FirstDate.Text + "','" + SecondDate.Text + "'," +
             "'" + FirstTime.Text + "','" + SecondTime.Text + "')");
@@ -734,7 +738,7 @@ namespace PROJECT
                 case 16: //UPDATE BOARD WHEN LOGGED AS FOR VERIFICATION
                     command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `TEST PROGRAM` = '" + DIE_TYPE.Text + "'," +
                         "`FAILED DURING` = '" + Failed_during.Text + "',`FAILED DURING OTHERS` = '" + Failed_during_others.Text + "',`FAILURE MODE` = '" + Failure_mode.Text + "'," +
-                        "`FAILURE MODE OTHERS` = '" + Failure_mode_others.Text + "',`TEST OPTION` = '" + Test_option.Text + "',`AREA` = '" + Area.Text + "',`STATUS` = '" + STATUS.Text + "',REMARKS = '" + Remarks.Text + "'," +
+                        "`FAILURE MODE OTHERS` = '" + Failure_mode_others.Text + "',`TEST OPTION` = '" + Test_option.Text + "',`AREA` = '" + Area.Text + "',`STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "'," +
                         "`FIRST DATALOG` = @FIRST_DATA,`FIRST TESTER` = '" + First_tester.Text + "',`FIRST SITE` = '" + First_Site.Text + "',`FIRST SLOT` = '" + First_board_slot.Text + "'," +
                         "`FIRST ENDORSER` = '" + first_endorser.Text + "',`FIRST TIME` = '" + FirstTime.Text + "',`FIRST DATE` = '" + FirstDate.Text + "',`FILENAME 1` = '" + Filename(first_verif_link.Text) + "'," +
                         "`SECOND ENDORSER` = '" + second_endorser.Text + "',`FILENAME 2` = '" + Filename(second_verif_link.Text) + "',`SECOND DATALOG` =  @SECOND_DATA,`SECOND TIME` = '" + SecondDate.Text + "'," +
