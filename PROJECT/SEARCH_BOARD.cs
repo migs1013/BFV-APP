@@ -135,7 +135,7 @@ namespace PROJECT
                     break;
                 case 1:  //TO DISPLAY THE DATA THAT IS SEARCHED BY THE USER
                     command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`,`STATUS`," +
-                        "CASE WHEN ISNULL(`SECOND DATE`)" +
+                        "CASE WHEN ISNULL(`SECOND DATE`) AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
@@ -149,7 +149,7 @@ namespace PROJECT
                     break;
                 case 3:  //FOR UPDATING PURPOSES
                     command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE`,`STATUS`," +
-                        "CASE WHEN ISNULL(`SECOND DATE`)" +
+                        "CASE WHEN ISNULL(`SECOND DATE`) AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
@@ -174,7 +174,7 @@ namespace PROJECT
                     break;
                 case 9:  // FOR SEARCH IN COMBO BOXES
                     command = new MySqlCommand(string.Format("Select `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`,`STATUS`," +
-                        "CASE WHEN ISNULL(`SECOND DATE`)" +
+                        "CASE WHEN ISNULL(`SECOND DATE`) AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
@@ -183,7 +183,7 @@ namespace PROJECT
                 case 10: //REFRESH
                     command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`," +
                         "`STATUS`," +
-                        "CASE WHEN ISNULL(`SECOND DATE`)" +
+                        "CASE WHEN ISNULL(`SECOND DATE`) AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
@@ -192,7 +192,7 @@ namespace PROJECT
                 case 11: //NEXT BUTTON
                     command = new MySqlCommand(string.Format("select `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`," +
                         "`STATUS`," +
-                        "CASE WHEN ISNULL(`SECOND DATE`)" +
+                        "CASE WHEN ISNULL(`SECOND DATE`) AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
