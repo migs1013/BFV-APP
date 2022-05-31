@@ -99,7 +99,6 @@
             this.THIRD_VERIF = new System.Windows.Forms.LinkLabel();
             this.FOURTH_VERIF = new System.Windows.Forms.LinkLabel();
             this.FIFTH_VERIF = new System.Windows.Forms.LinkLabel();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.Second_box.SuspendLayout();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
@@ -1046,6 +1045,5 @@
         private System.Windows.Forms.LinkLabel THIRD_VERIF;
         private System.Windows.Forms.LinkLabel FOURTH_VERIF;
         private System.Windows.Forms.LinkLabel FIFTH_VERIF;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
