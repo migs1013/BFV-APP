@@ -1096,6 +1096,54 @@ namespace PROJECT
             }
         }
 
+        private void ThirdVerifClick(object sender, EventArgs e)
+        {
+            openFileDialog3.InitialDirectory = @"c:\";
+            openFileDialog3.Title = "BROWSE A FILE";
+            openFileDialog3.FileName = null;
+            openFileDialog3.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (openFileDialog3.ShowDialog() == DialogResult.OK)
+            {
+                THIRD_VERIF.Visible = true;
+                THIRD_VERIF.Text = openFileDialog3.FileName;
+                //FIRST_DATE = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
+                //FirstDate.Text = FIRST_DATE.ToString("yyyy-MM-dd");
+                //FirstTime.Text = FIRST_DATE.ToString("hh:mm tt");
+            }
+        }
+
+        private void FourthVerif(object sender, EventArgs e)
+        {
+            openFileDialog4.InitialDirectory = @"c:\";
+            openFileDialog4.Title = "BROWSE A FILE";
+            openFileDialog4.FileName = null;
+            openFileDialog4.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (openFileDialog4.ShowDialog() == DialogResult.OK)
+            {
+                FOURTH_VERIF.Visible = true;
+                FOURTH_VERIF.Text = openFileDialog4.FileName;
+                //FIRST_DATE = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
+                //FirstDate.Text = FIRST_DATE.ToString("yyyy-MM-dd");
+                //FirstTime.Text = FIRST_DATE.ToString("hh:mm tt");
+            }
+        }
+
+        private void FifthVerif(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = @"c:\";
+            openFileDialog1.Title = "BROWSE A FILE";
+            openFileDialog1.FileName = null;
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                FIFTH_VERIF.Visible = true;
+                FIFTH_VERIF.Text = openFileDialog5.FileName;
+                //FIRST_DATE = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
+                //FirstDate.Text = FIRST_DATE.ToString("yyyy-MM-dd");
+                //FirstTime.Text = FIRST_DATE.ToString("hh:mm tt");
+            }
+        }
+
         private void status(object sender, EventArgs e)
         {
             if (STATUS.Text == "INSTALL TO TESTER")

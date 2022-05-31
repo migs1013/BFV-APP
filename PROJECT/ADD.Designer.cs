@@ -836,6 +836,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label1.Location = new System.Drawing.Point(789, 371);
@@ -844,10 +845,12 @@
             this.label1.TabIndex = 64;
             this.label1.Text = "3RD VERIFICATION";
             this.label1.Visible = false;
+            this.label1.Click += new System.EventHandler(this.ThirdVerifClick);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label2.Location = new System.Drawing.Point(791, 443);
@@ -856,10 +859,12 @@
             this.label2.TabIndex = 65;
             this.label2.Text = "4TH VERIFICATION";
             this.label2.Visible = false;
+            this.label2.Click += new System.EventHandler(this.FourthVerif);
             // 
             // label22
             // 
             this.label22.AutoSize = true;
+            this.label22.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label22.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label22.Location = new System.Drawing.Point(789, 523);
@@ -868,10 +873,12 @@
             this.label22.TabIndex = 66;
             this.label22.Text = "5TH VERIFICATION";
             this.label22.Visible = false;
+            this.label22.Click += new System.EventHandler(this.FifthVerif);
             // 
             // THIRD_VERIF
             // 
             this.THIRD_VERIF.AutoSize = true;
+            this.THIRD_VERIF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.THIRD_VERIF.LinkColor = System.Drawing.Color.Yellow;
             this.THIRD_VERIF.Location = new System.Drawing.Point(792, 404);
             this.THIRD_VERIF.Name = "THIRD_VERIF";
@@ -884,6 +891,7 @@
             // FOURTH_VERIF
             // 
             this.FOURTH_VERIF.AutoSize = true;
+            this.FOURTH_VERIF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FOURTH_VERIF.LinkColor = System.Drawing.Color.Yellow;
             this.FOURTH_VERIF.Location = new System.Drawing.Point(792, 490);
             this.FOURTH_VERIF.Name = "FOURTH_VERIF";
@@ -896,6 +904,7 @@
             // FIFTH_VERIF
             // 
             this.FIFTH_VERIF.AutoSize = true;
+            this.FIFTH_VERIF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FIFTH_VERIF.LinkColor = System.Drawing.Color.Yellow;
             this.FIFTH_VERIF.Location = new System.Drawing.Point(792, 561);
             this.FIFTH_VERIF.Name = "FIFTH_VERIF";
