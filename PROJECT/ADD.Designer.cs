@@ -839,7 +839,7 @@
             this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label1.Location = new System.Drawing.Point(789, 371);
+            this.label1.Location = new System.Drawing.Point(792, 371);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(146, 19);
             this.label1.TabIndex = 64;
@@ -853,7 +853,7 @@
             this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label2.Location = new System.Drawing.Point(791, 443);
+            this.label2.Location = new System.Drawing.Point(792, 443);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(144, 19);
             this.label2.TabIndex = 65;
@@ -867,7 +867,7 @@
             this.label22.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label22.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label22.Location = new System.Drawing.Point(789, 523);
+            this.label22.Location = new System.Drawing.Point(792, 523);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(144, 19);
             this.label22.TabIndex = 66;
@@ -882,11 +882,10 @@
             this.THIRD_VERIF.LinkColor = System.Drawing.Color.Yellow;
             this.THIRD_VERIF.Location = new System.Drawing.Point(792, 404);
             this.THIRD_VERIF.Name = "THIRD_VERIF";
-            this.THIRD_VERIF.Size = new System.Drawing.Size(59, 16);
+            this.THIRD_VERIF.Size = new System.Drawing.Size(0, 16);
             this.THIRD_VERIF.TabIndex = 67;
-            this.THIRD_VERIF.TabStop = true;
-            this.THIRD_VERIF.Text = "linkLabel1";
             this.THIRD_VERIF.Visible = false;
+            this.THIRD_VERIF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ThirdDlog);
             // 
             // FOURTH_VERIF
             // 
@@ -895,11 +894,10 @@
             this.FOURTH_VERIF.LinkColor = System.Drawing.Color.Yellow;
             this.FOURTH_VERIF.Location = new System.Drawing.Point(792, 490);
             this.FOURTH_VERIF.Name = "FOURTH_VERIF";
-            this.FOURTH_VERIF.Size = new System.Drawing.Size(59, 16);
+            this.FOURTH_VERIF.Size = new System.Drawing.Size(0, 16);
             this.FOURTH_VERIF.TabIndex = 68;
-            this.FOURTH_VERIF.TabStop = true;
-            this.FOURTH_VERIF.Text = "linkLabel2";
             this.FOURTH_VERIF.Visible = false;
+            this.FOURTH_VERIF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FourthDlog);
             // 
             // FIFTH_VERIF
             // 
@@ -908,11 +906,10 @@
             this.FIFTH_VERIF.LinkColor = System.Drawing.Color.Yellow;
             this.FIFTH_VERIF.Location = new System.Drawing.Point(792, 561);
             this.FIFTH_VERIF.Name = "FIFTH_VERIF";
-            this.FIFTH_VERIF.Size = new System.Drawing.Size(59, 16);
+            this.FIFTH_VERIF.Size = new System.Drawing.Size(0, 16);
             this.FIFTH_VERIF.TabIndex = 69;
-            this.FIFTH_VERIF.TabStop = true;
-            this.FIFTH_VERIF.Text = "linkLabel3";
             this.FIFTH_VERIF.Visible = false;
+            this.FIFTH_VERIF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FifthDlog);
             // 
             // ADD
             // 

@@ -89,8 +89,13 @@ namespace PROJECT
             this.label24 = new System.Windows.Forms.Label();
             this.repaired = new System.Windows.Forms.Label();
             this.repaired_by = new System.Windows.Forms.Label();
+            this.Third_dlog = new System.Windows.Forms.LinkLabel();
+            this.Fourth_dlog = new System.Windows.Forms.LinkLabel();
+            this.Fifth_dlog = new System.Windows.Forms.LinkLabel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.First_box.SuspendLayout();
             this.Second_box.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label17
@@ -293,7 +298,7 @@ namespace PROJECT
             this.Add_first_verif.Name = "Add_first_verif";
             this.Add_first_verif.Size = new System.Drawing.Size(143, 24);
             this.Add_first_verif.TabIndex = 16;
-            this.Add_first_verif.Text = "DATALOG";
+            this.Add_first_verif.Text = "FIRST DATALOG";
             this.Add_first_verif.UseVisualStyleBackColor = false;
             // 
             // label11
@@ -437,7 +442,7 @@ namespace PROJECT
             this.Add_second_verif.Name = "Add_second_verif";
             this.Add_second_verif.Size = new System.Drawing.Size(143, 24);
             this.Add_second_verif.TabIndex = 19;
-            this.Add_second_verif.Text = "DATALOG";
+            this.Add_second_verif.Text = "SECOND DATALOG";
             this.Add_second_verif.UseVisualStyleBackColor = false;
             // 
             // Second_verif_link
@@ -488,7 +493,7 @@ namespace PROJECT
             this.Remarks.Multiline = true;
             this.Remarks.Name = "Remarks";
             this.Remarks.ReadOnly = true;
-            this.Remarks.Size = new System.Drawing.Size(317, 189);
+            this.Remarks.Size = new System.Drawing.Size(317, 197);
             this.Remarks.TabIndex = 63;
             // 
             // label10
@@ -507,7 +512,7 @@ namespace PROJECT
             this.Exit_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Exit_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Exit_btn.Location = new System.Drawing.Point(12, 432);
+            this.Exit_btn.Location = new System.Drawing.Point(12, 440);
             this.Exit_btn.Name = "Exit_btn";
             this.Exit_btn.Size = new System.Drawing.Size(121, 54);
             this.Exit_btn.TabIndex = 66;
@@ -631,7 +636,7 @@ namespace PROJECT
             this.REPAIR_BTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.REPAIR_BTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.REPAIR_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.REPAIR_BTN.Location = new System.Drawing.Point(196, 432);
+            this.REPAIR_BTN.Location = new System.Drawing.Point(195, 440);
             this.REPAIR_BTN.Name = "REPAIR_BTN";
             this.REPAIR_BTN.Size = new System.Drawing.Size(121, 54);
             this.REPAIR_BTN.TabIndex = 78;
@@ -665,34 +670,34 @@ namespace PROJECT
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label21.Location = new System.Drawing.Point(728, 308);
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(15, 16);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(72, 13);
+            this.label21.Size = new System.Drawing.Size(94, 13);
             this.label21.TabIndex = 81;
-            this.label21.Text = "3RD VERIF";
+            this.label21.Text = "3RD DATALOG";
             // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label23.Location = new System.Drawing.Point(728, 377);
+            this.label23.ForeColor = System.Drawing.Color.Black;
+            this.label23.Location = new System.Drawing.Point(15, 73);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(71, 13);
+            this.label23.Size = new System.Drawing.Size(93, 13);
             this.label23.TabIndex = 82;
-            this.label23.Text = "4TH VERIF";
+            this.label23.Text = "4TH DATALOG";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label24.Location = new System.Drawing.Point(728, 444);
+            this.label24.ForeColor = System.Drawing.Color.Black;
+            this.label24.Location = new System.Drawing.Point(15, 146);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(71, 13);
+            this.label24.Size = new System.Drawing.Size(93, 13);
             this.label24.TabIndex = 83;
-            this.label24.Text = "5TH VERIF";
+            this.label24.Text = "5TH DATALOG";
             // 
             // repaired
             // 
@@ -714,17 +719,62 @@ namespace PROJECT
             this.repaired_by.Size = new System.Drawing.Size(0, 13);
             this.repaired_by.TabIndex = 85;
             // 
+            // Third_dlog
+            // 
+            this.Third_dlog.AutoSize = true;
+            this.Third_dlog.LinkColor = System.Drawing.Color.Black;
+            this.Third_dlog.Location = new System.Drawing.Point(15, 42);
+            this.Third_dlog.Name = "Third_dlog";
+            this.Third_dlog.Size = new System.Drawing.Size(0, 13);
+            this.Third_dlog.TabIndex = 86;
+            this.Third_dlog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ThirdDlog);
+            // 
+            // Fourth_dlog
+            // 
+            this.Fourth_dlog.AutoSize = true;
+            this.Fourth_dlog.LinkColor = System.Drawing.Color.Black;
+            this.Fourth_dlog.Location = new System.Drawing.Point(15, 110);
+            this.Fourth_dlog.Name = "Fourth_dlog";
+            this.Fourth_dlog.Size = new System.Drawing.Size(0, 13);
+            this.Fourth_dlog.TabIndex = 87;
+            this.Fourth_dlog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FourthDlog);
+            // 
+            // Fifth_dlog
+            // 
+            this.Fifth_dlog.AutoSize = true;
+            this.Fifth_dlog.LinkColor = System.Drawing.Color.Black;
+            this.Fifth_dlog.Location = new System.Drawing.Point(15, 174);
+            this.Fifth_dlog.Name = "Fifth_dlog";
+            this.Fifth_dlog.Size = new System.Drawing.Size(0, 13);
+            this.Fifth_dlog.TabIndex = 88;
+            this.Fifth_dlog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FifthDlog);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.groupBox1.Controls.Add(this.label21);
+            this.groupBox1.Controls.Add(this.Fifth_dlog);
+            this.groupBox1.Controls.Add(this.label23);
+            this.groupBox1.Controls.Add(this.Fourth_dlog);
+            this.groupBox1.Controls.Add(this.label24);
+            this.groupBox1.Controls.Add(this.Third_dlog);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox1.Location = new System.Drawing.Point(712, 297);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(336, 197);
+            this.groupBox1.TabIndex = 89;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "MORE DATALOGS";
+            // 
             // BOARD_DETAILS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1060, 506);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.repaired_by);
             this.Controls.Add(this.repaired);
-            this.Controls.Add(this.label24);
-            this.Controls.Add(this.label23);
-            this.Controls.Add(this.label21);
             this.Controls.Add(this.AGING);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.REPAIR_BTN);
@@ -764,6 +814,8 @@ namespace PROJECT
             this.First_box.PerformLayout();
             this.Second_box.ResumeLayout(false);
             this.Second_box.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -829,5 +881,9 @@ namespace PROJECT
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label repaired;
         private System.Windows.Forms.Label repaired_by;
+        private System.Windows.Forms.LinkLabel Third_dlog;
+        private System.Windows.Forms.LinkLabel Fourth_dlog;
+        private System.Windows.Forms.LinkLabel Fifth_dlog;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

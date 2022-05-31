@@ -832,6 +832,24 @@ namespace PROJECT
             "'" + FirstTime.Text + "','" + SecondTime.Text + "')");
                     command.Parameters.Add("@FIRST_DATA", MySqlDbType.VarBinary).Value = SaveFile(first_verif_link.Text);
                     break;
+                case 20:
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "'," +
+                        "`THIRD DATALOG` = @THIRD_DATA,`FILENAME 3` = '" + Filename(THIRD_VERIF.Text) + "'" +
+                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
+                    command.Parameters.Add("@THIRD_DATA", MySqlDbType.VarBinary).Value = SaveFile(THIRD_VERIF.Text);
+                    break;
+                case 21:
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "'," +
+                        "`FOURTH DATALOG` = @THIRD_DATA,`FILENAME 4` = '" + Filename(FOURTH_VERIF.Text) + "'" +
+                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
+                    command.Parameters.Add("@FOURTH_DATA", MySqlDbType.VarBinary).Value = SaveFile(FOURTH_VERIF.Text);
+                    break;
+                case 22:
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "'," +
+                        "`FIFTH DATALOG` = @FIFTH_DATA,`FILENAME 5` = '" + Filename(FIFTH_VERIF.Text) + "'" +
+                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
+                    command.Parameters.Add("@FIFTH_DATA", MySqlDbType.VarBinary).Value = SaveFile(FIFTH_VERIF.Text);
+                    break;
             }
         }
         private void disable_control()
@@ -1130,17 +1148,80 @@ namespace PROJECT
 
         private void FifthVerif(object sender, EventArgs e)
         {
-            openFileDialog1.InitialDirectory = @"c:\";
-            openFileDialog1.Title = "BROWSE A FILE";
-            openFileDialog1.FileName = null;
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            openFileDialog5.InitialDirectory = @"c:\";
+            openFileDialog5.Title = "BROWSE A FILE";
+            openFileDialog5.FileName = null;
+            openFileDialog5.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (openFileDialog5.ShowDialog() == DialogResult.OK)
             {
                 FIFTH_VERIF.Visible = true;
                 FIFTH_VERIF.Text = openFileDialog5.FileName;
                 //FIRST_DATE = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
                 //FirstDate.Text = FIRST_DATE.ToString("yyyy-MM-dd");
                 //FirstTime.Text = FIRST_DATE.ToString("hh:mm tt");
+            }
+        }
+
+        private void ThirdDlog(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (Save_btn.Visible == false)
+            {
+                string DatalogFile = string.Format("C:\\Users\\{0}\\Desktop\\{1}", Environment.UserName, FileName);
+                File.WriteAllBytes(DatalogFile, data);
+                System.Diagnostics.Process.Start(DatalogFile);
+            }
+            else
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(THIRD_VERIF.Text);
+                }
+                catch (Exception me)
+                {
+                    MessageBox.Show("ERROR " + me.ToString());
+                }
+            }
+        }
+
+        private void FourthDlog(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (Save_btn.Visible == false)
+            {
+                string DatalogFile = string.Format("C:\\Users\\{0}\\Desktop\\{1}", Environment.UserName, FileName);
+                File.WriteAllBytes(DatalogFile, data);
+                System.Diagnostics.Process.Start(DatalogFile);
+            }
+            else
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(FOURTH_VERIF.Text);
+                }
+                catch (Exception me)
+                {
+                    MessageBox.Show("ERROR " + me.ToString());
+                }
+            }
+        }
+
+        private void FifthDlog(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (Save_btn.Visible == false)
+            {
+                string DatalogFile = string.Format("C:\\Users\\{0}\\Desktop\\{1}", Environment.UserName, FileName);
+                File.WriteAllBytes(DatalogFile, data);
+                System.Diagnostics.Process.Start(DatalogFile);
+            }
+            else
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(FIFTH_VERIF.Text);
+                }
+                catch (Exception me)
+                {
+                    MessageBox.Show("ERROR " + me.ToString());
+                }
             }
         }
 
