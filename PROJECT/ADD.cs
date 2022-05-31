@@ -21,7 +21,7 @@ namespace PROJECT
     {
         MySqlCommand command;
         public string tester_platform, get_status, inputBox,FileName,displayStatus,boardQuery,database,tester,input_status;
-        public int sites, DoNotLoadBoard,UpdateCheck;
+        public int sites, DoNotLoadBoard, UpdateCheck;
         public DateTime FIRST_DATE = new DateTime();
         public DateTime SECOND_DATE = new DateTime();
         public DateTime FIRST_TIME = new DateTime();
@@ -51,6 +51,7 @@ namespace PROJECT
             FileName = new FileInfo(filename).Name;
             return FileName;
         }
+
         private void Save_data(int InputCommand)
         {
             DialogResult yes_no = MessageBox.Show(string.Format("PLEASE DOUBLE CHECK YOUR DATA,THIS WILL BE SAVE PERMANENTLY. SAVE IT? STATUS: {0}",STATUS.Text), "ATTENTION", MessageBoxButtons.YesNo);
