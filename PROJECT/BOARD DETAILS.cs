@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
@@ -207,6 +200,12 @@ namespace PROJECT
             }
           
         }
+
+        private void Add_first_verif_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void Exit_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
