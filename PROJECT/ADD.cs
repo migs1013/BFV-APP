@@ -450,7 +450,7 @@ namespace PROJECT
                 else if (text[Txt] == '-') continue;
                 else
                 {
-                    MessageBox.Show("PLEASE ENTER NUMBER OR LETTER ONLY");
+                    MessageBox.Show("PLEASE ENTER NUMBER OR LETTER ONLY.");
                     return false;
                 }
             }
@@ -468,9 +468,7 @@ namespace PROJECT
                         MessageBox.Show("NO INPUT");
                         return;
                     }
-                    STATUS.Items.Remove("FOR SECOND VERIF");
                     STATUS.Items.Remove("FOR VERIFICATION");
-                    STATUS.Items.Add("FOR SECOND VERIF");
                     STATUS.Items.Add("FOR VERIFICATION");
                     LoadBoardDetails();
                 }
@@ -834,7 +832,7 @@ namespace PROJECT
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     command.Parameters.Add("@FOURTH_DATA", MySqlDbType.VarBinary).Value = SaveFile(FOURTH_VERIF.Text);
                     break;
-                case 22:  // UPDATE 4TH VERIF DATALOG
+                case 22:  // UPDATE 5TH VERIF DATALOG
                     command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "'," +
                         "`FIFTH DATALOG` = @FIFTH_DATA,`FILENAME 5` = '" + Filename(FIFTH_VERIF.Text) + "'" +
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");

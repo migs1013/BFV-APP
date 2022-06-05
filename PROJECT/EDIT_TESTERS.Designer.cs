@@ -84,7 +84,7 @@ namespace PROJECT
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label3.Location = new System.Drawing.Point(12, 130);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 16);
+            this.label3.Size = new System.Drawing.Size(40, 16);
             this.label3.TabIndex = 3;
             this.label3.Text = "ADD";
             this.label3.Visible = false;
@@ -108,7 +108,7 @@ namespace PROJECT
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label1.Location = new System.Drawing.Point(9, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 16);
+            this.label1.Size = new System.Drawing.Size(154, 16);
             this.label1.TabIndex = 5;
             this.label1.Text = "TESTER PLATFORM";
             // 
@@ -132,7 +132,7 @@ namespace PROJECT
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label2.Location = new System.Drawing.Point(365, 129);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 16);
+            this.label2.Size = new System.Drawing.Size(145, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "CURRENT VALUES";
             // 
@@ -171,7 +171,7 @@ namespace PROJECT
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label4.Location = new System.Drawing.Point(9, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 16);
+            this.label4.Size = new System.Drawing.Size(119, 16);
             this.label4.TabIndex = 11;
             this.label4.Text = "CHOOSE MODE";
             // 
@@ -203,9 +203,9 @@ namespace PROJECT
             this.Tester.AutoSize = true;
             this.Tester.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tester.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Tester.Location = new System.Drawing.Point(15, 80);
+            this.Tester.Location = new System.Drawing.Point(458, 35);
             this.Tester.Name = "Tester";
-            this.Tester.Size = new System.Drawing.Size(86, 20);
+            this.Tester.Size = new System.Drawing.Size(87, 20);
             this.Tester.TabIndex = 15;
             this.Tester.TabStop = true;
             this.Tester.Text = "TESTER";
@@ -217,9 +217,9 @@ namespace PROJECT
             this.Board.AutoSize = true;
             this.Board.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Board.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Board.Location = new System.Drawing.Point(15, 57);
+            this.Board.Location = new System.Drawing.Point(458, 12);
             this.Board.Name = "Board";
-            this.Board.Size = new System.Drawing.Size(88, 20);
+            this.Board.Size = new System.Drawing.Size(89, 20);
             this.Board.TabIndex = 14;
             this.Board.TabStop = true;
             this.Board.Text = "BOARDS";
@@ -245,9 +245,9 @@ namespace PROJECT
             this.USERS.AutoSize = true;
             this.USERS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.USERS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.USERS.Location = new System.Drawing.Point(15, 102);
+            this.USERS.Location = new System.Drawing.Point(458, 57);
             this.USERS.Name = "USERS";
-            this.USERS.Size = new System.Drawing.Size(77, 20);
+            this.USERS.Size = new System.Drawing.Size(78, 20);
             this.USERS.TabIndex = 17;
             this.USERS.TabStop = true;
             this.USERS.Text = "USERS";
