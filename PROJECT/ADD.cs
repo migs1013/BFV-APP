@@ -256,6 +256,13 @@ namespace PROJECT
                 if (ForSecondVerif())
                     Save_data(3);
             }
+           else if (STATUS.Text == "FOR SECOND VERIF")
+            {
+                input_status = STATUS.Text;
+                if (ForSecondVerif())
+                     Save_data(3);
+                
+            }
             else
             {
                 MessageBox.Show("CHOOSE STATUS");
@@ -450,7 +457,7 @@ namespace PROJECT
                 else if (text[Txt] == '-') continue;
                 else
                 {
-                    MessageBox.Show("PLEASE ENTER NUMBER OR LETTER ONLY.");
+                    MessageBox.Show("PLEASE ENTER NUMBER OR LETTER ONLY");
                     return false;
                 }
             }

@@ -394,7 +394,7 @@ namespace PROJECT
             // Second_site
             // 
             this.Second_site.AutoSize = true;
-            this.Second_site.Location = new System.Drawing.Point(137, 163);
+            this.Second_site.Location = new System.Drawing.Point(135, 163);
             this.Second_site.Name = "Second_site";
             this.Second_site.Size = new System.Drawing.Size(0, 13);
             this.Second_site.TabIndex = 43;
