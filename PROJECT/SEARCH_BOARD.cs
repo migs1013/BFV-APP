@@ -325,7 +325,7 @@ namespace PROJECT
         private void UPDATE_Click(object sender, EventArgs e)
         {
             CheckForUpdates();
-            MessageBox.Show("THIS APP WILL CLOSED, WAIT FOR A FEW SECOND AND REOPEN IT AGAIN");
+            MessageBox.Show("THIS APP WILL CLOSED, WAIT FOR A FEW SECOND AND REOPEN IT AGAIN.");
             this.Close();
         }
 

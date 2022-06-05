@@ -103,8 +103,7 @@ namespace PROJECT
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label17.Location = new System.Drawing.Point(14, 351);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Location = new System.Drawing.Point(9, 228);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(99, 13);
             this.label17.TabIndex = 60;
@@ -115,8 +114,7 @@ namespace PROJECT
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label16.Location = new System.Drawing.Point(14, 297);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(9, 193);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(103, 13);
             this.label16.TabIndex = 59;
@@ -127,8 +125,7 @@ namespace PROJECT
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label15.Location = new System.Drawing.Point(14, 132);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Location = new System.Drawing.Point(9, 86);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(66, 13);
             this.label15.TabIndex = 58;
@@ -139,8 +136,7 @@ namespace PROJECT
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label8.Location = new System.Drawing.Point(14, 514);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(9, 334);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 13);
             this.label8.TabIndex = 57;
@@ -151,8 +147,7 @@ namespace PROJECT
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label6.Location = new System.Drawing.Point(14, 411);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(9, 267);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 13);
             this.label6.TabIndex = 56;
@@ -163,8 +158,7 @@ namespace PROJECT
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label5.Location = new System.Drawing.Point(14, 245);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(9, 159);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 13);
             this.label5.TabIndex = 55;
@@ -175,8 +169,7 @@ namespace PROJECT
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label3.Location = new System.Drawing.Point(14, 188);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(9, 122);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 54;
@@ -187,8 +180,7 @@ namespace PROJECT
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label2.Location = new System.Drawing.Point(14, 72);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(9, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 13);
             this.label2.TabIndex = 53;
@@ -199,8 +191,7 @@ namespace PROJECT
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label1.Location = new System.Drawing.Point(14, 25);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(9, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 13);
             this.label1.TabIndex = 52;
@@ -223,11 +214,9 @@ namespace PROJECT
             this.First_box.Controls.Add(this.First_verif_link);
             this.First_box.Controls.Add(this.label7);
             this.First_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.First_box.Location = new System.Drawing.Point(549, 11);
-            this.First_box.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.First_box.Location = new System.Drawing.Point(366, 7);
             this.First_box.Name = "First_box";
-            this.First_box.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.First_box.Size = new System.Drawing.Size(476, 417);
+            this.First_box.Size = new System.Drawing.Size(317, 271);
             this.First_box.TabIndex = 65;
             this.First_box.TabStop = false;
             this.First_box.Text = "FIRST VERIFICATION DETAILS";
@@ -235,8 +224,7 @@ namespace PROJECT
             // FirstTime
             // 
             this.FirstTime.AutoSize = true;
-            this.FirstTime.Location = new System.Drawing.Point(332, 151);
-            this.FirstTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.FirstTime.Location = new System.Drawing.Point(221, 98);
             this.FirstTime.Name = "FirstTime";
             this.FirstTime.Size = new System.Drawing.Size(0, 13);
             this.FirstTime.TabIndex = 41;
@@ -246,8 +234,7 @@ namespace PROJECT
             this.First_date.AutoSize = true;
             this.First_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.First_date.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.First_date.Location = new System.Drawing.Point(204, 151);
-            this.First_date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.First_date.Location = new System.Drawing.Point(136, 98);
             this.First_date.Name = "First_date";
             this.First_date.Size = new System.Drawing.Size(0, 13);
             this.First_date.TabIndex = 40;
@@ -255,8 +242,7 @@ namespace PROJECT
             // First_endorser
             // 
             this.First_endorser.AutoSize = true;
-            this.First_endorser.Location = new System.Drawing.Point(204, 357);
-            this.First_endorser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.First_endorser.Location = new System.Drawing.Point(136, 232);
             this.First_endorser.Name = "First_endorser";
             this.First_endorser.Size = new System.Drawing.Size(0, 13);
             this.First_endorser.TabIndex = 38;
@@ -264,8 +250,7 @@ namespace PROJECT
             // First_site
             // 
             this.First_site.AutoSize = true;
-            this.First_site.Location = new System.Drawing.Point(204, 251);
-            this.First_site.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.First_site.Location = new System.Drawing.Point(136, 163);
             this.First_site.Name = "First_site";
             this.First_site.Size = new System.Drawing.Size(0, 13);
             this.First_site.TabIndex = 39;
@@ -273,8 +258,7 @@ namespace PROJECT
             // First_tester
             // 
             this.First_tester.AutoSize = true;
-            this.First_tester.Location = new System.Drawing.Point(201, 203);
-            this.First_tester.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.First_tester.Location = new System.Drawing.Point(134, 132);
             this.First_tester.Name = "First_tester";
             this.First_tester.Size = new System.Drawing.Size(0, 13);
             this.First_tester.TabIndex = 36;
@@ -283,8 +267,7 @@ namespace PROJECT
             // 
             this.First_slot.AutoSize = true;
             this.First_slot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.First_slot.Location = new System.Drawing.Point(204, 308);
-            this.First_slot.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.First_slot.Location = new System.Drawing.Point(136, 200);
             this.First_slot.Name = "First_slot";
             this.First_slot.Size = new System.Drawing.Size(0, 13);
             this.First_slot.TabIndex = 37;
@@ -292,8 +275,7 @@ namespace PROJECT
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(26, 151);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Location = new System.Drawing.Point(17, 98);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(101, 13);
             this.label19.TabIndex = 35;
@@ -302,8 +284,7 @@ namespace PROJECT
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(27, 362);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(18, 235);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(84, 13);
             this.label9.TabIndex = 27;
@@ -313,10 +294,9 @@ namespace PROJECT
             // 
             this.Add_first_verif.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Add_first_verif.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Add_first_verif.Location = new System.Drawing.Point(27, 29);
-            this.Add_first_verif.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Add_first_verif.Location = new System.Drawing.Point(18, 19);
             this.Add_first_verif.Name = "Add_first_verif";
-            this.Add_first_verif.Size = new System.Drawing.Size(214, 37);
+            this.Add_first_verif.Size = new System.Drawing.Size(143, 24);
             this.Add_first_verif.TabIndex = 16;
             this.Add_first_verif.Text = "FIRST DATALOG";
             this.Add_first_verif.UseVisualStyleBackColor = false;
@@ -325,8 +305,7 @@ namespace PROJECT
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(27, 255);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(18, 166);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 13);
             this.label11.TabIndex = 32;
@@ -335,8 +314,7 @@ namespace PROJECT
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 208);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(16, 135);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 9;
@@ -348,8 +326,7 @@ namespace PROJECT
             this.First_verif_link.Cursor = System.Windows.Forms.Cursors.Hand;
             this.First_verif_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.First_verif_link.LinkColor = System.Drawing.Color.Black;
-            this.First_verif_link.Location = new System.Drawing.Point(27, 92);
-            this.First_verif_link.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.First_verif_link.Location = new System.Drawing.Point(18, 60);
             this.First_verif_link.Name = "First_verif_link";
             this.First_verif_link.Size = new System.Drawing.Size(0, 13);
             this.First_verif_link.TabIndex = 17;
@@ -359,8 +336,7 @@ namespace PROJECT
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(27, 312);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(18, 203);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(39, 13);
             this.label7.TabIndex = 15;
@@ -384,11 +360,9 @@ namespace PROJECT
             this.Second_box.Controls.Add(this.label13);
             this.Second_box.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Second_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Second_box.Location = new System.Drawing.Point(1068, 11);
-            this.Second_box.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Second_box.Location = new System.Drawing.Point(712, 7);
             this.Second_box.Name = "Second_box";
-            this.Second_box.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Second_box.Size = new System.Drawing.Size(504, 417);
+            this.Second_box.Size = new System.Drawing.Size(336, 271);
             this.Second_box.TabIndex = 64;
             this.Second_box.TabStop = false;
             this.Second_box.Text = "SECOND VERIFICATION DETAILS";
@@ -396,8 +370,7 @@ namespace PROJECT
             // SecondTime
             // 
             this.SecondTime.AutoSize = true;
-            this.SecondTime.Location = new System.Drawing.Point(342, 151);
-            this.SecondTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.SecondTime.Location = new System.Drawing.Point(228, 98);
             this.SecondTime.Name = "SecondTime";
             this.SecondTime.Size = new System.Drawing.Size(0, 13);
             this.SecondTime.TabIndex = 42;
@@ -405,8 +378,7 @@ namespace PROJECT
             // Second_date
             // 
             this.Second_date.AutoSize = true;
-            this.Second_date.Location = new System.Drawing.Point(206, 151);
-            this.Second_date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Second_date.Location = new System.Drawing.Point(137, 98);
             this.Second_date.Name = "Second_date";
             this.Second_date.Size = new System.Drawing.Size(0, 13);
             this.Second_date.TabIndex = 41;
@@ -414,8 +386,7 @@ namespace PROJECT
             // Second_endorser
             // 
             this.Second_endorser.AutoSize = true;
-            this.Second_endorser.Location = new System.Drawing.Point(202, 357);
-            this.Second_endorser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Second_endorser.Location = new System.Drawing.Point(135, 232);
             this.Second_endorser.Name = "Second_endorser";
             this.Second_endorser.Size = new System.Drawing.Size(0, 13);
             this.Second_endorser.TabIndex = 42;
@@ -423,8 +394,7 @@ namespace PROJECT
             // Second_site
             // 
             this.Second_site.AutoSize = true;
-            this.Second_site.Location = new System.Drawing.Point(206, 251);
-            this.Second_site.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Second_site.Location = new System.Drawing.Point(137, 163);
             this.Second_site.Name = "Second_site";
             this.Second_site.Size = new System.Drawing.Size(0, 13);
             this.Second_site.TabIndex = 43;
@@ -432,8 +402,7 @@ namespace PROJECT
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(24, 151);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Location = new System.Drawing.Point(16, 98);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(101, 13);
             this.label20.TabIndex = 36;
@@ -442,8 +411,7 @@ namespace PROJECT
             // Second_tester
             // 
             this.Second_tester.AutoSize = true;
-            this.Second_tester.Location = new System.Drawing.Point(202, 203);
-            this.Second_tester.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Second_tester.Location = new System.Drawing.Point(135, 132);
             this.Second_tester.Name = "Second_tester";
             this.Second_tester.Size = new System.Drawing.Size(0, 13);
             this.Second_tester.TabIndex = 40;
@@ -452,8 +420,7 @@ namespace PROJECT
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(27, 312);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(18, 203);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(39, 13);
             this.label14.TabIndex = 35;
@@ -463,8 +430,7 @@ namespace PROJECT
             // 
             this.Second_slot.AutoSize = true;
             this.Second_slot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Second_slot.Location = new System.Drawing.Point(202, 308);
-            this.Second_slot.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Second_slot.Location = new System.Drawing.Point(135, 200);
             this.Second_slot.Name = "Second_slot";
             this.Second_slot.Size = new System.Drawing.Size(0, 13);
             this.Second_slot.TabIndex = 41;
@@ -473,10 +439,9 @@ namespace PROJECT
             // 
             this.Add_second_verif.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Add_second_verif.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Add_second_verif.Location = new System.Drawing.Point(28, 29);
-            this.Add_second_verif.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Add_second_verif.Location = new System.Drawing.Point(19, 19);
             this.Add_second_verif.Name = "Add_second_verif";
-            this.Add_second_verif.Size = new System.Drawing.Size(214, 37);
+            this.Add_second_verif.Size = new System.Drawing.Size(143, 24);
             this.Add_second_verif.TabIndex = 19;
             this.Add_second_verif.Text = "SECOND DATALOG";
             this.Add_second_verif.UseVisualStyleBackColor = false;
@@ -488,8 +453,7 @@ namespace PROJECT
             this.Second_verif_link.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Second_verif_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Second_verif_link.LinkColor = System.Drawing.Color.Black;
-            this.Second_verif_link.Location = new System.Drawing.Point(27, 92);
-            this.Second_verif_link.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Second_verif_link.Location = new System.Drawing.Point(18, 60);
             this.Second_verif_link.Name = "Second_verif_link";
             this.Second_verif_link.Size = new System.Drawing.Size(0, 13);
             this.Second_verif_link.TabIndex = 20;
@@ -498,8 +462,7 @@ namespace PROJECT
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(27, 255);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(18, 166);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(35, 13);
             this.label12.TabIndex = 36;
@@ -508,8 +471,7 @@ namespace PROJECT
             // Second_verif_text
             // 
             this.Second_verif_text.AutoSize = true;
-            this.Second_verif_text.Location = new System.Drawing.Point(27, 357);
-            this.Second_verif_text.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Second_verif_text.Location = new System.Drawing.Point(18, 232);
             this.Second_verif_text.Name = "Second_verif_text";
             this.Second_verif_text.Size = new System.Drawing.Size(84, 13);
             this.Second_verif_text.TabIndex = 28;
@@ -518,8 +480,7 @@ namespace PROJECT
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(24, 208);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(16, 135);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(56, 13);
             this.label13.TabIndex = 35;
@@ -529,12 +490,11 @@ namespace PROJECT
             // 
             this.Remarks.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.Remarks.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Remarks.Location = new System.Drawing.Point(549, 457);
-            this.Remarks.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Remarks.Location = new System.Drawing.Point(366, 297);
             this.Remarks.Multiline = true;
             this.Remarks.Name = "Remarks";
             this.Remarks.ReadOnly = true;
-            this.Remarks.Size = new System.Drawing.Size(474, 301);
+            this.Remarks.Size = new System.Drawing.Size(317, 197);
             this.Remarks.TabIndex = 63;
             // 
             // label10
@@ -542,8 +502,7 @@ namespace PROJECT
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label10.Location = new System.Drawing.Point(544, 432);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(363, 281);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(154, 13);
             this.label10.TabIndex = 62;
@@ -554,10 +513,9 @@ namespace PROJECT
             this.Exit_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Exit_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Exit_btn.Location = new System.Drawing.Point(18, 677);
-            this.Exit_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Exit_btn.Location = new System.Drawing.Point(12, 440);
             this.Exit_btn.Name = "Exit_btn";
-            this.Exit_btn.Size = new System.Drawing.Size(182, 83);
+            this.Exit_btn.Size = new System.Drawing.Size(121, 54);
             this.Exit_btn.TabIndex = 66;
             this.Exit_btn.Text = "EXIT";
             this.Exit_btn.UseVisualStyleBackColor = false;
@@ -568,8 +526,7 @@ namespace PROJECT
             this.Failure_mode.AutoSize = true;
             this.Failure_mode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Failure_mode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Failure_mode.Location = new System.Drawing.Point(264, 351);
-            this.Failure_mode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Failure_mode.Location = new System.Drawing.Point(176, 228);
             this.Failure_mode.Name = "Failure_mode";
             this.Failure_mode.Size = new System.Drawing.Size(0, 13);
             this.Failure_mode.TabIndex = 75;
@@ -579,8 +536,7 @@ namespace PROJECT
             this.Failed_during.AutoSize = true;
             this.Failed_during.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Failed_during.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Failed_during.Location = new System.Drawing.Point(264, 297);
-            this.Failed_during.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Failed_during.Location = new System.Drawing.Point(176, 193);
             this.Failed_during.Name = "Failed_during";
             this.Failed_during.Size = new System.Drawing.Size(0, 13);
             this.Failed_during.TabIndex = 74;
@@ -590,8 +546,7 @@ namespace PROJECT
             this.Revision.AutoSize = true;
             this.Revision.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Revision.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Revision.Location = new System.Drawing.Point(264, 132);
-            this.Revision.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Revision.Location = new System.Drawing.Point(176, 86);
             this.Revision.Name = "Revision";
             this.Revision.Size = new System.Drawing.Size(0, 13);
             this.Revision.TabIndex = 73;
@@ -601,8 +556,7 @@ namespace PROJECT
             this.Status.AutoSize = true;
             this.Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Status.Location = new System.Drawing.Point(264, 514);
-            this.Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Status.Location = new System.Drawing.Point(176, 334);
             this.Status.Name = "Status";
             this.Status.Size = new System.Drawing.Size(0, 13);
             this.Status.TabIndex = 72;
@@ -612,8 +566,7 @@ namespace PROJECT
             this.Test_option.AutoSize = true;
             this.Test_option.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Test_option.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Test_option.Location = new System.Drawing.Point(264, 411);
-            this.Test_option.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Test_option.Location = new System.Drawing.Point(176, 267);
             this.Test_option.Name = "Test_option";
             this.Test_option.Size = new System.Drawing.Size(0, 13);
             this.Test_option.TabIndex = 71;
@@ -623,8 +576,7 @@ namespace PROJECT
             this.Test_program.AutoSize = true;
             this.Test_program.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Test_program.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Test_program.Location = new System.Drawing.Point(264, 245);
-            this.Test_program.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Test_program.Location = new System.Drawing.Point(176, 159);
             this.Test_program.Name = "Test_program";
             this.Test_program.Size = new System.Drawing.Size(0, 13);
             this.Test_program.TabIndex = 70;
@@ -634,8 +586,7 @@ namespace PROJECT
             this.Board.AutoSize = true;
             this.Board.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Board.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Board.Location = new System.Drawing.Point(264, 188);
-            this.Board.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Board.Location = new System.Drawing.Point(176, 122);
             this.Board.Name = "Board";
             this.Board.Size = new System.Drawing.Size(0, 13);
             this.Board.TabIndex = 69;
@@ -645,8 +596,7 @@ namespace PROJECT
             this.Part_number.AutoSize = true;
             this.Part_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Part_number.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Part_number.Location = new System.Drawing.Point(264, 72);
-            this.Part_number.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Part_number.Location = new System.Drawing.Point(176, 47);
             this.Part_number.Name = "Part_number";
             this.Part_number.Size = new System.Drawing.Size(0, 13);
             this.Part_number.TabIndex = 68;
@@ -656,8 +606,7 @@ namespace PROJECT
             this.Serial_number.AutoSize = true;
             this.Serial_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Serial_number.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Serial_number.Location = new System.Drawing.Point(264, 20);
-            this.Serial_number.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Serial_number.Location = new System.Drawing.Point(176, 13);
             this.Serial_number.Name = "Serial_number";
             this.Serial_number.Size = new System.Drawing.Size(0, 13);
             this.Serial_number.TabIndex = 67;
@@ -667,8 +616,7 @@ namespace PROJECT
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label18.Location = new System.Drawing.Point(14, 462);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Location = new System.Drawing.Point(9, 300);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(40, 13);
             this.label18.TabIndex = 76;
@@ -679,8 +627,7 @@ namespace PROJECT
             this.AREA.AutoSize = true;
             this.AREA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AREA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.AREA.Location = new System.Drawing.Point(264, 462);
-            this.AREA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.AREA.Location = new System.Drawing.Point(176, 300);
             this.AREA.Name = "AREA";
             this.AREA.Size = new System.Drawing.Size(0, 13);
             this.AREA.TabIndex = 77;
@@ -690,10 +637,9 @@ namespace PROJECT
             this.REPAIR_BTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.REPAIR_BTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.REPAIR_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.REPAIR_BTN.Location = new System.Drawing.Point(292, 677);
-            this.REPAIR_BTN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.REPAIR_BTN.Location = new System.Drawing.Point(195, 440);
             this.REPAIR_BTN.Name = "REPAIR_BTN";
-            this.REPAIR_BTN.Size = new System.Drawing.Size(182, 83);
+            this.REPAIR_BTN.Size = new System.Drawing.Size(121, 54);
             this.REPAIR_BTN.TabIndex = 78;
             this.REPAIR_BTN.Text = "REPAIRED";
             this.REPAIR_BTN.UseVisualStyleBackColor = false;
@@ -705,8 +651,7 @@ namespace PROJECT
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label22.Location = new System.Drawing.Point(14, 569);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Location = new System.Drawing.Point(9, 370);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(83, 13);
             this.label22.TabIndex = 79;
@@ -717,8 +662,7 @@ namespace PROJECT
             this.AGING.AutoSize = true;
             this.AGING.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AGING.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.AGING.Location = new System.Drawing.Point(262, 558);
-            this.AGING.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.AGING.Location = new System.Drawing.Point(175, 363);
             this.AGING.Name = "AGING";
             this.AGING.Size = new System.Drawing.Size(0, 20);
             this.AGING.TabIndex = 80;
@@ -728,8 +672,7 @@ namespace PROJECT
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(22, 25);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Location = new System.Drawing.Point(15, 16);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(94, 13);
             this.label21.TabIndex = 81;
@@ -740,8 +683,7 @@ namespace PROJECT
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.Location = new System.Drawing.Point(22, 112);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Location = new System.Drawing.Point(15, 73);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(93, 13);
             this.label23.TabIndex = 82;
@@ -752,8 +694,7 @@ namespace PROJECT
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.label24.ForeColor = System.Drawing.Color.Black;
-            this.label24.Location = new System.Drawing.Point(22, 225);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Location = new System.Drawing.Point(15, 146);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(93, 13);
             this.label24.TabIndex = 83;
@@ -764,8 +705,7 @@ namespace PROJECT
             this.repaired.AutoSize = true;
             this.repaired.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.repaired.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.repaired.Location = new System.Drawing.Point(14, 618);
-            this.repaired.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.repaired.Location = new System.Drawing.Point(9, 402);
             this.repaired.Name = "repaired";
             this.repaired.Size = new System.Drawing.Size(90, 13);
             this.repaired.TabIndex = 84;
@@ -775,10 +715,9 @@ namespace PROJECT
             // repaired_by
             // 
             this.repaired_by.AutoSize = true;
-            this.repaired_by.Location = new System.Drawing.Point(264, 618);
-            this.repaired_by.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.repaired_by.Location = new System.Drawing.Point(176, 402);
             this.repaired_by.Name = "repaired_by";
-            this.repaired_by.Size = new System.Drawing.Size(0, 20);
+            this.repaired_by.Size = new System.Drawing.Size(0, 13);
             this.repaired_by.TabIndex = 85;
             // 
             // Third_dlog
@@ -786,8 +725,7 @@ namespace PROJECT
             this.Third_dlog.AutoSize = true;
             this.Third_dlog.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Third_dlog.LinkColor = System.Drawing.Color.Black;
-            this.Third_dlog.Location = new System.Drawing.Point(22, 65);
-            this.Third_dlog.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Third_dlog.Location = new System.Drawing.Point(15, 42);
             this.Third_dlog.Name = "Third_dlog";
             this.Third_dlog.Size = new System.Drawing.Size(0, 13);
             this.Third_dlog.TabIndex = 86;
@@ -798,8 +736,7 @@ namespace PROJECT
             this.Fourth_dlog.AutoSize = true;
             this.Fourth_dlog.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Fourth_dlog.LinkColor = System.Drawing.Color.Black;
-            this.Fourth_dlog.Location = new System.Drawing.Point(22, 169);
-            this.Fourth_dlog.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Fourth_dlog.Location = new System.Drawing.Point(15, 110);
             this.Fourth_dlog.Name = "Fourth_dlog";
             this.Fourth_dlog.Size = new System.Drawing.Size(0, 13);
             this.Fourth_dlog.TabIndex = 87;
@@ -810,8 +747,7 @@ namespace PROJECT
             this.Fifth_dlog.AutoSize = true;
             this.Fifth_dlog.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Fifth_dlog.LinkColor = System.Drawing.Color.Black;
-            this.Fifth_dlog.Location = new System.Drawing.Point(22, 268);
-            this.Fifth_dlog.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Fifth_dlog.Location = new System.Drawing.Point(15, 174);
             this.Fifth_dlog.Name = "Fifth_dlog";
             this.Fifth_dlog.Size = new System.Drawing.Size(0, 13);
             this.Fifth_dlog.TabIndex = 88;
@@ -827,21 +763,19 @@ namespace PROJECT
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.Third_dlog);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(1068, 457);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Location = new System.Drawing.Point(712, 297);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(504, 303);
+            this.groupBox1.Size = new System.Drawing.Size(336, 197);
             this.groupBox1.TabIndex = 89;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "OTHER DATALOGS";
             // 
             // BOARD_DETAILS
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(1284, 701);
+            this.ClientSize = new System.Drawing.Size(1060, 506);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.repaired_by);
             this.Controls.Add(this.repaired);
@@ -874,10 +808,9 @@ namespace PROJECT
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1606, 817);
-            this.MinimumSize = new System.Drawing.Size(1278, 678);
+            this.MaximumSize = new System.Drawing.Size(1076, 545);
+            this.MinimumSize = new System.Drawing.Size(857, 454);
             this.Name = "BOARD_DETAILS";
             this.Text = "BOARD_DETAILS";
             this.Load += new System.EventHandler(this.Load_Boards);
