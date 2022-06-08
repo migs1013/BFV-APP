@@ -12,11 +12,17 @@ namespace PROJECT
 {
     class Connection
     {
+        // OLD SERVER:
         //public static MySqlConnection connect = new MySqlConnection("server=CAV-DT-TSG36A;user id=newuser;password=onemigso101996;database=boards_for_verification");
         //public static MySqlConnection ConnectBoards = new MySqlConnection("server=CAV-DT-TSG36A;user id=newuser;password=onemigso101996;database=boards_of_testers");
+
+        // LOCAL HOST
         public static MySqlConnection connect = new MySqlConnection("server=localhost;user id=root;password=onemigso101996;database=boards_for_verification;persistsecurityinfo=True");
         public static MySqlConnection ConnectBoards = new MySqlConnection("server=localhost;user id=root;password=onemigso101996;database=boards_of_testers");
 
+        // NEW SERVER
+        //public static MySqlConnection connect = new MySqlConnection("server=cav-dt-loanr002.maxim-ic.com;user id=tsg;password=tsg;database=boards_for_verification;persistsecurityinfo=True");
+        //public static MySqlConnection ConnectBoards = new MySqlConnection("server=cav-dt-loanr002.maxim-ic.com;user id=tsg;password=tsg;database=boards_of_testers");
         public static bool OpenConnection()
         {
             try

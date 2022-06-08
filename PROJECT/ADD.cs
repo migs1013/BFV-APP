@@ -256,7 +256,7 @@ namespace PROJECT
                 if (ForSecondVerif())
                     Save_data(3);
             }
-           else if (STATUS.Text == "FOR SECOND VERIF")
+            else if (STATUS.Text == "FOR SECOND VERIF")
             {
                 input_status = STATUS.Text;
                 if (ForSecondVerif())
@@ -270,23 +270,15 @@ namespace PROJECT
         }
         private void Save_btn_Click(object sender, EventArgs e)
         {
-            if (STATUS.Text == "FOR SECOND VERIF")
+            if (STATUS.Text == "FOR SECOND VERIF" || STATUS.Text == "SPARES")
             {
-                if (get_status == "FOR VERIFICATION")
+                input_status = STATUS.Text;
+                if (ForFirstVerif())
                 {
-                    input_status = STATUS.Text;
-                    if (ForFirstVerif())
-                    {
+                    if (get_status == "FOR VERIFICATION")
                         Save_data(9);
-                    }
-                }
-                else
-                {
-                    input_status = STATUS.Text;
-                    if (ForFirstVerif())
-                    {
+                    else
                         Save_data(2);
-                    }
                 }
             }
             else if (STATUS.Text == "FOR VERIFICATION")
@@ -299,22 +291,13 @@ namespace PROJECT
                 }
                 Save_data(6);
             }
-            else if (STATUS.Text == "SPARES")
-            {
-                input_status = STATUS.Text;
-                if (ForFirstVerif())
-                {
-                    if (get_status == "FOR VERIFICATION")
-                        Save_data(9);
-                    else
-                        Save_data(2);
-                }
-            }
             else if (STATUS.Text == "INSTALL TO TESTER")
             {
                 input_status = STATUS.Text;
                 if (ForFirstVerif())
                 {
+                    FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
                     if (get_status == "FOR VERIFICATION")
                     {
                         Save_data(11);
@@ -330,18 +313,18 @@ namespace PROJECT
                 input_status = "BRG (INCOMING)";
                 if (ForFirstVerif())
                 {
-                    if (ForSecondVerif())
+                    if (string.IsNullOrEmpty(first_verif_link.Text))
                     {
-                        if (string.IsNullOrEmpty(first_verif_link.Text))
-                        {
-                            FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                            FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
-                            if (get_status == "FOR VERIFICATION")
-                                Save_data(17);
-                            else
-                                Save_data(12);
-                        }
-                        else if (string.IsNullOrEmpty(second_verif_link.Text))
+                        FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                        FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
+                        if (get_status == "FOR VERIFICATION")
+                            Save_data(17);
+                        else
+                            Save_data(12);
+                    }
+                    else if (ForSecondVerif())
+                    {
+                        if (string.IsNullOrEmpty(second_verif_link.Text))
                         {
                             SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                             SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
@@ -753,7 +736,7 @@ namespace PROJECT
                         "`FAILED DURING` = '" + Failed_during.Text + "',`FAILED DURING OTHERS` = '" + Failed_during_others.Text + "',`FAILURE MODE` = '" + Failure_mode.Text + "'," +
                         "`FAILURE MODE OTHERS` = '" + Failure_mode_others.Text + "',`TEST OPTION` = '" + Test_option.Text + "',`AREA` = '" + Area.Text + "',`STATUS` = 'INSTALL TO {0}',REMARKS = '" + Remarks.Text + "'," +
                         "`FIRST TESTER` = '" + First_tester.Text + "',`FIRST SITE` = '" + First_Site.Text + "',`FIRST SLOT` = '" + First_board_slot.Text + "'," +
-                        "`FIRST ENDORSER` = '" + first_endorser.Text + "',`FIRST TIME` = '" + FirstTime.Text + "'" +
+                        "`FIRST ENDORSER` = '" + first_endorser.Text + "',`FIRST TIME` = '" + FirstTime.Text + "',`FIRST DATE` = '" + FirstDate.Text + "'" +
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1",First_tester.Text));
                     break;
                 case 12: //ENDORSED TO BRG WITH PHYSICAL DAMAGE IN FIRST VERIFICATION (NO DATALOG)
@@ -827,19 +810,29 @@ namespace PROJECT
             "'" + FirstTime.Text + "','" + SecondTime.Text + "')");
                     command.Parameters.Add("@FIRST_DATA", MySqlDbType.VarBinary).Value = SaveFile(first_verif_link.Text);
                     break;
-                case 20: // UPDATE 3RD VERIF DATALOG
+                case 20: // FIRST DATALOG
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `FIRST DATALOG` = @FIRST_DATA,`FILENAME 1` = '" + Filename(first_verif_link.Text) + "'" +
+                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
+                    command.Parameters.Add("@FIRST_DATA", MySqlDbType.VarBinary).Value = SaveFile(first_verif_link.Text);
+                    break;
+                case 21: // SECOND DATALOG
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `SECOND DATALOG` = @SECOND_DATA,`FILENAME 2` = '" + Filename(second_verif_link.Text) + "'" +
+                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
+                    command.Parameters.Add("@SECOND_DATA", MySqlDbType.VarBinary).Value = SaveFile(second_verif_link.Text);
+                    break;
+                case 22: // UPDATE 3RD VERIF DATALOG
                     command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "'," +
                         "`THIRD DATALOG` = @THIRD_DATA,`FILENAME 3` = '" + Filename(THIRD_VERIF.Text) + "'" +
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     command.Parameters.Add("@THIRD_DATA", MySqlDbType.VarBinary).Value = SaveFile(THIRD_VERIF.Text);
                     break;
-                case 21:  // UPDATE 4TH VERIF DATALOG
+                case 23:  // UPDATE 4TH VERIF DATALOG
                     command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "'," +
                         "`FOURTH DATALOG` = @THIRD_DATA,`FILENAME 4` = '" + Filename(FOURTH_VERIF.Text) + "'" +
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     command.Parameters.Add("@FOURTH_DATA", MySqlDbType.VarBinary).Value = SaveFile(FOURTH_VERIF.Text);
                     break;
-                case 22:  // UPDATE 5TH VERIF DATALOG
+                case 24:  // UPDATE 5TH VERIF DATALOG
                     command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "'," +
                         "`FIFTH DATALOG` = @FIFTH_DATA,`FILENAME 5` = '" + Filename(FIFTH_VERIF.Text) + "'" +
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
