@@ -9,7 +9,7 @@ namespace PROJECT
     public partial class ADD : Form
     {
         MySqlCommand command;
-        public string tester_platform, get_status, inputBox,FileName,displayStatus,boardQuery,database,tester,input_status;
+        public string tester_platform, get_status, inputBox,FileName,displayStatus,boardQuery,database,tester,input_status,DATALOG;
         public int sites, DoNotLoadBoard, UpdateCheck;
         public DateTime FIRST_DATE = new DateTime();
         public DateTime SECOND_DATE = new DateTime();
@@ -17,7 +17,7 @@ namespace PROJECT
         public DateTime SECOND_TIME = new DateTime();
         public DateTime FirstVsSecond = new DateTime();
 
-        byte[] data;
+        byte[] Data;
         public ADD()
         {
             InitializeComponent();
@@ -30,10 +30,10 @@ namespace PROJECT
         {
             using (Stream getDatalog = File.OpenRead(file))
             {
-                data = new byte[getDatalog.Length];
-                getDatalog.Read(data, 0, data.Length);
+                Data = new byte[getDatalog.Length];
+                getDatalog.Read(Data, 0, Data.Length);
             }
-            return data;
+            return Data;
         }
         private string Filename(string filename)
         {
@@ -398,9 +398,8 @@ namespace PROJECT
         {
             if (Save_btn.Visible == false)
             {
-                string DatalogFile = string.Format("C:\\Users\\{0}\\Desktop\\{1}", Environment.UserName, FileName);
-                File.WriteAllBytes(DatalogFile, data);
-                System.Diagnostics.Process.Start(DatalogFile);
+                DATALOG = "FIRST DATALOG";
+                DatalogOpen(first_verif_link.Text, "FIRST DATALOG");
             }
             else
             {
@@ -416,13 +415,21 @@ namespace PROJECT
         }
         private void second_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try
+            if (Second_tester.Enabled == false)
             {
-                System.Diagnostics.Process.Start(second_verif_link.Text);
+                DATALOG = "SECOND DATALOG";
+                DatalogOpen(second_verif_link.Text, "SECOND DATALOG");
             }
-            catch (Exception mess)
+            else
             {
-                MessageBox.Show("ERROR " + mess.ToString());
+                try
+                {
+                    System.Diagnostics.Process.Start(second_verif_link.Text);
+                }
+                catch (Exception mess)
+                {
+                    MessageBox.Show("ERROR " + mess.ToString());
+                }
             }
         }
 
@@ -536,45 +543,59 @@ namespace PROJECT
                     {
                         Connection.CloseConnection();
                         STATUS.Items.Remove("FOR VERIFICATION");
-                        STATUS.Items.Remove("FOR SECOND VERIF");
                         commands(13);
                         command.Connection = Connection.connect;
                         Connection.OpenConnection();
                         MySqlDataReader read_secondVerif = command.ExecuteReader();
                         read_secondVerif.Read();
                         ClearItemsInTesterBox();
-                        Test_system.Items.Clear();
-                        Boards.Items.Clear();
                         all_controls();
 
                         Revision.Text = read_secondVerif["REVISION"].ToString();
                         Boards.Items.Add(read_secondVerif["BOARD"].ToString());
                         DIE_TYPE.Text = read_secondVerif["TEST PROGRAM"].ToString();
-                        Test_system.Items.Add(read_secondVerif["TESTER PLATFORM"].ToString());
+                        Test_system.Text = read_secondVerif["TESTER PLATFORM"].ToString();
                         Failed_during.Text = read_secondVerif["FAILED DURING"].ToString();
                         Failed_during_others.Text = read_secondVerif["FAILED DURING OTHERS"].ToString();
                         Failure_mode.Text = read_secondVerif["FAILURE MODE"].ToString();
                         Failure_mode_others.Text = read_secondVerif["FAILURE MODE OTHERS"].ToString();
                         Test_option.Text = read_secondVerif["TEST OPTION"].ToString();
                         Remarks.Text = read_secondVerif["REMARKS"].ToString();
-                        data = (byte[])read_secondVerif["FIRST DATALOG"];
-                        First_tester.Items.Add(read_secondVerif["FIRST TESTER"]);
-                        First_Site.Items.Add(read_secondVerif["FIRST SITE"].ToString());
+                        First_tester.Items.Add(read_secondVerif["FIRST TESTER"].ToString());
+                        First_Site.Text = read_secondVerif["FIRST SITE"].ToString();
                         First_board_slot.Text = read_secondVerif["FIRST SLOT"].ToString();
                         first_endorser.Text = read_secondVerif["FIRST ENDORSER"].ToString();
-                        FileName = read_secondVerif["FILENAME 1"].ToString();
+                        Second_tester.Items.Add(read_secondVerif["SECOND TESTER"].ToString());
+                        Second_Site.Text = read_secondVerif["SECOND SITE"].ToString();
+                        Second_slot.Text = read_secondVerif["SECOND SLOT"].ToString();
+                        second_endorser.Text = read_secondVerif["SECOND ENDORSER"].ToString();
+                        first_verif_link.Text = read_secondVerif["FILENAME 1"].ToString();
+                        second_verif_link.Text = read_secondVerif["FILENAME 2"].ToString();
+                        THIRD_VERIF.Text = read_secondVerif["FILENAME 3"].ToString();
+                        FOURTH_VERIF.Text = read_secondVerif["FILENAME 4"].ToString();
                         Area.Text = read_secondVerif["AREA"].ToString();
                         FirstDate.Text = read_secondVerif["FIRST DATE"].ToString();
                         FirstTime.Text = read_secondVerif["FIRST TIME"].ToString();
+                        SecondDate.Text = read_secondVerif["SECOND DATE"].ToString();
+                        SecondTime.Text = read_secondVerif["SECOND TIME"].ToString();
                         Connection.CloseConnection();
                         UpdateCheck = 1;
                         disable_control();
-                        first_verif_link.Text = FileName;
                         Boards.SelectedIndex = 0;
-                        Test_system.SelectedIndex = 0;
                         First_tester.SelectedIndex = 0;
-                        First_Site.SelectedIndex = 0;
+                        Second_tester.SelectedIndex = 0;
+                        second_verif_link.Visible = true;
                         Remarks.Focus();
+                        if (!string.IsNullOrEmpty(second_verif_link.Text))
+                        {
+                            Second_tester.Enabled = false;
+                            Second_Site.Enabled = false;
+                            Second_slot.Enabled = false;
+                            second_endorser.Enabled = false;
+                            Save_btn.Visible = false;
+                            Update_Button.Visible = true;
+                            return;
+                        }
                         if (First_Site.Text.Equals(string.Empty))
                             First_Site.Visible = false;
                         else
@@ -811,12 +832,12 @@ namespace PROJECT
                     command.Parameters.Add("@FIRST_DATA", MySqlDbType.VarBinary).Value = SaveFile(first_verif_link.Text);
                     break;
                 case 20: // FIRST DATALOG
-                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `FIRST DATALOG` = @FIRST_DATA,`FILENAME 1` = '" + Filename(first_verif_link.Text) + "'" +
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `FIRST DATALOG` = @FIRST_DATA" +
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     command.Parameters.Add("@FIRST_DATA", MySqlDbType.VarBinary).Value = SaveFile(first_verif_link.Text);
                     break;
                 case 21: // SECOND DATALOG
-                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `SECOND DATALOG` = @SECOND_DATA,`FILENAME 2` = '" + Filename(second_verif_link.Text) + "'" +
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `SECOND DATALOG` = @SECOND_DATA" +
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     command.Parameters.Add("@SECOND_DATA", MySqlDbType.VarBinary).Value = SaveFile(second_verif_link.Text);
                     break;
@@ -837,6 +858,10 @@ namespace PROJECT
                         "`FIFTH DATALOG` = @FIFTH_DATA,`FILENAME 5` = '" + Filename(FIFTH_VERIF.Text) + "'" +
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     command.Parameters.Add("@FIFTH_DATA", MySqlDbType.VarBinary).Value = SaveFile(FIFTH_VERIF.Text);
+                    break;
+                case 25:
+                    command = new MySqlCommand(string.Format("SELECT `{0}` FROM  `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS`" +
+                        " WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1",DATALOG));
                     break;
             }
         }
@@ -1150,13 +1175,44 @@ namespace PROJECT
             }
         }
 
+        public void DatalogOpen (string link, string data_server)
+        {
+            if (link.Contains(""))
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(link);
+                }
+                catch (Exception mess)
+                {
+                    MessageBox.Show("ERROR " + mess.ToString());
+                }
+            }
+            else
+            {
+                DATALOG = data_server;
+                commands(25);
+                command.Connection = Connection.connect;
+
+                if (Connection.OpenConnection())
+                {
+                    MySqlDataReader read_data = command.ExecuteReader();
+                    read_data.Read();
+
+                    Data = (byte[])read_data[data_server];
+                    Connection.CloseConnection();
+                }
+                string DatalogFile = string.Format("C:\\Users\\{0}\\Desktop\\{1}", Environment.UserName, link);
+                File.WriteAllBytes(DatalogFile, Data);
+                System.Diagnostics.Process.Start(DatalogFile);
+            }
+        }
+
         private void ThirdDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (Save_btn.Visible == false)
             {
-                string DatalogFile = string.Format("C:\\Users\\{0}\\Desktop\\{1}", Environment.UserName, FileName);
-                File.WriteAllBytes(DatalogFile, data);
-                System.Diagnostics.Process.Start(DatalogFile);
+                DatalogOpen(THIRD_VERIF.Text, "THIRD DATALOG");
             }
             else
             {
@@ -1175,9 +1231,7 @@ namespace PROJECT
         {
             if (Save_btn.Visible == false)
             {
-                string DatalogFile = string.Format("C:\\Users\\{0}\\Desktop\\{1}", Environment.UserName, FileName);
-                File.WriteAllBytes(DatalogFile, data);
-                System.Diagnostics.Process.Start(DatalogFile);
+                DatalogOpen(FOURTH_VERIF.Text, "FOURTH DATALOG");
             }
             else
             {
@@ -1196,9 +1250,7 @@ namespace PROJECT
         {
             if (Save_btn.Visible == false)
             {
-                string DatalogFile = string.Format("C:\\Users\\{0}\\Desktop\\{1}", Environment.UserName, FileName);
-                File.WriteAllBytes(DatalogFile, data);
-                System.Diagnostics.Process.Start(DatalogFile);
+                DatalogOpen(FIFTH_VERIF.Text, "FIFTH DATALOG");
             }
             else
             {

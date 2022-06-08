@@ -93,6 +93,7 @@ namespace PROJECT
             this.Fourth_dlog = new System.Windows.Forms.LinkLabel();
             this.Fifth_dlog = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.EDIT = new System.Windows.Forms.Button();
             this.First_box.SuspendLayout();
             this.Second_box.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -300,7 +301,6 @@ namespace PROJECT
             this.Add_first_verif.TabIndex = 16;
             this.Add_first_verif.Text = "FIRST DATALOG";
             this.Add_first_verif.UseVisualStyleBackColor = false;
-            this.Add_first_verif.Click += new System.EventHandler(this.Add_first_verif_Click);
             // 
             // label11
             // 
@@ -515,7 +515,7 @@ namespace PROJECT
             this.Exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Exit_btn.Location = new System.Drawing.Point(12, 440);
             this.Exit_btn.Name = "Exit_btn";
-            this.Exit_btn.Size = new System.Drawing.Size(121, 54);
+            this.Exit_btn.Size = new System.Drawing.Size(100, 54);
             this.Exit_btn.TabIndex = 66;
             this.Exit_btn.Text = "EXIT";
             this.Exit_btn.UseVisualStyleBackColor = false;
@@ -637,9 +637,9 @@ namespace PROJECT
             this.REPAIR_BTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.REPAIR_BTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.REPAIR_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.REPAIR_BTN.Location = new System.Drawing.Point(195, 440);
+            this.REPAIR_BTN.Location = new System.Drawing.Point(259, 440);
             this.REPAIR_BTN.Name = "REPAIR_BTN";
-            this.REPAIR_BTN.Size = new System.Drawing.Size(121, 54);
+            this.REPAIR_BTN.Size = new System.Drawing.Size(100, 54);
             this.REPAIR_BTN.TabIndex = 78;
             this.REPAIR_BTN.Text = "REPAIRED";
             this.REPAIR_BTN.UseVisualStyleBackColor = false;
@@ -770,12 +770,26 @@ namespace PROJECT
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "OTHER DATALOGS";
             // 
+            // EDIT
+            // 
+            this.EDIT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.EDIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.EDIT.Location = new System.Drawing.Point(138, 440);
+            this.EDIT.Name = "EDIT";
+            this.EDIT.Size = new System.Drawing.Size(100, 54);
+            this.EDIT.TabIndex = 90;
+            this.EDIT.Text = "EDIT";
+            this.EDIT.UseVisualStyleBackColor = false;
+            this.EDIT.Visible = false;
+            this.EDIT.Click += new System.EventHandler(this.EDIT_DETAILS);
+            // 
             // BOARD_DETAILS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1060, 506);
+            this.Controls.Add(this.EDIT);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.repaired_by);
             this.Controls.Add(this.repaired);
@@ -889,5 +903,6 @@ namespace PROJECT
         private System.Windows.Forms.LinkLabel Fourth_dlog;
         private System.Windows.Forms.LinkLabel Fifth_dlog;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button EDIT;
     }
 }

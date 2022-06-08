@@ -10,7 +10,7 @@ namespace PROJECT
         MySqlCommand command;
         byte[] Data;
         string DayCount,Second;
-        public string FileName1, Filename2, Filename3, Filename4, Filename5;
+        public string FileName1, Filename2, Filename3, Filename4, Filename5,DATALOG;
         int DAY;
         public int Endorsement_number { get; set; }
         public string other_failure_mode, other_failed_during;
@@ -128,7 +128,7 @@ namespace PROJECT
             switch (yes_no)
             {
                 case DialogResult.Yes:
-                    Commands(7);
+                    Commands(3);
                     break;
                 case DialogResult.No:
                     return;
@@ -174,26 +174,10 @@ namespace PROJECT
                     command = new MySqlCommand(DayCount,Connection.connect);
                     break;
                 case 2:
-                    command = new MySqlCommand("SELECT `FIRST DATALOG` FROM `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS` " +
-                        "WHERE (`ENDORSEMENT NUMBER` = '" + Endorsement_number + "')");
+                    command = new MySqlCommand(String.Format("SELECT `{0}` FROM `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS` " +
+                        "WHERE (`ENDORSEMENT NUMBER` = '" + Endorsement_number + "')",DATALOG));
                     break;
                 case 3:
-                    command = new MySqlCommand("SELECT `SECOND DATALOG` FROM `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS` WHERE" +
-                        "(`ENDORSEMENT NUMBER` = '" + Endorsement_number + "')");
-                    break;
-                case 4:
-                    command = new MySqlCommand("SELECT `THIRD DATALOG` FROM `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS` WHERE" +
-                        "(`ENDORSEMENT NUMBER` = '" + Endorsement_number + "')");
-                    break;
-                case 5:
-                    command = new MySqlCommand("SELECT `FOURTH DATALOG` FROM `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS` WHERE" +
-                        "(`ENDORSEMENT NUMBER` = '" + Endorsement_number + "')");
-                    break;
-                case 6:
-                    command = new MySqlCommand("SELECT `FIFTH DATALOG` FROM `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS` WHERE" +
-                        "(`ENDORSEMENT NUMBER` = '" + Endorsement_number + "')");
-                    break;
-                case 7:
                     command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = 'BRG (REPAIRED)'" +
                         "where `endorsement number` = '" + Endorsement_number + "'");
                     break;
@@ -201,7 +185,7 @@ namespace PROJECT
           
         }
 
-        private void Add_first_verif_Click(object sender, EventArgs e)
+        private void EDIT_DETAILS(object sender, EventArgs e)
         {
 
         }
@@ -211,8 +195,9 @@ namespace PROJECT
             this.Hide();
         }
 
-        private void First_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        public void DatalogOpen(string link, string data_server)
         {
+            DATALOG = data_server;
             Commands(2);
             command.Connection = Connection.connect;
 
@@ -221,88 +206,36 @@ namespace PROJECT
                 MySqlDataReader read_data = command.ExecuteReader();
                 read_data.Read();
 
-                Data = (byte[])read_data["FIRST DATALOG"];
+                Data = (byte[])read_data[data_server];
                 Connection.CloseConnection();
             }
+            string DatalogFile = string.Format("C:\\Users\\{0}\\Desktop\\{1}", Environment.UserName, link);
+            File.WriteAllBytes(DatalogFile, Data);
+            System.Diagnostics.Process.Start(DatalogFile);
+        }
 
-            string file = string.Format(@"C:\Users\{0}\Desktop\{1}", Environment.UserName, FileName1);
-            File.WriteAllBytes(file, Data);
-            System.Diagnostics.Process.Start(file);
+        private void First_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DatalogOpen(First_verif_link.Text, "FIRST DATALOG");
         }
 
         private void Second_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Commands(3);
-            command.Connection = Connection.connect;
-
-            if (Connection.OpenConnection())
-            {
-                MySqlDataReader read_data = command.ExecuteReader();
-                read_data.Read();
-
-                Data = (byte[])read_data["SECOND DATALOG"];
-                Connection.CloseConnection();
-            }
-
-            string file = string.Format(@"C:\Users\{0}\Desktop\{1}", Environment.UserName, Filename2);
-            File.WriteAllBytes(file, Data);
-            System.Diagnostics.Process.Start(file);
+            DatalogOpen(Second_verif_link.Text, "SECOND DATALOG");
         }
         private void ThirdDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Commands(4);
-            command.Connection = Connection.connect;
-
-            if (Connection.OpenConnection())
-            {
-                MySqlDataReader read_data = command.ExecuteReader();
-                read_data.Read();
-
-                Data = (byte[])read_data["THIRD DATALOG"];
-                Connection.CloseConnection();
-            }
-
-            string file = string.Format(@"C:\Users\{0}\Desktop\{1}", Environment.UserName, Filename2);
-            File.WriteAllBytes(file, Data);
-            System.Diagnostics.Process.Start(file);
+            DatalogOpen(Third_dlog.Text, "THIRD DATALOG");
         }
 
         private void FourthDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Commands(5);
-            command.Connection = Connection.connect;
-
-            if (Connection.OpenConnection())
-            {
-                MySqlDataReader read_data = command.ExecuteReader();
-                read_data.Read();
-
-                Data = (byte[])read_data["FOURTH DATALOG"];
-                Connection.CloseConnection();
-            }
-
-            string file = string.Format(@"C:\Users\{0}\Desktop\{1}", Environment.UserName, Filename2);
-            File.WriteAllBytes(file, Data);
-            System.Diagnostics.Process.Start(file);
+            DatalogOpen(Fourth_dlog.Text, "FOURTH DATALOG");
         }
 
         private void FifthDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Commands(6);
-            command.Connection = Connection.connect;
-
-            if (Connection.OpenConnection())
-            {
-                MySqlDataReader read_data = command.ExecuteReader();
-                read_data.Read();
-
-                Data = (byte[])read_data["FIFTH DATALOG"];
-                Connection.CloseConnection();
-            }
-
-            string file = string.Format(@"C:\Users\{0}\Desktop\{1}", Environment.UserName, Filename2);
-            File.WriteAllBytes(file, Data);
-            System.Diagnostics.Process.Start(file);
+            DatalogOpen(Fifth_dlog.Text, "FIFTH DATALOG");
         }
     }
 }
