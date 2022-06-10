@@ -9,8 +9,8 @@ namespace PROJECT
     public partial class ADD : Form
     {
         MySqlCommand command;
-        public string tester_platform, get_status, inputBox,FileName,displayStatus,boardQuery,database,tester,input_status,DATALOG;
-        public int sites, DoNotLoadBoard, UpdateCheck;
+        public string tester_platform, get_status, inputBox,FileName,displayStatus,boardQuery,database,tester,input_status,DATALOG,Dataloglink,UpdateData;
+        public int sites, DoNotLoadBoard, UpdateCheck,Endorsement_Number;
         public DateTime FIRST_DATE = new DateTime();
         public DateTime SECOND_DATE = new DateTime();
         public DateTime FIRST_TIME = new DateTime();
@@ -394,44 +394,6 @@ namespace PROJECT
                 SecondTime.Text = SECOND_DATE.ToString("hh:mm tt");
             }
         }
-        private void first_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (Save_btn.Visible == false)
-            {
-                DATALOG = "FIRST DATALOG";
-                DatalogOpen(first_verif_link.Text, "FIRST DATALOG");
-            }
-            else
-            {
-                try
-                {
-                    System.Diagnostics.Process.Start(first_verif_link.Text);
-                }
-                catch (Exception me)
-                {
-                    MessageBox.Show("ERROR " + me.ToString());
-                }
-            }
-        }
-        private void second_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (Second_tester.Enabled == false)
-            {
-                DATALOG = "SECOND DATALOG";
-                DatalogOpen(second_verif_link.Text, "SECOND DATALOG");
-            }
-            else
-            {
-                try
-                {
-                    System.Diagnostics.Process.Start(second_verif_link.Text);
-                }
-                catch (Exception mess)
-                {
-                    MessageBox.Show("ERROR " + mess.ToString());
-                }
-            }
-        }
 
         private bool CheckTextBox(string textBox)
         {
@@ -484,6 +446,7 @@ namespace PROJECT
                 try
                 {
                     get_status = read_status["STATUS"].ToString();
+                    Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
                     if (get_status == "BRG (INCOMING)")
                     {
                         MessageBox.Show("THIS BOARD IS CURRENTLY ENDORSED TO BRG");
@@ -673,7 +636,8 @@ namespace PROJECT
             switch (Pick)
             {
                 case 1:  // FOR CHECKING THE STATUS
-                    command = new MySqlCommand("SELECT `STATUS` FROM `boards_for_verification`.`board details` WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' and `PART NUMBER` = '" + Part_number.Text + "') " +
+                    command = new MySqlCommand("SELECT `STATUS`,`ENDORSEMENT NUMBER` FROM `boards_for_verification`.`board details`" +
+                        " WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' and `PART NUMBER` = '" + Part_number.Text + "') " +
                         "ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     break;
 
@@ -831,37 +795,14 @@ namespace PROJECT
             "'" + FirstTime.Text + "','" + SecondTime.Text + "')");
                     command.Parameters.Add("@FIRST_DATA", MySqlDbType.VarBinary).Value = SaveFile(first_verif_link.Text);
                     break;
-                case 20: // FIRST DATALOG
-                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `FIRST DATALOG` = @FIRST_DATA" +
-                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
-                    command.Parameters.Add("@FIRST_DATA", MySqlDbType.VarBinary).Value = SaveFile(first_verif_link.Text);
-                    break;
-                case 21: // SECOND DATALOG
-                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `SECOND DATALOG` = @SECOND_DATA" +
-                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
-                    command.Parameters.Add("@SECOND_DATA", MySqlDbType.VarBinary).Value = SaveFile(second_verif_link.Text);
-                    break;
-                case 22: // UPDATE 3RD VERIF DATALOG
-                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "'," +
-                        "`THIRD DATALOG` = @THIRD_DATA,`FILENAME 3` = '" + Filename(THIRD_VERIF.Text) + "'" +
-                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
-                    command.Parameters.Add("@THIRD_DATA", MySqlDbType.VarBinary).Value = SaveFile(THIRD_VERIF.Text);
-                    break;
-                case 23:  // UPDATE 4TH VERIF DATALOG
-                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "'," +
-                        "`FOURTH DATALOG` = @THIRD_DATA,`FILENAME 4` = '" + Filename(FOURTH_VERIF.Text) + "'" +
-                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
-                    command.Parameters.Add("@FOURTH_DATA", MySqlDbType.VarBinary).Value = SaveFile(FOURTH_VERIF.Text);
-                    break;
-                case 24:  // UPDATE 5TH VERIF DATALOG
-                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "'," +
-                        "`FIFTH DATALOG` = @FIFTH_DATA,`FILENAME 5` = '" + Filename(FIFTH_VERIF.Text) + "'" +
-                        "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
-                    command.Parameters.Add("@FIFTH_DATA", MySqlDbType.VarBinary).Value = SaveFile(FIFTH_VERIF.Text);
-                    break;
-                case 25:
+                case 20:  // OPEN DATALOG
                     command = new MySqlCommand(string.Format("SELECT `{0}` FROM  `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS`" +
-                        " WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' AND `PART NUMBER` = '" + Part_number.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1",DATALOG));
+                        "WHERE (`ENDORSEMENT NUMBER` = '" + Endorsement_Number + "')", DATALOG));
+                    break;
+                case 21: // INSERT DATALOG
+                    command = new MySqlCommand(string.Format("UPDATE `boards_for_verification`.`board details` SET `{0}` = @{1}" +
+                        "WHERE (`ENDORSEMENT NUMBER` = '" + Endorsement_Number + "')",DATALOG,UpdateData));
+                    command.Parameters.Add(string.Format("@{0}",UpdateData), MySqlDbType.VarBinary).Value = SaveFile(Dataloglink);
                     break;
             }
         }
@@ -1137,9 +1078,6 @@ namespace PROJECT
             {
                 THIRD_VERIF.Visible = true;
                 THIRD_VERIF.Text = openFileDialog3.FileName;
-                //FIRST_DATE = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
-                //FirstDate.Text = FIRST_DATE.ToString("yyyy-MM-dd");
-                //FirstTime.Text = FIRST_DATE.ToString("hh:mm tt");
             }
         }
 
@@ -1153,9 +1091,6 @@ namespace PROJECT
             {
                 FOURTH_VERIF.Visible = true;
                 FOURTH_VERIF.Text = openFileDialog4.FileName;
-                //FIRST_DATE = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
-                //FirstDate.Text = FIRST_DATE.ToString("yyyy-MM-dd");
-                //FirstTime.Text = FIRST_DATE.ToString("hh:mm tt");
             }
         }
 
@@ -1169,15 +1104,12 @@ namespace PROJECT
             {
                 FIFTH_VERIF.Visible = true;
                 FIFTH_VERIF.Text = openFileDialog5.FileName;
-                //FIRST_DATE = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
-                //FirstDate.Text = FIRST_DATE.ToString("yyyy-MM-dd");
-                //FirstTime.Text = FIRST_DATE.ToString("hh:mm tt");
             }
         }
 
         public void DatalogOpen (string link, string data_server)
         {
-            if (link.Contains(""))
+            if (link.Contains("\\"))
             {
                 try
                 {
@@ -1191,7 +1123,7 @@ namespace PROJECT
             else
             {
                 DATALOG = data_server;
-                commands(25);
+                commands(20);
                 command.Connection = Connection.connect;
 
                 if (Connection.OpenConnection())
@@ -1208,61 +1140,33 @@ namespace PROJECT
             }
         }
 
+        private void first_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DATALOG = "FIRST DATALOG";
+            DatalogOpen(first_verif_link.Text, "FIRST DATALOG");
+        }
+        private void second_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            DATALOG = "SECOND DATALOG";
+            DatalogOpen(second_verif_link.Text, "SECOND DATALOG");
+        }
         private void ThirdDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (Save_btn.Visible == false)
-            {
-                DatalogOpen(THIRD_VERIF.Text, "THIRD DATALOG");
-            }
-            else
-            {
-                try
-                {
-                    System.Diagnostics.Process.Start(THIRD_VERIF.Text);
-                }
-                catch (Exception me)
-                {
-                    MessageBox.Show("ERROR " + me.ToString());
-                }
-            }
+            DATALOG = "THIRD DATALOG";
+            DatalogOpen(THIRD_VERIF.Text, "THIRD DATALOG");
         }
 
         private void FourthDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (Save_btn.Visible == false)
-            {
-                DatalogOpen(FOURTH_VERIF.Text, "FOURTH DATALOG");
-            }
-            else
-            {
-                try
-                {
-                    System.Diagnostics.Process.Start(FOURTH_VERIF.Text);
-                }
-                catch (Exception me)
-                {
-                    MessageBox.Show("ERROR " + me.ToString());
-                }
-            }
+            DATALOG = "FOURTH DATALOG";
+            DatalogOpen(FOURTH_VERIF.Text, "FOURTH DATALOG");
         }
 
         private void FifthDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (Save_btn.Visible == false)
-            {
-                DatalogOpen(FIFTH_VERIF.Text, "FIFTH DATALOG");
-            }
-            else
-            {
-                try
-                {
-                    System.Diagnostics.Process.Start(FIFTH_VERIF.Text);
-                }
-                catch (Exception me)
-                {
-                    MessageBox.Show("ERROR " + me.ToString());
-                }
-            }
+            DATALOG = "FIFTH DATALOG";
+            DatalogOpen(FIFTH_VERIF.Text, "FIFTH DATALOG");
         }
 
         private void status(object sender, EventArgs e)
