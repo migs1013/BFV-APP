@@ -481,6 +481,7 @@ namespace PROJECT
                                 Test_system.Items.Add(read_data["TESTER PLATFORM"].ToString());
                                 Boards.Items.Add(read_data["BOARD"].ToString());
                                 Connection.CloseConnection();
+                                UpdateCheck = 0;
                                 Boards.SelectedIndex = 0;
                                 Update_Button.Visible = false;
                                 DoNotLoadBoard = 1;
@@ -496,6 +497,7 @@ namespace PROJECT
                                 return;
                             case DialogResult.No:
                                 Connection.CloseConnection();
+                                UpdateCheck = 0;
                                 clear_all();
                                 Serial_number.Clear();
                                 Part_number.Clear();
@@ -614,6 +616,7 @@ namespace PROJECT
                     {
                         case DialogResult.Yes:
                             Connection.CloseConnection();
+                            UpdateCheck = 0;
                             clear_all();
                             all_controls();
                             enable_control();
@@ -624,6 +627,7 @@ namespace PROJECT
                             break;
                         case DialogResult.No:
                             Connection.CloseConnection();
+                            UpdateCheck = 0;
                             Serial_number.Clear();
                             Part_number.Clear();
                             clear_all();
