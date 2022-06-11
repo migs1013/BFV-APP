@@ -802,6 +802,23 @@ namespace PROJECT
                     command = new MySqlCommand(string.Format("UPDATE `boards_for_verification`.`board details` SET `{0}` = @{1}" +
                         "WHERE (`ENDORSEMENT NUMBER` = '" + Endorsement_Number + "')",DATALOG,UpdateData));
                     command.Parameters.Add(string.Format("@{0}",UpdateData), MySqlDbType.VarBinary).Value = SaveFile(Dataloglink);
+                    break; 
+                case 22: // INSERT NEW DETAILS
+                    command = new MySqlCommand("INSERT INTO `boards_for_verification`." +
+            "`board details`(`SERIAL NUMBER`,`PART NUMBER`,REVISION,BOARD,`TEST PROGRAM`,`FAILED DURING`,`FAILED DURING OTHERS`,`FAILURE MODE`,`FAILURE MODE OTHERS`," +
+            "`TEST OPTION`,STATUS,REMARKS,`FIRST TESTER`,`FIRST SITE`,`FIRST SLOT`,`FIRST ENDORSER`,`TESTER PLATFORM`,`FILENAME 1``,`AREA`,`FIRST DATE,`FIRST TIME`) " +
+            "VALUES('" + Serial_number.Text + "','" + Part_number.Text + "','" + Revision.Text + "','" + Boards.Text + "','" + DIE_TYPE.Text + "','" + Failed_during.Text + "','" + Failed_during_others.Text + "'," +
+            "'" + Failure_mode.Text + "','" + Failure_mode_others.Text + "','" + Test_option.Text + "','" + input_status + "','" + Remarks.Text + "'," +
+            "'" + First_tester.Text + "','" + First_Site.Text + "','" + First_board_slot.Text + "','" + first_endorser.Text + "','" + Test_system.Text + "'," +
+            "'" + Filename(first_verif_link.Text) + "','" + Area.Text + "','" + FirstDate.Text + "','" + FirstTime.Text + "')");
+                    break;
+                case 23: // UPDATE DETAILS
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET " +
+                        "`STATUS` = '" + input_status + "',REMARKS = '" + Remarks.Text + "',`SECOND TESTER` = '" + Second_tester.Text + "'," +
+                        "`SECOND SITE` = '" + Second_Site.Text + "',`FILENAME 2` = '" + Filename(second_verif_link.Text) + "'," +
+                        "`SECOND SLOT` = '" + Second_slot.Text + "',`SECOND ENDORSER` = '" + second_endorser.Text + "'," +
+                        "`SECOND DATE` = '" + SecondDate.Text + "',`SECOND TIME` ='" + SecondTime.Text + "'" +
+                        "WHERE `ENDORSEMENT NUMBER` = '" + Endorsement_Number + "'");
                     break;
             }
         }
