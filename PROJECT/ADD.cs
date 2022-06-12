@@ -9,8 +9,8 @@ namespace PROJECT
     public partial class ADD : Form
     {
         MySqlCommand command;
-        public string tester_platform, get_status, inputBox,FileName,displayStatus,boardQuery,database,tester,input_status,DATALOG,Dataloglink,UpdateData,FileNameNumber;
-        public int sites, DoNotLoadBoard, UpdateCheck,Endorsement_Number;
+        public string tester_platform, get_status, inputBox, FileName, displayStatus, boardQuery, database, tester, input_status, DATALOG, Dataloglink, UpdateData, FileNameNumber;
+        public int sites, DoNotLoadBoard, UpdateCheck, Endorsement_Number;
         public DateTime FIRST_DATE = new DateTime();
         public DateTime SECOND_DATE = new DateTime();
         public DateTime FIRST_TIME = new DateTime();
@@ -41,6 +41,45 @@ namespace PROJECT
             return FileName;
         }
 
+        private void DatalogNumber(int DatalogNumber)
+        {
+            if (DatalogNumber == 1)
+            {
+                DATALOG = "FIRST DATALOG";
+                UpdateData = "FIRST_DATA";
+                FileNameNumber = "FILENAME 1";
+                Dataloglink = first_verif_link.Text;
+            }
+            else if (DatalogNumber == 2)
+            {
+                DATALOG = "SECOND DATALOG";
+                UpdateData = "SECOND_DATA";
+                FileNameNumber = "FILENAME 2";
+                Dataloglink = second_verif_link.Text;
+            }
+            else if (DatalogNumber == 3)
+            {
+                DATALOG = "THIRD DATALOG";
+                UpdateData = "THIRD_DATA";
+                FileNameNumber = "FILENAME 3";
+                Dataloglink = THIRD_VERIF.Text;
+            }
+            else if (DatalogNumber == 4)
+            {
+                DATALOG = "FOURTH DATALOG";
+                UpdateData = "FOURTH_DATA";
+                FileNameNumber = "FILENAME 4";
+                Dataloglink = FOURTH_VERIF.Text;
+            }
+            else
+            {
+                DATALOG = "FIFTH DATALOG";
+                UpdateData = "FIFTH_DATA";
+                FileNameNumber = "FILENAME 5";
+                Dataloglink = FIFTH_VERIF.Text;
+            }
+        }
+
         private void Save_data()
         {
             DialogResult yes_no = MessageBox.Show(string.Format("PLEASE DOUBLE CHECK YOUR DATA,THIS WILL BE SAVE PERMANENTLY. SAVE IT? STATUS: {0}", STATUS.Text), "ATTENTION", MessageBoxButtons.YesNo);
@@ -51,21 +90,56 @@ namespace PROJECT
                         SendData(9);
                     else if (STATUS.Text == "INSTALL TO TESTER")
                     {
-                        FirstDate.Text = FIRST_DATE.ToString("yyyy-MM-dd");
-                        FirstTime.Text = FIRST_DATE.ToString("hh:mm tt");
-                        if (get_status == "FOR VERIFICATION")
-                            SendData(11);
-                        else
-                            SendData(10);
-                        if (first_verif_link.Text.Contains("\\"))
+                        if (Failed_during.Enabled == false)
                         {
-                            SecondDate.Text = SECOND_DATE.ToString("yyyy-MM-dd");
-                            SecondTime.Text = SECOND_TIME.ToString("hh:mm tt");
                             SendData(12);
                         }
+                        else
+                        {
+                            if (get_status == "FOR VERIFICATION")
+                                SendData(11);
+                            else
+                                SendData(10);
+                        }
                     }
-
-
+                    else if (STATUS.Text == "FOR SECOND VERIF")
+                    {
+                        if (get_status == "FOR VERIFICATION")
+                        {
+                            DatalogNumber(1);
+                            SendData(10);
+                        }
+                        else if (first_verif_link.Text.Contains("\\"))
+                        {
+                            DatalogNumber(1);
+                            SendData(11);
+                            commands(1);
+                            command.Connection = Connection.connect;
+                            Connection.OpenConnection();
+                            MySqlDataReader read_status = command.ExecuteReader();
+                            read_status.Read();
+                            Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
+                            Connection.CloseConnection();
+                        }
+                        else if (second_verif_link.Text.Contains("\\"))
+                        {
+                            SendData(12);
+                            DatalogNumber(2);
+                        }
+                        else if (THIRD_VERIF.Text.Contains("\\"))
+                        {
+                            DatalogNumber(3);
+                        }
+                        else if (FOURTH_VERIF.Text.Contains("\\"))
+                        {
+                            DatalogNumber(4);
+                        }
+                        else if (FIFTH_VERIF.Text.Contains("\\"))
+                        {
+                            DatalogNumber(5);
+                        }
+                        SendData(8);
+                    }
 
                     UpdateCheck = 0;
                     MessageBox.Show("FILE SAVED SUCCESSFULLY");
@@ -76,6 +150,7 @@ namespace PROJECT
                     Serial_number.Clear();
                     Part_number.Clear();
                     LoadTesterPlatforms();
+                    Serial_number.Focus();
                     break;
                 case DialogResult.No:
                     return;
@@ -165,6 +240,8 @@ namespace PROJECT
                 }
                 else if (STATUS.Text == "INSTALL TO TESTER")
                 {
+                    FirstDate.Text = FIRST_DATE.ToString("yyyy-MM-dd");
+                    FirstTime.Text = FIRST_DATE.ToString("hh:mm tt");
                     input_status = string.Format("INSTALL TO {0}", First_tester.Text);
                 }
                 else
@@ -233,7 +310,7 @@ namespace PROJECT
                 case 11: // INSERT NEW DETAILS WITH COMPLETE FIRST VERIFICATION DETAILS
                     command = new MySqlCommand("INSERT INTO `boards_for_verification`." +
                         "`board details`(`SERIAL NUMBER`,`PART NUMBER`,REVISION,BOARD,`TEST PROGRAM`,`FAILED DURING`,`FAILED DURING OTHERS`,`FAILURE MODE`,`FAILURE MODE OTHERS`," +
-                        "`TEST OPTION`,STATUS,REMARKS,`FIRST TESTER`,`FIRST SITE`,`FIRST SLOT`,`FIRST ENDORSER`,`TESTER PLATFORM`,`AREA`,`FIRST DATE,`FIRST TIME`) " +
+                        "`TEST OPTION`,STATUS,REMARKS,`FIRST TESTER`,`FIRST SITE`,`FIRST SLOT`,`FIRST ENDORSER`,`TESTER PLATFORM`,`AREA`,`FIRST DATE`,`FIRST TIME`) " +
                         "VALUES('" + Serial_number.Text + "','" + Part_number.Text + "','" + Revision.Text + "','" + Boards.Text + "','" + DIE_TYPE.Text + "','" + Failed_during.Text + "','" + Failed_during_others.Text + "'," +
                         "'" + Failure_mode.Text + "','" + Failure_mode_others.Text + "','" + Test_option.Text + "','" + input_status + "','" + Remarks.Text + "'," +
                         "'" + First_tester.Text + "','" + First_Site.Text + "','" + First_board_slot.Text + "','" + first_endorser.Text + "','" + Test_system.Text + "'," +
@@ -1062,6 +1139,15 @@ namespace PROJECT
             {
                 FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
+            }
+            else if (STATUS.Text == "FOR SECOND VERIF")
+            {
+                if (FIFTH_VERIF.Text.Contains("\\"))
+                {
+                    MessageBox.Show("THIS STATUS IS NOT ALLOWED ON FIFTH VERIFICATION");
+                    STATUS.SelectedIndex = -1;
+                    return;
+                }
             }
         }
 
