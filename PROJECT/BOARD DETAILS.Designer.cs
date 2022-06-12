@@ -672,7 +672,7 @@ namespace PROJECT
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(15, 16);
+            this.label21.Location = new System.Drawing.Point(15, 18);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(94, 13);
             this.label21.TabIndex = 81;
@@ -683,7 +683,7 @@ namespace PROJECT
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.Location = new System.Drawing.Point(15, 73);
+            this.label23.Location = new System.Drawing.Point(15, 78);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(93, 13);
             this.label23.TabIndex = 82;

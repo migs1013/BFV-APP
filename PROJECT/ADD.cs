@@ -102,12 +102,13 @@ namespace PROJECT
                                 SendData(10);
                         }
                     }
-                    else if (STATUS.Text == "FOR SECOND VERIF")
+                    else if (STATUS.Text == "FOR SECOND VERIF" || STATUS.Text == "SPARES")
                     {
                         if (get_status == "FOR VERIFICATION")
                         {
                             DatalogNumber(1);
                             SendData(10);
+                            SendData(8);
                         }
                         else if (first_verif_link.Text.Contains("\\"))
                         {
@@ -120,24 +121,49 @@ namespace PROJECT
                             read_status.Read();
                             Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
                             Connection.CloseConnection();
+                            SendData(8);
                         }
                         else if (second_verif_link.Text.Contains("\\"))
                         {
                             SendData(12);
                             DatalogNumber(2);
+                            SendData(8);
                         }
-                        else if (THIRD_VERIF.Text.Contains("\\"))
+                    }
+                    else
+                    {
+                        if (get_status == "FOR VERIFICATION")
                         {
-                            DatalogNumber(3);
+                            SendData(10);
                         }
-                        else if (FOURTH_VERIF.Text.Contains("\\"))
+                        else if (Failed_during.Enabled == false)
                         {
-                            DatalogNumber(4);
+                            SendData(11);
+                            SendData(11);
+                            commands(1);
+                            command.Connection = Connection.connect;
+                            Connection.OpenConnection();
+                            MySqlDataReader read_status = command.ExecuteReader();
+                            read_status.Read();
+                            Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
+                            Connection.CloseConnection();
                         }
-                        else if (FIFTH_VERIF.Text.Contains("\\"))
-                        {
-                            DatalogNumber(5);
-                        }
+                        if (first_verif_link.Text.Contains("\\"))
+                        { DatalogNumber(1); SendData(8); }
+                    }
+                    if (THIRD_VERIF.Text.Contains("\\"))
+                    {
+                        DatalogNumber(3);
+                        SendData(8);
+                    }
+                    if (FOURTH_VERIF.Text.Contains("\\"))
+                    {
+                        DatalogNumber(4);
+                        SendData(8);
+                    }
+                    if (FIFTH_VERIF.Text.Contains("\\"))
+                    {
+                        DatalogNumber(5);
                         SendData(8);
                     }
 
@@ -202,18 +228,18 @@ namespace PROJECT
                         return;
                     }
                 }
+                Save_data();
             }
             else if (STATUS.Text == "BRG")
             {
                 if (ForSecondVerif())
-                    input_status = "BRG (INCOMING)";
-            }
+                { input_status = "BRG (INCOMING)"; Save_data(); }
+                }
             else
             {
                 if (ForSecondVerif())
-                    input_status = STATUS.Text;
+                { input_status = STATUS.Text; Save_data();  }
             }
-            Save_data();
         }
         private void Save_btn_Click(object sender, EventArgs e)
         {
@@ -288,7 +314,7 @@ namespace PROJECT
                         "WHERE (`ENDORSEMENT NUMBER` = '" + Endorsement_Number + "')", DATALOG));
                     break;
                 case 8: // INSERT DATALOG
-                    command = new MySqlCommand(string.Format("UPDATE `boards_for_verification`.`board details` SET `{0}` = @{1},`{2}` = '{3}' " +
+                    command = new MySqlCommand(string.Format("UPDATE `boards_for_verification`.`board details` SET `{0}` = @{1},`{2}` = '{3}',`STATUS` = '" + input_status + "',`REMARKS` = '" + Remarks.Text + "'" +
                         "WHERE (`ENDORSEMENT NUMBER` = '" + Endorsement_Number + "')", DATALOG, UpdateData, FileNameNumber, Filename(Dataloglink)));
                     command.Parameters.Add(string.Format("@{0}", UpdateData), MySqlDbType.VarBinary).Value = SaveFile(Dataloglink);
                     break;
@@ -666,59 +692,65 @@ namespace PROJECT
                         First_tester.SelectedIndex = 0;
                         Second_tester.SelectedIndex = 0;
                         second_verif_link.Visible = true;
+                        THIRD_VERIF.Visible = true;
+                        FOURTH_VERIF.Visible = true;
+                        Save_btn.Visible = false;
+                        Update_Button.Visible = true;
+                        Second_box.Visible = true;
                         Remarks.Focus();
-                        if (!string.IsNullOrEmpty(second_verif_link.Text))
+                        if (string.IsNullOrEmpty(second_verif_link.Text))
+                        {
+                            Second_tester.Enabled = true;
+                            Second_Site.Enabled = true;
+                            Second_slot.Enabled = true;
+                            second_endorser.Enabled = true;
+                            if (First_Site.Text.Equals(string.Empty))
+                                First_Site.Visible = false;
+                            else
+                                First_Site.Visible = true;
+                            if (Test_system.Text == "ASL4K" || Test_system.Text == "ASL1K")
+                            {
+                                Test_system.Items.Clear();
+                                Test_system.Items.Add("TMT");
+                                Test_system.SelectedIndex = 0;
+                                command = new MySqlCommand("select * from `boards_for_verification`.`tmt`", Connection.connect);
+                                Connection.OpenConnection();
+                                MySqlDataReader tmt = command.ExecuteReader();
+                                while (tmt.Read())
+                                {
+                                    Second_tester.Items.Add(tmt["TMT"].ToString());
+                                }
+                                Connection.CloseConnection();
+                            }
+                            else
+                            {
+                                tester_platform = string.Format("SELECT * FROM `boards_for_verification`.`{0}`", Test_system.Text.ToLower());
+                                command = new MySqlCommand(tester_platform, Connection.connect);
+
+                                Connection.OpenConnection();
+                                MySqlDataReader read = command.ExecuteReader();
+                                while (read.Read())
+                                {
+                                    Second_tester.Items.Add(read.GetString(Test_system.Text.ToUpper()));
+                                }
+                                sites = int.Parse(read["SITE"].ToString());
+                                Connection.CloseConnection();
+                                if (sites != 0)
+                                {
+                                    for (int CountSite = 1; CountSite <= sites; CountSite++)
+                                    {
+                                        Second_Site.Items.Add(CountSite.ToString());
+                                    }
+                                    Second_Site.Visible = true;
+                                }
+                            }
+                        }
+                        else
                         {
                             Second_tester.Enabled = false;
                             Second_Site.Enabled = false;
                             Second_slot.Enabled = false;
                             second_endorser.Enabled = false;
-                            Save_btn.Visible = false;
-                            Update_Button.Visible = true;
-                            return;
-                        }
-                        if (First_Site.Text.Equals(string.Empty))
-                            First_Site.Visible = false;
-                        else
-                            First_Site.Visible = true;
-                        Save_btn.Visible = false;
-                        Update_Button.Visible = true;
-                        Second_box.Visible = true;
-                        if (Test_system.Text == "ASL4K" || Test_system.Text == "ASL1K")
-                        {
-                            Test_system.Items.Clear();
-                            Test_system.Items.Add("TMT");
-                            Test_system.SelectedIndex = 0;
-                            command = new MySqlCommand("select * from `boards_for_verification`.`tmt`", Connection.connect);
-                            Connection.OpenConnection();
-                            MySqlDataReader tmt = command.ExecuteReader();
-                            while (tmt.Read())
-                            {
-                                Second_tester.Items.Add(tmt["TMT"].ToString());
-                            }
-                            Connection.CloseConnection();
-                        }
-                        else
-                        {
-                            tester_platform = string.Format("SELECT * FROM `boards_for_verification`.`{0}`", Test_system.Text.ToLower());
-                            command = new MySqlCommand(tester_platform, Connection.connect);
-
-                            Connection.OpenConnection();
-                            MySqlDataReader read = command.ExecuteReader();
-                            while (read.Read())
-                            {
-                                Second_tester.Items.Add(read.GetString(Test_system.Text.ToUpper()));
-                            }
-                            sites = int.Parse(read["SITE"].ToString());
-                            Connection.CloseConnection();
-                            if (sites != 0)
-                            {
-                                for (int CountSite = 1; CountSite <= sites; CountSite++)
-                                {
-                                    Second_Site.Items.Add(CountSite.ToString());
-                                }
-                                Second_Site.Visible = true;
-                            }
                         }
                     }
                 }
@@ -1052,6 +1084,11 @@ namespace PROJECT
             if (string.IsNullOrEmpty(FOURTH_VERIF.Text))
             {
                 MessageBox.Show("FOURTH VERIFICATION DATALOG IS NEEDED");
+                return;
+            }
+            if (STATUS.Text == "FOR SECOND VERIF")
+            {
+                MessageBox.Show("PLEASE CHANGE THE STATUS");
                 return;
             }
             openFileDialog5.InitialDirectory = @"c:\";

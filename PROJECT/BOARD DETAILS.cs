@@ -10,7 +10,7 @@ namespace PROJECT
         MySqlCommand command;
         byte[] Data;
         string DayCount,Second;
-        public string FileName1, Filename2, Filename3, Filename4, Filename5,DATALOG;
+        public string DATALOG;
         int DAY;
         public int Endorsement_number { get; set; }
         public string other_failure_mode, other_failed_during;
@@ -54,18 +54,16 @@ namespace PROJECT
                 Second_site.Text = read_data["SECOND SITE"].ToString();
                 Second_slot.Text = read_data["SECOND SLOT"].ToString();
                 Second_endorser.Text = read_data["SECOND ENDORSER"].ToString();
-                FileName1 = read_data["FILENAME 1"].ToString();
-                Filename2 = read_data["FILENAME 2"].ToString();
-                Filename3 = read_data["FILENAME 3"].ToString();
-                Filename4 = read_data["FILENAME 4"].ToString();
-                Filename5 = read_data["FILENAME 5"].ToString();
+                First_verif_link.Text = read_data["FILENAME 1"].ToString();
+                Second_verif_link.Text = read_data["FILENAME 2"].ToString();
+                Third_dlog.Text = read_data["FILENAME 3"].ToString();
+                Fourth_dlog.Text = read_data["FILENAME 4"].ToString();
+                Fifth_dlog.Text = read_data["FILENAME 5"].ToString();
                 AREA.Text = read_data["AREA"].ToString();
                 Second_date.Text = read_data["SECOND DATE"].ToString();
                 FirstTime.Text = read_data["FIRST TIME"].ToString();
                 SecondTime.Text = read_data["SECOND TIME"].ToString();
                 Connection.CloseConnection();
-                First_verif_link.Text = FileName1;
-                Second_verif_link.Text = Filename2;
                 if (Failed_during.Text.ToUpper() == "OTHERS")
                 {
                     Failed_during.Text = other_failed_during;
