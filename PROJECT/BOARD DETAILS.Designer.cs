@@ -773,6 +773,7 @@ namespace PROJECT
             // EDIT
             // 
             this.EDIT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.EDIT.Cursor = System.Windows.Forms.Cursors.Hand;
             this.EDIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.EDIT.Location = new System.Drawing.Point(138, 440);
             this.EDIT.Name = "EDIT";

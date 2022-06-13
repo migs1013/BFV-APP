@@ -22,6 +22,12 @@ namespace PROJECT
         {
             InitializeComponent();
         }
+
+        public ADD(int Number)
+        {
+            InitializeComponent();
+        }
+
         private void error()
         {
             MessageBox.Show("INCOMPLETE DETAILS!");

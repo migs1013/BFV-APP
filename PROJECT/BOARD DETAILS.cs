@@ -90,6 +90,16 @@ namespace PROJECT
                 {
                     REPAIR_BTN.Visible = true;
                 }
+                if (Status.Text == "BRG (REPAIRED)" || Status.Text == "SPARES" || Status.Text.Contains("INSTALL"))
+                {
+                    EDIT.Visible = true;
+                    EDIT.Text = "ADD NEW";
+                }
+                if (Status.Text == "FOR SECOND VERIF" || Status.Text == "FOR VERIFICATION")
+                {
+                    EDIT.Visible = true;
+                    EDIT.Text = "EDIT";
+                }
             }
             else
                 this.Close();
@@ -185,7 +195,8 @@ namespace PROJECT
 
         private void EDIT_DETAILS(object sender, EventArgs e)
         {
-
+            ADD add_new = new ADD(Endorsement_number);
+            add_new.ShowDialog();
         }
 
         private void Exit_btn_Click(object sender, EventArgs e)
