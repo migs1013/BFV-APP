@@ -88,83 +88,56 @@ namespace PROJECT
                 case DialogResult.Yes:
                     if (STATUS.Text == "FOR VERIFICATION")
                         SendData(9);
-                    else if (STATUS.Text == "INSTALL TO TESTER")
-                    {
-                        if (Failed_during.Enabled == false)
-                        {
-                            SendData(12);
-                        }
-                        else
-                        {
-                            if (get_status == "FOR VERIFICATION")
-                                SendData(11);
-                            else
-                                SendData(10);
-                        }
-                    }
-                    else if (STATUS.Text == "FOR SECOND VERIF" || STATUS.Text == "SPARES")
-                    {
-                        if (get_status == "FOR VERIFICATION")
-                        {
-                            DatalogNumber(1);
-                            SendData(10);
-                            SendData(8);
-                        }
-                        else if (first_verif_link.Text.Contains("\\"))
-                        {
-                            DatalogNumber(1);
-                            SendData(11);
-                            commands(1);
-                            command.Connection = Connection.connect;
-                            Connection.OpenConnection();
-                            MySqlDataReader read_status = command.ExecuteReader();
-                            read_status.Read();
-                            Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
-                            Connection.CloseConnection();
-                            SendData(8);
-                        }
-                        else if (second_verif_link.Text.Contains("\\"))
-                        {
-                            SendData(12);
-                            DatalogNumber(2);
-                            SendData(8);
-                        }
-                    }
                     else
                     {
                         if (get_status == "FOR VERIFICATION")
                         {
                             SendData(10);
+                            if (second_verif_link.Text.Contains("\\"))
+                                SendData(12);
                         }
                         else if (Failed_during.Enabled == false)
                         {
-                            SendData(11);
+                            SendData(12);
+                        }
+                        else
+                        {
                             SendData(11);
                             commands(1);
                             command.Connection = Connection.connect;
-                            Connection.OpenConnection();
-                            MySqlDataReader read_status = command.ExecuteReader();
-                            read_status.Read();
-                            Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
+                            if (Connection.OpenConnection())
+                            {
+                                MySqlDataReader read_status = command.ExecuteReader();
+                                read_status.Read();
+
+                                Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
+                            }
                             Connection.CloseConnection();
+                            if (second_verif_link.Text.Contains("\\"))
+                            {
+                                SendData(12);
+                            }
                         }
                         if (first_verif_link.Text.Contains("\\"))
-                        { DatalogNumber(1); SendData(8); }
-                    }
-                    if (THIRD_VERIF.Text.Contains("\\"))
-                    {
-                        DatalogNumber(3);
-                        SendData(8);
-                    }
-                    if (FOURTH_VERIF.Text.Contains("\\"))
-                    {
-                        DatalogNumber(4);
-                        SendData(8);
-                    }
-                    if (FIFTH_VERIF.Text.Contains("\\"))
-                    {
-                        DatalogNumber(5);
-                        SendData(8);
+                        {
+                            DatalogNumber(1); SendData(8);
+                        }
+                        if (second_verif_link.Text.Contains("\\"))
+                        {
+                            DatalogNumber(2); SendData(8);
+                        }
+                        if (THIRD_VERIF.Text.Contains("\\"))
+                        {
+                            DatalogNumber(3); SendData(8);
+                        }
+                        if (FOURTH_VERIF.Text.Contains("\\"))
+                        {
+                            DatalogNumber(4); SendData(8);
+                        }
+                        if (FIFTH_VERIF.Text.Contains("\\"))
+                        {
+                            DatalogNumber(5); SendData(8);
+                        }
                     }
 
                     UpdateCheck = 0;
@@ -234,11 +207,11 @@ namespace PROJECT
             {
                 if (ForSecondVerif())
                 { input_status = "BRG (INCOMING)"; Save_data(); }
-                }
+            }
             else
             {
                 if (ForSecondVerif())
-                { input_status = STATUS.Text; Save_data();  }
+                { input_status = STATUS.Text; Save_data(); }
             }
         }
         private void Save_btn_Click(object sender, EventArgs e)
@@ -258,26 +231,49 @@ namespace PROJECT
                 }
                 Save_data();
             }
-            else if (ForFirstVerif())
-            {
-                if (STATUS.Text == "FOR SECOND VERIF" || STATUS.Text == "SPARES")
-                {
-                    input_status = STATUS.Text;
-                }
-                else if (STATUS.Text == "INSTALL TO TESTER")
-                {
-                    FirstDate.Text = FIRST_DATE.ToString("yyyy-MM-dd");
-                    FirstTime.Text = FIRST_DATE.ToString("hh:mm tt");
-                    input_status = string.Format("INSTALL TO {0}", First_tester.Text);
-                }
-                else
-                {
-                    input_status = "BRG (INCOMING)";
-                }
-                Save_data();
-            }
             else
-                error(); return;
+            {
+                if (ForFirstVerif())
+                {
+                    if (STATUS.Text == "FOR SECOND VERIF" || STATUS.Text == "SPARES" || STATUS.Text == "BRG")
+                    {
+                        input_status = STATUS.Text;
+                        if (STATUS.Text == "BRG")
+                        {
+                            input_status = "BRG (INCOMING)";
+                            Save_data();
+                        }
+                        if (second_verif_link.Text.Contains("\\"))
+                        {
+                            if (ForSecondVerif())
+                            {
+                                Save_data();
+                            }
+                            else Save_data();
+                        }
+                    }
+                    else if (STATUS.Text == "INSTALL TO TESTER")
+                    {
+                        if (Failed_during.Enabled == false || first_verif_link.Text.Contains("\\"))
+                        {
+                            if (ForSecondVerif())
+                            {
+                                SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                                SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
+                                input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
+                            }
+                            else return;
+                        }
+                        else
+                        {
+                            FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                            FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
+                            input_status = string.Format("INSTALL TO {0}", First_tester.Text);
+                        }
+                        Save_data();
+                    }
+                }
+            }
         }
         private void commands(int Pick)
         {
