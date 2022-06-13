@@ -93,7 +93,7 @@ namespace PROJECT
                         if (get_status == "FOR VERIFICATION")
                         {
                             SendData(10);
-                            if (second_verif_link.Text.Contains("\\"))
+                            if (second_verif_link.Text.Contains("\\") || STATUS.Text == "INSTALL TO TESTER")
                                 SendData(12);
                         }
                         else if (Failed_during.Enabled == false)
@@ -113,7 +113,7 @@ namespace PROJECT
                                 Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
                             }
                             Connection.CloseConnection();
-                            if (second_verif_link.Text.Contains("\\"))
+                            if (second_verif_link.Text.Contains("\\") || STATUS.Text == "INSTALL TO TESTER")
                             {
                                 SendData(12);
                             }
@@ -239,22 +239,21 @@ namespace PROJECT
                     {
                         input_status = STATUS.Text;
                         if (STATUS.Text == "BRG")
-                        {
                             input_status = "BRG (INCOMING)";
-                            Save_data();
-                        }
-                        if (second_verif_link.Text.Contains("\\"))
+                        if (Failed_during.Enabled == false || string.IsNullOrEmpty(second_verif_link.Text) == false)
                         {
                             if (ForSecondVerif())
                             {
                                 Save_data();
+                                return;
                             }
-                            else Save_data();
+                            else return;
                         }
+                        Save_data();
                     }
                     else if (STATUS.Text == "INSTALL TO TESTER")
                     {
-                        if (Failed_during.Enabled == false || first_verif_link.Text.Contains("\\"))
+                        if ( Failed_during.Enabled == false || first_verif_link.Text.Contains("\\"))
                         {
                             if (ForSecondVerif())
                             {
@@ -452,7 +451,7 @@ namespace PROJECT
         }
         private bool ForSecondVerif()
         {
-            if (STATUS.Text == "BRG")
+            if (STATUS.Text == "BRG" || STATUS.Text == "INSTALL TO TESTER")
             {
                 if (Second_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Second_slot.Text) || second_endorser.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Remarks.Text))
                 {
