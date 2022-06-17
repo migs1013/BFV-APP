@@ -90,7 +90,7 @@ namespace PROJECT
                 {
                     REPAIR_BTN.Visible = true;
                 }
-                if (Status.Text == "BRG (REPAIRED)" || Status.Text == "SPARES" || Status.Text.Contains("INSTALL"))
+                if (Status.Text.Contains("INSTALL") || Status.Text == "BRG (REPAIRED)" || Status.Text == "SPARES")
                 {
                     EDIT.Visible = true;
                     EDIT.Text = "ADD NEW";
@@ -195,7 +195,8 @@ namespace PROJECT
 
         private void EDIT_DETAILS(object sender, EventArgs e)
         {
-            ADD add_new = new ADD(Endorsement_number);
+            this.Hide();
+            ADD add_new = new ADD(Endorsement_number,2);
             add_new.ShowDialog();
         }
 

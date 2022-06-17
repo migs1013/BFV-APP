@@ -188,7 +188,7 @@ namespace PROJECT
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
-                        " FROM `boards_for_verification`.`board details` ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT {0},30",firstCount),Connection.connect);
+                        " FROM `boards_for_verification`.`board details` ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT {1},{2}", FullTextCommand, firstCount, secondCount), Connection.connect);
                     break;
                 case 12:
                     command = new MySqlCommand("SELECT COUNT(*) FROM `board details` WHERE '" + search_text.Text + "' IN (`SERIAL NUMBER`,`PART NUMBER`,`FIRST TESTER`,`TEST PROGRAM`)", Connection.connect);
@@ -284,7 +284,7 @@ namespace PROJECT
         private void Add_btn_Click(object sender, EventArgs e)
         {
             //this.Hide();
-            ADD next = new ADD();
+            ADD next = new ADD(1);
             next.ShowDialog();
         }
         private void REFRESH_Click(object sender, EventArgs e)
@@ -423,6 +423,7 @@ namespace PROJECT
             }
             firstCount = firstCount + 30;
             results();
+            CommandComboBox();
             load_data(11);
         }
         private void BackClick(object sender, EventArgs e)
@@ -439,6 +440,7 @@ namespace PROJECT
             }
             secondCount = secondCount - 30;
             firstCount = firstCount - 30;
+            CommandComboBox();
             load_data(11);
             results();
         }

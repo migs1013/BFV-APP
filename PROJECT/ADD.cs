@@ -11,6 +11,8 @@ namespace PROJECT
         MySqlCommand command;
         public string tester_platform, get_status, inputBox, FileName, displayStatus, boardQuery, database, tester, input_status, DATALOG, Dataloglink, UpdateData, FileNameNumber;
         public int sites, DoNotLoadBoard, UpdateCheck, Endorsement_Number;
+        public int Endorsement_Number_from_board { get; set; }
+        public int Load_number { get; set; }
         public DateTime FIRST_DATE = new DateTime();
         public DateTime SECOND_DATE = new DateTime();
         public DateTime FIRST_TIME = new DateTime();
@@ -18,14 +20,17 @@ namespace PROJECT
         public DateTime FirstVsSecond = new DateTime();
 
         byte[] Data;
-        public ADD()
+        public ADD(int Load)
         {
             InitializeComponent();
+            Load_number = Load;
         }
 
-        public ADD(int Number)
+        public ADD(int Number,int Load)
         {
             InitializeComponent();
+            Endorsement_Number_from_board = Number;
+            Load_number = Load;
         }
 
         private void error()
@@ -183,6 +188,8 @@ namespace PROJECT
         }
         private void Update_Button_Click(object sender, EventArgs e)
         {
+            if (Load_number == 2)
+                Endorsement_Number = Endorsement_Number_from_board;
             if (STATUS.SelectedIndex == -1)
             {
                 MessageBox.Show("CHOOSE STATUS");
@@ -212,7 +219,10 @@ namespace PROJECT
             else if (STATUS.Text == "BRG")
             {
                 if (ForSecondVerif())
-                { input_status = "BRG (INCOMING)"; Save_data(); }
+                { 
+                    input_status = "BRG (INCOMING)"; 
+                    Save_data();                 
+                }
             }
             else
             {
@@ -222,6 +232,8 @@ namespace PROJECT
         }
         private void Save_btn_Click(object sender, EventArgs e)
         {
+            if (Load_number == 2)
+                Endorsement_Number = Endorsement_Number_from_board;
             if (STATUS.SelectedIndex == -1)
             {
                 MessageBox.Show("PLEASE CHOOSE STATUS");
@@ -259,7 +271,7 @@ namespace PROJECT
                     }
                     else if (STATUS.Text == "INSTALL TO TESTER")
                     {
-                        if ( Failed_during.Enabled == false || first_verif_link.Text.Contains("\\"))
+                        if (Failed_during.Enabled == false || first_verif_link.Text.Contains("\\"))
                         {
                             if (ForSecondVerif())
                             {
@@ -349,6 +361,13 @@ namespace PROJECT
                         "`SECOND SITE` = '" + Second_Site.Text + "',`SECOND SLOT` = '" + Second_slot.Text + "',`SECOND ENDORSER` = '" + second_endorser.Text + "'," +
                         "`SECOND DATE` = '" + SecondDate.Text + "',`SECOND TIME` ='" + SecondTime.Text + "'" +
                         "WHERE `ENDORSEMENT NUMBER` = '" + Endorsement_Number + "'");
+                    break;
+                case 13: // FOR CHECKING OF LAST TRANSACTION FROM BOARD DETAILS
+                    command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`REVISION`,`TESTER PLATFORM`,`BOARD`,`STATUS` " +
+                        "FROM `boards_for_verification`.`board details` WHERE `ENDORSEMENT NUMBER` = '" + Endorsement_Number_from_board + "'");
+                    break;
+                case 14:  // FOR CHECKING THE LAST TRANSACTION FOR 2ND VERIF FROM BOARD DETAILS
+                    command = new MySqlCommand("SELECT * FROM `boards_for_verification`.`board details` WHERE (`ENDORSEMENT NUMBER` = '" + Endorsement_Number_from_board + "')");
                     break;
             }
         }
@@ -488,7 +507,8 @@ namespace PROJECT
             }
             return true;
         }
-        private void Add_first_verif_Click(object sender, EventArgs e)
+
+        private void InsertDatalog(LinkLabel DlogName,DateTime WriteTime,Label Date,Label Time)
         {
             openFileDialog1.InitialDirectory = @"c:\";
             openFileDialog1.Title = "BROWSE A FILE";
@@ -496,46 +516,40 @@ namespace PROJECT
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                first_verif_link.Visible = true;
-                first_verif_link.Text = openFileDialog1.FileName;
-                FIRST_DATE = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
-                FirstDate.Text = FIRST_DATE.ToString("yyyy-MM-dd");
-                FirstTime.Text = FIRST_DATE.ToString("hh:mm tt");
+                DlogName.Visible = true;
+                DlogName.Text = openFileDialog1.FileName;
+                WriteTime = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
+                Date.Text = WriteTime.ToString("yyyy-MM-dd");
+                Time.Text = WriteTime.ToString("hh:mm tt");
             }
+        }
+        private void Add_first_verif_Click(object sender, EventArgs e)
+        {
+            InsertDatalog(first_verif_link, FIRST_DATE, FirstDate, FirstTime);
             Show_second_grpBox();
         }
         private void Add_second_verif_Click(object sender, EventArgs e)
         {
-            openFileDialog2.InitialDirectory = @"c:\";
-            openFileDialog2.Title = "BROWSE A FILE";
-            openFileDialog2.FileName = null;
-            openFileDialog2.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            if (openFileDialog2.ShowDialog() == DialogResult.OK)
+            InsertDatalog(second_verif_link, SECOND_DATE, SecondDate, SecondTime);
+            if (UpdateCheck == 1)
             {
-                SECOND_DATE = System.IO.File.GetLastWriteTime(openFileDialog2.FileName);
-                if (UpdateCheck == 1)
+                FirstVsSecond = DateTime.ParseExact(FirstDate.Text, "yyyy-MM-dd",
+                System.Globalization.CultureInfo.InvariantCulture);
+                if (FirstVsSecond > SECOND_DATE)
                 {
-                    FirstVsSecond = DateTime.ParseExact(FirstDate.Text, "yyyy-MM-dd",
-                    System.Globalization.CultureInfo.InvariantCulture);
-                    if (FirstVsSecond > SECOND_DATE)
-                    { 
-                        MessageBox.Show("DATE NOT VALID, MUST BE AHEAD TO THE FIRST VERIFICATION DATE");
-                        return;
-                    }
+                    MessageBox.Show("DATE NOT VALID, MUST BE AHEAD TO THE FIRST VERIFICATION DATE");
+                    return;
                 }
-                else
-                {
-                    if (FIRST_DATE > SECOND_DATE)
-                    {
-                        MessageBox.Show("DATE NOT VALID, MUST BE AHEAD TO THE FIRST VERIFICATION DATE");
-                        return;
-                    }
-                }
-                second_verif_link.Visible = true;
-                second_verif_link.Text = openFileDialog2.FileName;
-                SecondDate.Text = SECOND_DATE.ToString("yyyy-MM-dd");
-                SecondTime.Text = SECOND_DATE.ToString("hh:mm tt");
             }
+            else
+            {
+                if (FIRST_DATE > SECOND_DATE)
+                {
+                    MessageBox.Show("DATE NOT VALID, MUST BE AHEAD TO THE FIRST VERIFICATION DATE");
+                    return;
+                }
+            }
+
         }
 
         private bool CheckTextBox(string textBox)
@@ -546,7 +560,7 @@ namespace PROJECT
                 MessageBox.Show("MAXIMUM OF TEN CHARACTERS ONLY");
                 return false;
             }
-            for (int Txt = 0; Txt < textBox.Length ; Txt++)
+            for (int Txt = 0; Txt < textBox.Length; Txt++)
             {
                 if (char.IsLetterOrDigit(text[Txt])) continue;
                 else if (text[Txt] == '-') continue;
@@ -572,8 +586,176 @@ namespace PROJECT
                     }
                     STATUS.Items.Remove("FOR VERIFICATION");
                     STATUS.Items.Add("FOR VERIFICATION");
+                    Load_number = 1;
                     LoadBoardDetails();
                 }
+            }
+        }
+
+        private void For2ndVerifStatus()
+        {
+            STATUS.Items.Remove("FOR VERIFICATION");
+            if (Load_number == 2)
+                commands(14);
+            else 
+                commands(4);
+            command.Connection = Connection.connect;
+            Connection.OpenConnection();
+            MySqlDataReader read_secondVerif = command.ExecuteReader();
+            read_secondVerif.Read();
+            ClearItemsInTesterBox();
+            all_controls();
+            
+            if (Load_number == 2)
+            {
+                Serial_number.Text = read_secondVerif["SERIAL NUMBER"].ToString();
+                Part_number.Text = read_secondVerif["PART NUMBER"].ToString();
+            }
+            Revision.Text = read_secondVerif["REVISION"].ToString();
+            Boards.Items.Add(read_secondVerif["BOARD"].ToString());
+            DIE_TYPE.Text = read_secondVerif["TEST PROGRAM"].ToString();
+            Test_system.Text = read_secondVerif["TESTER PLATFORM"].ToString();
+            Failed_during.Text = read_secondVerif["FAILED DURING"].ToString();
+            Failed_during_others.Text = read_secondVerif["FAILED DURING OTHERS"].ToString();
+            Failure_mode.Text = read_secondVerif["FAILURE MODE"].ToString();
+            Failure_mode_others.Text = read_secondVerif["FAILURE MODE OTHERS"].ToString();
+            Test_option.Text = read_secondVerif["TEST OPTION"].ToString();
+            Remarks.Text = read_secondVerif["REMARKS"].ToString();
+            First_tester.Items.Add(read_secondVerif["FIRST TESTER"].ToString());
+            First_Site.Text = read_secondVerif["FIRST SITE"].ToString();
+            First_board_slot.Text = read_secondVerif["FIRST SLOT"].ToString();
+            first_endorser.Text = read_secondVerif["FIRST ENDORSER"].ToString();
+            Second_tester.Items.Add(read_secondVerif["SECOND TESTER"].ToString());
+            Second_Site.Text = read_secondVerif["SECOND SITE"].ToString();
+            Second_slot.Text = read_secondVerif["SECOND SLOT"].ToString();
+            second_endorser.Text = read_secondVerif["SECOND ENDORSER"].ToString();
+            first_verif_link.Text = read_secondVerif["FILENAME 1"].ToString();
+            second_verif_link.Text = read_secondVerif["FILENAME 2"].ToString();
+            THIRD_VERIF.Text = read_secondVerif["FILENAME 3"].ToString();
+            FOURTH_VERIF.Text = read_secondVerif["FILENAME 4"].ToString();
+            Area.Text = read_secondVerif["AREA"].ToString();
+            FirstDate.Text = read_secondVerif["FIRST DATE"].ToString();
+            FirstTime.Text = read_secondVerif["FIRST TIME"].ToString();
+            SecondDate.Text = read_secondVerif["SECOND DATE"].ToString();
+            SecondTime.Text = read_secondVerif["SECOND TIME"].ToString();
+            Connection.CloseConnection();
+            UpdateCheck = 1;
+            disable_control();
+            Boards.SelectedIndex = 0;
+            First_tester.SelectedIndex = 0;
+            Second_tester.SelectedIndex = 0;
+            second_verif_link.Visible = true;
+            THIRD_VERIF.Visible = true;
+            FOURTH_VERIF.Visible = true;
+            Save_btn.Visible = false;
+            Update_Button.Visible = true;
+            Second_box.Visible = true;
+            Remarks.Focus();
+            if (string.IsNullOrEmpty(second_verif_link.Text))
+            {
+                Second_tester.Enabled = true;
+                Second_Site.Enabled = true;
+                Second_slot.Enabled = true;
+                second_endorser.Enabled = true;
+                if (First_Site.Text.Equals(string.Empty))
+                    First_Site.Visible = false;
+                else
+                    First_Site.Visible = true;
+                if (Test_system.Text == "ASL4K" || Test_system.Text == "ASL1K")
+                {
+                    Test_system.Items.Clear();
+                    Test_system.Items.Add("TMT");
+                    Test_system.SelectedIndex = 0;
+                    command = new MySqlCommand("select * from `boards_for_verification`.`tmt`", Connection.connect);
+                    Connection.OpenConnection();
+                    MySqlDataReader tmt = command.ExecuteReader();
+                    while (tmt.Read())
+                    {
+                        Second_tester.Items.Add(tmt["TMT"].ToString());
+                    }
+                    Connection.CloseConnection();
+                }
+                else
+                {
+                    tester_platform = string.Format("SELECT * FROM `boards_for_verification`.`{0}`", Test_system.Text.ToLower());
+                    command = new MySqlCommand(tester_platform, Connection.connect);
+
+                    Connection.OpenConnection();
+                    MySqlDataReader read = command.ExecuteReader();
+                    while (read.Read())
+                    {
+                        Second_tester.Items.Add(read.GetString(Test_system.Text.ToUpper()));
+                    }
+                    sites = int.Parse(read["SITE"].ToString());
+                    Connection.CloseConnection();
+                    if (sites != 0)
+                    {
+                        for (int CountSite = 1; CountSite <= sites; CountSite++)
+                        {
+                            Second_Site.Items.Add(CountSite.ToString());
+                        }
+                        Second_Site.Visible = true;
+                    }
+                }
+            }
+            else
+            {
+                Second_tester.Enabled = false;
+                Second_Site.Enabled = false;
+                Second_slot.Enabled = false;
+                second_endorser.Enabled = false;
+            }
+        }
+
+        private void FromBoardDetailsWindow()
+        {
+            commands(13);
+            command.Connection = Connection.connect;
+            if (Connection.OpenConnection())    
+            {
+                MySqlDataReader read = command.ExecuteReader();
+                read.Read();
+                get_status = read["STATUS"].ToString();
+                Connection.CloseConnection();
+            }
+            else { Connection.CloseConnection(); return; }
+            if (get_status == "SPARES" || get_status == "BRG (REPAIRED)" || get_status.Contains("INSTALL") || get_status == "FAILURE CHANGED" || get_status == "FOR VERIFICATION")
+            {
+                if (get_status == "FOR VERIFICATION")
+                    STATUS.Items.Remove("FOR VERIFICATION");
+                commands(13);
+                command.Connection = Connection.connect;
+                Connection.OpenConnection();
+                MySqlDataReader read_data = command.ExecuteReader();
+                read_data.Read();
+                clear_all();
+                enable_control();
+                all_controls();
+
+                Serial_number.Text = read_data["SERIAL NUMBER"].ToString();
+                Part_number.Text = read_data["PART NUMBER"].ToString();
+                Revision.Text = read_data["REVISION"].ToString();
+                Test_system.Items.Add(read_data["TESTER PLATFORM"].ToString());
+                Boards.Items.Add(read_data["BOARD"].ToString());
+                Connection.CloseConnection();
+                UpdateCheck = 0;
+                Update_Button.Visible = false;
+                DoNotLoadBoard = 1;
+                Boards.SelectedIndex = 0;
+                Test_system.SelectedIndex = 0;
+                if (Test_system.Text == "ASL1K" || Test_system.Text == "ASL4K")
+                {
+                    Test_system.Items.Clear();
+                    Test_system.Items.Add("TMT");
+                }
+                Testers();
+                STATUS.Items.Remove("FOR VERIFICATION");
+                STATUS.Items.Add("FOR VERIFICATION");
+                DIE_TYPE.Focus();
+            }
+            else
+            {
+                For2ndVerifStatus();
             }
         }
 
@@ -601,6 +783,7 @@ namespace PROJECT
                     }
                     if (get_status == "SPARES" || get_status == "BRG (REPAIRED)" || get_status.Contains("INSTALL") || get_status == "FAILURE CHANGED" || get_status == "FOR VERIFICATION")
                     {
+                        Connection.CloseConnection();
                         if (get_status == "FOR VERIFICATION")
                             STATUS.Items.Remove("FOR VERIFICATION");
                         DialogResult yes_no = MessageBox.Show("LAST TRANSACTION: " + get_status + ", ADD NEW?", "ATTENTION!",
@@ -608,15 +791,14 @@ namespace PROJECT
                         switch (yes_no)
                         {
                             case DialogResult.Yes:
-                                Connection.CloseConnection();
                                 commands(5);
+                                clear_all();
+                                enable_control();
+                                all_controls();
                                 command.Connection = Connection.connect;
                                 Connection.OpenConnection();
                                 MySqlDataReader read_data = command.ExecuteReader();
                                 read_data.Read();
-                                clear_all();
-                                enable_control();
-                                all_controls();
                                 Revision.Text = read_data["REVISION"].ToString();
                                 Test_system.Items.Add(read_data["TESTER PLATFORM"].ToString());
                                 Boards.Items.Add(read_data["BOARD"].ToString());
@@ -636,7 +818,6 @@ namespace PROJECT
                                 DIE_TYPE.Focus();
                                 return;
                             case DialogResult.No:
-                                Connection.CloseConnection();
                                 UpdateCheck = 0;
                                 clear_all();
                                 Serial_number.Clear();
@@ -650,109 +831,7 @@ namespace PROJECT
                     else
                     {
                         Connection.CloseConnection();
-                        STATUS.Items.Remove("FOR VERIFICATION");
-                        commands(4);
-                        command.Connection = Connection.connect;
-                        Connection.OpenConnection();
-                        MySqlDataReader read_secondVerif = command.ExecuteReader();
-                        read_secondVerif.Read();
-                        ClearItemsInTesterBox();
-                        all_controls();
-
-                        Revision.Text = read_secondVerif["REVISION"].ToString();
-                        Boards.Items.Add(read_secondVerif["BOARD"].ToString());
-                        DIE_TYPE.Text = read_secondVerif["TEST PROGRAM"].ToString();
-                        Test_system.Text = read_secondVerif["TESTER PLATFORM"].ToString();
-                        Failed_during.Text = read_secondVerif["FAILED DURING"].ToString();
-                        Failed_during_others.Text = read_secondVerif["FAILED DURING OTHERS"].ToString();
-                        Failure_mode.Text = read_secondVerif["FAILURE MODE"].ToString();
-                        Failure_mode_others.Text = read_secondVerif["FAILURE MODE OTHERS"].ToString();
-                        Test_option.Text = read_secondVerif["TEST OPTION"].ToString();
-                        Remarks.Text = read_secondVerif["REMARKS"].ToString();
-                        First_tester.Items.Add(read_secondVerif["FIRST TESTER"].ToString());
-                        First_Site.Text = read_secondVerif["FIRST SITE"].ToString();
-                        First_board_slot.Text = read_secondVerif["FIRST SLOT"].ToString();
-                        first_endorser.Text = read_secondVerif["FIRST ENDORSER"].ToString();
-                        Second_tester.Items.Add(read_secondVerif["SECOND TESTER"].ToString());
-                        Second_Site.Text = read_secondVerif["SECOND SITE"].ToString();
-                        Second_slot.Text = read_secondVerif["SECOND SLOT"].ToString();
-                        second_endorser.Text = read_secondVerif["SECOND ENDORSER"].ToString();
-                        first_verif_link.Text = read_secondVerif["FILENAME 1"].ToString();
-                        second_verif_link.Text = read_secondVerif["FILENAME 2"].ToString();
-                        THIRD_VERIF.Text = read_secondVerif["FILENAME 3"].ToString();
-                        FOURTH_VERIF.Text = read_secondVerif["FILENAME 4"].ToString();
-                        Area.Text = read_secondVerif["AREA"].ToString();
-                        FirstDate.Text = read_secondVerif["FIRST DATE"].ToString();
-                        FirstTime.Text = read_secondVerif["FIRST TIME"].ToString();
-                        SecondDate.Text = read_secondVerif["SECOND DATE"].ToString();
-                        SecondTime.Text = read_secondVerif["SECOND TIME"].ToString();
-                        Connection.CloseConnection();
-                        UpdateCheck = 1;
-                        disable_control();
-                        Boards.SelectedIndex = 0;
-                        First_tester.SelectedIndex = 0;
-                        Second_tester.SelectedIndex = 0;
-                        second_verif_link.Visible = true;
-                        THIRD_VERIF.Visible = true;
-                        FOURTH_VERIF.Visible = true;
-                        Save_btn.Visible = false;
-                        Update_Button.Visible = true;
-                        Second_box.Visible = true;
-                        Remarks.Focus();
-                        if (string.IsNullOrEmpty(second_verif_link.Text))
-                        {
-                            Second_tester.Enabled = true;
-                            Second_Site.Enabled = true;
-                            Second_slot.Enabled = true;
-                            second_endorser.Enabled = true;
-                            if (First_Site.Text.Equals(string.Empty))
-                                First_Site.Visible = false;
-                            else
-                                First_Site.Visible = true;
-                            if (Test_system.Text == "ASL4K" || Test_system.Text == "ASL1K")
-                            {
-                                Test_system.Items.Clear();
-                                Test_system.Items.Add("TMT");
-                                Test_system.SelectedIndex = 0;
-                                command = new MySqlCommand("select * from `boards_for_verification`.`tmt`", Connection.connect);
-                                Connection.OpenConnection();
-                                MySqlDataReader tmt = command.ExecuteReader();
-                                while (tmt.Read())
-                                {
-                                    Second_tester.Items.Add(tmt["TMT"].ToString());
-                                }
-                                Connection.CloseConnection();
-                            }
-                            else
-                            {
-                                tester_platform = string.Format("SELECT * FROM `boards_for_verification`.`{0}`", Test_system.Text.ToLower());
-                                command = new MySqlCommand(tester_platform, Connection.connect);
-
-                                Connection.OpenConnection();
-                                MySqlDataReader read = command.ExecuteReader();
-                                while (read.Read())
-                                {
-                                    Second_tester.Items.Add(read.GetString(Test_system.Text.ToUpper()));
-                                }
-                                sites = int.Parse(read["SITE"].ToString());
-                                Connection.CloseConnection();
-                                if (sites != 0)
-                                {
-                                    for (int CountSite = 1; CountSite <= sites; CountSite++)
-                                    {
-                                        Second_Site.Items.Add(CountSite.ToString());
-                                    }
-                                    Second_Site.Visible = true;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Second_tester.Enabled = false;
-                            Second_Site.Enabled = false;
-                            Second_slot.Enabled = false;
-                            second_endorser.Enabled = false;
-                        }
+                        For2ndVerifStatus();
                     }
                 }
                 catch (Exception)
@@ -1051,14 +1130,14 @@ namespace PROJECT
                 MessageBox.Show("SECOND VERIFICATION DATALOG IS NEEDED");
                 return;
             }
-            openFileDialog3.InitialDirectory = @"c:\";
-            openFileDialog3.Title = "BROWSE A FILE";
-            openFileDialog3.FileName = null;
-            openFileDialog3.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            if (openFileDialog3.ShowDialog() == DialogResult.OK)
+            openFileDialog1.InitialDirectory = @"c:\";
+            openFileDialog1.Title = "BROWSE A FILE";
+            openFileDialog1.FileName = null;
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 THIRD_VERIF.Visible = true;
-                THIRD_VERIF.Text = openFileDialog3.FileName;
+                THIRD_VERIF.Text = openFileDialog1.FileName;
             }
         }
 
@@ -1069,14 +1148,14 @@ namespace PROJECT
                 MessageBox.Show("THIRD VERIFICATION DATALOG IS NEEDED");
                 return;
             }
-            openFileDialog4.InitialDirectory = @"c:\";
-            openFileDialog4.Title = "BROWSE A FILE";
-            openFileDialog4.FileName = null;
-            openFileDialog4.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            if (openFileDialog4.ShowDialog() == DialogResult.OK)
+            openFileDialog1.InitialDirectory = @"c:\";
+            openFileDialog1.Title = "BROWSE A FILE";
+            openFileDialog1.FileName = null;
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 FOURTH_VERIF.Visible = true;
-                FOURTH_VERIF.Text = openFileDialog4.FileName;
+                FOURTH_VERIF.Text = openFileDialog1.FileName;
             }
         }
 
@@ -1092,14 +1171,14 @@ namespace PROJECT
                 MessageBox.Show("PLEASE CHANGE THE STATUS");
                 return;
             }
-            openFileDialog5.InitialDirectory = @"c:\";
-            openFileDialog5.Title = "BROWSE A FILE";
-            openFileDialog5.FileName = null;
-            openFileDialog5.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            if (openFileDialog5.ShowDialog() == DialogResult.OK)
+            openFileDialog1.InitialDirectory = @"c:\";
+            openFileDialog1.Title = "BROWSE A FILE";
+            openFileDialog1.FileName = null;
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 FIFTH_VERIF.Visible = true;
-                FIFTH_VERIF.Text = openFileDialog5.FileName;
+                FIFTH_VERIF.Text = openFileDialog1.FileName;
             }
         }
 
@@ -1213,6 +1292,8 @@ namespace PROJECT
         {
             LoadTesterPlatforms();
             LoadUsers();
+            if (Load_number == 2)
+                FromBoardDetailsWindow();
         }
 
         private void LoadUsers()

@@ -53,7 +53,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.Second_verif_text = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.Update_Button = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.Remarks = new System.Windows.Forms.TextBox();
@@ -93,9 +92,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
-            this.openFileDialog4 = new System.Windows.Forms.OpenFileDialog();
-            this.openFileDialog5 = new System.Windows.Forms.OpenFileDialog();
             this.THIRD_VERIF = new System.Windows.Forms.LinkLabel();
             this.FOURTH_VERIF = new System.Windows.Forms.LinkLabel();
             this.FIFTH_VERIF = new System.Windows.Forms.LinkLabel();
@@ -998,7 +994,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label Second_verif_text;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.Button Update_Button;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox Remarks;
@@ -1040,9 +1035,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.OpenFileDialog openFileDialog3;
-        private System.Windows.Forms.OpenFileDialog openFileDialog4;
-        private System.Windows.Forms.OpenFileDialog openFileDialog5;
         private System.Windows.Forms.LinkLabel THIRD_VERIF;
         private System.Windows.Forms.LinkLabel FOURTH_VERIF;
         private System.Windows.Forms.LinkLabel FIFTH_VERIF;
