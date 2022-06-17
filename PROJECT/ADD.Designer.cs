@@ -360,18 +360,18 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(22, 287);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(84, 13);
+            this.label9.Size = new System.Drawing.Size(41, 13);
             this.label9.TabIndex = 27;
-            this.label9.Text = "VERIFIED BY";
+            this.label9.Text = "USER";
             // 
             // Second_verif_text
             // 
             this.Second_verif_text.AutoSize = true;
             this.Second_verif_text.Location = new System.Drawing.Point(22, 289);
             this.Second_verif_text.Name = "Second_verif_text";
-            this.Second_verif_text.Size = new System.Drawing.Size(84, 13);
+            this.Second_verif_text.Size = new System.Drawing.Size(41, 13);
             this.Second_verif_text.TabIndex = 28;
-            this.Second_verif_text.Text = "VERIFIED BY";
+            this.Second_verif_text.Text = "USER";
             // 
             // Update_Button
             // 
