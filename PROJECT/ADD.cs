@@ -282,7 +282,7 @@ namespace PROJECT
                         else
                         {
                             FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                            SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
+                            FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
                             SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                             SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
                             if (STATUS.Text == "INSTALL TO TESTER")
