@@ -13,10 +13,9 @@ namespace PROJECT
         public int sites, DoNotLoadBoard, UpdateCheck, Endorsement_Number;
         public int Endorsement_Number_from_board { get; set; }
         public int Load_number { get; set; }
+        public DateTime WriteTime = new DateTime();
         public DateTime FIRST_DATE = new DateTime();
         public DateTime SECOND_DATE = new DateTime();
-        public DateTime FIRST_TIME = new DateTime();
-        public DateTime SECOND_TIME = new DateTime();
         public DateTime FirstVsSecond = new DateTime();
 
         byte[] Data;
@@ -104,8 +103,7 @@ namespace PROJECT
                         if (get_status == "FOR VERIFICATION")
                         {
                             SendData(10);
-                            if (second_verif_link.Text.Contains("\\") || STATUS.Text == "INSTALL TO TESTER")
-                                SendData(12);
+                            SendData(12);
                         }
                         else if (Failed_during.Enabled == false)
                         {
@@ -124,10 +122,7 @@ namespace PROJECT
                                 Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
                             }
                             Connection.CloseConnection();
-                            if (second_verif_link.Text.Contains("\\") || STATUS.Text == "INSTALL TO TESTER")
-                            {
-                                SendData(12);
-                            }
+                            SendData(12);
                         }
                         if (first_verif_link.Text.Contains("\\"))
                         {
@@ -220,7 +215,12 @@ namespace PROJECT
             {
                 if (ForSecondVerif())
                 { 
-                    input_status = "BRG (INCOMING)"; 
+                    input_status = "BRG (INCOMING)";
+                    if (string.IsNullOrWhiteSpace(second_verif_link.Text))
+                    {
+                        SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                        SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
+                    }
                     Save_data();                 
                 }
             }
@@ -253,40 +253,45 @@ namespace PROJECT
             {
                 if (ForFirstVerif())
                 {
-                    if (STATUS.Text == "FOR SECOND VERIF" || STATUS.Text == "SPARES" || STATUS.Text == "BRG")
+                    if (STATUS.Text == "FOR SECOND VERIF")
                     {
                         input_status = STATUS.Text;
-                        if (STATUS.Text == "BRG")
-                            input_status = "BRG (INCOMING)";
-                        if (Failed_during.Enabled == false || string.IsNullOrEmpty(second_verif_link.Text) == false)
-                        {
-                            if (ForSecondVerif())
-                            {
-                                Save_data();
-                                return;
-                            }
-                            else return;
-                        }
                         Save_data();
                     }
-                    else if (STATUS.Text == "INSTALL TO TESTER")
+                    else
                     {
-                        if (Failed_during.Enabled == false || first_verif_link.Text.Contains("\\"))
+                        if (second_verif_link.Text.Contains("\\"))
                         {
                             if (ForSecondVerif())
                             {
-                                SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                                SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
-                                input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
+                                if (STATUS.Text == "INSTALL TO TESTER")
+                                    input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
+                                else
+                                    input_status = STATUS.Text;
                             }
-                            else return;
+                        }
+                        else if (first_verif_link.Text.Contains("\\"))
+                        {
+                            SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                            SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
+                            if (STATUS.Text == "INSTALL TO TESTER")
+                                input_status = string.Format("INSTALL TO {0}", First_tester.Text);
+                            else
+                                input_status = STATUS.Text;  
                         }
                         else
                         {
                             FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                            FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
-                            input_status = string.Format("INSTALL TO {0}", First_tester.Text);
+                            SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
+                            SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                            SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
+                            if (STATUS.Text == "INSTALL TO TESTER")
+                                input_status = string.Format("INSTALL TO {0}", First_tester.Text);
+                            else
+                                input_status = STATUS.Text;
                         }
+                        if (STATUS.Text == "BRG")
+                            input_status = "BRG (INCOMING)";
                         Save_data();
                     }
                 }
@@ -508,7 +513,7 @@ namespace PROJECT
             return true;
         }
 
-        private void InsertDatalog(LinkLabel DlogName,DateTime WriteTime,Label Date,Label Time)
+        private void InsertDatalog(LinkLabel DlogName,Label Date,Label Time)
         {
             openFileDialog1.InitialDirectory = @"c:\";
             openFileDialog1.Title = "BROWSE A FILE";
@@ -525,12 +530,19 @@ namespace PROJECT
         }
         private void Add_first_verif_Click(object sender, EventArgs e)
         {
-            InsertDatalog(first_verif_link, FIRST_DATE, FirstDate, FirstTime);
+            InsertDatalog(first_verif_link, FirstDate, FirstTime);
+            FIRST_DATE = WriteTime;
             Show_second_grpBox();
         }
         private void Add_second_verif_Click(object sender, EventArgs e)
         {
-            InsertDatalog(second_verif_link, SECOND_DATE, SecondDate, SecondTime);
+            if (string.IsNullOrWhiteSpace(first_verif_link.Text))
+            {
+                MessageBox.Show("FIRST VERIFICATION DATALOG IS NEEDED");
+                return;
+            }
+            InsertDatalog(second_verif_link, SecondDate, SecondTime);
+            SECOND_DATE = WriteTime;
             if (UpdateCheck == 1)
             {
                 FirstVsSecond = DateTime.ParseExact(FirstDate.Text, "yyyy-MM-dd",
@@ -538,6 +550,9 @@ namespace PROJECT
                 if (FirstVsSecond > SECOND_DATE)
                 {
                     MessageBox.Show("DATE NOT VALID, MUST BE AHEAD TO THE FIRST VERIFICATION DATE");
+                    second_verif_link.Text = null;
+                    SecondDate.Text = " ";
+                    SecondTime.Text = " ";
                     return;
                 }
             }
@@ -546,10 +561,12 @@ namespace PROJECT
                 if (FIRST_DATE > SECOND_DATE)
                 {
                     MessageBox.Show("DATE NOT VALID, MUST BE AHEAD TO THE FIRST VERIFICATION DATE");
+                    second_verif_link.Text = null;
+                    SecondDate.Text = " ";
+                    SecondTime.Text = " ";
                     return;
                 }
             }
-
         }
 
         private bool CheckTextBox(string textBox)
@@ -1248,9 +1265,12 @@ namespace PROJECT
         {
             if (STATUS.Text == "INSTALL TO TESTER")
             {
-                SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
-                second_verif_link.Text = "";
+                if (string.IsNullOrWhiteSpace(second_verif_link.Text))
+                {
+                    SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
+                    second_verif_link.Text = "";
+                }
             }
             else if (STATUS.Text == "FOR VERIFICATION")
             {
