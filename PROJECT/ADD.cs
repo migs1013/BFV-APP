@@ -12,6 +12,7 @@ namespace PROJECT
         public string tester_platform, get_status, inputBox, FileName, displayStatus, boardQuery, database, tester, input_status, DATALOG, Dataloglink, UpdateData, FileNameNumber;
         public int sites, DoNotLoadBoard, UpdateCheck, Endorsement_Number;
         public int Endorsement_Number_from_board { get; set; }
+        public string UserName { get; set; }
         public int Load_number { get; set; }
         public DateTime WriteTime = new DateTime();
         public DateTime FIRST_DATE = new DateTime();
@@ -19,17 +20,20 @@ namespace PROJECT
         public DateTime FirstVsSecond = new DateTime();
 
         byte[] Data;
-        public ADD(int Load)
+        public ADD(int Load,string User)
         {
             InitializeComponent();
             Load_number = Load;
+            UserName = User;
+
         }
 
-        public ADD(int Number,int Load)
+        public ADD(int Number,int Load,string User)
         {
             InitializeComponent();
             Endorsement_Number_from_board = Number;
             Load_number = Load;
+            UserName = User;
         }
 
         private void error()
@@ -195,7 +199,7 @@ namespace PROJECT
                 input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
                 if (Second_Site.Items.Count == 0)
                 {
-                    if (second_endorser.SelectedIndex == -1 || Second_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Second_slot.Text))
+                    if (Second_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Second_slot.Text))
                     {
                         error();
                         return;
@@ -203,7 +207,7 @@ namespace PROJECT
                 }
                 else
                 {
-                    if (second_endorser.SelectedIndex == -1 || Second_tester.SelectedIndex == -1 || Second_Site.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Second_slot.Text))
+                    if (Second_tester.SelectedIndex == -1 || Second_Site.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Second_slot.Text))
                     {
                         error();
                         return;
@@ -448,8 +452,7 @@ namespace PROJECT
             }
             if (STATUS.Text == "BRG" || STATUS.Text == "INSTALL TO TESTER")
             {
-                if (First_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(First_board_slot.Text)
-                  || first_endorser.SelectedIndex == -1)
+                if (First_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(First_board_slot.Text))
                 {
                     error();
                     return false;
@@ -457,8 +460,7 @@ namespace PROJECT
             }
             else
             {
-                if (first_verif_link.Text == string.Empty || First_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(First_board_slot.Text)
-               || first_endorser.SelectedIndex == -1)
+                if (first_verif_link.Text == string.Empty || First_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(First_board_slot.Text))
                 {
                     error();
                     return false;
@@ -483,7 +485,7 @@ namespace PROJECT
         {
             if (STATUS.Text == "BRG" || STATUS.Text == "INSTALL TO TESTER")
             {
-                if (Second_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Second_slot.Text) || second_endorser.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Remarks.Text))
+                if (Second_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Second_slot.Text) || string.IsNullOrWhiteSpace(Remarks.Text))
                 {
                     error(); return false;
                 }
@@ -491,7 +493,7 @@ namespace PROJECT
             else
             {
                 if (string.IsNullOrWhiteSpace(second_verif_link.Text) || Second_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Second_slot.Text)
-                    || second_endorser.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Remarks.Text))
+                || string.IsNullOrWhiteSpace(Remarks.Text))
                 {
                     error();
                     return false;
@@ -574,7 +576,7 @@ namespace PROJECT
             char[] text = textBox.ToCharArray();
             if (textBox.Length > 40)
             {
-                MessageBox.Show("MAXIMUM OF TEN CHARACTERS ONLY");
+                MessageBox.Show("MAXIMUM OF 40 CHARACTERS ONLY");
                 return false;
             }
             for (int Txt = 0; Txt < textBox.Length; Txt++)
@@ -1017,8 +1019,7 @@ namespace PROJECT
         private void Show_second_grpBox()
         {
             if (first_verif_link.Text.Equals(string.Empty) || First_tester.SelectedIndex == -1
-                || string.IsNullOrWhiteSpace(First_board_slot.Text)
-                || first_endorser.SelectedIndex == -1)
+                || string.IsNullOrWhiteSpace(First_board_slot.Text))
             {
                 foreach(Control c in Second_box.Controls)
                 {
@@ -1311,26 +1312,10 @@ namespace PROJECT
         private void ADD_Load(object sender, EventArgs e)
         {
             LoadTesterPlatforms();
-            LoadUsers();
             if (Load_number == 2)
                 FromBoardDetailsWindow();
         }
 
-        private void LoadUsers()
-        {
-            commands(6);
-            if (Connection.OpenConnectionForBoards())
-            {
-                MySqlDataReader read_data = command.ExecuteReader();
-                while (read_data.Read())
-                {
-                   first_endorser.Items.Add(read_data.GetString("USERS"));
-                   second_endorser.Items.Add(read_data.GetString("USERS"));
-                }
-                Connection.CloseConnectionForBoards();
-            }
-            else return;
-        }
         private void LoadTesterPlatforms()
         {
             Boards.Items.Clear();

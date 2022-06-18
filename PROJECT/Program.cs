@@ -16,7 +16,7 @@ namespace PROJECT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SEARCH_BOARD());
+            Application.Run(new LOGIN());
         }
     }
 }

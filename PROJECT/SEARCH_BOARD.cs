@@ -13,16 +13,19 @@ namespace PROJECT
         public string check,all;
         public int count, ComboBoxCount, firstCount, secondCount, resultDisplay = 0, backButton = 0;
         public string TP, B, A, S, DATE_FILTER,FullTextCommand;
+        public string UserAccount { get; set; }
         string tester;
         MySqlCommand command;
-        public SEARCH_BOARD()
+        public SEARCH_BOARD(string User)
         {
             InitializeComponent();
+            UserAccount = User;
         }
 
         private void SEARCH_BOARD_Load(object sender, EventArgs e)
         {
             LoadData();
+            NAME.Text = UserAccount;
         }
 
         private async void LoadData()
@@ -104,7 +107,7 @@ namespace PROJECT
                 try
                 {
                     string endorsement_number = (dataGridViewList.SelectedCells[8].Value.ToString());
-                    BOARD_DETAILS details = new BOARD_DETAILS(endorsement_number);
+                    BOARD_DETAILS details = new BOARD_DETAILS(endorsement_number,UserAccount);
                     details.ShowDialog();
                 }
                 catch (Exception)
@@ -284,7 +287,7 @@ namespace PROJECT
         private void Add_btn_Click(object sender, EventArgs e)
         {
             //this.Hide();
-            ADD next = new ADD(1);
+            ADD next = new ADD(1,UserAccount);
             next.ShowDialog();
         }
         private void REFRESH_Click(object sender, EventArgs e)

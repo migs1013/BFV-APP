@@ -14,11 +14,13 @@ namespace PROJECT
         int DAY;
         public int Endorsement_number { get; set; }
         public string other_failure_mode, other_failed_during;
+        public string Username { get; set; }
 
-        public BOARD_DETAILS(string number)
+        public BOARD_DETAILS(string number,string User)
         {
             InitializeComponent();
             Endorsement_number = Convert.ToInt32(number);
+            Username = User;
         }
 
         private void Load_Boards(object sender, EventArgs e)
@@ -196,7 +198,7 @@ namespace PROJECT
         private void EDIT_DETAILS(object sender, EventArgs e)
         {
             this.Hide();
-            ADD add_new = new ADD(Endorsement_number,2);
+            ADD add_new = new ADD(Endorsement_number,2,Username);
             add_new.ShowDialog();
         }
 

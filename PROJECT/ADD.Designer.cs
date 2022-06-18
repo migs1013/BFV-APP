@@ -48,8 +48,6 @@
             this.Add_second_verif = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.Test_option = new System.Windows.Forms.ComboBox();
-            this.first_endorser = new System.Windows.Forms.ComboBox();
-            this.second_endorser = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.Second_verif_text = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -95,6 +93,8 @@
             this.THIRD_VERIF = new System.Windows.Forms.LinkLabel();
             this.FOURTH_VERIF = new System.Windows.Forms.LinkLabel();
             this.FIFTH_VERIF = new System.Windows.Forms.LinkLabel();
+            this.first_endorser = new System.Windows.Forms.Label();
+            this.second_endorser = new System.Windows.Forms.Label();
             this.Second_box.SuspendLayout();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
@@ -332,29 +332,6 @@
             this.Test_option.TabIndex = 9;
             this.Test_option.Visible = false;
             // 
-            // first_endorser
-            // 
-            this.first_endorser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.first_endorser.FormattingEnabled = true;
-            this.first_endorser.Location = new System.Drawing.Point(146, 284);
-            this.first_endorser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.first_endorser.Name = "first_endorser";
-            this.first_endorser.Size = new System.Drawing.Size(177, 21);
-            this.first_endorser.Sorted = true;
-            this.first_endorser.TabIndex = 25;
-            this.first_endorser.SelectedIndexChanged += new System.EventHandler(this.first_verif_endorser);
-            // 
-            // second_endorser
-            // 
-            this.second_endorser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.second_endorser.FormattingEnabled = true;
-            this.second_endorser.Location = new System.Drawing.Point(148, 284);
-            this.second_endorser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.second_endorser.Name = "second_endorser";
-            this.second_endorser.Size = new System.Drawing.Size(177, 21);
-            this.second_endorser.Sorted = true;
-            this.second_endorser.TabIndex = 26;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -367,7 +344,7 @@
             // Second_verif_text
             // 
             this.Second_verif_text.AutoSize = true;
-            this.Second_verif_text.Location = new System.Drawing.Point(22, 289);
+            this.Second_verif_text.Location = new System.Drawing.Point(19, 289);
             this.Second_verif_text.Name = "Second_verif_text";
             this.Second_verif_text.Size = new System.Drawing.Size(41, 13);
             this.Second_verif_text.TabIndex = 28;
@@ -465,6 +442,7 @@
             // Second_box
             // 
             this.Second_box.BackColor = System.Drawing.Color.Gray;
+            this.Second_box.Controls.Add(this.second_endorser);
             this.Second_box.Controls.Add(this.SecondTime);
             this.Second_box.Controls.Add(this.label24);
             this.Second_box.Controls.Add(this.label23);
@@ -475,7 +453,6 @@
             this.Second_box.Controls.Add(this.Add_second_verif);
             this.Second_box.Controls.Add(this.second_verif_link);
             this.Second_box.Controls.Add(this.Second_Site);
-            this.Second_box.Controls.Add(this.second_endorser);
             this.Second_box.Controls.Add(this.label12);
             this.Second_box.Controls.Add(this.Second_verif_text);
             this.Second_box.Controls.Add(this.label13);
@@ -559,12 +536,12 @@
             // First_box
             // 
             this.First_box.BackColor = System.Drawing.Color.Gray;
+            this.First_box.Controls.Add(this.first_endorser);
             this.First_box.Controls.Add(this.FirstTime);
             this.First_box.Controls.Add(this.label20);
             this.First_box.Controls.Add(this.label21);
             this.First_box.Controls.Add(this.FirstDate);
             this.First_box.Controls.Add(this.First_tester);
-            this.First_box.Controls.Add(this.first_endorser);
             this.First_box.Controls.Add(this.label9);
             this.First_box.Controls.Add(this.First_Site);
             this.First_box.Controls.Add(this.Add_first_verif);
@@ -908,6 +885,22 @@
             this.FIFTH_VERIF.Visible = false;
             this.FIFTH_VERIF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FifthDlog);
             // 
+            // first_endorser
+            // 
+            this.first_endorser.AutoSize = true;
+            this.first_endorser.Location = new System.Drawing.Point(156, 293);
+            this.first_endorser.Name = "first_endorser";
+            this.first_endorser.Size = new System.Drawing.Size(0, 13);
+            this.first_endorser.TabIndex = 40;
+            // 
+            // second_endorser
+            // 
+            this.second_endorser.AutoSize = true;
+            this.second_endorser.Location = new System.Drawing.Point(157, 293);
+            this.second_endorser.Name = "second_endorser";
+            this.second_endorser.Size = new System.Drawing.Size(0, 13);
+            this.second_endorser.TabIndex = 41;
+            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -989,8 +982,6 @@
         private System.Windows.Forms.Button Add_second_verif;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox Test_option;
-        private System.Windows.Forms.ComboBox first_endorser;
-        private System.Windows.Forms.ComboBox second_endorser;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label Second_verif_text;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -1038,5 +1029,7 @@
         private System.Windows.Forms.LinkLabel THIRD_VERIF;
         private System.Windows.Forms.LinkLabel FOURTH_VERIF;
         private System.Windows.Forms.LinkLabel FIFTH_VERIF;
+        private System.Windows.Forms.Label second_endorser;
+        private System.Windows.Forms.Label first_endorser;
     }
 }

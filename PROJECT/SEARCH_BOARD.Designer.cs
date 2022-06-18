@@ -63,6 +63,7 @@
             this.BACK = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.TO_DATE = new System.Windows.Forms.DateTimePicker();
+            this.NAME = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -281,7 +282,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 50);
             this.button1.TabIndex = 30;
-            this.button1.Text = "EXIT";
+            this.button1.Text = "LOGOUT";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -293,7 +294,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label2.Location = new System.Drawing.Point(587, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 16);
+            this.label2.Size = new System.Drawing.Size(73, 16);
             this.label2.TabIndex = 31;
             this.label2.Text = "STATUS:";
             // 
@@ -345,7 +346,7 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label3.Location = new System.Drawing.Point(458, 47);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 16);
+            this.label3.Size = new System.Drawing.Size(53, 16);
             this.label3.TabIndex = 33;
             this.label3.Text = "AREA:";
             // 
@@ -409,7 +410,7 @@
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label6.Location = new System.Drawing.Point(844, 46);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 16);
+            this.label6.Size = new System.Drawing.Size(55, 16);
             this.label6.TabIndex = 39;
             this.label6.Text = "FROM:";
             // 
@@ -482,12 +483,22 @@
             this.TO_DATE.CloseUp += new System.EventHandler(this.TO_DATE_select);
             this.TO_DATE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TO_DATE_KeyDown);
             // 
+            // NAME
+            // 
+            this.NAME.AutoSize = true;
+            this.NAME.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.NAME.Location = new System.Drawing.Point(7, 29);
+            this.NAME.Name = "NAME";
+            this.NAME.Size = new System.Drawing.Size(0, 13);
+            this.NAME.TabIndex = 46;
+            // 
             // SEARCH_BOARD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1156, 575);
+            this.Controls.Add(this.NAME);
             this.Controls.Add(this.TO_DATE);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.BACK);
@@ -514,6 +525,7 @@
             this.Controls.Add(this.search_text);
             this.Controls.Add(this.Search_button);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1167, 614);
             this.Name = "SEARCH_BOARD";
@@ -562,5 +574,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn STATUS;
         private System.Windows.Forms.DataGridViewTextBoxColumn AGING_DAYS;
         private System.Windows.Forms.DataGridViewTextBoxColumn ENDORSEMENT_NUMBER;
+        private System.Windows.Forms.Label NAME;
     }
 }
