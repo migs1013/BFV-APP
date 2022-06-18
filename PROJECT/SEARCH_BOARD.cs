@@ -191,7 +191,7 @@ namespace PROJECT
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
-                        " FROM `boards_for_verification`.`board details` ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT {1},{2}", FullTextCommand, firstCount, secondCount), Connection.connect);
+                        " FROM `boards_for_verification`.`board details` {0} ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT {1},{2}", FullTextCommand, firstCount, secondCount), Connection.connect);
                     break;
                 case 12:
                     command = new MySqlCommand("SELECT COUNT(*) FROM `board details` WHERE '" + search_text.Text + "' IN (`SERIAL NUMBER`,`PART NUMBER`,`FIRST TESTER`,`TEST PROGRAM`)", Connection.connect);

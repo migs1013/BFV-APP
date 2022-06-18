@@ -225,9 +225,9 @@ namespace PROJECT
         {
             if (Mode.SelectedIndex == 0)   //FOR ADDING NEW DATA
             {
-                if (Board.Checked == false && Tester.Checked == false && USERS.Checked == false)
-                    MessageBox.Show("PLEASE CHOOSE IF BOARD, TESTER, OR USER");
-                else if (Tester_platforms.SelectedIndex == -1 && USERS.Checked == false )
+                if (Board.Checked == false && Tester.Checked == false)
+                    MessageBox.Show("PLEASE CHOOSE IF BOARD OR TESTER");
+                else if (Tester_platforms.SelectedIndex == -1)
                     MessageBox.Show("PLEASE CHOOSE A TESTER PLATFORM");
                 else if (AddOrDelete.Items.Count == 0)
                     MessageBox.Show("LIST IS EMPTY");
@@ -242,9 +242,9 @@ namespace PROJECT
             }
             else if (Mode.SelectedIndex == 1)    // FOR REMOVING DATA FROM DATABASE
             {
-                if (Board.Checked == false && Tester.Checked == false && USERS.Checked == false )
-                    MessageBox.Show("PLEASE CHOOSE IF BOARD, TESTER, OR USER");
-                else if (Tester_platforms.SelectedIndex == -1 && USERS.Checked == false )
+                if (Board.Checked == false && Tester.Checked == false)
+                    MessageBox.Show("PLEASE CHOOSE IF BOARD OR TESTER");
+                else if (Tester_platforms.SelectedIndex == -1)
                     MessageBox.Show("PLEASE CHOOSE A TESTER PLATFORM");
                 else if (AddOrDelete.Items.Count == 0)
                     MessageBox.Show("LIST TO BE DELETED IS EMPTY");
@@ -319,8 +319,6 @@ namespace PROJECT
                     MessageBox.Show("SAVED SUCCESSFULLY TO DATABASE");
                     if (Tester.Checked)
                         LoadTesters();
-                    else if (USERS.Checked)
-                        LoadUsers();
                     else
                         LoadBoards();
                     break;
@@ -360,10 +358,6 @@ namespace PROJECT
                 LoadTesters();
             else if (Board.Checked)
                 LoadBoards();
-            else if (USERS.Checked)
-            {
-                Tester_platforms.SelectedIndex = -1;
-            }
             else
                 return;
         }
@@ -393,9 +387,6 @@ namespace PROJECT
                     if (Tester.Checked)
                         Command = new MySqlCommand(string.Format("SELECT * FROM `{0}`.`{1}`",
                         database, Tester_platform.ToLower()), Connection.connect);               //LOAD TESTER
-                    else if (USERS.Checked)
-                        Command = new MySqlCommand(string.Format("SELECT * FROM `{0}`.`USER`"   //LOAD USERS
-                        ,boards), Connection.ConnectBoards);
                     else
                         Command = new MySqlCommand(string.Format("SELECT * FROM `{0}`.`{1}`",    //LOAD BOARD
                         database, Tester_platform.ToLower()), Connection.ConnectBoards);
@@ -410,17 +401,10 @@ namespace PROJECT
                         List_AddOrDelete = List_AddOrDelete + List_value;
                     }
                     List_AddOrDelete = List_AddOrDelete.Remove(List_AddOrDelete.Length - 1, 1);
-                    if (USERS.Checked)
-                        FullCommand = String.Format("INSERT INTO `{0}`.`USER`(`USERS`) VALUES {1}", boards, List_AddOrDelete);
-                    else
-                        FullCommand = string.Format("INSERT INTO `{0}`.`{1}`(`{2}`) VALUES {3}"
-                        ,database, Tester_platform.ToLower(), Tester_platform.ToUpper(), List_AddOrDelete);
+                    FullCommand = string.Format("INSERT INTO `{0}`.`{1}`(`{2}`) VALUES {3}"
+                    ,database, Tester_platform.ToLower(), Tester_platform.ToUpper(), List_AddOrDelete);
                     if (Tester.Checked)
                         Command = new MySqlCommand(FullCommand, Connection.connect);   //INSERT NEW TESTER
-                    else if (USERS.Checked)
-                    {
-                        Command = new MySqlCommand(FullCommand, Connection.ConnectBoards);  //INSERT NEW USERS
-                    }
                     else
                         Command = new MySqlCommand(FullCommand, Connection.ConnectBoards);   //INSERT NEW BOARDS
                     break;
@@ -430,21 +414,13 @@ namespace PROJECT
                     {
                         AddOrDelete.SelectedIndex = ListCount;
                         List_value = AddOrDelete.SelectedItem.ToString();
-                        if (USERS.Checked)
-                            List_AddOrDelete = String.Format("DELETE FROM `{0}`.`USER` WHERE `USERS` = '{1}';",
-                                database, List_value);
-                        else
-                            List_AddOrDelete = string.Format("DELETE FROM `{0}`.`{1}` WHERE (`{2}` = '{3}');",
+                        List_AddOrDelete = string.Format("DELETE FROM `{0}`.`{1}` WHERE (`{2}` = '{3}');",
                         database, Tester_platform.ToLower(), Tester_platform.ToUpper(), List_value);
 
                         FullCommand = FullCommand + List_AddOrDelete;
                     }
                     if (Tester.Checked)
                         Command = new MySqlCommand(FullCommand, Connection.connect);    //DELETE TESTER
-                    else if (USERS.Checked)
-                    {
-                        Command = new MySqlCommand(FullCommand, Connection.ConnectBoards);   //DELETE USER
-                    }
                     else
                         Command = new MySqlCommand(FullCommand, Connection.ConnectBoards);   //DELETE BOARD
                     break;

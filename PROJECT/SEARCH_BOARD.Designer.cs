@@ -229,7 +229,7 @@
             this.EDIT.Name = "EDIT";
             this.EDIT.Size = new System.Drawing.Size(130, 50);
             this.EDIT.TabIndex = 24;
-            this.EDIT.Text = "TESTER / BOARDS / USERS";
+            this.EDIT.Text = "TESTER / BOARDS";
             this.EDIT.UseVisualStyleBackColor = false;
             this.EDIT.Click += new System.EventHandler(this.EDIT_Click);
             // 

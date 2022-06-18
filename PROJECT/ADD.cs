@@ -107,7 +107,8 @@ namespace PROJECT
                         if (get_status == "FOR VERIFICATION")
                         {
                             SendData(10);
-                            SendData(12);
+                            if (STATUS.Text == "SPARES" || STATUS.Text == "BRG" || STATUS.Text == "INSTALL TO TESTER")
+                                SendData(12);
                         }
                         else if (Failed_during.Enabled == false)
                         {
@@ -126,7 +127,8 @@ namespace PROJECT
                                 Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
                             }
                             Connection.CloseConnection();
-                            SendData(12);
+                            if (STATUS.Text == "SPARES" || STATUS.Text == "BRG" || STATUS.Text == "INSTALL TO TESTER")
+                                SendData(12);
                         }
                         if (first_verif_link.Text.Contains("\\"))
                         {
@@ -672,6 +674,7 @@ namespace PROJECT
             Remarks.Focus();
             if (string.IsNullOrEmpty(second_verif_link.Text))
             {
+                second_endorser.Text = UserName;
                 Second_tester.Enabled = true;
                 Second_Site.Enabled = true;
                 Second_slot.Enabled = true;
@@ -768,6 +771,8 @@ namespace PROJECT
                     Test_system.Items.Add("TMT");
                 }
                 Testers();
+                first_endorser.Text = UserName;
+                second_endorser.Text = UserName;
                 STATUS.Items.Remove("FOR VERIFICATION");
                 STATUS.Items.Add("FOR VERIFICATION");
                 DIE_TYPE.Focus();
@@ -822,6 +827,8 @@ namespace PROJECT
                                 Test_system.Items.Add(read_data["TESTER PLATFORM"].ToString());
                                 Boards.Items.Add(read_data["BOARD"].ToString());
                                 Connection.CloseConnection();
+                                first_endorser.Text = UserName;
+                                second_endorser.Text = UserName;
                                 UpdateCheck = 0;
                                 Boards.SelectedIndex = 0;
                                 Update_Button.Visible = false;
@@ -866,6 +873,8 @@ namespace PROJECT
                             enable_control();
                             Update_Button.Visible = false;
                             DoNotLoadBoard = 0;
+                            first_endorser.Text = UserName;
+                            second_endorser.Text = UserName;
                             LoadTesterPlatforms();
                             Revision.Focus();
                             break;
@@ -1313,7 +1322,10 @@ namespace PROJECT
         {
             LoadTesterPlatforms();
             if (Load_number == 2)
+            {
                 FromBoardDetailsWindow();
+            }
+
         }
 
         private void LoadTesterPlatforms()

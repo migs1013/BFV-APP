@@ -60,6 +60,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.Second_box = new System.Windows.Forms.GroupBox();
+            this.second_endorser = new System.Windows.Forms.Label();
             this.SecondTime = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -68,6 +69,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.Second_slot = new System.Windows.Forms.TextBox();
             this.First_box = new System.Windows.Forms.GroupBox();
+            this.first_endorser = new System.Windows.Forms.Label();
             this.FirstTime = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -93,8 +95,6 @@
             this.THIRD_VERIF = new System.Windows.Forms.LinkLabel();
             this.FOURTH_VERIF = new System.Windows.Forms.LinkLabel();
             this.FIFTH_VERIF = new System.Windows.Forms.LinkLabel();
-            this.first_endorser = new System.Windows.Forms.Label();
-            this.second_endorser = new System.Windows.Forms.Label();
             this.Second_box.SuspendLayout();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
@@ -468,6 +468,14 @@
             this.Second_box.Text = "SECOND VERIFICATION DETAILS";
             this.Second_box.Visible = false;
             // 
+            // second_endorser
+            // 
+            this.second_endorser.AutoSize = true;
+            this.second_endorser.Location = new System.Drawing.Point(157, 287);
+            this.second_endorser.Name = "second_endorser";
+            this.second_endorser.Size = new System.Drawing.Size(0, 13);
+            this.second_endorser.TabIndex = 41;
+            // 
             // SecondTime
             // 
             this.SecondTime.AutoSize = true;
@@ -560,6 +568,14 @@
             this.First_box.TabStop = false;
             this.First_box.Text = "FIRST VERIFICATION DETAILS";
             this.First_box.Visible = false;
+            // 
+            // first_endorser
+            // 
+            this.first_endorser.AutoSize = true;
+            this.first_endorser.Location = new System.Drawing.Point(156, 287);
+            this.first_endorser.Name = "first_endorser";
+            this.first_endorser.Size = new System.Drawing.Size(0, 13);
+            this.first_endorser.TabIndex = 40;
             // 
             // FirstTime
             // 
@@ -884,22 +900,6 @@
             this.FIFTH_VERIF.TabIndex = 69;
             this.FIFTH_VERIF.Visible = false;
             this.FIFTH_VERIF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FifthDlog);
-            // 
-            // first_endorser
-            // 
-            this.first_endorser.AutoSize = true;
-            this.first_endorser.Location = new System.Drawing.Point(156, 293);
-            this.first_endorser.Name = "first_endorser";
-            this.first_endorser.Size = new System.Drawing.Size(0, 13);
-            this.first_endorser.TabIndex = 40;
-            // 
-            // second_endorser
-            // 
-            this.second_endorser.AutoSize = true;
-            this.second_endorser.Location = new System.Drawing.Point(157, 293);
-            this.second_endorser.Name = "second_endorser";
-            this.second_endorser.Size = new System.Drawing.Size(0, 13);
-            this.second_endorser.TabIndex = 41;
             // 
             // ADD
             // 

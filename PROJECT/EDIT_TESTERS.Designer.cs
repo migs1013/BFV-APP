@@ -46,7 +46,6 @@ namespace PROJECT
             this.Tester = new System.Windows.Forms.RadioButton();
             this.Board = new System.Windows.Forms.RadioButton();
             this.ADD_BTN = new System.Windows.Forms.Button();
-            this.USERS = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // AddOrDelete
@@ -240,27 +239,12 @@ namespace PROJECT
             this.ADD_BTN.Visible = false;
             this.ADD_BTN.Click += new System.EventHandler(this.ADD_BTN_Click);
             // 
-            // USERS
-            // 
-            this.USERS.AutoSize = true;
-            this.USERS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.USERS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.USERS.Location = new System.Drawing.Point(458, 57);
-            this.USERS.Name = "USERS";
-            this.USERS.Size = new System.Drawing.Size(78, 20);
-            this.USERS.TabIndex = 17;
-            this.USERS.TabStop = true;
-            this.USERS.Text = "USERS";
-            this.USERS.UseVisualStyleBackColor = true;
-            this.USERS.Click += new System.EventHandler(this.USERS_CLICK);
-            // 
             // EDIT_TESTERS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(559, 478);
-            this.Controls.Add(this.USERS);
             this.Controls.Add(this.ADD_BTN);
             this.Controls.Add(this.Tester);
             this.Controls.Add(this.Board);
@@ -308,6 +292,5 @@ namespace PROJECT
         private System.Windows.Forms.RadioButton Tester;
         private System.Windows.Forms.RadioButton Board;
         private System.Windows.Forms.Button ADD_BTN;
-        private System.Windows.Forms.RadioButton USERS;
     }
 }
