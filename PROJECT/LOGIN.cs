@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,29 +23,13 @@ namespace PROJECT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            commands(3);
-            command.Connection = Connection.ConnectBoards;
-            if (Connection.OpenConnectionForBoards())
+            if (string.IsNullOrWhiteSpace(User.Text) || string.IsNullOrWhiteSpace(Pass.Text))
             {
-                MySqlDataReader read_status = command.ExecuteReader();
-                read_status.Read();
-
-                count = Convert.ToInt32(read_status["count"].ToString());
-                UserName = read_status["USERNAME"].ToString();
-            }
-            Connection.CloseConnectionForBoards(); ;
-            if (count == 0)
-            {
-                MessageBox.Show("ACCOUNT DOES NOT EXIST");
+                MessageBox.Show("NO INPUT");
                 return;
             }
             else
-            {
-                User.Clear();
-                Pass.Clear();
-                SEARCH_BOARD next = new SEARCH_BOARD(UserName);
-                next.ShowDialog();
-            }
+                LOGINUSER();
         }
 
         private bool CheckTextBox(string textBox)
@@ -142,6 +127,62 @@ namespace PROJECT
                     command = new MySqlCommand("SELECT *,COUNT(*) as count FROM `boards_of_testers`.`useraccount` " +
                      "WHERE (`USERNAME` = '" + User.Text + "' and `PASSWORD` = '" + Pass.Text + "')");
                     break;
+            }
+        }
+
+
+        private void User_Enter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (string.IsNullOrWhiteSpace(User.Text) || string.IsNullOrWhiteSpace(Pass.Text))
+                {
+                    MessageBox.Show("NO INPUT");
+                    return;
+                }
+                else
+                    LOGINUSER();
+            }
+        }
+
+        private void Pass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (string.IsNullOrWhiteSpace(User.Text) || string.IsNullOrWhiteSpace(Pass.Text))
+                {
+                    MessageBox.Show("NO INPUT");
+                    return;
+                }
+                else
+                    LOGINUSER();
+            }
+        }
+
+        private void LOGINUSER()
+        {
+            commands(3);
+            command.Connection = Connection.ConnectBoards;
+            if (Connection.OpenConnectionForBoards())
+            {
+                MySqlDataReader read_status = command.ExecuteReader();
+                read_status.Read();
+
+                count = Convert.ToInt32(read_status["count"].ToString());
+                UserName = read_status["USERNAME"].ToString();
+            }
+            Connection.CloseConnectionForBoards(); ;
+            if (count == 0)
+            {
+                MessageBox.Show("ACCOUNT DOES NOT EXIST");
+                return;
+            }
+            else
+            {
+                User.Clear();
+                Pass.Clear();
+                SEARCH_BOARD next = new SEARCH_BOARD(UserName);
+                next.ShowDialog();
             }
         }
     }

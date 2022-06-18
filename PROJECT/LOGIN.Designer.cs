@@ -75,6 +75,7 @@ namespace PROJECT
             this.User.Name = "User";
             this.User.Size = new System.Drawing.Size(149, 20);
             this.User.TabIndex = 2;
+            this.User.KeyDown += new System.Windows.Forms.KeyEventHandler(this.User_Enter);
             // 
             // Pass
             // 
@@ -84,6 +85,7 @@ namespace PROJECT
             this.Pass.PasswordChar = '*';
             this.Pass.Size = new System.Drawing.Size(149, 20);
             this.Pass.TabIndex = 3;
+            this.Pass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Pass_KeyDown);
             // 
             // button1
             // 
@@ -170,7 +172,8 @@ namespace PROJECT
             // 
             // REGISTER
             // 
-            this.REGISTER.BackColor = System.Drawing.Color.Aquamarine;
+            this.REGISTER.BackColor = System.Drawing.Color.Lime;
+            this.REGISTER.Cursor = System.Windows.Forms.Cursors.Hand;
             this.REGISTER.Location = new System.Drawing.Point(172, 209);
             this.REGISTER.Name = "REGISTER";
             this.REGISTER.Size = new System.Drawing.Size(131, 23);
