@@ -202,7 +202,7 @@ namespace PROJECT
             this.Tester.AutoSize = true;
             this.Tester.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tester.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Tester.Location = new System.Drawing.Point(458, 35);
+            this.Tester.Location = new System.Drawing.Point(12, 73);
             this.Tester.Name = "Tester";
             this.Tester.Size = new System.Drawing.Size(87, 20);
             this.Tester.TabIndex = 15;
@@ -216,7 +216,7 @@ namespace PROJECT
             this.Board.AutoSize = true;
             this.Board.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Board.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Board.Location = new System.Drawing.Point(458, 12);
+            this.Board.Location = new System.Drawing.Point(12, 50);
             this.Board.Name = "Board";
             this.Board.Size = new System.Drawing.Size(89, 20);
             this.Board.TabIndex = 14;
