@@ -275,6 +275,7 @@ namespace PROJECT
                                 else
                                     input_status = STATUS.Text;
                             }
+                            else return;
                         }
                         else if (first_verif_link.Text.Contains("\\"))
                         {

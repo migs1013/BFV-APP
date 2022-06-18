@@ -111,6 +111,7 @@ namespace PROJECT
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.REGISTER);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.Black;
             this.groupBox1.Location = new System.Drawing.Point(12, 166);
             this.groupBox1.MinimumSize = new System.Drawing.Size(337, 238);
             this.groupBox1.Name = "groupBox1";
@@ -172,9 +173,9 @@ namespace PROJECT
             // 
             // REGISTER
             // 
-            this.REGISTER.BackColor = System.Drawing.Color.Lime;
+            this.REGISTER.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.REGISTER.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.REGISTER.Location = new System.Drawing.Point(172, 209);
+            this.REGISTER.Location = new System.Drawing.Point(278, 192);
             this.REGISTER.Name = "REGISTER";
             this.REGISTER.Size = new System.Drawing.Size(131, 23);
             this.REGISTER.TabIndex = 0;
