@@ -128,7 +128,13 @@ namespace PROJECT
                             }
                             Connection.CloseConnection();
                             if (STATUS.Text == "SPARES" || STATUS.Text == "BRG" || STATUS.Text == "INSTALL TO TESTER")
+                            {
+                                if (STATUS.Text == "INSTALL TO TESTER" && Second_tester.SelectedIndex != 0)
+                                {
+                                    input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
+                                }
                                 SendData(12);
+                            }
                         }
                         if (first_verif_link.Text.Contains("\\"))
                         {
@@ -671,7 +677,6 @@ namespace PROJECT
                 First_tester.SelectedIndex = 0;
                 Second_tester.SelectedIndex = 0;
                 First_Site.SelectedIndex = 0;
-                Second_Site.SelectedIndex = 0;
                 second_verif_link.Visible = true;
                 THIRD_VERIF.Visible = true;
                 FOURTH_VERIF.Visible = true;
@@ -735,6 +740,7 @@ namespace PROJECT
                 }
                 else
                 {
+                    Second_Site.SelectedIndex = 0;
                     Second_tester.Enabled = false;
                     Second_Site.Enabled = false;
                     Second_slot.Enabled = false;
