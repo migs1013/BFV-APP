@@ -299,7 +299,7 @@ namespace PROJECT
             this.Add_first_verif.Name = "Add_first_verif";
             this.Add_first_verif.Size = new System.Drawing.Size(143, 24);
             this.Add_first_verif.TabIndex = 16;
-            this.Add_first_verif.Text = "FIRST DATALOG";
+            this.Add_first_verif.Text = "DATALOG";
             this.Add_first_verif.UseVisualStyleBackColor = false;
             // 
             // label11
@@ -365,7 +365,7 @@ namespace PROJECT
             this.Second_box.Size = new System.Drawing.Size(336, 271);
             this.Second_box.TabIndex = 64;
             this.Second_box.TabStop = false;
-            this.Second_box.Text = "SECOND VERIFICATION DETAILS";
+            this.Second_box.Text = "LAST VERIFICATION DETAILS";
             // 
             // SecondTime
             // 
@@ -443,7 +443,7 @@ namespace PROJECT
             this.Add_second_verif.Name = "Add_second_verif";
             this.Add_second_verif.Size = new System.Drawing.Size(143, 24);
             this.Add_second_verif.TabIndex = 19;
-            this.Add_second_verif.Text = "SECOND DATALOG";
+            this.Add_second_verif.Text = "DATALOG";
             this.Add_second_verif.UseVisualStyleBackColor = false;
             // 
             // Second_verif_link
@@ -674,9 +674,9 @@ namespace PROJECT
             this.label21.ForeColor = System.Drawing.Color.Black;
             this.label21.Location = new System.Drawing.Point(15, 18);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(94, 13);
+            this.label21.Size = new System.Drawing.Size(65, 13);
             this.label21.TabIndex = 81;
-            this.label21.Text = "3RD DATALOG";
+            this.label21.Text = "DATALOG";
             // 
             // label23
             // 
@@ -685,9 +685,9 @@ namespace PROJECT
             this.label23.ForeColor = System.Drawing.Color.Black;
             this.label23.Location = new System.Drawing.Point(15, 78);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(93, 13);
+            this.label23.Size = new System.Drawing.Size(65, 13);
             this.label23.TabIndex = 82;
-            this.label23.Text = "4TH DATALOG";
+            this.label23.Text = "DATALOG";
             // 
             // label24
             // 
@@ -696,9 +696,9 @@ namespace PROJECT
             this.label24.ForeColor = System.Drawing.Color.Black;
             this.label24.Location = new System.Drawing.Point(15, 146);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(93, 13);
+            this.label24.Size = new System.Drawing.Size(65, 13);
             this.label24.TabIndex = 83;
-            this.label24.Text = "5TH DATALOG";
+            this.label24.Text = "DATALOG";
             // 
             // repaired
             // 
@@ -724,10 +724,11 @@ namespace PROJECT
             // 
             this.Third_dlog.AutoSize = true;
             this.Third_dlog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Third_dlog.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.Third_dlog.LinkColor = System.Drawing.Color.Black;
             this.Third_dlog.Location = new System.Drawing.Point(15, 42);
             this.Third_dlog.Name = "Third_dlog";
-            this.Third_dlog.Size = new System.Drawing.Size(0, 13);
+            this.Third_dlog.Size = new System.Drawing.Size(0, 19);
             this.Third_dlog.TabIndex = 86;
             this.Third_dlog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ThirdDlog);
             // 
@@ -735,10 +736,11 @@ namespace PROJECT
             // 
             this.Fourth_dlog.AutoSize = true;
             this.Fourth_dlog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Fourth_dlog.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.Fourth_dlog.LinkColor = System.Drawing.Color.Black;
             this.Fourth_dlog.Location = new System.Drawing.Point(15, 110);
             this.Fourth_dlog.Name = "Fourth_dlog";
-            this.Fourth_dlog.Size = new System.Drawing.Size(0, 13);
+            this.Fourth_dlog.Size = new System.Drawing.Size(0, 19);
             this.Fourth_dlog.TabIndex = 87;
             this.Fourth_dlog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FourthDlog);
             // 
@@ -746,10 +748,11 @@ namespace PROJECT
             // 
             this.Fifth_dlog.AutoSize = true;
             this.Fifth_dlog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Fifth_dlog.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.Fifth_dlog.LinkColor = System.Drawing.Color.Black;
             this.Fifth_dlog.Location = new System.Drawing.Point(15, 174);
             this.Fifth_dlog.Name = "Fifth_dlog";
-            this.Fifth_dlog.Size = new System.Drawing.Size(0, 13);
+            this.Fifth_dlog.Size = new System.Drawing.Size(0, 19);
             this.Fifth_dlog.TabIndex = 88;
             this.Fifth_dlog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FifthDlog);
             // 

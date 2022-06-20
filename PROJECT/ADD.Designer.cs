@@ -95,6 +95,7 @@
             this.THIRD_VERIF = new System.Windows.Forms.LinkLabel();
             this.FOURTH_VERIF = new System.Windows.Forms.LinkLabel();
             this.FIFTH_VERIF = new System.Windows.Forms.LinkLabel();
+            this.label25 = new System.Windows.Forms.Label();
             this.Second_box.SuspendLayout();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
@@ -257,7 +258,7 @@
             this.Add_first_verif.Name = "Add_first_verif";
             this.Add_first_verif.Size = new System.Drawing.Size(167, 30);
             this.Add_first_verif.TabIndex = 16;
-            this.Add_first_verif.Text = "ADD FIRST VERIF";
+            this.Add_first_verif.Text = "ADD DATALOG";
             this.Add_first_verif.UseVisualStyleBackColor = false;
             this.Add_first_verif.Click += new System.EventHandler(this.Add_first_verif_Click);
             // 
@@ -296,7 +297,7 @@
             this.Add_second_verif.Name = "Add_second_verif";
             this.Add_second_verif.Size = new System.Drawing.Size(167, 30);
             this.Add_second_verif.TabIndex = 19;
-            this.Add_second_verif.Text = "ADD SECOND VERIF";
+            this.Add_second_verif.Text = "ADD DATALOG";
             this.Add_second_verif.UseVisualStyleBackColor = false;
             this.Add_second_verif.Click += new System.EventHandler(this.Add_second_verif_Click);
             // 
@@ -465,7 +466,7 @@
             this.Second_box.Size = new System.Drawing.Size(392, 334);
             this.Second_box.TabIndex = 40;
             this.Second_box.TabStop = false;
-            this.Second_box.Text = "SECOND VERIFICATION DETAILS";
+            this.Second_box.Text = "LAST VERIFICATION DETAILS";
             this.Second_box.Visible = false;
             // 
             // second_endorser
@@ -812,7 +813,6 @@
             this.STATUS.FormattingEnabled = true;
             this.STATUS.Items.AddRange(new object[] {
             "BRG",
-            "FOR SECOND VERIF",
             "INSTALL TO TESTER",
             "SPARES"});
             this.STATUS.Location = new System.Drawing.Point(177, 556);
@@ -831,9 +831,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label1.Location = new System.Drawing.Point(792, 371);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 19);
+            this.label1.Size = new System.Drawing.Size(156, 19);
             this.label1.TabIndex = 64;
-            this.label1.Text = "3RD VERIFICATION";
+            this.label1.Text = "CLICK HERE TO ADD";
             this.label1.Visible = false;
             this.label1.Click += new System.EventHandler(this.ThirdVerifClick);
             // 
@@ -845,9 +845,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label2.Location = new System.Drawing.Point(792, 443);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 19);
+            this.label2.Size = new System.Drawing.Size(156, 19);
             this.label2.TabIndex = 65;
-            this.label2.Text = "4TH VERIFICATION";
+            this.label2.Text = "CLICK HERE TO ADD";
             this.label2.Visible = false;
             this.label2.Click += new System.EventHandler(this.FourthVerif);
             // 
@@ -859,9 +859,9 @@
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label22.Location = new System.Drawing.Point(792, 523);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(144, 19);
+            this.label22.Size = new System.Drawing.Size(156, 19);
             this.label22.TabIndex = 66;
-            this.label22.Text = "5TH VERIFICATION";
+            this.label22.Text = "CLICK HERE TO ADD";
             this.label22.Visible = false;
             this.label22.Click += new System.EventHandler(this.FifthVerif);
             // 
@@ -869,10 +869,11 @@
             // 
             this.THIRD_VERIF.AutoSize = true;
             this.THIRD_VERIF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.THIRD_VERIF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.THIRD_VERIF.LinkColor = System.Drawing.Color.Yellow;
             this.THIRD_VERIF.Location = new System.Drawing.Point(792, 404);
             this.THIRD_VERIF.Name = "THIRD_VERIF";
-            this.THIRD_VERIF.Size = new System.Drawing.Size(0, 16);
+            this.THIRD_VERIF.Size = new System.Drawing.Size(0, 19);
             this.THIRD_VERIF.TabIndex = 67;
             this.THIRD_VERIF.Visible = false;
             this.THIRD_VERIF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ThirdDlog);
@@ -881,10 +882,11 @@
             // 
             this.FOURTH_VERIF.AutoSize = true;
             this.FOURTH_VERIF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FOURTH_VERIF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.FOURTH_VERIF.LinkColor = System.Drawing.Color.Yellow;
             this.FOURTH_VERIF.Location = new System.Drawing.Point(792, 490);
             this.FOURTH_VERIF.Name = "FOURTH_VERIF";
-            this.FOURTH_VERIF.Size = new System.Drawing.Size(0, 16);
+            this.FOURTH_VERIF.Size = new System.Drawing.Size(0, 19);
             this.FOURTH_VERIF.TabIndex = 68;
             this.FOURTH_VERIF.Visible = false;
             this.FOURTH_VERIF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FourthDlog);
@@ -893,13 +895,25 @@
             // 
             this.FIFTH_VERIF.AutoSize = true;
             this.FIFTH_VERIF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FIFTH_VERIF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.FIFTH_VERIF.LinkColor = System.Drawing.Color.Yellow;
             this.FIFTH_VERIF.Location = new System.Drawing.Point(792, 561);
             this.FIFTH_VERIF.Name = "FIFTH_VERIF";
-            this.FIFTH_VERIF.Size = new System.Drawing.Size(0, 16);
+            this.FIFTH_VERIF.Size = new System.Drawing.Size(0, 19);
             this.FIFTH_VERIF.TabIndex = 69;
             this.FIFTH_VERIF.Visible = false;
             this.FIFTH_VERIF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FifthDlog);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.label25.Location = new System.Drawing.Point(789, 347);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(148, 19);
+            this.label25.TabIndex = 70;
+            this.label25.Text = "OTHER DATALOGS:";
             // 
             // ADD
             // 
@@ -907,6 +921,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1196, 687);
+            this.Controls.Add(this.label25);
             this.Controls.Add(this.FIFTH_VERIF);
             this.Controls.Add(this.FOURTH_VERIF);
             this.Controls.Add(this.THIRD_VERIF);
@@ -1031,5 +1046,6 @@
         private System.Windows.Forms.LinkLabel FIFTH_VERIF;
         private System.Windows.Forms.Label second_endorser;
         private System.Windows.Forms.Label first_endorser;
+        private System.Windows.Forms.Label label25;
     }
 }

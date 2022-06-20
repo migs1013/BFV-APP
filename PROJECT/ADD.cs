@@ -613,7 +613,9 @@ namespace PROJECT
                         return;
                     }
                     STATUS.Items.Remove("FOR VERIFICATION");
+                    STATUS.Items.Remove("FOR SECOND VERIF");
                     STATUS.Items.Add("FOR VERIFICATION");
+                    STATUS.Items.Add("FOR SECOND VERIF");
                     Load_number = 1;
                     LoadBoardDetails();
                 }
@@ -623,6 +625,7 @@ namespace PROJECT
         private void For2ndVerifStatus()
         {
             STATUS.Items.Remove("FOR VERIFICATION");
+            STATUS.Items.Remove("FOR SECOND VERIF");
             if (Load_number == 2)
             {
                 Endorsement_Number = Endorsement_Number_from_board;
@@ -753,6 +756,10 @@ namespace PROJECT
 
         private void FromBoardDetailsWindow()
         {
+            STATUS.Items.Remove("FOR VERIFICATION");
+            STATUS.Items.Remove("FOR SECOND VERIF");
+            STATUS.Items.Add("FOR VERIFICATION");
+            STATUS.Items.Add("FOR SECOND VERIF");
             commands(13);
             command.Connection = Connection.connect;
             if (Connection.OpenConnection())    
@@ -795,8 +802,6 @@ namespace PROJECT
                 Testers();
                 first_endorser.Text = UserName;
                 second_endorser.Text = UserName;
-                STATUS.Items.Remove("FOR VERIFICATION");
-                STATUS.Items.Add("FOR VERIFICATION");
                 DIE_TYPE.Focus();
             }
             else
@@ -1134,6 +1139,10 @@ namespace PROJECT
 
         private void Key_PartNumber(object sender, KeyEventArgs e)
         {
+            STATUS.Items.Remove("FOR VERIFICATION");
+            STATUS.Items.Remove("FOR SECOND VERIF");
+            STATUS.Items.Add("FOR VERIFICATION");
+            STATUS.Items.Add("FOR SECOND VERIF"); 
             UpdateCheck = 0;
             if (e.KeyCode == Keys.Enter)
             {
@@ -1144,8 +1153,6 @@ namespace PROJECT
                         MessageBox.Show("NO INPUT");
                         return;
                     }
-                    STATUS.Items.Remove("FOR VERIFICATION");
-                    STATUS.Items.Add("FOR VERIFICATION");
                     LoadBoardDetails();
                 }
             }
@@ -1174,9 +1181,9 @@ namespace PROJECT
 
         private void ThirdVerifClick(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(second_verif_link.Text))
+            if (string.IsNullOrEmpty(first_verif_link.Text))
             {
-                MessageBox.Show("SECOND VERIFICATION DATALOG IS NEEDED");
+                MessageBox.Show("FIRST VERIFICATION DATALOG IS NEEDED");
                 return;
             }
             openFileDialog1.InitialDirectory = @"c:\";
@@ -1192,9 +1199,9 @@ namespace PROJECT
 
         private void FourthVerif(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(THIRD_VERIF.Text))
+            if (string.IsNullOrEmpty(first_verif_link.Text))
             {
-                MessageBox.Show("THIRD VERIFICATION DATALOG IS NEEDED");
+                MessageBox.Show("FIRST VERIFICATION DATALOG IS NEEDED");
                 return;
             }
             openFileDialog1.InitialDirectory = @"c:\";
@@ -1210,14 +1217,9 @@ namespace PROJECT
 
         private void FifthVerif(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(FOURTH_VERIF.Text))
+            if (string.IsNullOrEmpty(first_verif_link.Text))
             {
-                MessageBox.Show("FOURTH VERIFICATION DATALOG IS NEEDED");
-                return;
-            }
-            if (STATUS.Text == "FOR SECOND VERIF")
-            {
-                MessageBox.Show("PLEASE CHANGE THE STATUS");
+                MessageBox.Show("FIRST VERIFICATION DATALOG IS NEEDED");
                 return;
             }
             openFileDialog1.InitialDirectory = @"c:\";
