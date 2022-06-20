@@ -392,7 +392,7 @@ namespace PROJECT
                         database, Tester_platform.ToLower()), Connection.ConnectBoards);
                     break;
 
-                case 2:  //INSERT NEW TESTERS, BOARDS, OR USER
+                case 2:  //INSERT NEW TESTERS OR BOARDS
                     for (int ListCount = 0; ListCount < AddOrDelete.Items.Count; ListCount++)
                     {
                         AddOrDelete.SelectedIndex = ListCount;

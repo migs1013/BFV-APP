@@ -1306,11 +1306,9 @@ namespace PROJECT
             }
             else if (STATUS.Text == "FOR VERIFICATION")
             {
-                if (string.IsNullOrWhiteSpace(first_verif_link.Text))
-                {
-                    FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                    FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
-                }
+                first_verif_link.Text = "";
+                FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
             }
             else if (STATUS.Text == "FOR SECOND VERIF")
             {

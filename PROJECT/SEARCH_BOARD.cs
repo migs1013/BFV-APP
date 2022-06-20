@@ -150,9 +150,8 @@ namespace PROJECT
                         "`ENDORSEMENT NUMBER`" +
                         " FROM `boards_for_verification`.`board details` ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 30",Connection.connect);
                     break;
-                case 4: // TO CHECK THE BOARDS BY SPECIFIC DATE ONLY
-                    command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`,`STATUS`,`ENDORSEMENT NUMBER`" +
-                        " FROM `boards_for_verification`.`board details` WHERE (`FIRST DATE` = '" + FROM_DATE.Text + "') ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 30", Connection.connect);
+                case 4:
+                    // NOT USE
                     break;
                 case 5: // SEARCHING BOARDS WITH FILTER
                     command = new MySqlCommand(string.Format("SELECT COUNT(*) FROM `boards_for_verification`.`board details` {0}",FullTextCommand), Connection.connect);
@@ -196,7 +195,7 @@ namespace PROJECT
                 case 12:
                     command = new MySqlCommand("SELECT COUNT(*) FROM `board details` WHERE '" + search_text.Text + "' IN (`SERIAL NUMBER`,`PART NUMBER`,`FIRST TESTER`,`TEST PROGRAM`)", Connection.connect);
                     break;
-                case 13: //FOR THE NEXT BUTTON WITH SEARCH FILTER
+                case 13: //GET COUNT FOR THE NEXT BUTTON WITH SEARCH FILTER
                     command = new MySqlCommand(string.Format("SELECT COUNT(*) FROM `boards_for_verification`.`board details` {0} " +
                         "ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT {1},{2}", FullTextCommand, firstCount, secondCount), Connection.connect);
                     break;
