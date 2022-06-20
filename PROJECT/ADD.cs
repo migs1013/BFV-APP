@@ -975,6 +975,11 @@ namespace PROJECT
                         textBox.Clear();
                     }
                 }
+                else if (c is LinkLabel)
+                {
+                    LinkLabel DlogLink = c as LinkLabel;
+                    DlogLink.Text = null;
+                }
                 else if (c is ComboBox)
                 {
                     ComboBox comboBox = c as ComboBox;
@@ -1024,15 +1029,6 @@ namespace PROJECT
                     if (label == label_serial || label == label_PartNumber)
                         label.Enabled = true;
                     else label.Visible = false;
-                }
-                else if (c is RadioButton)
-                {
-                    c.Visible = false;
-                }
-                else if (c is LinkLabel)
-                {
-                    LinkLabel link = c as LinkLabel;
-                    link.Text = null;
                 }
             }
             Test_system.Items.Clear();
