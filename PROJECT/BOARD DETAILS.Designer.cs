@@ -674,9 +674,9 @@ namespace PROJECT
             this.label21.ForeColor = System.Drawing.Color.Black;
             this.label21.Location = new System.Drawing.Point(15, 18);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(65, 13);
+            this.label21.Size = new System.Drawing.Size(69, 13);
             this.label21.TabIndex = 81;
-            this.label21.Text = "DATALOG";
+            this.label21.Text = "DATALOG:";
             // 
             // label23
             // 
@@ -685,9 +685,9 @@ namespace PROJECT
             this.label23.ForeColor = System.Drawing.Color.Black;
             this.label23.Location = new System.Drawing.Point(15, 78);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(65, 13);
+            this.label23.Size = new System.Drawing.Size(69, 13);
             this.label23.TabIndex = 82;
-            this.label23.Text = "DATALOG";
+            this.label23.Text = "DATALOG:";
             // 
             // label24
             // 
@@ -696,9 +696,9 @@ namespace PROJECT
             this.label24.ForeColor = System.Drawing.Color.Black;
             this.label24.Location = new System.Drawing.Point(15, 146);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(65, 13);
+            this.label24.Size = new System.Drawing.Size(69, 13);
             this.label24.TabIndex = 83;
-            this.label24.Text = "DATALOG";
+            this.label24.Text = "DATALOG:";
             // 
             // repaired
             // 

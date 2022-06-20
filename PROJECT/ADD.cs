@@ -1313,15 +1313,6 @@ namespace PROJECT
                 FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
             }
-            else if (STATUS.Text == "FOR SECOND VERIF")
-            {
-                if (FIFTH_VERIF.Text.Contains("\\"))
-                {
-                    MessageBox.Show("THIS STATUS IS NOT ALLOWED ON FIFTH VERIFICATION");
-                    STATUS.SelectedIndex = -1;
-                    return;
-                }
-            }
         }
 
         private void Second_tester_SelectedIndexChanged(object sender, EventArgs e)
