@@ -89,9 +89,9 @@
             this.Area = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.STATUS = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
+            this.ADD3 = new System.Windows.Forms.Label();
+            this.ADD4 = new System.Windows.Forms.Label();
+            this.ADD5 = new System.Windows.Forms.Label();
             this.THIRD_VERIF = new System.Windows.Forms.LinkLabel();
             this.FOURTH_VERIF = new System.Windows.Forms.LinkLabel();
             this.FIFTH_VERIF = new System.Windows.Forms.LinkLabel();
@@ -823,47 +823,47 @@
             this.STATUS.Visible = false;
             this.STATUS.SelectedIndexChanged += new System.EventHandler(this.status);
             // 
-            // label1
+            // ADD3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label1.Location = new System.Drawing.Point(792, 371);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 19);
-            this.label1.TabIndex = 64;
-            this.label1.Text = "CLICK HERE TO ADD";
-            this.label1.Visible = false;
-            this.label1.Click += new System.EventHandler(this.ThirdVerifClick);
+            this.ADD3.AutoSize = true;
+            this.ADD3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.ADD3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.ADD3.Location = new System.Drawing.Point(792, 371);
+            this.ADD3.Name = "ADD3";
+            this.ADD3.Size = new System.Drawing.Size(156, 19);
+            this.ADD3.TabIndex = 64;
+            this.ADD3.Text = "CLICK HERE TO ADD";
+            this.ADD3.Visible = false;
+            this.ADD3.Click += new System.EventHandler(this.ThirdVerifClick);
             // 
-            // label2
+            // ADD4
             // 
-            this.label2.AutoSize = true;
-            this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label2.Location = new System.Drawing.Point(792, 443);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 19);
-            this.label2.TabIndex = 65;
-            this.label2.Text = "CLICK HERE TO ADD";
-            this.label2.Visible = false;
-            this.label2.Click += new System.EventHandler(this.FourthVerif);
+            this.ADD4.AutoSize = true;
+            this.ADD4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.ADD4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.ADD4.Location = new System.Drawing.Point(792, 443);
+            this.ADD4.Name = "ADD4";
+            this.ADD4.Size = new System.Drawing.Size(156, 19);
+            this.ADD4.TabIndex = 65;
+            this.ADD4.Text = "CLICK HERE TO ADD";
+            this.ADD4.Visible = false;
+            this.ADD4.Click += new System.EventHandler(this.FourthVerif);
             // 
-            // label22
+            // ADD5
             // 
-            this.label22.AutoSize = true;
-            this.label22.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label22.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label22.Location = new System.Drawing.Point(792, 523);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(156, 19);
-            this.label22.TabIndex = 66;
-            this.label22.Text = "CLICK HERE TO ADD";
-            this.label22.Visible = false;
-            this.label22.Click += new System.EventHandler(this.FifthVerif);
+            this.ADD5.AutoSize = true;
+            this.ADD5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.ADD5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.ADD5.Location = new System.Drawing.Point(792, 523);
+            this.ADD5.Name = "ADD5";
+            this.ADD5.Size = new System.Drawing.Size(156, 19);
+            this.ADD5.TabIndex = 66;
+            this.ADD5.Text = "CLICK HERE TO ADD";
+            this.ADD5.Visible = false;
+            this.ADD5.Click += new System.EventHandler(this.FifthVerif);
             // 
             // THIRD_VERIF
             // 
@@ -914,6 +914,7 @@
             this.label25.Size = new System.Drawing.Size(148, 19);
             this.label25.TabIndex = 70;
             this.label25.Text = "OTHER DATALOGS:";
+            this.label25.Visible = false;
             // 
             // ADD
             // 
@@ -925,9 +926,9 @@
             this.Controls.Add(this.FIFTH_VERIF);
             this.Controls.Add(this.FOURTH_VERIF);
             this.Controls.Add(this.THIRD_VERIF);
-            this.Controls.Add(this.label22);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ADD5);
+            this.Controls.Add(this.ADD4);
+            this.Controls.Add(this.ADD3);
             this.Controls.Add(this.STATUS);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.Area);
@@ -1038,9 +1039,9 @@
         private System.Windows.Forms.Label SecondTime;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.ComboBox STATUS;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label ADD3;
+        private System.Windows.Forms.Label ADD4;
+        private System.Windows.Forms.Label ADD5;
         private System.Windows.Forms.LinkLabel THIRD_VERIF;
         private System.Windows.Forms.LinkLabel FOURTH_VERIF;
         private System.Windows.Forms.LinkLabel FIFTH_VERIF;

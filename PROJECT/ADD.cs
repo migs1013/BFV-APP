@@ -678,8 +678,13 @@ namespace PROJECT
                 Save_btn.Visible = false;
                 Update_Button.Visible = true;
                 Second_box.Visible = true;
-                Remarks.Focus();
                 second_endorser.Text = UserName;
+                if (string.IsNullOrEmpty(THIRD_VERIF.Text))
+                    ADD3.Enabled = false;
+                if (string.IsNullOrEmpty(FOURTH_VERIF.Text))
+                    ADD4.Enabled = false;
+                if (string.IsNullOrEmpty(FIFTH_VERIF.Text))
+                    ADD5.Enabled = false;
                 if (First_Site.Text.Equals(string.Empty))
                     First_Site.Visible = false;
                 else
@@ -726,7 +731,7 @@ namespace PROJECT
                         Second_Site.Visible = true;
                     }
                 }
-
+                Remarks.Focus();
             }
             else
                 Connection.CloseConnection();
@@ -760,7 +765,6 @@ namespace PROJECT
                 clear_all();
                 enable_control();
                 all_controls();
-
                 Serial_number.Text = read_data["SERIAL NUMBER"].ToString();
                 Part_number.Text = read_data["PART NUMBER"].ToString();
                 Revision.Text = read_data["REVISION"].ToString();
