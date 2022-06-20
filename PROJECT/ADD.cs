@@ -679,11 +679,11 @@ namespace PROJECT
                 Update_Button.Visible = true;
                 Second_box.Visible = true;
                 second_endorser.Text = UserName;
-                if (string.IsNullOrEmpty(THIRD_VERIF.Text))
+                if (string.IsNullOrEmpty(THIRD_VERIF.Text) == false)
                     ADD3.Enabled = false;
-                if (string.IsNullOrEmpty(FOURTH_VERIF.Text))
+                if (string.IsNullOrEmpty(FOURTH_VERIF.Text) == false)
                     ADD4.Enabled = false;
-                if (string.IsNullOrEmpty(FIFTH_VERIF.Text))
+                if (string.IsNullOrEmpty(FIFTH_VERIF.Text)  == false)
                     ADD5.Enabled = false;
                 if (First_Site.Text.Equals(string.Empty))
                     First_Site.Visible = false;
@@ -1028,6 +1028,11 @@ namespace PROJECT
                 else if (c is RadioButton)
                 {
                     c.Visible = false;
+                }
+                else if (c is LinkLabel)
+                {
+                    LinkLabel link = c as LinkLabel;
+                    link.Text = null;
                 }
             }
             Test_system.Items.Clear();
