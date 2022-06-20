@@ -660,96 +660,73 @@ namespace PROJECT
                 First_Site.Items.Add(read_secondVerif["FIRST SITE"].ToString());
                 First_board_slot.Text = read_secondVerif["FIRST SLOT"].ToString();
                 first_endorser.Text = read_secondVerif["FIRST ENDORSER"].ToString();
-                Second_tester.Items.Add(read_secondVerif["SECOND TESTER"].ToString());
-                Second_Site.Items.Add(read_secondVerif["SECOND SITE"].ToString());
-                Second_slot.Text = read_secondVerif["SECOND SLOT"].ToString();
-                second_endorser.Text = read_secondVerif["SECOND ENDORSER"].ToString();
                 first_verif_link.Text = read_secondVerif["FILENAME 1"].ToString();
-                second_verif_link.Text = read_secondVerif["FILENAME 2"].ToString();
                 THIRD_VERIF.Text = read_secondVerif["FILENAME 3"].ToString();
                 FOURTH_VERIF.Text = read_secondVerif["FILENAME 4"].ToString();
                 FIFTH_VERIF.Text = read_secondVerif["FILENAME 5"].ToString();
                 Area.Text = read_secondVerif["AREA"].ToString();
                 FirstDate.Text = read_secondVerif["FIRST DATE"].ToString();
                 FirstTime.Text = read_secondVerif["FIRST TIME"].ToString();
-                SecondDate.Text = read_secondVerif["SECOND DATE"].ToString();
-                SecondTime.Text = read_secondVerif["SECOND TIME"].ToString();
                 Connection.CloseConnection();
                 UpdateCheck = 1;
                 disable_control();
                 Boards.SelectedIndex = 0;
                 First_tester.SelectedIndex = 0;
-                Second_tester.SelectedIndex = 0;
                 First_Site.SelectedIndex = 0;
-                second_verif_link.Visible = true;
                 THIRD_VERIF.Visible = true;
                 FOURTH_VERIF.Visible = true;
                 Save_btn.Visible = false;
                 Update_Button.Visible = true;
                 Second_box.Visible = true;
                 Remarks.Focus();
-                if (string.IsNullOrEmpty(second_verif_link.Text))
+                second_endorser.Text = UserName;
+                if (First_Site.Text.Equals(string.Empty))
+                    First_Site.Visible = false;
+                else
+                    First_Site.Visible = true;
+                if (Test_system.Text == "ASL4K" || Test_system.Text == "ASL1K")
                 {
-                    second_endorser.Text = UserName;
-                    Second_tester.Enabled = true;
-                    Second_Site.Enabled = true;
-                    Second_slot.Enabled = true;
-                    second_endorser.Enabled = true;
-                    if (First_Site.Text.Equals(string.Empty))
-                        First_Site.Visible = false;
-                    else
-                        First_Site.Visible = true;
-                    if (Test_system.Text == "ASL4K" || Test_system.Text == "ASL1K")
+                    Test_system.Items.Clear();
+                    Test_system.Items.Add("TMT");
+                    Test_system.SelectedIndex = 0;
+                    command = new MySqlCommand("select * from `boards_for_verification`.`tmt`", Connection.connect);
+                    if (Connection.OpenConnection())
                     {
-                        Test_system.Items.Clear();
-                        Test_system.Items.Add("TMT");
-                        Test_system.SelectedIndex = 0;
-                        command = new MySqlCommand("select * from `boards_for_verification`.`tmt`", Connection.connect);
-                        if (Connection.OpenConnection())
+                        MySqlDataReader tmt = command.ExecuteReader();
+                        while (tmt.Read())
                         {
-                            MySqlDataReader tmt = command.ExecuteReader();
-                            while (tmt.Read())
-                            {
-                                Second_tester.Items.Add(tmt["TMT"].ToString());
-                            }
-                            Connection.CloseConnection();
+                            Second_tester.Items.Add(tmt["TMT"].ToString());
                         }
-                        else Connection.CloseConnection();
+                        Connection.CloseConnection();
                     }
-                    else
-                    {
-                        tester_platform = string.Format("SELECT * FROM `boards_for_verification`.`{0}`", Test_system.Text.ToLower());
-                        command = new MySqlCommand(tester_platform, Connection.connect);
-
-                        if (Connection.OpenConnection())
-                        {
-                            MySqlDataReader read = command.ExecuteReader();
-                            while (read.Read())
-                            {
-                                Second_tester.Items.Add(read.GetString(Test_system.Text.ToUpper()));
-                            }
-                            sites = int.Parse(read["SITE"].ToString());
-                            Connection.CloseConnection();
-                        }
-                        else Connection.CloseConnection();
-                        if (sites != 0)
-                        {
-                            for (int CountSite = 1; CountSite <= sites; CountSite++)
-                            {
-                                Second_Site.Items.Add(CountSite.ToString());
-                            }
-                            Second_Site.Visible = true;
-                        }
-                    }
+                    else Connection.CloseConnection();
                 }
                 else
                 {
-                    Second_Site.SelectedIndex = 0;
-                    Second_tester.Enabled = false;
-                    Second_Site.Enabled = false;
-                    Second_slot.Enabled = false;
-                    second_endorser.Enabled = false;
+                    tester_platform = string.Format("SELECT * FROM `boards_for_verification`.`{0}`", Test_system.Text.ToLower());
+                    command = new MySqlCommand(tester_platform, Connection.connect);
+
+                    if (Connection.OpenConnection())
+                    {
+                        MySqlDataReader read = command.ExecuteReader();
+                        while (read.Read())
+                        {
+                            Second_tester.Items.Add(read.GetString(Test_system.Text.ToUpper()));
+                        }
+                        sites = int.Parse(read["SITE"].ToString());
+                        Connection.CloseConnection();
+                    }
+                    else Connection.CloseConnection();
+                    if (sites != 0)
+                    {
+                        for (int CountSite = 1; CountSite <= sites; CountSite++)
+                        {
+                            Second_Site.Items.Add(CountSite.ToString());
+                        }
+                        Second_Site.Visible = true;
+                    }
                 }
+
             }
             else
                 Connection.CloseConnection();
