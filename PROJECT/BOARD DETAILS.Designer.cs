@@ -217,7 +217,7 @@ namespace PROJECT
             this.First_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.First_box.Location = new System.Drawing.Point(366, 7);
             this.First_box.Name = "First_box";
-            this.First_box.Size = new System.Drawing.Size(317, 271);
+            this.First_box.Size = new System.Drawing.Size(336, 271);
             this.First_box.TabIndex = 65;
             this.First_box.TabStop = false;
             this.First_box.Text = "FIRST VERIFICATION DETAILS";
@@ -494,7 +494,7 @@ namespace PROJECT
             this.Remarks.Multiline = true;
             this.Remarks.Name = "Remarks";
             this.Remarks.ReadOnly = true;
-            this.Remarks.Size = new System.Drawing.Size(317, 197);
+            this.Remarks.Size = new System.Drawing.Size(336, 197);
             this.Remarks.TabIndex = 63;
             // 
             // label10
