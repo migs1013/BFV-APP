@@ -386,7 +386,7 @@
             this.Remarks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Remarks.Multiline = true;
             this.Remarks.Name = "Remarks";
-            this.Remarks.Size = new System.Drawing.Size(370, 232);
+            this.Remarks.Size = new System.Drawing.Size(386, 232);
             this.Remarks.TabIndex = 31;
             this.Remarks.Visible = false;
             // 
@@ -459,11 +459,11 @@
             this.Second_box.Controls.Add(this.label13);
             this.Second_box.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Second_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Second_box.Location = new System.Drawing.Point(792, 6);
+            this.Second_box.Location = new System.Drawing.Point(793, 6);
             this.Second_box.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Second_box.Name = "Second_box";
             this.Second_box.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Second_box.Size = new System.Drawing.Size(392, 334);
+            this.Second_box.Size = new System.Drawing.Size(391, 334);
             this.Second_box.TabIndex = 40;
             this.Second_box.TabStop = false;
             this.Second_box.Text = "LAST VERIFICATION DETAILS";
@@ -564,7 +564,7 @@
             this.First_box.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.First_box.Name = "First_box";
             this.First_box.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.First_box.Size = new System.Drawing.Size(370, 334);
+            this.First_box.Size = new System.Drawing.Size(386, 334);
             this.First_box.TabIndex = 41;
             this.First_box.TabStop = false;
             this.First_box.Text = "FIRST VERIFICATION DETAILS";
@@ -829,7 +829,7 @@
             this.ADD3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.ADD3.Location = new System.Drawing.Point(792, 371);
+            this.ADD3.Location = new System.Drawing.Point(789, 371);
             this.ADD3.Name = "ADD3";
             this.ADD3.Size = new System.Drawing.Size(156, 19);
             this.ADD3.TabIndex = 64;
@@ -843,7 +843,7 @@
             this.ADD4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.ADD4.Location = new System.Drawing.Point(792, 443);
+            this.ADD4.Location = new System.Drawing.Point(789, 443);
             this.ADD4.Name = "ADD4";
             this.ADD4.Size = new System.Drawing.Size(156, 19);
             this.ADD4.TabIndex = 65;
@@ -857,7 +857,7 @@
             this.ADD5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.ADD5.Location = new System.Drawing.Point(792, 523);
+            this.ADD5.Location = new System.Drawing.Point(789, 523);
             this.ADD5.Name = "ADD5";
             this.ADD5.Size = new System.Drawing.Size(156, 19);
             this.ADD5.TabIndex = 66;
@@ -909,7 +909,7 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label25.Location = new System.Drawing.Point(789, 347);
+            this.label25.Location = new System.Drawing.Point(789, 352);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(148, 19);
             this.label25.TabIndex = 70;

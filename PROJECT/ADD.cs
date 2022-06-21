@@ -554,28 +554,31 @@ namespace PROJECT
             }
             InsertDatalog(second_verif_link, SecondDate, SecondTime);
             SECOND_DATE = WriteTime;
-            if (UpdateCheck == 1)
+            if (string.IsNullOrEmpty(second_verif_link.Text) == false)
             {
-                FirstVsSecond = DateTime.ParseExact(FirstDate.Text, "yyyy-MM-dd",
-                System.Globalization.CultureInfo.InvariantCulture);
-                if (FirstVsSecond > SECOND_DATE)
+                if (UpdateCheck == 1)
                 {
-                    MessageBox.Show("DATE NOT VALID, MUST BE AHEAD TO THE FIRST VERIFICATION DATE");
-                    second_verif_link.Text = null;
-                    SecondDate.Text = " ";
-                    SecondTime.Text = " ";
-                    return;
+                    FirstVsSecond = DateTime.ParseExact(FirstDate.Text, "yyyy-MM-dd",
+                    System.Globalization.CultureInfo.InvariantCulture);
+                    if (FirstVsSecond > SECOND_DATE)
+                    {
+                        MessageBox.Show("DATE NOT VALID, MUST BE AHEAD TO THE FIRST VERIFICATION DATE");
+                        second_verif_link.Text = null;
+                        SecondDate.Text = " ";
+                        SecondTime.Text = " ";
+                        return;
+                    }
                 }
-            }
-            else
-            {
-                if (FIRST_DATE > SECOND_DATE)
+                else
                 {
-                    MessageBox.Show("DATE NOT VALID, MUST BE AHEAD TO THE FIRST VERIFICATION DATE");
-                    second_verif_link.Text = null;
-                    SecondDate.Text = " ";
-                    SecondTime.Text = " ";
-                    return;
+                    if (FIRST_DATE > SECOND_DATE)
+                    {
+                        MessageBox.Show("DATE NOT VALID, MUST BE AHEAD TO THE FIRST VERIFICATION DATE");
+                        second_verif_link.Text = null;
+                        SecondDate.Text = " ";
+                        SecondTime.Text = " ";
+                        return;
+                    }
                 }
             }
         }

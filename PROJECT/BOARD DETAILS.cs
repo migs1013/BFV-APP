@@ -74,7 +74,7 @@ namespace PROJECT
                 {
                     Failure_mode.Text = other_failure_mode;
                 }
-                if (Status.Text == "FOR SECOND VERIF")
+                if (Status.Text == "FOR SECOND VERIF" || Status.Text == "FOR VERIFICATION")
                 {
                     Second = "current_date()";
                     Count();
