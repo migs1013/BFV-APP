@@ -185,12 +185,11 @@ namespace PROJECT
                     break;
                 case 11: //NEXT BUTTON
                     command = new MySqlCommand(string.Format("select `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`," +
-                        "`STATUS`," +
-                        "CASE WHEN ISNULL(`SECOND DATE`) AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
+                        "`STATUS`,CASE WHEN ISNULL(`SECOND DATE`) AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
-                        "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
+                        " ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
-                        " FROM `boards_for_verification`.`board details` {0} ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT {1},{2}", FullTextCommand, firstCount, secondCount), Connection.connect);
+                        " FROM `boards_for_verification`.`board details` {0} ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT {1},30", FullTextCommand, firstCount), Connection.connect);
                     break;
                 case 12:
                     command = new MySqlCommand("SELECT COUNT(*) FROM `board details` WHERE '" + search_text.Text + "' IN (`SERIAL NUMBER`,`PART NUMBER`,`FIRST TESTER`,`TEST PROGRAM`)", Connection.connect);
