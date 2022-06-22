@@ -1,14 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Windows.Forms;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using Squirrel;
-using System.Reflection;
-
 namespace PROJECT
 {
     public partial class LOGIN : Form
