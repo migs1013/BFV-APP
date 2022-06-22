@@ -379,6 +379,7 @@ namespace PROJECT
         {
             if (e.KeyCode == Keys.Enter)
             {
+                range = 0;
                 count = 0;
                 commands(12);
                 if (Connection.OpenConnection())
@@ -515,10 +516,6 @@ namespace PROJECT
             Boards.SelectedIndex = 0;
         }
 
-        private void Select_date(object sender, EventArgs e)
-        {
-            FROM_DATE.CustomFormat = "yyyy-MM-dd";
-        }
         private void CommandComboBox()
         {
             FullTextCommand = "";
