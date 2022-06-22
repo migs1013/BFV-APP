@@ -11,7 +11,7 @@ namespace PROJECT
     public partial class SEARCH_BOARD : Form
     {
         public string check,all;
-        public int count, ComboBoxCount, firstCount, secondCount, resultDisplay = 0, backButton = 0;
+        public int count, ComboBoxCount, firstCount, secondCount, range = 0;
         public string TP, B, A, S, DATE_FILTER,FullTextCommand;
         public string UserAccount { get; set; }
         string tester;
@@ -189,14 +189,10 @@ namespace PROJECT
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         " ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
-                        " FROM `boards_for_verification`.`board details` {0} ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT {1},30", FullTextCommand, firstCount), Connection.connect);
+                        " FROM `boards_for_verification`.`board details` {0} ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT {1},30", FullTextCommand, range), Connection.connect);
                     break;
                 case 12:
                     command = new MySqlCommand("SELECT COUNT(*) FROM `board details` WHERE '" + search_text.Text + "' IN (`SERIAL NUMBER`,`PART NUMBER`,`FIRST TESTER`,`TEST PROGRAM`)", Connection.connect);
-                    break;
-                case 13: //GET COUNT FOR THE NEXT BUTTON WITH SEARCH FILTER
-                    command = new MySqlCommand(string.Format("SELECT COUNT(*) FROM `boards_for_verification`.`board details` {0} " +
-                        "ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT {1},{2}", FullTextCommand, firstCount, secondCount), Connection.connect);
                     break;
             }
         }
@@ -246,6 +242,7 @@ namespace PROJECT
 
         private void Search_button_Click(object sender, EventArgs e)
         {
+            range = 0;
             if (string.IsNullOrWhiteSpace(search_text.Text))
             {
                 CommandComboBox();
@@ -422,25 +419,26 @@ namespace PROJECT
             {
                 secondCount = int.Parse(all);
             }
-            firstCount = firstCount + 30;
+            firstCount += 30;
+            range += 30;
             results();
             CommandComboBox();
             load_data(11);
         }
         private void BackClick(object sender, EventArgs e)
         {
-            if (firstCount == 1)
-                return;
+            if (firstCount == 1) return;
             if (secondCount == int.Parse(all))
             {
                 secondCount = firstCount - 1;
-                firstCount = firstCount - 30;
-                load_data(11);
-                results();
-                return;
+                firstCount -= 30;
             }
-            secondCount = secondCount - 30;
-            firstCount = firstCount - 30;
+            else
+            {
+                secondCount -= 30;
+                firstCount -= 30;
+            }
+            range -= 30;
             CommandComboBox();
             load_data(11);
             results();
