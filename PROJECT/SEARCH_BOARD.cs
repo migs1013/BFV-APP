@@ -335,11 +335,6 @@ namespace PROJECT
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(Assembly.GetExecutingAssembly().GetName().Version.ToString());
-        }
-
         private void FirstDate(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Back)
