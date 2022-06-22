@@ -49,29 +49,29 @@ namespace PROJECT
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label1.Location = new System.Drawing.Point(22, 33);
+            this.label1.Location = new System.Drawing.Point(5, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.Size = new System.Drawing.Size(93, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "USERNAME";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label2.Location = new System.Drawing.Point(22, 74);
+            this.label2.Location = new System.Drawing.Point(5, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 13);
+            this.label2.Size = new System.Drawing.Size(95, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "PASSWORD";
             // 
             // User
             // 
             this.User.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.User.Location = new System.Drawing.Point(127, 26);
+            this.User.Location = new System.Drawing.Point(111, 12);
             this.User.Name = "User";
             this.User.Size = new System.Drawing.Size(149, 20);
             this.User.TabIndex = 2;
@@ -80,7 +80,7 @@ namespace PROJECT
             // Pass
             // 
             this.Pass.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.Pass.Location = new System.Drawing.Point(127, 67);
+            this.Pass.Location = new System.Drawing.Point(111, 53);
             this.Pass.Name = "Pass";
             this.Pass.PasswordChar = '*';
             this.Pass.Size = new System.Drawing.Size(149, 20);
@@ -92,7 +92,7 @@ namespace PROJECT
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(143, 93);
+            this.button1.Location = new System.Drawing.Point(127, 79);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(113, 33);
             this.button1.TabIndex = 4;
