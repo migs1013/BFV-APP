@@ -288,7 +288,18 @@ namespace PROJECT
                             SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                             SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
                             if (STATUS.Text == "INSTALL TO TESTER")
-                                input_status = string.Format("INSTALL TO {0}", First_tester.Text);
+                            {
+                                if (Second_tester.SelectedIndex != -1)
+                                {
+                                    if (ForSecondVerif())
+                                        input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
+                                    else return;
+                                }
+                                else
+                                {
+                                    input_status = string.Format("INSTALL TO {0}", First_tester.Text);
+                                }
+                            }
                             else
                                 input_status = STATUS.Text;  
                         }
