@@ -813,6 +813,7 @@
             this.STATUS.FormattingEnabled = true;
             this.STATUS.Items.AddRange(new object[] {
             "BRG",
+            "FOR SECOND VERIF",
             "INSTALL TO TESTER",
             "SPARES"});
             this.STATUS.Location = new System.Drawing.Point(177, 556);

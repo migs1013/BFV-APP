@@ -724,11 +724,11 @@ namespace PROJECT
             // 
             this.Third_dlog.AutoSize = true;
             this.Third_dlog.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Third_dlog.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.Third_dlog.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Third_dlog.LinkColor = System.Drawing.Color.Black;
             this.Third_dlog.Location = new System.Drawing.Point(15, 42);
             this.Third_dlog.Name = "Third_dlog";
-            this.Third_dlog.Size = new System.Drawing.Size(0, 19);
+            this.Third_dlog.Size = new System.Drawing.Size(0, 16);
             this.Third_dlog.TabIndex = 86;
             this.Third_dlog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ThirdDlog);
             // 
@@ -736,11 +736,11 @@ namespace PROJECT
             // 
             this.Fourth_dlog.AutoSize = true;
             this.Fourth_dlog.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Fourth_dlog.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.Fourth_dlog.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Fourth_dlog.LinkColor = System.Drawing.Color.Black;
             this.Fourth_dlog.Location = new System.Drawing.Point(15, 110);
             this.Fourth_dlog.Name = "Fourth_dlog";
-            this.Fourth_dlog.Size = new System.Drawing.Size(0, 19);
+            this.Fourth_dlog.Size = new System.Drawing.Size(0, 16);
             this.Fourth_dlog.TabIndex = 87;
             this.Fourth_dlog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FourthDlog);
             // 
@@ -748,11 +748,11 @@ namespace PROJECT
             // 
             this.Fifth_dlog.AutoSize = true;
             this.Fifth_dlog.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Fifth_dlog.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.Fifth_dlog.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Fifth_dlog.LinkColor = System.Drawing.Color.Black;
             this.Fifth_dlog.Location = new System.Drawing.Point(15, 174);
             this.Fifth_dlog.Name = "Fifth_dlog";
-            this.Fifth_dlog.Size = new System.Drawing.Size(0, 19);
+            this.Fifth_dlog.Size = new System.Drawing.Size(0, 16);
             this.Fifth_dlog.TabIndex = 88;
             this.Fifth_dlog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FifthDlog);
             // 

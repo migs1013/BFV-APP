@@ -107,12 +107,13 @@ namespace PROJECT
                         if (get_status == "FOR VERIFICATION")
                         {
                             SendData(10);
-                            if (STATUS.Text == "SPARES" || STATUS.Text == "BRG" || STATUS.Text == "INSTALL TO TESTER")
+                            if (STATUS.Text != "FOR SECOND VERIF")
                                 SendData(12);
                         }
                         else if (Failed_during.Enabled == false)
                         {
-                            SendData(12);
+                            if (STATUS.Text != "FOR SECOND VERIF")
+                                SendData(12);
                         }
                         else
                         {
@@ -127,13 +128,13 @@ namespace PROJECT
                                 Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
                             }
                             Connection.CloseConnection();
-                            if (STATUS.Text == "SPARES" || STATUS.Text == "BRG" || STATUS.Text == "INSTALL TO TESTER")
+                            if (STATUS.Text != "FOR SECOND VERIF")
                             {
                                 if (STATUS.Text == "INSTALL TO TESTER" && Second_tester.SelectedIndex != 0)
                                 {
                                     input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
+                                    SendData(12);
                                 }
-                                SendData(12);
                             }
                         }
                         if (first_verif_link.Text.Contains("\\"))
@@ -142,7 +143,8 @@ namespace PROJECT
                         }
                         if (second_verif_link.Text.Contains("\\"))
                         {
-                            DatalogNumber(2); SendData(8);
+                            if (STATUS.Text != "FOR SECOND VERIF")
+                                SendData(12);
                         }
                         if (THIRD_VERIF.Text.Contains("\\"))
                         {
@@ -238,8 +240,19 @@ namespace PROJECT
             }
             else
             {
-                if (ForSecondVerif())
-                { input_status = STATUS.Text; Save_data(); }
+                if (STATUS.Text == "SPARES")
+                {
+                    if (ForSecondVerif())
+                    {
+                        input_status = STATUS.Text;
+                        Save_data();
+                    }
+                }
+                else
+                {
+                    input_status = STATUS.Text;
+                    Save_data();
+                }
             }
         }
         private void Save_btn_Click(object sender, EventArgs e)
@@ -627,9 +640,7 @@ namespace PROJECT
                         return;
                     }
                     STATUS.Items.Remove("FOR VERIFICATION");
-                    STATUS.Items.Remove("FOR SECOND VERIF");
                     STATUS.Items.Add("FOR VERIFICATION");
-                    STATUS.Items.Add("FOR SECOND VERIF");
                     Load_number = 1;
                     LoadBoardDetails();
                 }
@@ -639,7 +650,6 @@ namespace PROJECT
         private void For2ndVerifStatus()
         {
             STATUS.Items.Remove("FOR VERIFICATION");
-            STATUS.Items.Remove("FOR SECOND VERIF");
             if (Load_number == 2)
             {
                 Endorsement_Number = Endorsement_Number_from_board;
@@ -754,9 +764,7 @@ namespace PROJECT
         private void FromBoardDetailsWindow()
         {
             STATUS.Items.Remove("FOR VERIFICATION");
-            STATUS.Items.Remove("FOR SECOND VERIF");
             STATUS.Items.Add("FOR VERIFICATION");
-            STATUS.Items.Add("FOR SECOND VERIF");
             commands(13);
             command.Connection = Connection.connect;
             if (Connection.OpenConnection())    
@@ -1137,9 +1145,7 @@ namespace PROJECT
         private void Key_PartNumber(object sender, KeyEventArgs e)
         {
             STATUS.Items.Remove("FOR VERIFICATION");
-            STATUS.Items.Remove("FOR SECOND VERIF");
             STATUS.Items.Add("FOR VERIFICATION");
-            STATUS.Items.Add("FOR SECOND VERIF"); 
             UpdateCheck = 0;
             if (e.KeyCode == Keys.Enter)
             {
