@@ -135,6 +135,7 @@ namespace PROJECT
                                     input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
                                     SendData(12);
                                 }
+                                else SendData(12);
                             }
                         }
                         if (first_verif_link.Text.Contains("\\"))
