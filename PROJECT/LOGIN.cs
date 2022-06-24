@@ -6,7 +6,7 @@ namespace PROJECT
     public partial class LOGIN : Form
     {
         MySqlCommand command;
-        public int count;
+        public int count,brg,brg_user;
         public string UserName;
         public LOGIN()
         {
@@ -68,6 +68,10 @@ namespace PROJECT
                     Connection.CloseConnectionForBoards(); ;
                     if (count == 0)
                     {
+                        if (BRG.Checked == true)
+                            brg = 1;
+                        else
+                            brg = 0;
                         commands(2);
                         command.Connection = Connection.ConnectBoards;
                         if (Connection.OpenConnectionForBoards())
@@ -87,6 +91,7 @@ namespace PROJECT
                             REG_USER.Clear();
                             REG_PASS.Clear();
                             REG_CONFIRM.Clear();
+                            BRG.Checked = false;
                         }
                     }
                     else
@@ -112,8 +117,8 @@ namespace PROJECT
                         "WHERE (`USERNAME` = '" + REG_USER.Text + "' and `PASSWORD` = '" + REG_PASS.Text + "')");
                     break;
                 case 2:
-                    command = new MySqlCommand("INSERT INTO `boards_of_testers`.`useraccount` SET `USERNAME` = '" + REG_USER.Text + "'," +
-                        "`PASSWORD` = '" + REG_PASS.Text + "'");
+                    command = new MySqlCommand(String.Format("INSERT INTO `boards_of_testers`.`useraccount` SET `USERNAME` = '" + REG_USER.Text + "'," +
+                        "`PASSWORD` = '" + REG_PASS.Text + "',`BRG` = {0}",brg));
                     break;
                 case 3:
                     command = new MySqlCommand("SELECT *,COUNT(*) as count FROM `boards_of_testers`.`useraccount` " +
@@ -162,6 +167,7 @@ namespace PROJECT
 
                 count = Convert.ToInt32(read_status["count"].ToString());
                 UserName = read_status["USERNAME"].ToString();
+                brg_user = Convert.ToInt32(read_status["BRG"].ToString());
             }
             Connection.CloseConnectionForBoards(); ;
             if (count == 0)
@@ -171,9 +177,10 @@ namespace PROJECT
             }
             else
             {
+                MessageBox.Show(brg_user.ToString());
                 User.Clear();
                 Pass.Clear();
-                SEARCH_BOARD next = new SEARCH_BOARD(UserName);
+                SEARCH_BOARD next = new SEARCH_BOARD(UserName,brg_user);
                 next.ShowDialog();
             }
         }

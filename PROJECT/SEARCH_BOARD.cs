@@ -14,12 +14,14 @@ namespace PROJECT
         public int count, ComboBoxCount, firstCount, secondCount, range = 0;
         public string TP, B, A, S, DATE_FILTER,FullTextCommand;
         public string UserAccount { get; set; }
+        public int BRG { get; set; }
         string tester;
         MySqlCommand command;
-        public SEARCH_BOARD(string User)
+        public SEARCH_BOARD(string User,int BRG_User)
         {
             InitializeComponent();
             UserAccount = User;
+            BRG = BRG_User;
         }
 
         private void SEARCH_BOARD_Load(object sender, EventArgs e)

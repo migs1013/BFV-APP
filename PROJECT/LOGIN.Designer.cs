@@ -43,6 +43,7 @@ namespace PROJECT
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.REGISTER = new System.Windows.Forms.Button();
+            this.BRG = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,6 +104,7 @@ namespace PROJECT
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Aqua;
+            this.groupBox1.Controls.Add(this.BRG);
             this.groupBox1.Controls.Add(this.REG_CONFIRM);
             this.groupBox1.Controls.Add(this.REG_PASS);
             this.groupBox1.Controls.Add(this.REG_USER);
@@ -122,7 +124,7 @@ namespace PROJECT
             // 
             // REG_CONFIRM
             // 
-            this.REG_CONFIRM.Location = new System.Drawing.Point(238, 146);
+            this.REG_CONFIRM.Location = new System.Drawing.Point(238, 111);
             this.REG_CONFIRM.Name = "REG_CONFIRM";
             this.REG_CONFIRM.PasswordChar = '*';
             this.REG_CONFIRM.Size = new System.Drawing.Size(213, 22);
@@ -130,7 +132,7 @@ namespace PROJECT
             // 
             // REG_PASS
             // 
-            this.REG_PASS.Location = new System.Drawing.Point(238, 89);
+            this.REG_PASS.Location = new System.Drawing.Point(238, 71);
             this.REG_PASS.Name = "REG_PASS";
             this.REG_PASS.PasswordChar = '*';
             this.REG_PASS.Size = new System.Drawing.Size(213, 22);
@@ -147,7 +149,7 @@ namespace PROJECT
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 152);
+            this.label5.Location = new System.Drawing.Point(17, 117);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(167, 16);
             this.label5.TabIndex = 3;
@@ -156,7 +158,7 @@ namespace PROJECT
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 95);
+            this.label4.Location = new System.Drawing.Point(17, 77);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 16);
             this.label4.TabIndex = 2;
@@ -182,6 +184,16 @@ namespace PROJECT
             this.REGISTER.Text = "REGISTER";
             this.REGISTER.UseVisualStyleBackColor = false;
             this.REGISTER.Click += new System.EventHandler(this.REGISTER_Click);
+            // 
+            // BRG
+            // 
+            this.BRG.AutoSize = true;
+            this.BRG.Location = new System.Drawing.Point(20, 152);
+            this.BRG.Name = "BRG";
+            this.BRG.Size = new System.Drawing.Size(203, 20);
+            this.BRG.TabIndex = 7;
+            this.BRG.Text = "FROM BRG? (OPTIONAL)";
+            this.BRG.UseVisualStyleBackColor = true;
             // 
             // LOGIN
             // 
@@ -222,5 +234,6 @@ namespace PROJECT
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button REGISTER;
+        private System.Windows.Forms.CheckBox BRG;
     }
 }
