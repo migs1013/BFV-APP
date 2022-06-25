@@ -166,23 +166,24 @@ namespace PROJECT
                 read_status.Read();
 
                 count = Convert.ToInt32(read_status["count"].ToString());
-                UserName = read_status["USERNAME"].ToString();
-                brg_user = Convert.ToInt32(read_status["BRG"].ToString());
+                if (count == 0)
+                {
+                    Connection.CloseConnectionForBoards();
+                    MessageBox.Show("ACCOUNT DOES NOT EXIST");
+                    return;
+                }
+                else
+                {
+                    UserName = read_status["USERNAME"].ToString();
+                    brg_user = Convert.ToInt32(read_status["BRG"].ToString());
+                    Connection.CloseConnectionForBoards();
+                    User.Clear();
+                    Pass.Clear();
+                    SEARCH_BOARD next = new SEARCH_BOARD(UserName, brg_user);
+                    next.ShowDialog();
+                }
             }
-            Connection.CloseConnectionForBoards(); ;
-            if (count == 0)
-            {
-                MessageBox.Show("ACCOUNT DOES NOT EXIST");
-                return;
-            }
-            else
-            {
-                MessageBox.Show(brg_user.ToString());
-                User.Clear();
-                Pass.Clear();
-                SEARCH_BOARD next = new SEARCH_BOARD(UserName,brg_user);
-                next.ShowDialog();
-            }
+            else Connection.CloseConnectionForBoards();
         }
     }
 }

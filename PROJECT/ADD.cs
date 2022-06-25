@@ -145,7 +145,7 @@ namespace PROJECT
                         if (second_verif_link.Text.Contains("\\"))
                         {
                             if (STATUS.Text != "FOR SECOND VERIF")
-                                SendData(12);
+                                DatalogNumber(2); SendData(8);
                         }
                         if (THIRD_VERIF.Text.Contains("\\"))
                         {
