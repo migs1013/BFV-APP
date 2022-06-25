@@ -36,6 +36,7 @@ namespace PROJECT
             this.Pass = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BRG = new System.Windows.Forms.CheckBox();
             this.REG_CONFIRM = new System.Windows.Forms.TextBox();
             this.REG_PASS = new System.Windows.Forms.TextBox();
             this.REG_USER = new System.Windows.Forms.TextBox();
@@ -43,7 +44,6 @@ namespace PROJECT
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.REGISTER = new System.Windows.Forms.Button();
-            this.BRG = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,8 +122,19 @@ namespace PROJECT
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "CREATE ACCOUNT";
             // 
+            // BRG
+            // 
+            this.BRG.AutoSize = true;
+            this.BRG.Location = new System.Drawing.Point(20, 152);
+            this.BRG.Name = "BRG";
+            this.BRG.Size = new System.Drawing.Size(203, 20);
+            this.BRG.TabIndex = 7;
+            this.BRG.Text = "FROM BRG? (OPTIONAL)";
+            this.BRG.UseVisualStyleBackColor = true;
+            // 
             // REG_CONFIRM
             // 
+            this.REG_CONFIRM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.REG_CONFIRM.Location = new System.Drawing.Point(238, 111);
             this.REG_CONFIRM.Name = "REG_CONFIRM";
             this.REG_CONFIRM.PasswordChar = '*';
@@ -132,6 +143,7 @@ namespace PROJECT
             // 
             // REG_PASS
             // 
+            this.REG_PASS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.REG_PASS.Location = new System.Drawing.Point(238, 71);
             this.REG_PASS.Name = "REG_PASS";
             this.REG_PASS.PasswordChar = '*';
@@ -184,16 +196,6 @@ namespace PROJECT
             this.REGISTER.Text = "REGISTER";
             this.REGISTER.UseVisualStyleBackColor = false;
             this.REGISTER.Click += new System.EventHandler(this.REGISTER_Click);
-            // 
-            // BRG
-            // 
-            this.BRG.AutoSize = true;
-            this.BRG.Location = new System.Drawing.Point(20, 152);
-            this.BRG.Name = "BRG";
-            this.BRG.Size = new System.Drawing.Size(203, 20);
-            this.BRG.TabIndex = 7;
-            this.BRG.Text = "FROM BRG? (OPTIONAL)";
-            this.BRG.UseVisualStyleBackColor = true;
             // 
             // LOGIN
             // 
