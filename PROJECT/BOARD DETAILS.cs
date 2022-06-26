@@ -15,12 +15,14 @@ namespace PROJECT
         public int Endorsement_number { get; set; }
         public string other_failure_mode, other_failed_during;
         public string Username { get; set; }
+        public int BRG { get; set; }
 
-        public BOARD_DETAILS(string number,string User)
+        public BOARD_DETAILS(string number,string User,int BRG_user)
         {
             InitializeComponent();
             Endorsement_number = Convert.ToInt32(number);
             Username = User;
+            BRG = BRG_user;
         }
 
         private void Load_Boards(object sender, EventArgs e)
@@ -88,7 +90,7 @@ namespace PROJECT
                     Second = "`SECOND DATE`";
                     Count();
                 }
-                if (Status.Text == "BRG (INCOMING)")
+                if (Status.Text == "BRG (INCOMING)" && BRG == 1)
                 {
                     REPAIR_BTN.Visible = true;
                 }

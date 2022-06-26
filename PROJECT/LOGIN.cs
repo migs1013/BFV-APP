@@ -27,9 +27,9 @@ namespace PROJECT
         private bool CheckTextBox(string textBox)
         {
             char[] text = textBox.ToCharArray();
-            if (textBox.Length > 40)
+            if (textBox.Length > 30)
             {
-                MessageBox.Show("MAXIMUM OF 40 CHARACTERS ONLY");
+                MessageBox.Show("MAXIMUM OF 30 CHARACTERS ONLY");
                 return false;
             }
             for (int Txt = 0; Txt < textBox.Length; Txt++)

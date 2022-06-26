@@ -109,7 +109,7 @@ namespace PROJECT
                 try
                 {
                     string endorsement_number = (dataGridViewList.SelectedCells[8].Value.ToString());
-                    BOARD_DETAILS details = new BOARD_DETAILS(endorsement_number,UserAccount);
+                    BOARD_DETAILS details = new BOARD_DETAILS(endorsement_number,UserAccount,BRG);
                     details.ShowDialog();
                 }
                 catch (Exception)
