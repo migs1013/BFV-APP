@@ -107,13 +107,11 @@ namespace PROJECT
                         if (get_status == "FOR VERIFICATION")
                         {
                             SendData(10);
-                            if (STATUS.Text != "FOR SECOND VERIF")
-                                SendData(12);
+                            SendData(12);
                         }
                         else if (Failed_during.Enabled == false)
                         {
-                            if (STATUS.Text != "FOR SECOND VERIF")
-                                SendData(12);
+                            SendData(12);
                         }
                         else
                         {
@@ -128,15 +126,12 @@ namespace PROJECT
                                 Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
                             }
                             Connection.CloseConnection();
-                            if (STATUS.Text != "FOR SECOND VERIF")
+                            if (STATUS.Text == "INSTALL TO TESTER" && Second_tester.SelectedIndex != 0)
                             {
-                                if (STATUS.Text == "INSTALL TO TESTER" && Second_tester.SelectedIndex != 0)
-                                {
-                                    input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
-                                    SendData(12);
-                                }
-                                else SendData(12);
+                                input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
+                                SendData(12);
                             }
+                            else SendData(12);
                         }
                         if (first_verif_link.Text.Contains("\\"))
                         {
@@ -144,8 +139,7 @@ namespace PROJECT
                         }
                         if (second_verif_link.Text.Contains("\\"))
                         {
-                            if (STATUS.Text != "FOR SECOND VERIF")
-                                DatalogNumber(2); SendData(8);
+                            DatalogNumber(2); SendData(8);
                         }
                         if (THIRD_VERIF.Text.Contains("\\"))
                         {
@@ -1301,20 +1295,40 @@ namespace PROJECT
 
         private void status(object sender, EventArgs e)
         {
-            if (STATUS.Text == "INSTALL TO TESTER")
+            if (STATUS.Text == "FOR SECOND VERIF")
             {
-                if (string.IsNullOrWhiteSpace(second_verif_link.Text))
-                {
-                    SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                    SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
-                    second_verif_link.Text = "";
-                }
+                Add_second_verif.Enabled = false;
+                second_verif_link.Text = "";
+                Second_tester.SelectedIndex = -1;
+                Second_Site.SelectedIndex = -1;
+                Second_slot.Text = "";
+                SecondDate.Text = "";
+                SecondTime.Text = "";
+                Second_tester.Enabled = false;
+                Second_Site.Enabled = false;
+                Second_slot.Enabled = false;
             }
-            else if (STATUS.Text == "FOR VERIFICATION")
+            else
             {
-                first_verif_link.Text = "";
-                FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
+                Add_second_verif.Enabled = true;
+                Second_tester.Enabled = true;
+                Second_Site.Enabled = true;
+                Second_slot.Enabled = true;
+                if (STATUS.Text == "INSTALL TO TESTER")
+                {
+                    if (string.IsNullOrWhiteSpace(second_verif_link.Text))
+                    {
+                        SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                        SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
+                        second_verif_link.Text = "";
+                    }
+                }
+                else if (STATUS.Text == "FOR VERIFICATION")
+                {
+                    first_verif_link.Text = "";
+                    FirstDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    FirstTime.Text = DateTime.Now.ToString("hh:mm tt");
+                }
             }
         }
 

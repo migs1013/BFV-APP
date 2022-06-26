@@ -161,7 +161,7 @@ namespace PROJECT
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 117);
+            this.label5.Location = new System.Drawing.Point(17, 115);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(167, 16);
             this.label5.TabIndex = 3;
