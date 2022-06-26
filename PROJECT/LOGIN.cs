@@ -142,6 +142,10 @@ namespace PROJECT
             }
         }
 
+        private void Exit(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
 
         private void Pass_KeyDown(object sender, KeyEventArgs e)
         {
@@ -181,6 +185,7 @@ namespace PROJECT
                     User.Clear();
                     Pass.Clear();
                     SEARCH_BOARD next = new SEARCH_BOARD(UserName, brg_user);
+                    this.Hide();
                     next.ShowDialog();
                 }
             }

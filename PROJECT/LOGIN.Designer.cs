@@ -214,6 +214,7 @@ namespace PROJECT
             this.MinimumSize = new System.Drawing.Size(517, 455);
             this.Name = "LOGIN";
             this.Text = "LOGIN";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
