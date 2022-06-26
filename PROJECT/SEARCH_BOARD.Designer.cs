@@ -419,7 +419,7 @@
             this.OVERDUE.AutoSize = true;
             this.OVERDUE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OVERDUE.ForeColor = System.Drawing.Color.Lime;
-            this.OVERDUE.Location = new System.Drawing.Point(192, 7);
+            this.OVERDUE.Location = new System.Drawing.Point(165, 7);
             this.OVERDUE.Name = "OVERDUE";
             this.OVERDUE.Size = new System.Drawing.Size(0, 16);
             this.OVERDUE.TabIndex = 40;
