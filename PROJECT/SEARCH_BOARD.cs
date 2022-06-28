@@ -391,6 +391,12 @@ namespace PROJECT
 
         }
 
+        private new void FormClosed(object sender, FormClosingEventArgs e)
+        {
+            LOGIN Back = new LOGIN();
+            Back.Show();
+        }
+
         private void TO_DATE_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Back)
@@ -437,8 +443,6 @@ namespace PROJECT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LOGIN Back = new LOGIN();
-            Back.Show();
             this.Close();
         }
 

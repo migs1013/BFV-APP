@@ -531,6 +531,7 @@
             this.Name = "SEARCH_BOARD";
             this.Text = "WELCOME";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormClosed);
             this.Load += new System.EventHandler(this.SEARCH_BOARD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).EndInit();
             this.ResumeLayout(false);
