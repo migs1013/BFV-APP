@@ -391,7 +391,8 @@ namespace PROJECT
 
         }
 
-        private new void FormClosed(object sender, FormClosingEventArgs e)
+
+        private void FormClose(object sender, FormClosingEventArgs e)
         {
             LOGIN Back = new LOGIN();
             Back.Show();
