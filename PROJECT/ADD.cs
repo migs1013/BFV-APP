@@ -126,7 +126,7 @@ namespace PROJECT
                                 Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
                             }
                             Connection.CloseConnection();
-                            if (STATUS.Text == "INSTALL TO TESTER" && Second_tester.SelectedIndex != 0)
+                            if (STATUS.Text == "INSTALL TO TESTER" && Second_tester.SelectedIndex != -1)
                             {
                                 input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
                                 SendData(12);
@@ -356,8 +356,8 @@ namespace PROJECT
                         "WHERE (`SERIAL NUMBER` = '" + Serial_number.Text + "' and `PART NUMBER` = '" + Part_number.Text + "') " +
                         "ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 1");
                     break;
-                case 6:  //LOAD USERS 
-                    command = new MySqlCommand("SELECT * FROM `boards_of_testers`.`user`", Connection.ConnectBoards);
+                case 6:  // LOAD BOARDS
+                    command = new MySqlCommand(string.Format("SELECT * FROM `boards_for_verification`.`{0}_boards`", tester.ToLower()),Connection.connect);
                     break;
                 case 7:  // OPEN DATALOG
                     command = new MySqlCommand(string.Format("SELECT `{0}` FROM  `BOARDS_FOR_VERIFICATION`.`BOARD DETAILS`" +
@@ -1298,12 +1298,12 @@ namespace PROJECT
             if (STATUS.Text == "FOR SECOND VERIF")
             {
                 Add_second_verif.Enabled = false;
-                second_verif_link.Text = "";
+                second_verif_link.Text = null;
                 Second_tester.SelectedIndex = -1;
                 Second_Site.SelectedIndex = -1;
-                Second_slot.Text = "";
-                SecondDate.Text = "";
-                SecondTime.Text = "";
+                Second_slot.Text = null;
+                SecondDate.Text = null;
+                SecondTime.Text = null;
                 Second_tester.Enabled = false;
                 Second_Site.Enabled = false;
                 Second_slot.Enabled = false;
@@ -1437,19 +1437,16 @@ namespace PROJECT
         private void LoadBoards()
         {
             Boards.Items.Clear();
-            database = "boards_of_testers";
             tester = Test_system.Text;
-            boardQuery = string.Format("SELECT * FROM `{0}`.`{1}`", database, tester.ToLower());
-            command = new MySqlCommand(boardQuery, Connection.ConnectBoards);
-
-            if (Connection.OpenConnectionForBoards())
+            commands(6);
+            if (Connection.OpenConnection())
             {
                 MySqlDataReader LoadBoards = command.ExecuteReader();
                 while (LoadBoards.Read())
                 {
                     Boards.Items.Add(LoadBoards.GetString(tester.ToUpper()));
                 }
-                Connection.CloseConnectionForBoards();
+                Connection.CloseConnection();
             }
             else return;
         }

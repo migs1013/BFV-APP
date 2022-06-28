@@ -57,15 +57,15 @@ namespace PROJECT
                 if (CheckTextBox(REG_USER.Text) && CheckTextBox(REG_PASS.Text))
                 {
                     commands(1);
-                    command.Connection = Connection.ConnectBoards;
-                    if (Connection.OpenConnectionForBoards())
+                    command.Connection = Connection.connect;
+                    if (Connection.OpenConnection())
                     {
                         MySqlDataReader read_status = command.ExecuteReader();
                         read_status.Read();
 
                         count = Convert.ToInt32(read_status["count"].ToString());
                     }
-                    Connection.CloseConnectionForBoards(); ;
+                    Connection.CloseConnection(); ;
                     if (count == 0)
                     {
                         if (BRG.Checked == true)
@@ -73,8 +73,8 @@ namespace PROJECT
                         else
                             brg = 0;
                         commands(2);
-                        command.Connection = Connection.ConnectBoards;
-                        if (Connection.OpenConnectionForBoards())
+                        command.Connection = Connection.connect;
+                        if (Connection.OpenConnection())
                         {
                             try
                             {
@@ -86,7 +86,7 @@ namespace PROJECT
                                 Connection.CloseConnection();
                                 return;
                             }
-                            Connection.CloseConnectionForBoards();
+                            Connection.CloseConnection();
                             MessageBox.Show("ACCOUNT SUCCESSFULLY REGISTERED");
                             REG_USER.Clear();
                             REG_PASS.Clear();
@@ -113,15 +113,15 @@ namespace PROJECT
             switch (cmd)
             {
                 case 1:
-                    command = new MySqlCommand("SELECT *,COUNT(*) as count FROM `boards_of_testers`.`useraccount` " +
+                    command = new MySqlCommand("SELECT *,COUNT(*) as count FROM `boards_for_verification`.`useraccount` " +
                         "WHERE (`USERNAME` = '" + REG_USER.Text + "' and `PASSWORD` = '" + REG_PASS.Text + "')");
                     break;
                 case 2:
-                    command = new MySqlCommand(String.Format("INSERT INTO `boards_of_testers`.`useraccount` SET `USERNAME` = '" + REG_USER.Text + "'," +
+                    command = new MySqlCommand(String.Format("INSERT INTO `boards_for_verification`.`useraccount` SET `USERNAME` = '" + REG_USER.Text + "'," +
                         "`PASSWORD` = '" + REG_PASS.Text + "',`BRG` = {0}",brg));
                     break;
                 case 3:
-                    command = new MySqlCommand("SELECT *,COUNT(*) as count FROM `boards_of_testers`.`useraccount` " +
+                    command = new MySqlCommand("SELECT *,COUNT(*) as count FROM `boards_for_verification`.`useraccount` " +
                      "WHERE (`USERNAME` = '" + User.Text + "' and `PASSWORD` = '" + Pass.Text + "')");
                     break;
             }
@@ -164,8 +164,8 @@ namespace PROJECT
         private void LOGINUSER()
         {
             commands(3);
-            command.Connection = Connection.ConnectBoards;
-            if (Connection.OpenConnectionForBoards())
+            command.Connection = Connection.connect;
+            if (Connection.OpenConnection())
             {
                 MySqlDataReader read_status = command.ExecuteReader();
                 read_status.Read();
@@ -173,7 +173,7 @@ namespace PROJECT
                 count = Convert.ToInt32(read_status["count"].ToString());
                 if (count == 0)
                 {
-                    Connection.CloseConnectionForBoards();
+                    Connection.CloseConnection();
                     MessageBox.Show("ACCOUNT DOES NOT EXIST");
                     return;
                 }
@@ -181,7 +181,7 @@ namespace PROJECT
                 {
                     UserName = read_status["USERNAME"].ToString();
                     brg_user = Convert.ToInt32(read_status["BRG"].ToString());
-                    Connection.CloseConnectionForBoards();
+                    Connection.CloseConnection();
                     User.Clear();
                     Pass.Clear();
                     SEARCH_BOARD next = new SEARCH_BOARD(UserName, brg_user);
@@ -189,7 +189,7 @@ namespace PROJECT
                     next.ShowDialog();
                 }
             }
-            else Connection.CloseConnectionForBoards();
+            else Connection.CloseConnection();
         }
     }
 }

@@ -131,8 +131,8 @@ namespace PROJECT
                     command = new MySqlCommand("SELECT COUNT(*) FROM `boards_for_verification`.`board details`",Connection.connect);
                     break;
                 case 1:  //TO DISPLAY THE DATA THAT IS SEARCHED BY THE USER
-                    command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`,`STATUS`," +
-                        "CASE WHEN ISNULL(`SECOND DATE`) AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
+                    command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE`,`STATUS`," +
+                        "CASE WHEN (ISNULL(`SECOND DATE`) OR `SECOND DATE` = '') AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
@@ -146,7 +146,7 @@ namespace PROJECT
                     break;
                 case 3:  //FOR UPDATING PURPOSES
                     command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE`,`STATUS`," +
-                        "CASE WHEN ISNULL(`SECOND DATE`) AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
+                        "CASE WHEN (ISNULL(`SECOND DATE`) OR `SECOND DATE` = '') AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
@@ -162,32 +162,25 @@ namespace PROJECT
                     command = new MySqlCommand("SELECT * FROM `boards_for_verification`.`tester platforms`", Connection.connect);
                     break;
                 case 7:  //BOARDS OF TESTER PLATFORM
-                    tester = string.Format("SELECT * FROM `boards_of_testers`.`{0}`", Tester_platform.Text.ToLower());
-                    command = new MySqlCommand(tester, Connection.ConnectBoards);
+                    tester = string.Format("SELECT * FROM `boards_for_verification`.`{0}_boards`", Tester_platform.Text.ToLower());
+                    command = new MySqlCommand(tester, Connection.connect);
                     break;
                 case 8:   //FOR TMT BOARDS
-                    command = new MySqlCommand("SELECT * FROM `boards_of_testers`.`tmt`", Connection.ConnectBoards);
+                    command = new MySqlCommand("SELECT * FROM `board_for_verification`.`tmt_boards`", Connection.connect);
                     break;
                 case 9:  // FOR SEARCH IN COMBO BOXES
-                    command = new MySqlCommand(string.Format("Select `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`,`STATUS`," +
-                        "CASE WHEN ISNULL(`SECOND DATE`) AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
+                    command = new MySqlCommand(string.Format("Select `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE`,`STATUS`," +
+                        "CASE WHEN (ISNULL(`SECOND DATE`) OR `SECOND DATE` = '') AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
                         " FROM `boards_for_verification`.`board details` {0} ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 30",FullTextCommand), Connection.connect);
                     break;
-                case 10: //REFRESH
-                    command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`," +
-                        "`STATUS`," +
-                        "CASE WHEN ISNULL(`SECOND DATE`) AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
-                        " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
-                        "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
-                        "`ENDORSEMENT NUMBER`" +
-                        " FROM `boards_for_verification`.`board details` ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 30", Connection.connect);
+                case 10: // UNUSED
                     break;
                 case 11: //NEXT BUTTON
                     command = new MySqlCommand(string.Format("select `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`," +
-                        "`STATUS`,CASE WHEN ISNULL(`SECOND DATE`) AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
+                        "`STATUS`,CASE WHEN (ISNULL(`SECOND DATE`) OR `SECOND DATE` = '') AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         " ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
                         "`ENDORSEMENT NUMBER`" +
@@ -296,7 +289,7 @@ namespace PROJECT
             Tester_platform.SelectedIndex = 0;
             clearBoards();
             search_text.Clear();
-            dataGridViewList.DataSource = table(10);
+            dataGridViewList.DataSource = table(3);
             commands(2);
             if (Connection.OpenConnection())
             {
@@ -477,32 +470,32 @@ namespace PROJECT
                 if (Tester_platform.Text == "ASL1K" || Tester_platform.Text == "ASL4K")
                 {
                     commands(8);
-                    if (Connection.OpenConnectionForBoards())
+                    if (Connection.OpenConnection())
                     {
                         MySqlDataReader read_data = command.ExecuteReader();
                         while (read_data.Read())
                         {
                             Boards.Items.Add(read_data.GetString("TMT"));
                         }
-                        Connection.CloseConnectionForBoards();
+                        Connection.CloseConnection();
                     }
                     else
                     {
-                        Connection.CloseConnectionForBoards();
+                        Connection.CloseConnection();
                         return;
                     }
                 }
                 else
                 {
                     commands(7);
-                    if (Connection.OpenConnectionForBoards())
+                    if (Connection.OpenConnection())
                     {
                         MySqlDataReader read_data = command.ExecuteReader();
                         while (read_data.Read())
                         {
                             Boards.Items.Add(read_data.GetString(Tester_platform.Text.ToUpper()));
                         }
-                        Connection.CloseConnectionForBoards();
+                        Connection.CloseConnection();
                     }
                     else return;
                 }
