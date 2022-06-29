@@ -830,6 +830,7 @@ namespace PROJECT
             this.MaximumSize = new System.Drawing.Size(1076, 545);
             this.MinimumSize = new System.Drawing.Size(857, 454);
             this.Name = "BOARD_DETAILS";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BOARD_DETAILS";
             this.Load += new System.EventHandler(this.Load_Boards);
             this.First_box.ResumeLayout(false);

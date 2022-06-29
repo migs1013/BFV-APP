@@ -127,9 +127,9 @@ namespace PROJECT
             this.BRG.AutoSize = true;
             this.BRG.Location = new System.Drawing.Point(20, 152);
             this.BRG.Name = "BRG";
-            this.BRG.Size = new System.Drawing.Size(203, 20);
+            this.BRG.Size = new System.Drawing.Size(224, 20);
             this.BRG.TabIndex = 7;
-            this.BRG.Text = "FROM BRG? (OPTIONAL)";
+            this.BRG.Text = "CHECK IF YOUR FROM BRG";
             this.BRG.UseVisualStyleBackColor = true;
             // 
             // REG_CONFIRM
@@ -213,6 +213,7 @@ namespace PROJECT
             this.MaximumSize = new System.Drawing.Size(517, 455);
             this.MinimumSize = new System.Drawing.Size(517, 455);
             this.Name = "LOGIN";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LOGIN";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit);
             this.groupBox1.ResumeLayout(false);
