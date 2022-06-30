@@ -131,7 +131,7 @@ namespace PROJECT
                     command = new MySqlCommand("SELECT COUNT(*) FROM `boards_for_verification`.`board details`",Connection.connect);
                     break;
                 case 1:  //TO DISPLAY THE DATA THAT IS SEARCHED BY THE USER
-                    command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE`,`STATUS`," +
+                    command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`,`STATUS`," +
                         "CASE WHEN (ISNULL(`SECOND DATE`) OR `SECOND DATE` = '') AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
@@ -153,7 +153,12 @@ namespace PROJECT
                         " FROM `boards_for_verification`.`board details` ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 30",Connection.connect);
                     break;
                 case 4:
-                    // NOT USE
+                    command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE`,`STATUS`," +
+                        "CASE WHEN (ISNULL(`SECOND DATE`) OR `SECOND DATE` = '') AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
+                        " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
+                        "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
+                        "`ENDORSEMENT NUMBER`" +
+                        " FROM `boards_for_verification`.`board details` ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 30", Connection.connect);
                     break;
                 case 5: // SEARCHING BOARDS WITH FILTER
                     command = new MySqlCommand(string.Format("SELECT COUNT(*) FROM `boards_for_verification`.`board details` {0}",FullTextCommand), Connection.connect);
@@ -168,7 +173,7 @@ namespace PROJECT
                     //NOT USE
                     break;
                 case 9:  // FOR SEARCH IN COMBO BOXES
-                    command = new MySqlCommand(string.Format("Select `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE`,`STATUS`," +
+                    command = new MySqlCommand(string.Format("Select `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`,`STATUS`," +
                         "CASE WHEN (ISNULL(`SECOND DATE`) OR `SECOND DATE` = '') AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
                         " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
                         "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
@@ -288,7 +293,7 @@ namespace PROJECT
             Tester_platform.SelectedIndex = 0;
             clearBoards();
             search_text.Clear();
-            dataGridViewList.DataSource = table(3);
+            dataGridViewList.DataSource = table(4);
             commands(2);
             if (Connection.OpenConnection())
             {
