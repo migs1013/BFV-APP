@@ -162,11 +162,10 @@ namespace PROJECT
                     command = new MySqlCommand("SELECT * FROM `boards_for_verification`.`tester platforms`", Connection.connect);
                     break;
                 case 7:  //BOARDS OF TESTER PLATFORM
-                    tester = string.Format("SELECT * FROM `boards_for_verification`.`{0}_boards`", Tester_platform.Text.ToLower());
-                    command = new MySqlCommand(tester, Connection.connect);
+                    command = new MySqlCommand(string.Format("SELECT * FROM `boards_for_verification`.`{0}_boards`", Tester_platform.Text.ToLower()), Connection.connect);
                     break;
-                case 8:   //FOR TMT BOARDS
-                    command = new MySqlCommand("SELECT * FROM `board_for_verification`.`tmt_boards`", Connection.connect);
+                case 8:
+                    //NOT USE
                     break;
                 case 9:  // FOR SEARCH IN COMBO BOXES
                     command = new MySqlCommand(string.Format("Select `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE`,`STATUS`," +
@@ -472,38 +471,17 @@ namespace PROJECT
             else
             {
                 clearBoards();
-                if (Tester_platform.Text == "ASL1K" || Tester_platform.Text == "ASL4K")
+                commands(7);
+                if (Connection.OpenConnection())
                 {
-                    commands(8);
-                    if (Connection.OpenConnection())
+                    MySqlDataReader read_data = command.ExecuteReader();
+                    while (read_data.Read())
                     {
-                        MySqlDataReader read_data = command.ExecuteReader();
-                        while (read_data.Read())
-                        {
-                            Boards.Items.Add(read_data.GetString("TMT"));
-                        }
-                        Connection.CloseConnection();
+                        Boards.Items.Add(read_data.GetString(Tester_platform.Text.ToUpper()));
                     }
-                    else
-                    {
-                        Connection.CloseConnection();
-                        return;
-                    }
+                    Connection.CloseConnection();
                 }
-                else
-                {
-                    commands(7);
-                    if (Connection.OpenConnection())
-                    {
-                        MySqlDataReader read_data = command.ExecuteReader();
-                        while (read_data.Read())
-                        {
-                            Boards.Items.Add(read_data.GetString(Tester_platform.Text.ToUpper()));
-                        }
-                        Connection.CloseConnection();
-                    }
-                    else return;
-                }
+                else return;
             }
         }
         private void clearBoards()
