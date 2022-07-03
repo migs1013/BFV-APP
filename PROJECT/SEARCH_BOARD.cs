@@ -15,7 +15,6 @@ namespace PROJECT
         public string TP, B, A, S, DATE_FILTER,FullTextCommand;
         public string UserAccount { get; set; }
         public int BRG { get; set; }
-        string tester;
         MySqlCommand command;
         public SEARCH_BOARD(string User,int BRG_User)
         {

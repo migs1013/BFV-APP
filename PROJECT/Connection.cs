@@ -13,7 +13,7 @@ namespace PROJECT
         //public static MySqlConnection connect = new MySqlConnection("server=localhost;user id=root;password=onemigso101996;database=boards_for_verification;persistsecurityinfo=True");
 
         // NEW SERVER
-        public static MySqlConnection connect = new MySqlConnection("server=cav-dt-loanr002.maxim-ic.com;user id=tsg;password=tsg;database=boards_for_verification;persistsecurityinfo=True");
+        public static MySqlConnection connect = new MySqlConnection("server=cav-dt-loanr002.maxim-ic.com;user id=tsg;password=tsg;database=boards_for_verification");
 
         public static bool OpenConnection()
         {
