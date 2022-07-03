@@ -64,8 +64,9 @@ namespace PROJECT
                         read_status.Read();
 
                         count = Convert.ToInt32(read_status["count"].ToString());
+                        Connection.CloseConnection(); ;
                     }
-                    Connection.CloseConnection(); ;
+                    else return;
                     if (count == 0)
                     {
                         if (BRG.Checked == true)
