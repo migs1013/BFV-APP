@@ -35,7 +35,7 @@ namespace PROJECT
             for (int Txt = 0; Txt < textBox.Length; Txt++)
             {
                 if (char.IsLetterOrDigit(text[Txt])) continue;
-                else if (text[Txt] == ' ') continue;
+                else if (text[Txt] == ' ' || text[Txt] == '.') continue;
                 else
                 {
                     MessageBox.Show("PLEASE ENTER NUMBER OR LETTER ONLY");
