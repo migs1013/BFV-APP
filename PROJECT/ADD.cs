@@ -94,19 +94,6 @@ namespace PROJECT
             }
         }
 
-        private bool CheckLastDetails()
-        {
-            if (Second_tester.SelectedIndex != -1 && string.IsNullOrWhiteSpace(Second_slot.Text) == false)
-            {
-                if (Second_Site.Items.Count != 0)
-                {
-                    if (Second_Site.SelectedIndex != -1)
-                        return true;
-                }
-                else return true;
-            }
-            return false;
-        }
         private void Save_data()
         {
             DialogResult yes_no = MessageBox.Show(string.Format("PLEASE DOUBLE CHECK YOUR DATA,THIS WILL BE SAVE PERMANENTLY. SAVE IT? STATUS: {0}", STATUS.Text), "ATTENTION", MessageBoxButtons.YesNo);
@@ -120,8 +107,7 @@ namespace PROJECT
                         if (get_status == "FOR VERIFICATION")
                         {
                             SendData(10);
-                            if (CheckLastDetails())
-                                SendData(12);
+                            SendData(12);
                         }
                         else if (Failed_during.Enabled == false)
                         {
@@ -140,15 +126,12 @@ namespace PROJECT
                                 Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT NUMBER"].ToString());
                             }
                             Connection.CloseConnection();
-                            if (CheckLastDetails())
+                            if (STATUS.Text == "INSTALL TO TESTER" && Second_tester.SelectedIndex != -1)
                             {
-                                if (STATUS.Text == "INSTALL TO TESTER" && Second_tester.SelectedIndex != -1)
-                                {
-                                    input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
-                                    SendData(12);
-                                }
-                                else SendData(12);
+                                input_status = string.Format("INSTALL TO {0}", Second_tester.Text);
+                                SendData(12);
                             }
+                            else SendData(12);
                         }
                         if (first_verif_link.Text.Contains("\\"))
                         {
@@ -422,6 +405,12 @@ namespace PROJECT
                     break;
                 case 14:  // FOR CHECKING THE LAST TRANSACTION FOR 2ND VERIF FROM BOARD DETAILS
                     command = new MySqlCommand("SELECT * FROM `boards_for_verification`.`board details` WHERE (`ENDORSEMENT NUMBER` = '" + Endorsement_Number_from_board + "')");
+                    break;
+                case 15:
+
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `SECOND DATE` = '" + SecondDate.Text + "',`SECOND TIME` = '" + SecondTime.Text + "'," +
+                        "`SECOND ENDORSER` = '" + second_endorser.Text + "'" +
+                        "WHERE `ENDORSEMENT NUMBER` = '" + Endorsement_Number + "'");
                     break;
             }
         }
