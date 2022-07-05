@@ -656,6 +656,11 @@ namespace PROJECT
             {
                 if (char.IsLetterOrDigit(text[Txt])) continue;
                 else if (text[Txt] == '-') continue;
+                else if (text[Txt] == ' ')
+                {
+                    MessageBox.Show("SPACE IS NOT ALLOWED");
+                    return false;
+                }
                 else
                 {
                     MessageBox.Show("PLEASE ENTER NUMBER OR LETTER ONLY");
