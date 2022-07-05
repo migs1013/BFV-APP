@@ -366,7 +366,7 @@ namespace PROJECT
                 case 8: // INSERT DATALOG
                     command = new MySqlCommand(string.Format("UPDATE `boards_for_verification`.`board details` SET `{0}` = @{1},`{2}` = '{3}',`STATUS` = '" + input_status + "',`REMARKS` = '" + Remarks.Text + "'" +
                         "WHERE (`ENDORSEMENT NUMBER` = '" + Endorsement_Number + "')", DATALOG, UpdateData, FileNameNumber, Filename(Dataloglink)));
-                    command.Parameters.Add(string.Format("@{0}", UpdateData), MySqlDbType.VarBinary).Value = SaveFile(Dataloglink);
+                    command.Parameters.Add(string.Format("@{0}", UpdateData), MySqlDbType.LongBlob).Value = SaveFile(Dataloglink);
                     break;
                 case 9: // INSERT NEW DETAILS FOR VERIFICATION
                     command = new MySqlCommand("INSERT INTO `boards_for_verification`.`board details` " +
