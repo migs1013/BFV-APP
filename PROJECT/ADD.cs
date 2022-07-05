@@ -116,6 +116,7 @@ namespace PROJECT
             switch (yes_no)
             {
                 case DialogResult.Yes:
+
                     if (STATUS.Text == "FOR VERIFICATION")
                         SendData(9);
                     else
