@@ -1203,6 +1203,12 @@ namespace PROJECT
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                FileSize = new System.IO.FileInfo(openFileDialog1.FileName).Length;
+                if (FileSize > 5150000)
+                {
+                    MessageBox.Show("FILE SIZE MUST NOT EXCEED 5MB");
+                    return;
+                }
                 THIRD_VERIF.Visible = true;
                 THIRD_VERIF.Text = openFileDialog1.FileName;
             }
@@ -1221,6 +1227,12 @@ namespace PROJECT
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                FileSize = new System.IO.FileInfo(openFileDialog1.FileName).Length;
+                if (FileSize > 5150000)
+                {
+                    MessageBox.Show("FILE SIZE MUST NOT EXCEED 5MB");
+                    return;
+                }
                 FOURTH_VERIF.Visible = true;
                 FOURTH_VERIF.Text = openFileDialog1.FileName;
             }
@@ -1239,6 +1251,12 @@ namespace PROJECT
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                FileSize = new System.IO.FileInfo(openFileDialog1.FileName).Length;
+                if (FileSize > 5150000)
+                {
+                    MessageBox.Show("FILE SIZE MUST NOT EXCEED 5MB");
+                    return;
+                }
                 FIFTH_VERIF.Visible = true;
                 FIFTH_VERIF.Text = openFileDialog1.FileName;
             }
