@@ -9,6 +9,7 @@ namespace PROJECT
     public partial class ADD : Form
     {
         MySqlCommand command;
+        long FileSize;
         byte[] Data;
         public string tester_platform, get_status, inputBox, FileName, displayStatus, boardQuery, database, tester, input_status, DATALOG, Dataloglink, UpdateData, FileNameNumber;
         public int sites, DoNotLoadBoard, UpdateCheck, Endorsement_Number;
@@ -557,6 +558,12 @@ namespace PROJECT
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                FileSize = new System.IO.FileInfo(openFileDialog1.FileName).Length;
+                if (FileSize > 5150000)
+                {
+                    MessageBox.Show("FILE SIZE MUST NOT EXCEED 5MB");
+                    return;
+                }
                 DlogName.Visible = true;
                 DlogName.Text = openFileDialog1.FileName;
                 WriteTime = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
