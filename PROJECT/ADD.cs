@@ -12,7 +12,7 @@ namespace PROJECT
         long FileSize;
         byte[] Data;
         public string tester_platform, get_status, inputBox, FileName, displayStatus, boardQuery, database, tester, input_status, DATALOG, Dataloglink, UpdateData, FileNameNumber;
-        public int sites, DoNotLoadBoard, UpdateCheck, Endorsement_Number;
+        public int sites, DoNotLoadBoard, UpdateCheck, Endorsement_Number,CheckDataSend = 0;
         public int Endorsement_Number_from_board { get; set; }
         public string UserName { get; set; }
         public int Load_number { get; set; }
@@ -116,7 +116,6 @@ namespace PROJECT
             switch (yes_no)
             {
                 case DialogResult.Yes:
-
                     if (STATUS.Text == "FOR VERIFICATION")
                         SendData(9);
                     else
@@ -186,7 +185,6 @@ namespace PROJECT
                             DatalogNumber(5); SendData(8);
                         }
                     }
-
                     UpdateCheck = 0;
                     MessageBox.Show("FILE SAVED SUCCESSFULLY");
                     clear_all();
