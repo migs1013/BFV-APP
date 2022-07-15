@@ -643,7 +643,7 @@ namespace PROJECT
             }
         }
 
-        private bool CheckTextBox(string textBox)
+        private bool CheckTextBox(string textBox)                         // CHECK TEXTBOX INPUTS
         {
             char[] text = textBox.ToCharArray();
             if (textBox.Length > 40)

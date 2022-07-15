@@ -257,7 +257,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 24);
             this.label1.TabIndex = 27;
-            this.label1.Text = "VERSION 1.1.2";
+            this.label1.Text = "VERSION 1.1.3";
             // 
             // UPDATE
             // 
@@ -311,7 +311,9 @@
             "FOR SECOND VERIF",
             "FOR VERIFICATION",
             "INSTALL TO A TESTER",
+            "OUTSOURCED",
             "OVERDUE",
+            "SHIPPED OUT",
             "SPARES"});
             this.Stats.Location = new System.Drawing.Point(661, 42);
             this.Stats.Name = "Stats";
