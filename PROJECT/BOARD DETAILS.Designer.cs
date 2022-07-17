@@ -87,13 +87,12 @@ namespace PROJECT
             this.label21 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.repaired = new System.Windows.Forms.Label();
-            this.repaired_by = new System.Windows.Forms.Label();
             this.Third_dlog = new System.Windows.Forms.LinkLabel();
             this.Fourth_dlog = new System.Windows.Forms.LinkLabel();
             this.Fifth_dlog = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.EDIT = new System.Windows.Forms.Button();
+            this.OUT_SOURCE = new System.Windows.Forms.Button();
             this.First_box.SuspendLayout();
             this.Second_box.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -637,7 +636,7 @@ namespace PROJECT
             this.REPAIR_BTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.REPAIR_BTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.REPAIR_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.REPAIR_BTN.Location = new System.Drawing.Point(259, 440);
+            this.REPAIR_BTN.Location = new System.Drawing.Point(260, 440);
             this.REPAIR_BTN.Name = "REPAIR_BTN";
             this.REPAIR_BTN.Size = new System.Drawing.Size(100, 54);
             this.REPAIR_BTN.TabIndex = 78;
@@ -699,26 +698,6 @@ namespace PROJECT
             this.label24.Size = new System.Drawing.Size(69, 13);
             this.label24.TabIndex = 83;
             this.label24.Text = "DATALOG:";
-            // 
-            // repaired
-            // 
-            this.repaired.AutoSize = true;
-            this.repaired.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.repaired.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.repaired.Location = new System.Drawing.Point(9, 402);
-            this.repaired.Name = "repaired";
-            this.repaired.Size = new System.Drawing.Size(90, 13);
-            this.repaired.TabIndex = 84;
-            this.repaired.Text = "REPAIRED BY";
-            this.repaired.Visible = false;
-            // 
-            // repaired_by
-            // 
-            this.repaired_by.AutoSize = true;
-            this.repaired_by.Location = new System.Drawing.Point(176, 402);
-            this.repaired_by.Name = "repaired_by";
-            this.repaired_by.Size = new System.Drawing.Size(0, 13);
-            this.repaired_by.TabIndex = 85;
             // 
             // Third_dlog
             // 
@@ -787,16 +766,29 @@ namespace PROJECT
             this.EDIT.Visible = false;
             this.EDIT.Click += new System.EventHandler(this.EDIT_DETAILS);
             // 
+            // OUT_SOURCE
+            // 
+            this.OUT_SOURCE.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.OUT_SOURCE.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OUT_SOURCE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OUT_SOURCE.Location = new System.Drawing.Point(260, 380);
+            this.OUT_SOURCE.Name = "OUT_SOURCE";
+            this.OUT_SOURCE.Size = new System.Drawing.Size(100, 54);
+            this.OUT_SOURCE.TabIndex = 91;
+            this.OUT_SOURCE.Text = "OUTSOURCE";
+            this.OUT_SOURCE.UseVisualStyleBackColor = false;
+            this.OUT_SOURCE.Visible = false;
+            this.OUT_SOURCE.Click += new System.EventHandler(this.OUT_SOURCE_Click);
+            // 
             // BOARD_DETAILS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1060, 506);
+            this.Controls.Add(this.OUT_SOURCE);
             this.Controls.Add(this.EDIT);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.repaired_by);
-            this.Controls.Add(this.repaired);
             this.Controls.Add(this.AGING);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.REPAIR_BTN);
@@ -902,12 +894,11 @@ namespace PROJECT
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label repaired;
-        private System.Windows.Forms.Label repaired_by;
         private System.Windows.Forms.LinkLabel Third_dlog;
         private System.Windows.Forms.LinkLabel Fourth_dlog;
         private System.Windows.Forms.LinkLabel Fifth_dlog;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button EDIT;
+        private System.Windows.Forms.Button OUT_SOURCE;
     }
 }

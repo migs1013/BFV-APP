@@ -93,6 +93,7 @@ namespace PROJECT
                 if (Status.Text == "BRG (INCOMING)" && BRG == 1)
                 {
                     REPAIR_BTN.Visible = true;
+                    OUT_SOURCE.Visible = true;
                 }
                 if (Status.Text.Contains("INSTALL") || Status.Text == "BRG (REPAIRED)" || Status.Text == "SPARES")
                 {
@@ -193,6 +194,10 @@ namespace PROJECT
                     command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = 'BRG (REPAIRED)'" +
                         "where `endorsement number` = '" + Endorsement_number + "'");
                     break;
+                case 4:
+                    command = new MySqlCommand("UPDATE `boards_for_verification`.`board details` SET `STATUS` = 'OUTSOURCE REPAIR'" +
+                        "where `endorsement number` = '" + Endorsement_number + "'");
+                    break;
             }
           
         }
@@ -240,6 +245,41 @@ namespace PROJECT
         private void ThirdDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
             DatalogOpen(Third_dlog.Text, "THIRD DATALOG");
+        }
+
+        private void OUT_SOURCE_Click(object sender, EventArgs e)
+        {
+            DialogResult yes_no = MessageBox.Show("ARE YOU SURE?", "ATTENTION", MessageBoxButtons.YesNo);
+            switch (yes_no)
+            {
+                case DialogResult.Yes:
+                    Commands(4);
+                    break;
+                case DialogResult.No:
+                    return;
+            }
+            command.Connection = Connection.connect;
+            if (Connection.OpenConnection())
+            {
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (MySqlException m)
+                {
+                    MessageBox.Show(m.ToString());
+                    Connection.CloseConnection();
+                    return;
+                }
+                if (Connection.CloseConnection())
+                {
+                    MessageBox.Show("FILE SAVED SUCCESSFULLY, THIS WINDOW WILL CLOSE AND REFRESH THE DATA");
+                    this.Close();
+                }
+                else return;
+            }
+            else
+                return;
         }
 
         private void FourthDlog(object sender, LinkLabelLinkClickedEventArgs e)

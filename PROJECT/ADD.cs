@@ -263,6 +263,19 @@ namespace PROJECT
                     Save_data();                 
                 }
             }
+            else if (STATUS.Text == "OUTSOURCE REPAIR")
+            {
+                if (ForSecondVerif())
+                {
+                    input_status = STATUS.Text;
+                    if (string.IsNullOrWhiteSpace(second_verif_link.Text))
+                    {
+                        SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                        SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
+                    }
+                    Save_data();
+                }
+            }
             else
             {
                 if (STATUS.Text == "SPARES")

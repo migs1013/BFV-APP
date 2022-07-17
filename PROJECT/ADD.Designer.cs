@@ -815,6 +815,7 @@
             "BRG",
             "FOR SECOND VERIF",
             "INSTALL TO TESTER",
+            "OUTSOURCE REPAIR",
             "SPARES"});
             this.STATUS.Location = new System.Drawing.Point(177, 556);
             this.STATUS.Name = "STATUS";
