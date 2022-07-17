@@ -829,7 +829,8 @@ namespace PROJECT
                 Connection.CloseConnection();
             }
             else { Connection.CloseConnection(); return; }
-            if (get_status == "SPARES" || get_status == "BRG (REPAIRED)" || get_status.Contains("INSTALL") || get_status == "FAILURE CHANGED" || get_status == "FOR VERIFICATION")
+            if (get_status == "SPARES" || get_status == "BRG (REPAIRED)" || get_status.Contains("INSTALL") ||
+                get_status == "FAILURE CHANGED" || get_status == "FOR VERIFICATION" || get_status == "OUTSOURCE REPAIR")
             {
                 if (get_status == "FOR VERIFICATION")
                     STATUS.Items.Remove("FOR VERIFICATION");
@@ -890,7 +891,8 @@ namespace PROJECT
                         Update_Button.Visible = false;
                         return;
                     }
-                    if (get_status == "SPARES" || get_status == "BRG (REPAIRED)" || get_status.Contains("INSTALL") || get_status == "FAILURE CHANGED" || get_status == "FOR VERIFICATION")
+                    if (get_status == "SPARES" || get_status == "BRG (REPAIRED)" || get_status.Contains("INSTALL") || 
+                        get_status == "FAILURE CHANGED" || get_status == "FOR VERIFICATION" || get_status == "OUTSOURCE REPAIR")
                     {
                         Connection.CloseConnection();
                         if (get_status == "FOR VERIFICATION")

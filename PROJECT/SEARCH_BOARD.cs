@@ -322,7 +322,7 @@ namespace PROJECT
         {
             CheckForUpdates();
             MessageBox.Show("THIS APP WILL CLOSED, WAIT FOR A FEW SECOND AND REOPEN IT AGAIN.");
-            this.Close();
+            Application.Exit();
         }
 
         private async void CheckForUpdates()

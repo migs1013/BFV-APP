@@ -95,7 +95,7 @@ namespace PROJECT
                     REPAIR_BTN.Visible = true;
                     OUT_SOURCE.Visible = true;
                 }
-                if (Status.Text.Contains("INSTALL") || Status.Text == "BRG (REPAIRED)" || Status.Text == "SPARES")
+                if (Status.Text.Contains("INSTALL") || Status.Text == "BRG (REPAIRED)" || Status.Text == "SPARES" || Status.Text == "OUTSOURCE REPAIR")
                 {
                     EDIT.Visible = true;
                     EDIT.Text = "ADD NEW";
