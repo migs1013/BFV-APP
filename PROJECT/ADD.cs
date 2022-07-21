@@ -268,16 +268,19 @@ namespace PROJECT
             }
             else if (STATUS.Text == "OUTSOURCE REPAIR")
             {
-                if (ForSecondVerif())
+                input_status = STATUS.Text;
+                if (string.IsNullOrWhiteSpace(second_verif_link.Text))
                 {
-                    input_status = STATUS.Text;
-                    if (string.IsNullOrWhiteSpace(second_verif_link.Text))
-                    {
-                        SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                        SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
-                    }
+                    Second_tester.SelectedIndex = -1;
+                    Second_Site.SelectedIndex = -1;
+                    Second_slot.Clear();
+                    SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
                     Save_data();
                 }
+                else
+                    if (ForSecondVerif())
+                        Save_data();
             }
             else
             {
@@ -529,7 +532,7 @@ namespace PROJECT
                 }
                 else continue;
             }
-            if (STATUS.Text == "BRG" || STATUS.Text == "INSTALL TO TESTER")
+            if (STATUS.Text == "BRG" || STATUS.Text == "INSTALL TO TESTER" || STATUS.Text == "OUTSOURCE REPAIR")
             {
                 if (First_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(First_board_slot.Text))
                 {
@@ -562,7 +565,7 @@ namespace PROJECT
         }
         private bool ForSecondVerif()
         {
-            if (STATUS.Text == "BRG" || STATUS.Text == "INSTALL TO TESTER")
+            if (STATUS.Text == "INSTALL TO TESTER")
             {
                 if (Second_tester.SelectedIndex == -1 || string.IsNullOrWhiteSpace(Second_slot.Text) || string.IsNullOrWhiteSpace(Remarks.Text))
                 {
