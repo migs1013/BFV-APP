@@ -44,7 +44,6 @@ namespace PROJECT
             else
             {
                 Connection.CloseConnection();
-                CheckForUpdates();
                 this.Close();
             }
             commands(2);
@@ -56,7 +55,6 @@ namespace PROJECT
             else
             {
                 Connection.CloseConnection();
-                CheckForUpdates();
                 this.Close();
             }
             await Task.Run(() =>
@@ -77,7 +75,6 @@ namespace PROJECT
                 else
                 {
                     Connection.CloseConnection();
-                    CheckForUpdates();
                     this.Close();
                 }
             }
@@ -316,21 +313,6 @@ namespace PROJECT
         {
             EDIT_TESTERS edit = new EDIT_TESTERS();
             edit.ShowDialog();
-        }
-
-        private void UPDATE_Click(object sender, EventArgs e)
-        {
-            CheckForUpdates();
-            MessageBox.Show("THIS APP WILL CLOSED, WAIT FOR A FEW SECOND AND REOPEN IT AGAIN.");
-            Application.Exit();
-        }
-
-        private async void CheckForUpdates()
-        {
-            using (var update = new UpdateManager(@"\\maxcavfs01\mpoc_asl_softwares\12_Projects and Activities\BFV APPLICATION"))
-            {
-                await update.UpdateApp();
-            }
         }
 
         private void FirstDate(object sender, KeyEventArgs e)

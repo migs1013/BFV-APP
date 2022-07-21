@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Squirrel;
 namespace PROJECT
 {
     public partial class LOGIN : Form
@@ -151,6 +152,21 @@ namespace PROJECT
         private void Exit(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void UPDATE_BTN_Click(object sender, EventArgs e)
+        {
+            CheckForUpdates();
+            MessageBox.Show("THIS APP WILL CLOSED, WAIT FOR A FEW SECOND AND OPEN IT AGAIN.");
+            this.Close();
+        }
+
+        private async void CheckForUpdates()
+        {
+            using (var update = new UpdateManager(@"\\maxcavfs01\mpoc_asl_softwares\12_Projects and Activities\BFV APPLICATION"))
+            {
+                await update.UpdateApp();
+            }
         }
 
         private void Pass_KeyDown(object sender, KeyEventArgs e)

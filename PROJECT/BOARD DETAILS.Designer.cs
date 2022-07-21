@@ -523,6 +523,7 @@ namespace PROJECT
             // Failure_mode
             // 
             this.Failure_mode.AutoSize = true;
+            this.Failure_mode.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Failure_mode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Failure_mode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Failure_mode.Location = new System.Drawing.Point(176, 228);
@@ -533,6 +534,7 @@ namespace PROJECT
             // Failed_during
             // 
             this.Failed_during.AutoSize = true;
+            this.Failed_during.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Failed_during.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Failed_during.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Failed_during.Location = new System.Drawing.Point(176, 193);
@@ -553,6 +555,7 @@ namespace PROJECT
             // Status
             // 
             this.Status.AutoSize = true;
+            this.Status.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Status.Location = new System.Drawing.Point(176, 334);
@@ -563,6 +566,7 @@ namespace PROJECT
             // Test_option
             // 
             this.Test_option.AutoSize = true;
+            this.Test_option.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Test_option.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Test_option.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Test_option.Location = new System.Drawing.Point(176, 267);
@@ -573,6 +577,7 @@ namespace PROJECT
             // Test_program
             // 
             this.Test_program.AutoSize = true;
+            this.Test_program.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Test_program.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Test_program.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Test_program.Location = new System.Drawing.Point(176, 159);
@@ -583,6 +588,7 @@ namespace PROJECT
             // Board
             // 
             this.Board.AutoSize = true;
+            this.Board.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Board.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Board.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Board.Location = new System.Drawing.Point(176, 122);
@@ -593,6 +599,7 @@ namespace PROJECT
             // Part_number
             // 
             this.Part_number.AutoSize = true;
+            this.Part_number.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Part_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Part_number.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Part_number.Location = new System.Drawing.Point(176, 47);
@@ -603,6 +610,7 @@ namespace PROJECT
             // Serial_number
             // 
             this.Serial_number.AutoSize = true;
+            this.Serial_number.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Serial_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Serial_number.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Serial_number.Location = new System.Drawing.Point(176, 13);

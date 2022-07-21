@@ -44,6 +44,7 @@ namespace PROJECT
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.REGISTER = new System.Windows.Forms.Button();
+            this.UPDATE_BTN = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,6 +94,7 @@ namespace PROJECT
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Location = new System.Drawing.Point(127, 79);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(113, 33);
@@ -197,12 +199,26 @@ namespace PROJECT
             this.REGISTER.UseVisualStyleBackColor = false;
             this.REGISTER.Click += new System.EventHandler(this.REGISTER_Click);
             // 
+            // UPDATE_BTN
+            // 
+            this.UPDATE_BTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.UPDATE_BTN.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.UPDATE_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.UPDATE_BTN.Location = new System.Drawing.Point(376, 13);
+            this.UPDATE_BTN.Name = "UPDATE_BTN";
+            this.UPDATE_BTN.Size = new System.Drawing.Size(113, 33);
+            this.UPDATE_BTN.TabIndex = 6;
+            this.UPDATE_BTN.Text = "UPDATE";
+            this.UPDATE_BTN.UseVisualStyleBackColor = false;
+            this.UPDATE_BTN.Click += new System.EventHandler(this.UPDATE_BTN_Click);
+            // 
             // LOGIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(501, 416);
+            this.Controls.Add(this.UPDATE_BTN);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Pass);
@@ -214,7 +230,7 @@ namespace PROJECT
             this.MinimumSize = new System.Drawing.Size(517, 455);
             this.Name = "LOGIN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LOGIN";
+            this.Text = "LOGIN (VERSION 1.1.3)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -239,5 +255,6 @@ namespace PROJECT
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button REGISTER;
         private System.Windows.Forms.CheckBox BRG;
+        private System.Windows.Forms.Button UPDATE_BTN;
     }
 }

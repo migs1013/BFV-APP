@@ -252,16 +252,19 @@ namespace PROJECT
             }
             else if (STATUS.Text == "BRG")
             {
-                if (ForSecondVerif())
-                { 
-                    input_status = "BRG (INCOMING)";
-                    if (string.IsNullOrWhiteSpace(second_verif_link.Text))
-                    {
-                        SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                        SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
-                    }
-                    Save_data();                 
+                input_status = "BRG (INCOMING)";
+                if (string.IsNullOrWhiteSpace(second_verif_link.Text))
+                {
+                    Second_tester.SelectedIndex = -1;
+                    Second_Site.SelectedIndex = -1;
+                    Second_slot.Clear();
+                    SecondDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    SecondTime.Text = DateTime.Now.ToString("hh:mm tt");
+                    Save_data();
                 }
+                else
+                    if (ForSecondVerif())
+                        Save_data();
             }
             else if (STATUS.Text == "OUTSOURCE REPAIR")
             {

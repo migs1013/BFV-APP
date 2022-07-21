@@ -46,7 +46,6 @@
             this.EDIT = new System.Windows.Forms.Button();
             this.FROM_DATE = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.UPDATE = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.Stats = new System.Windows.Forms.ComboBox();
@@ -259,26 +258,12 @@
             this.label1.TabIndex = 27;
             this.label1.Text = "VERSION 1.1.3";
             // 
-            // UPDATE
-            // 
-            this.UPDATE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.UPDATE.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.UPDATE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UPDATE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UPDATE.Location = new System.Drawing.Point(7, 514);
-            this.UPDATE.Name = "UPDATE";
-            this.UPDATE.Size = new System.Drawing.Size(130, 50);
-            this.UPDATE.TabIndex = 28;
-            this.UPDATE.Text = "UPDATE";
-            this.UPDATE.UseVisualStyleBackColor = false;
-            this.UPDATE.Click += new System.EventHandler(this.UPDATE_Click);
-            // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(1018, 514);
+            this.button1.Location = new System.Drawing.Point(7, 513);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 50);
             this.button1.TabIndex = 30;
@@ -517,7 +502,6 @@
             this.Controls.Add(this.Stats);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.UPDATE);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.FROM_DATE);
             this.Controls.Add(this.EDIT);
@@ -551,7 +535,6 @@
         private System.Windows.Forms.Button EDIT;
         private System.Windows.Forms.DateTimePicker FROM_DATE;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button UPDATE;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox Stats;
