@@ -296,9 +296,8 @@
             "FOR SECOND VERIF",
             "FOR VERIFICATION",
             "INSTALL TO A TESTER",
-            "OUTSOURCED",
+            "OUTSOURCE REPAIR",
             "OVERDUE",
-            "SHIPPED OUT",
             "SPARES"});
             this.Stats.Location = new System.Drawing.Point(661, 42);
             this.Stats.Name = "Stats";
