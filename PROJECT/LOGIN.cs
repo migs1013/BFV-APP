@@ -7,7 +7,7 @@ namespace PROJECT
     public partial class LOGIN : Form
     {
         MySqlCommand command;
-        public int count,brg,brg_user;
+        public int count;
         public string UserName;
         public LOGIN()
         {
@@ -75,10 +75,6 @@ namespace PROJECT
                     else return;
                     if (count == 0)
                     {
-                        if (BRG.Checked == true)
-                            brg = 1;
-                        else
-                            brg = 0;
                         commands(2);
                         command.Connection = Connection.connect;
                         if (Connection.OpenConnection())
@@ -98,7 +94,6 @@ namespace PROJECT
                             REG_USER.Clear();
                             REG_PASS.Clear();
                             REG_CONFIRM.Clear();
-                            BRG.Checked = false;
                         }
                     }
                     else
@@ -120,15 +115,15 @@ namespace PROJECT
             switch (cmd)
             {
                 case 1:
-                    command = new MySqlCommand("SELECT *,COUNT(*) as count FROM `boards_for_verification`.`useraccount` " +
-                        "WHERE (`USERNAME` = '" + REG_USER.Text + "' and `PASSWORD` = '" + REG_PASS.Text + "')");
+                    command = new MySqlCommand("SELECT COUNT(*) as count FROM `boards_for_verification`.`useraccount` " +
+                        "WHERE (`USERNAME` = '" + REG_USER.Text + "')");
                     break;
                 case 2:
                     command = new MySqlCommand(String.Format("INSERT INTO `boards_for_verification`.`useraccount` SET `USERNAME` = '" + REG_USER.Text + "'," +
-                        "`PASSWORD` = '" + REG_PASS.Text + "',`BRG` = {0}",brg));
+                        "`PASSWORD` = '" + REG_PASS.Text + "')"));
                     break;
                 case 3:
-                    command = new MySqlCommand("SELECT *,COUNT(*) as count FROM `boards_for_verification`.`useraccount` " +
+                    command = new MySqlCommand("SELECT `USERNAME`,`PASSWORD`,COUNT(*) as count FROM `boards_for_verification`.`useraccount` " +
                      "WHERE (`USERNAME` = '" + User.Text + "' and `PASSWORD` = '" + Pass.Text + "')");
                     break;
             }
@@ -202,13 +197,12 @@ namespace PROJECT
                 else
                 {
                     UserName = read_status["USERNAME"].ToString();
-                    brg_user = Convert.ToInt32(read_status["BRG"].ToString());
                     Connection.CloseConnection();
                     User.Clear();
                     Pass.Clear();
-                    SEARCH_BOARD next = new SEARCH_BOARD(UserName, brg_user);
+                    SEARCH_BOARD next = new SEARCH_BOARD(UserName);
                     this.Hide();
-                    next.ShowDialog();
+                    //next.ShowDialog();
                 }
             }
             else Connection.CloseConnection();

@@ -36,7 +36,6 @@ namespace PROJECT
             this.Pass = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.BRG = new System.Windows.Forms.CheckBox();
             this.REG_CONFIRM = new System.Windows.Forms.TextBox();
             this.REG_PASS = new System.Windows.Forms.TextBox();
             this.REG_USER = new System.Windows.Forms.TextBox();
@@ -106,7 +105,6 @@ namespace PROJECT
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Aqua;
-            this.groupBox1.Controls.Add(this.BRG);
             this.groupBox1.Controls.Add(this.REG_CONFIRM);
             this.groupBox1.Controls.Add(this.REG_PASS);
             this.groupBox1.Controls.Add(this.REG_USER);
@@ -123,16 +121,6 @@ namespace PROJECT
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "CREATE ACCOUNT";
-            // 
-            // BRG
-            // 
-            this.BRG.AutoSize = true;
-            this.BRG.Location = new System.Drawing.Point(20, 152);
-            this.BRG.Name = "BRG";
-            this.BRG.Size = new System.Drawing.Size(224, 20);
-            this.BRG.TabIndex = 7;
-            this.BRG.Text = "CHECK IF YOUR FROM BRG";
-            this.BRG.UseVisualStyleBackColor = true;
             // 
             // REG_CONFIRM
             // 
@@ -208,7 +196,7 @@ namespace PROJECT
             this.UPDATE_BTN.Name = "UPDATE_BTN";
             this.UPDATE_BTN.Size = new System.Drawing.Size(113, 33);
             this.UPDATE_BTN.TabIndex = 6;
-            this.UPDATE_BTN.Text = "UPDATE";
+            this.UPDATE_BTN.Text = "UPDATE APP";
             this.UPDATE_BTN.UseVisualStyleBackColor = false;
             this.UPDATE_BTN.Click += new System.EventHandler(this.UPDATE_BTN_Click);
             // 
@@ -254,7 +242,6 @@ namespace PROJECT
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button REGISTER;
-        private System.Windows.Forms.CheckBox BRG;
         private System.Windows.Forms.Button UPDATE_BTN;
     }
 }
