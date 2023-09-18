@@ -68,7 +68,6 @@ namespace PROJECT
                 }
                 Connection.CloseConnection();
             }
-
         }
 
         private void EDIT_TESTERS_Load(object sender, EventArgs e)
@@ -79,7 +78,7 @@ namespace PROJECT
                 MySqlDataReader read_data = Command.ExecuteReader();
                 while (read_data.Read())
                 {
-                    Tester_platforms.Items.Add(read_data.GetString("Tester platforms"));
+                    Tester_platforms.Items.Add(read_data.GetString("tester_platforms"));
                 }
                 Connection.CloseConnection();
             }
@@ -367,15 +366,15 @@ namespace PROJECT
             switch (commads)
             {
                 case 0:  //LOAD TESTER PLATFORMS
-                    Command = new MySqlCommand("SELECT * FROM `boards_for_verification`.`tester platforms`", Connection.connect);
+                    Command = new MySqlCommand("SELECT * FROM `hit`.`tester_platforms`", Connection.connect);
                     break;
 
                 case 1:  //LOAD TESTERS OR BOARDS IN THE TESTER PLATFORM
                     if (Tester.Checked)
-                        Command = new MySqlCommand(string.Format("SELECT * FROM `boards_for_verification`.`{0}`",           //LOAD TESTER
+                        Command = new MySqlCommand(string.Format("SELECT * FROM `hit`.`{0}`",           //LOAD TESTER
                         Tester_platform.ToLower()), Connection.connect);
                     else
-                        Command = new MySqlCommand(string.Format("SELECT * FROM `boards_for_verification`.`{0}_boards`",    //LOAD BOARD
+                        Command = new MySqlCommand(string.Format("SELECT * FROM `hit`.`{0}`",    //LOAD BOARD
                         Tester_platform.ToLower()), Connection.connect);
                     break;
 
@@ -390,13 +389,13 @@ namespace PROJECT
                     List_AddOrDelete = List_AddOrDelete.Remove(List_AddOrDelete.Length - 1, 1);
                     if (Tester.Checked)
                     {
-                        FullCommand = string.Format("INSERT INTO `boards_for_verification`.`{0}`(`{1}`) VALUES {2}"
+                        FullCommand = string.Format("INSERT INTO `hit`.`{0}`(`{1}`) VALUES {2}"
                         , Tester_platform.ToLower(), Tester_platform.ToUpper(), List_AddOrDelete);
                         Command = new MySqlCommand(FullCommand, Connection.connect);                                     //INSERT NEW TESTER
                     }
                     else
                     {
-                        FullCommand = string.Format("INSERT INTO `boards_for_verification`.`{0}_boards`(`{1}`) VALUES {2}"
+                        FullCommand = string.Format("INSERT INTO `hit`.`{0}`(`{1}`) VALUES {2}"
                         , Tester_platform.ToLower(), Tester_platform.ToUpper(), List_AddOrDelete);
                         Command = new MySqlCommand(FullCommand, Connection.connect);                                    //INSERT NEW BOARDS
                     }
@@ -411,7 +410,7 @@ namespace PROJECT
                     {
                         AddOrDelete.SelectedIndex = ListCount;
                         List_value = AddOrDelete.SelectedItem.ToString();
-                        List_AddOrDelete = string.Format("DELETE FROM `boards_for_verification`.`{0}{1}` WHERE (`{2}` = '{3}');",
+                        List_AddOrDelete = string.Format("DELETE FROM `hit`.`{0}{1}` WHERE (`{2}` = '{3}');",
                         Tester_platform.ToLower(), Ifboards, Tester_platform.ToUpper(), List_value);
 
                         FullCommand += List_AddOrDelete;

@@ -12,7 +12,7 @@ namespace PROJECT
     {
         public string check,all;
         public int count, ComboBoxCount, firstCount, secondCount, range = 0;
-        public string TP, B, A, S, DATE_FILTER,FullTextCommand;
+        public string DATE_FILTER,FullTextCommand, PO;
         public string UserAccount { get; set; }
         MySqlCommand command;
         public SEARCH_BOARD(string User)
@@ -26,16 +26,15 @@ namespace PROJECT
             LoadData();
             NAME.Text = UserAccount;
         }
-
         private async void LoadData()
         {
-            commands(6);
+            Commands(5);
             if (Connection.OpenConnection())
             {
                 MySqlDataReader read_data = command.ExecuteReader();
                 while (read_data.Read())
                 {
-                    Tester_platform.Invoke((MethodInvoker)(() => Tester_platform.Items.Add(read_data.GetString("Tester platforms"))));
+                    TESTER_PLATFORM_FILTER.Items.Add(read_data.GetString("tester_platforms"));
                 }
                 Connection.CloseConnection();
             }
@@ -44,10 +43,14 @@ namespace PROJECT
                 Connection.CloseConnection();
                 this.Close();
             }
-            commands(2);
+            Commands(2);
             if (Connection.OpenConnection())
             {
-                check = command.ExecuteScalar().ToString();
+                MySqlDataReader read_data = command.ExecuteReader();
+                while (read_data.Read())
+                {
+                     PRODUCT_OWNER_FILTER.Items.Add(read_data.GetString("product_owner"));
+                }
                 Connection.CloseConnection();
             }
             else
@@ -59,12 +62,8 @@ namespace PROJECT
             {
                 FROM_DATE.Invoke((MethodInvoker)(()=> FROM_DATE.CustomFormat = " "));
                 TO_DATE.Invoke((MethodInvoker)(() => TO_DATE.CustomFormat = " "));
-                Stats.Invoke((MethodInvoker)(() => Stats.SelectedIndex = 0));
-                AREA.Invoke((MethodInvoker)(() => AREA.SelectedIndex = 0));
-                Tester_platform.Invoke((MethodInvoker)(() => Tester_platform.SelectedIndex = 0));
-                Boards.Invoke((MethodInvoker)(()=> Boards.SelectedIndex = 0));
-                dataGridViewList.Invoke((MethodInvoker)(() => dataGridViewList.DataSource = table(3)));
-                commands(0);
+                dataGridViewList.Invoke((MethodInvoker)(() => dataGridViewList.DataSource = Table(3)));
+                Commands(0);
                 if (Connection.OpenConnection())
                 {
                     all = command.ExecuteScalar().ToString();
@@ -78,10 +77,9 @@ namespace PROJECT
             }
             );
             Counts();
-            results();
-            OVERDUE.Text = string.Format("OVERDUE({0})", check);
+            Results();
         }
-        private void results()
+        private void Results()
         {
             Count_search.Text = string.Format("RESULT({0}-{1} of {2})", firstCount,secondCount, all);
         }
@@ -97,101 +95,73 @@ namespace PROJECT
         }
         private void Click_data(object sender, DataGridViewCellEventArgs e)
         {
+            //MessageBox.Show(dataGridViewList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
             try
             {
-                dataGridViewList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                try
-                {
-                    string endorsement_number = (dataGridViewList.SelectedCells[8].Value.ToString());
-                    BOARD_DETAILS details = new BOARD_DETAILS(endorsement_number,UserAccount,BRG);
-                    details.ShowDialog();
-                }
-                catch (Exception)
-                {
-                    return;
-                }
+                string endorsement_number = dataGridViewList.SelectedCells[7].Value.ToString();
+                BOARD_DETAILS details = new BOARD_DETAILS(endorsement_number);
+                details.ShowDialog();
             }
-            catch (Exception)
+            catch (Exception Sample)
             {
+                MessageBox.Show(Sample.ToString());
                 return;
             }
         }
-        private void commands(int cmd)
+        private void Commands(int cmd)
         {
             switch(cmd)
             {
                
                 case 0: //TO CHECK IF THERE'S EXISTING DATA SEARCHED
-                    command = new MySqlCommand("SELECT COUNT(*) FROM `boards_for_verification`.`board details`",Connection.connect);
+                    command = new MySqlCommand("SELECT COUNT(*) FROM `hit`.`details`",Connection.connect);
                     break;
                 case 1:  //TO DISPLAY THE DATA THAT IS SEARCHED BY THE USER
-                    command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`,`STATUS`," +
-                        "CASE WHEN (ISNULL(`SECOND DATE`) OR `SECOND DATE` = '') AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
-                        " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
-                        "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
-                        "`ENDORSEMENT NUMBER`" +
-                        " FROM `boards_for_verification`.`board details` WHERE '" + search_text.Text + "'" +
-                        " IN (`SERIAL NUMBER`,`PART NUMBER`,`FIRST TESTER`,`TEST PROGRAM`)" +
-                        " ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 30",Connection.connect);
+                    command = new MySqlCommand(string.Format("SELECT `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`,`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`ENDORSEMENT_NUMBER` " +
+                        "FROM `hit`.`details` WHERE (`PART_NAME` LIKE '%{0}%') OR (`LOT_ID` LIKE '%{0}%') OR (`TEST_NUMBER` LIKE '%{0}%') OR (`VSPEC` LIKE '%{0}%') OR" +
+                        "(`BOARD_ID` LIKE '%{0}%') OR (`HANDLER_ID` LIKE '%{0}%') OR (`BIN_NUMBER` LIKE '%{0}%')" +
+                        "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30",search_text.Text),Connection.connect);
                     break;
-                case 2: //COUNT OVERDUE BOARDS
-                    command = new MySqlCommand("SELECT count(`FIRST DATE`) FROM `board details` WHERE ((select abs(datediff(`FIRST DATE`,current_date()))) > 2) AND (`STATUS` = 'FOR SECOND VERIF')",
-                        Connection.connect);
+                case 2: // PRODUCT OWNER
+                    command = new MySqlCommand("SELECT * FROM `hit`.`product_owner`", Connection.connect);
                     break;
                 case 3:  //FOR UPDATING PURPOSES
-                    command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE`,`STATUS`," +
-                        "CASE WHEN (ISNULL(`SECOND DATE`) OR `SECOND DATE` = '') AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
-                        " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
-                        "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
-                        "`ENDORSEMENT NUMBER`" +
-                        " FROM `boards_for_verification`.`board details` ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 30",Connection.connect);
+                    command = new MySqlCommand("SELECT `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`,`DATE_ENCOUNTERED`,`PRODUCT_OWNER`," +
+                        "`ENDORSEMENT_NUMBER` FROM `hit`.`details` ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", Connection.connect);
                     break;
-                case 4:
-                    command = new MySqlCommand("SELECT `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE`,`STATUS`," +
-                        "CASE WHEN (ISNULL(`SECOND DATE`) OR `SECOND DATE` = '') AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
-                        " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
-                        "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
-                        "`ENDORSEMENT NUMBER`" +
-                        " FROM `boards_for_verification`.`board details` ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 30", Connection.connect);
+                case 4: // SEARCHING TRANSACTION COUNTS WITH FILTER
+                    command = new MySqlCommand(string.Format("SELECT COUNT(*) FROM `hit`.`details` {0}",FullTextCommand), Connection.connect);
                     break;
-                case 5: // SEARCHING BOARDS WITH FILTER
-                    command = new MySqlCommand(string.Format("SELECT COUNT(*) FROM `boards_for_verification`.`board details` {0}",FullTextCommand), Connection.connect);
+                case 5:  //TESTER PLATFORMS
+                    command = new MySqlCommand("SELECT * FROM `hit`.`tester_platforms`", Connection.connect);
                     break;
-                case 6:  //TESTER PLATFORMS
-                    command = new MySqlCommand("SELECT * FROM `boards_for_verification`.`tester platforms`", Connection.connect);
+                case 6:  // FOR SEARCH IN COMBO BOXES
+                    command = new MySqlCommand(string.Format("Select `ENDORSEMENT_NUMBER`,`PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`," +
+                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`" +
+                        "FROM `hit`.`details` {0} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30",FullTextCommand), Connection.connect);
                     break;
-                case 7:  //BOARDS OF TESTER PLATFORM
-                    command = new MySqlCommand(string.Format("SELECT * FROM `boards_for_verification`.`{0}_boards`", Tester_platform.Text.ToLower()), Connection.connect);
+                case 7: //NEXT BUTTON
+                    command = new MySqlCommand(string.Format("Select `ENDORSEMENT_NUMBER`,`PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`," +
+                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER` " +
+                        "FROM `hit`.`details` {0} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT {1},30", FullTextCommand, range), Connection.connect);
                     break;
-                case 8:
-                    //NOT USE
+                case 8: // SEARCH DATA COUNT WITH TEXTBOX
+                    command = new MySqlCommand(string.Format("SELECT count(*) FROM `hit`.`details` " +
+                        "WHERE (`PART_NAME` LIKE '%{0}%') OR (`LOT_ID` LIKE '%{0}%') OR (`TEST_NUMBER` LIKE '%{0}%') OR (`VSPEC` LIKE '%{0}%') OR" +
+                        "(`BOARD_ID` LIKE '%{0}%') OR (`HANDLER_ID` LIKE '%{0}%') OR (`BIN_NUMBER` LIKE '%{0}%')" +
+                        "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", search_text.Text), Connection.connect);
                     break;
-                case 9:  // FOR SEARCH IN COMBO BOXES
-                    command = new MySqlCommand(string.Format("Select `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`,`STATUS`," +
-                        "CASE WHEN (ISNULL(`SECOND DATE`) OR `SECOND DATE` = '') AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
-                        " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
-                        "ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
-                        "`ENDORSEMENT NUMBER`" +
-                        " FROM `boards_for_verification`.`board details` {0} ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT 30",FullTextCommand), Connection.connect);
+                case 9:
+                    command = new MySqlCommand(string.Format("select * from `hit`.`{0}`",TESTER_PLATFORM_FILTER.Text.ToLower()), Connection.connect);
                     break;
-                case 10: // UNUSED
-                    break;
-                case 11: //NEXT BUTTON
-                    command = new MySqlCommand(string.Format("select `SERIAL NUMBER`,`PART NUMBER`,`BOARD`,`TESTER PLATFORM`,`TEST PROGRAM`,`FIRST DATE` as `FIRST DATE VERIFIED`," +
-                        "`STATUS`,CASE WHEN (ISNULL(`SECOND DATE`) OR `SECOND DATE` = '') AND (STATUS = 'FOR SECOND VERIF' OR STATUS = 'FOR VERIFICATION')" +
-                        " THEN DATEDIFF(NOW(),`FIRST DATE`) " +
-                        " ELSE DATEDIFF(`SECOND DATE`,`FIRST DATE`) END AS `AGING DAYS`," +
-                        "`ENDORSEMENT NUMBER`" +
-                        " FROM `boards_for_verification`.`board details` {0} ORDER BY `ENDORSEMENT NUMBER` DESC LIMIT {1},30", FullTextCommand, range), Connection.connect);
-                    break;
-                case 12:
-                    command = new MySqlCommand("SELECT COUNT(*) FROM `board details` WHERE '" + search_text.Text + "' IN (`SERIAL NUMBER`,`PART NUMBER`,`FIRST TESTER`,`TEST PROGRAM`)", Connection.connect);
+                case 10:
+                    command = new MySqlCommand(string.Format("select * from `hit`.`{0}`", PO.ToLower()), Connection.connect);
                     break;
             }
         }
-        private DataTable table(int COMMAND)
+        private DataTable Table(int COMMAND)
         {
-            commands(COMMAND);
+            Commands(COMMAND);
             DataTable new_data = new DataTable();
             if (Connection.OpenConnection())
             {
@@ -203,9 +173,9 @@ namespace PROJECT
             else 
                 return new_data;
         }
-        private void load_data(int commandss)
+        private void Load_data(int commandss)
         {
-            commands(count);
+            Commands(count);
             if (Connection.OpenConnection())
             {
                 check = command.ExecuteScalar().ToString();
@@ -219,7 +189,7 @@ namespace PROJECT
                     }
                     else
                     {
-                        dataGridViewList.DataSource = table(commandss);
+                        dataGridViewList.DataSource = Table(commandss);
                     }
                 }
                 else
@@ -238,37 +208,62 @@ namespace PROJECT
             range = 0;
             if (string.IsNullOrWhiteSpace(search_text.Text))
             {
+                if (!string.IsNullOrWhiteSpace(BIN_NUMBER_FILTER.Text))
+                {
+                    char[] Word = BIN_NUMBER_FILTER.Text.ToCharArray();
+                    if (Word.Length > 4)
+                    {
+                        MessageBox.Show("MAXIMUM BIN NUMBER IS 4 DIGITS ONLY");
+                        return;
+                    }
+                    for (int Txt = 0; Txt < Word.Length; Txt++)
+                    {
+                        if (char.IsDigit(Word[Txt])) continue;
+                        else if (Word[Txt] == ' ')
+                        {
+                            MessageBox.Show("SPACE IN BIN NUMBER IS NOT ALLOWED");
+                            return;
+                        }
+                        else
+                        {
+                            MessageBox.Show("PLEASE ENTER NUMBER ONLY FOR BIN NUMBER");
+                            return;
+                        }
+                    }
+                    return;
+                }
                 CommandComboBox();
-                commands(5);
+                Connection.CloseConnection();
+                Commands(4);
                 if (Connection.OpenConnection())
                 {
                     all = command.ExecuteScalar().ToString();
                     Connection.CloseConnection();
                 }
                 else return;
-                dataGridViewList.DataSource = table(9);
+                dataGridViewList.DataSource = Table(6);
                 Counts();
-                results();
+                Results();
+                Connection.CloseConnection();
             }
             else
             {
                 count = 0;
-                commands(12);
+                Commands(8);
                 if (Connection.OpenConnection())
                 {
                     all = command.ExecuteScalar().ToString();
                     Connection.CloseConnection();
                 }
-                else return;
+                else
+                {
+                    Connection.CloseConnection();
+                    return;
+                }
                 Counts();
-                results();
-                load_data(1);
-                FROM_DATE.CustomFormat = " ";
-                TO_DATE.CustomFormat = " ";
-                AREA.SelectedIndex = 0;
-                Stats.SelectedIndex = 0;
-                Tester_platform.SelectedIndex = 0;
-                clearBoards();
+                Results();
+                Load_data(1);
+                ClearFilter();
             }
         }
 
@@ -280,23 +275,10 @@ namespace PROJECT
         }
         private void REFRESH_Click(object sender, EventArgs e)
         {
-            FROM_DATE.CustomFormat = " ";
-            TO_DATE.CustomFormat = " ";
-            AREA.SelectedIndex = 0;
-            Stats.SelectedIndex = 0;
-            Tester_platform.SelectedIndex = 0;
-            clearBoards();
+            ClearFilter();
             search_text.Clear();
-            dataGridViewList.DataSource = table(4);
-            commands(2);
-            if (Connection.OpenConnection())
-            {
-                check = command.ExecuteScalar().ToString();
-                Connection.CloseConnection();
-                OVERDUE.Text = string.Format("OVERDUE({0})", check);
-            }
-            else Connection.CloseConnection();
-            commands(0);
+            dataGridViewList.DataSource = Table(3);
+            Commands(0);
             if (Connection.OpenConnection())
             {
                 all = command.ExecuteScalar().ToString();
@@ -304,7 +286,7 @@ namespace PROJECT
             }
             else return;
             Counts();
-            results();
+            Results();
         }
 
         private void EDIT_Click(object sender, EventArgs e)
@@ -348,13 +330,20 @@ namespace PROJECT
             TO_DATE.CustomFormat = "yyyy-MM-dd";
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            LOGIN Back = new LOGIN();
+            this.Hide();
+            Back.Show();
+        }
+
         private void Enter_search(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 range = 0;
                 count = 0;
-                commands(12);
+                Commands(8);
                 if (Connection.OpenConnection())
                 {
                     all = command.ExecuteScalar().ToString();
@@ -362,18 +351,69 @@ namespace PROJECT
                 }
                 else return;
                 Counts();
-                results();
-                load_data(1);
+                Results();
+                Load_data(1);
                 FROM_DATE.CustomFormat = " ";
                 TO_DATE.CustomFormat = " ";
-                AREA.SelectedIndex = 0;
-                Stats.SelectedIndex = 0;
-                Tester_platform.SelectedIndex = 0;
-                clearBoards();
+                ClearFilter();
             }
 
         }
+        private void TESTER_PLATFORM_FILTER_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (TESTER_PLATFORM_FILTER.SelectedIndex == 0)
+            { 
+                TESTER_PLATFORM_FILTER.DroppedDown = false; 
+                return; 
+            }
+            TESTER_ID_FILTER.Items.Clear();
+            TESTER_ID_FILTER.Items.Add("");
+            Connection.CloseConnection();
+            Commands(9);
+            if (Connection.OpenConnection())
+            {
+                MySqlDataReader read_data = command.ExecuteReader();
+                while (read_data.Read())
+                {
+                    TESTER_ID_FILTER.Items.Add(read_data.GetString(TESTER_PLATFORM_FILTER.Text.ToLower()));
+                }
+                Connection.CloseConnection();
+            }
+            else
+            {
+                Connection.CloseConnection();
+                this.Close();
+            }
+        }
 
+        private void PRODUCT_OWNER_FILTER_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (PRODUCT_OWNER_FILTER.SelectedIndex == 0)
+            {
+                PRODUCT_OWNER_FILTER.DroppedDown = false; 
+                return;
+            }
+            PART_NAME_FILTER.Items.Clear();
+            PART_NAME_FILTER.Items.Add("");
+            Connection.CloseConnection();
+            PO = PRODUCT_OWNER_FILTER.Text;
+            PO = PO.Replace(" ","_");
+            Commands(10);
+            if (Connection.OpenConnection())
+            {
+                MySqlDataReader read_data = command.ExecuteReader();
+                while (read_data.Read())
+                {
+                    PART_NAME_FILTER.Items.Add(read_data.GetString(PO));
+                }
+                Connection.CloseConnection();
+            }
+            else
+            {
+                Connection.CloseConnection();
+                this.Close();
+            }
+        }
 
         private void FormClose(object sender, FormClosingEventArgs e)
         {
@@ -395,16 +435,16 @@ namespace PROJECT
             {
                 return;
             }
-            secondCount = secondCount + 30;
+            secondCount += 30;
             if (secondCount > int.Parse(all))
             {
                 secondCount = int.Parse(all);
             }
             firstCount += 30;
             range += 30;
-            results();
+            Results();
             CommandComboBox();
-            load_data(11);
+            Load_data(7);
         }
         private void BackClick(object sender, EventArgs e)
         {
@@ -421,58 +461,22 @@ namespace PROJECT
             }
             range -= 30;
             CommandComboBox();
-            load_data(11);
-            results();
+            Load_data(7);
+            Results();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ClearFilter()
         {
-            this.Close();
-        }
-
-        private void AreaIndexChanged(object sender, EventArgs e)
-        {
-            search_text.Clear();
-        }
-
-        private void statusIndexChanged(object sender, EventArgs e)
-        {
-            search_text.Clear();
-        }
-
-        private void Boardsindexchanged(object sender, EventArgs e)
-        {
-            search_text.Clear();
-        }
-
-        private void ShowBoards(object sender, EventArgs e)
-        {
-            search_text.Clear();
-            if (Tester_platform.SelectedIndex == 0)
-            {
-                clearBoards();
-            }
-            else
-            {
-                clearBoards();
-                commands(7);
-                if (Connection.OpenConnection())
-                {
-                    MySqlDataReader read_data = command.ExecuteReader();
-                    while (read_data.Read())
-                    {
-                        Boards.Items.Add(read_data.GetString(Tester_platform.Text.ToUpper()));
-                    }
-                    Connection.CloseConnection();
-                }
-                else return;
-            }
-        }
-        private void clearBoards()
-        {
-            Boards.Items.Clear();
-            Boards.Items.Add(" ");
-            Boards.SelectedIndex = 0;
+            FROM_DATE.CustomFormat = " ";
+            TO_DATE.CustomFormat = " ";
+            BIN_NUMBER_FILTER.Clear();
+            TESTER_ID_FILTER.Items.Clear();
+            TESTER_ID_FILTER.Items.Add(" ");
+            TESTER_ID_FILTER.SelectedIndex = 0;
+            TESTER_PLATFORM_FILTER.SelectedIndex = 0;
+            PRODUCT_OWNER_FILTER.SelectedIndex = 0;
+            TEST_STEP_FILTER.SelectedIndex = 0;
+            PART_NAME_FILTER.SelectedIndex = 0;
         }
 
         private void CommandComboBox()
@@ -480,82 +484,71 @@ namespace PROJECT
             FullTextCommand = "";
             ComboBoxCount = 0;
             search_text.Clear();
-            if (Tester_platform.SelectedIndex != 0)                                                        //TESTER PLATFORM
+            if (TESTER_PLATFORM_FILTER.Text != "")                                                        //TESTER PLATFORM
             {
-                TP = string.Format("(`TESTER PLATFORM` = '{0}')", Tester_platform.Text);
-                FullTextCommand = string.Format("where {0}", TP);
+                FullTextCommand = string.Format("where `TEST_SYSTEM`= '{0}'", TESTER_PLATFORM_FILTER.Text);
                 ComboBoxCount++;
             } 
-            if (Boards.SelectedIndex != 0)                                                                 //BOARDS
+            if (TESTER_ID_FILTER.Text != "")                                                                 // TESTER ID
             {
-                B = string.Format("(`BOARD` = '{0}')", Boards.Text);
-                FullTextCommand = FullTextCommand + string.Format(" and {0}", B);
+                FullTextCommand += string.Format(" and `TESTER_ID` = '{0}'", TESTER_ID_FILTER.Text);
             }
-            if (AREA.SelectedIndex != 0)                                                                   //AREA
+            if (PRODUCT_OWNER_FILTER.Text != "")                                                                 // PRODUCT OWNER
             {
-                A = string.Format("(`AREA` = '{0}')", AREA.Text);
-                if (ComboBoxCount == 1)
+                if (ComboBoxCount != 0)
                 {
-                    FullTextCommand = FullTextCommand + string.Format(" and {0}", A);
+                    FullTextCommand += string.Format(" and `PRODUCT_OWNER` = '{0}'", PRODUCT_OWNER_FILTER.Text);
                     ComboBoxCount++;
                 }
                 else
                 {
-                    FullTextCommand = string.Format("where {0}", A);
+                    FullTextCommand = string.Format("where `PRODUCT_OWNER` = '{0}'", PRODUCT_OWNER_FILTER.Text);
                     ComboBoxCount++;
                 }
             }
-            if (Stats.SelectedIndex != 0)                                                                 //STATUS
+            if (PART_NAME_FILTER.Text != "")                                                                 // PART NAME
             {
-                if (Stats.Text == "OVERDUE")
+                FullTextCommand += String.Format(" and `PART_NAME` LIKE '%{0}%'", PART_NAME_FILTER.Text);
+            }
+            if (TEST_STEP_FILTER.Text != "")                                                                 // TEST STEP
+            {
+                if (ComboBoxCount != 0)
                 {
-                    S = string.Format("((select abs(datediff(`FIRST DATE`,current_date()))) > 2) and (`STATUS` = 'FOR SECOND VERIF')");
-                }
-                else if (Stats.Text == "INSTALL TO A TESTER")
-                {
-                    S = string.Format("(`STATUS` REGEXP 'INSTALL')");
-                }
-                else
-                {
-                    S = string.Format("(`STATUS` = '{0}')", Stats.Text);
-                }
-                if (ComboBoxCount == 2)
-                {
-                    FullTextCommand = FullTextCommand + string.Format(" and {0}", S);
-                    ComboBoxCount++;
-                }
-                else if (ComboBoxCount == 1)
-                {
-                    FullTextCommand = FullTextCommand + string.Format(" and {0}", S);
+                    FullTextCommand += string.Format(" and `TEST_STEP` = '{0}'", TEST_STEP_FILTER.Text);
                     ComboBoxCount++;
                 }
                 else
                 {
-                    FullTextCommand = string.Format("where {0}", S);
+                    FullTextCommand = string.Format("where `TEST_STEP` = '{0}'", TEST_STEP_FILTER.Text);
                     ComboBoxCount++;
                 }
             }
-            if (!string.IsNullOrWhiteSpace(FROM_DATE.Text))                                                //DATE FILTERING
+            if (!String.IsNullOrWhiteSpace(BIN_NUMBER_FILTER.Text))
+            {
+                if (ComboBoxCount != 0)
+                {
+                    FullTextCommand += string.Format(" and `BIN_NUMBER` = '{0}'", BIN_NUMBER_FILTER.Text);
+                    ComboBoxCount++;
+                }
+                else
+                {
+                    FullTextCommand = string.Format("where `BIN_NUMBER` = '{0}'", BIN_NUMBER_FILTER.Text);
+                    ComboBoxCount++;
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(FROM_DATE.Text))                                                // DATE FILTERING
             {
                 if (!string.IsNullOrWhiteSpace(TO_DATE.Text))
                 {
-                    DATE_FILTER = string.Format("(`FIRST DATE` between '{0}' and '{1}')", FROM_DATE.Text, TO_DATE.Text);
+                    DATE_FILTER = string.Format("(`DATE_ENCOUNTERED` between '{0}' and '{1}')", FROM_DATE.Text, TO_DATE.Text);
                 }
                 else
                 {
-                    DATE_FILTER = string.Format("(`FIRST DATE` = '{0}')", FROM_DATE.Text);
+                    DATE_FILTER = string.Format("(`DATE_ENCOUNTERED` = '{0}')", FROM_DATE.Text);
                 }
-                if (ComboBoxCount == 3)
+                if (ComboBoxCount != 0)
                 {
-                    FullTextCommand = FullTextCommand + string.Format(" and {0}", DATE_FILTER);
-                }
-                else if (ComboBoxCount == 2)
-                {
-                    FullTextCommand = FullTextCommand + string.Format(" and {0}", DATE_FILTER);
-                }
-                else if (ComboBoxCount == 1)
-                {
-                    FullTextCommand = FullTextCommand + string.Format(" and {0}", DATE_FILTER);
+                    FullTextCommand += string.Format(" and {0}", DATE_FILTER);
                 }
                 else
                 {

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Squirrel;
+using System.Text.RegularExpressions;
 namespace PROJECT
 {
     public partial class LOGIN : Form
@@ -62,7 +63,7 @@ namespace PROJECT
             {
                 if (CheckTextBox(REG_USER.Text) && CheckTextBox(REG_PASS.Text))
                 {
-                    commands(1);
+                    Commands(1);
                     command.Connection = Connection.connect;
                     if (Connection.OpenConnection())
                     {
@@ -75,7 +76,7 @@ namespace PROJECT
                     else return;
                     if (count == 0)
                     {
-                        commands(2);
+                        Commands(2);
                         command.Connection = Connection.connect;
                         if (Connection.OpenConnection())
                         {
@@ -110,20 +111,20 @@ namespace PROJECT
             }
         }
 
-        private void commands(int cmd)
+        private void Commands(int cmd)
         {
             switch (cmd)
             {
                 case 1:
-                    command = new MySqlCommand("SELECT COUNT(*) as count FROM `boards_for_verification`.`useraccount` " +
+                    command = new MySqlCommand("SELECT COUNT(*) as count FROM `hit`.`useraccount` " +
                         "WHERE (`USERNAME` = '" + REG_USER.Text + "')");
                     break;
                 case 2:
-                    command = new MySqlCommand(String.Format("INSERT INTO `boards_for_verification`.`useraccount` SET `USERNAME` = '" + REG_USER.Text + "'," +
-                        "`PASSWORD` = '" + REG_PASS.Text + "')"));
+                    command = new MySqlCommand(String.Format("INSERT INTO `hit`.`useraccount` SET `USERNAME` = '" + REG_USER.Text + "'," +
+                        "`PASSWORD` = '" + REG_PASS.Text + "'"));
                     break;
                 case 3:
-                    command = new MySqlCommand("SELECT `USERNAME`,`PASSWORD`,COUNT(*) as count FROM `boards_for_verification`.`useraccount` " +
+                    command = new MySqlCommand("SELECT `USERNAME`,`PASSWORD`,COUNT(*) as count FROM `hit`.`useraccount` " +
                      "WHERE (`USERNAME` = '" + User.Text + "' and `PASSWORD` = '" + Pass.Text + "')");
                     break;
             }
@@ -180,7 +181,7 @@ namespace PROJECT
 
         private void LOGINUSER()
         {
-            commands(3);
+            Commands(3);
             command.Connection = Connection.connect;
             if (Connection.OpenConnection())
             {
@@ -202,7 +203,7 @@ namespace PROJECT
                     Pass.Clear();
                     SEARCH_BOARD next = new SEARCH_BOARD(UserName);
                     this.Hide();
-                    //next.ShowDialog();
+                    next.ShowDialog();
                 }
             }
             else Connection.CloseConnection();

@@ -10,10 +10,10 @@ namespace PROJECT
         //public static MySqlConnection ConnectBoards = new MySqlConnection("server=CAV-DT-TSG36A;user id=newuser;password=onemigso101996;database=boards_of_testers");
 
         // LOCAL HOST
-        public static MySqlConnection connect = new MySqlConnection("server=localhost;user id=root;password=onemigso1013;database=boards_for_verification;persistsecurityinfo=True");
+        public static MySqlConnection connect = new MySqlConnection("server=localhost;user id=root;password=onemigso1013;database=hit;persistsecurityinfo=True");
 
         // NEW SERVER
-        // public static MySqlConnection connect = new MySqlConnection("server=cav-dt-loanr002.maxim-ic.com;user id=tsg;password=tsg;database=boards_for_verification");
+        //public static MySqlConnection connect = new MySqlConnection("server=CAV-BMS-D01;user id=root;password=onemigso1013;database=hit");
 
         public static bool OpenConnection()
         {

@@ -40,50 +40,28 @@ namespace PROJECT
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.First_box = new System.Windows.Forms.GroupBox();
-            this.FirstTime = new System.Windows.Forms.Label();
-            this.First_date = new System.Windows.Forms.Label();
-            this.First_endorser = new System.Windows.Forms.Label();
-            this.First_site = new System.Windows.Forms.Label();
-            this.First_tester = new System.Windows.Forms.Label();
-            this.First_slot = new System.Windows.Forms.Label();
+            this.DATE_ENCOUNTERED = new System.Windows.Forms.Label();
+            this.USER = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.Add_first_verif = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.First_verif_link = new System.Windows.Forms.LinkLabel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.Second_box = new System.Windows.Forms.GroupBox();
-            this.SecondTime = new System.Windows.Forms.Label();
-            this.Second_date = new System.Windows.Forms.Label();
-            this.Second_endorser = new System.Windows.Forms.Label();
-            this.Second_site = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.Second_tester = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.Second_slot = new System.Windows.Forms.Label();
-            this.Add_second_verif = new System.Windows.Forms.Button();
-            this.Second_verif_link = new System.Windows.Forms.LinkLabel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.Second_verif_text = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.Remarks = new System.Windows.Forms.TextBox();
+            this.PROBLEM = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.Exit_btn = new System.Windows.Forms.Button();
-            this.Failure_mode = new System.Windows.Forms.Label();
-            this.Failed_during = new System.Windows.Forms.Label();
-            this.Revision = new System.Windows.Forms.Label();
-            this.Status = new System.Windows.Forms.Label();
-            this.Test_option = new System.Windows.Forms.Label();
-            this.Test_program = new System.Windows.Forms.Label();
-            this.Board = new System.Windows.Forms.Label();
-            this.Part_number = new System.Windows.Forms.Label();
-            this.Serial_number = new System.Windows.Forms.Label();
+            this.HANDLER_ID = new System.Windows.Forms.Label();
+            this.TESTER_ID = new System.Windows.Forms.Label();
+            this.REVISION = new System.Windows.Forms.Label();
+            this.TEST_NUMBER = new System.Windows.Forms.Label();
+            this.BOARD_ID = new System.Windows.Forms.Label();
+            this.TEST_STEP = new System.Windows.Forms.Label();
+            this.VSPEC = new System.Windows.Forms.Label();
+            this.LOT_ID = new System.Windows.Forms.Label();
+            this.PART_NAME = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.AREA = new System.Windows.Forms.Label();
-            this.REPAIR_BTN = new System.Windows.Forms.Button();
+            this.BIN_NUMBER = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.AGING = new System.Windows.Forms.Label();
+            this.PRODUCT_OWNER = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -91,10 +69,9 @@ namespace PROJECT
             this.Fourth_dlog = new System.Windows.Forms.LinkLabel();
             this.Fifth_dlog = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.EDIT = new System.Windows.Forms.Button();
-            this.OUT_SOURCE = new System.Windows.Forms.Button();
+            this.ACTION = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.First_box.SuspendLayout();
-            this.Second_box.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,9 +82,9 @@ namespace PROJECT
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label17.Location = new System.Drawing.Point(9, 228);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(99, 13);
+            this.label17.Size = new System.Drawing.Size(83, 13);
             this.label17.TabIndex = 60;
-            this.label17.Text = "FAILURE MODE";
+            this.label17.Text = "HANDLER ID";
             // 
             // label16
             // 
@@ -116,9 +93,9 @@ namespace PROJECT
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label16.Location = new System.Drawing.Point(9, 193);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(103, 13);
+            this.label16.Size = new System.Drawing.Size(73, 13);
             this.label16.TabIndex = 59;
-            this.label16.Text = "FAILED DURING";
+            this.label16.Text = "TESTER ID";
             // 
             // label15
             // 
@@ -138,9 +115,9 @@ namespace PROJECT
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label8.Location = new System.Drawing.Point(9, 334);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.Size = new System.Drawing.Size(96, 13);
             this.label8.TabIndex = 57;
-            this.label8.Text = "STATUS";
+            this.label8.Text = "TEST NUMBER";
             // 
             // label6
             // 
@@ -149,9 +126,9 @@ namespace PROJECT
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label6.Location = new System.Drawing.Point(9, 267);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 13);
+            this.label6.Size = new System.Drawing.Size(67, 13);
             this.label6.TabIndex = 56;
-            this.label6.Text = "TEST OPTION";
+            this.label6.Text = "BOARD ID";
             // 
             // label5
             // 
@@ -160,9 +137,9 @@ namespace PROJECT
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label5.Location = new System.Drawing.Point(9, 159);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 13);
+            this.label5.Size = new System.Drawing.Size(75, 13);
             this.label5.TabIndex = 55;
-            this.label5.Text = "DIE TYPE";
+            this.label5.Text = "TEST STEP";
             // 
             // label3
             // 
@@ -171,9 +148,9 @@ namespace PROJECT
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label3.Location = new System.Drawing.Point(9, 122);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 13);
+            this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 54;
-            this.label3.Text = "BOARD";
+            this.label3.Text = "VSPEC";
             // 
             // label2
             // 
@@ -182,9 +159,9 @@ namespace PROJECT
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label2.Location = new System.Drawing.Point(9, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 13);
+            this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 53;
-            this.label2.Text = "PART NUMBER";
+            this.label2.Text = "LOT ID";
             // 
             // label1
             // 
@@ -193,84 +170,44 @@ namespace PROJECT
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label1.Location = new System.Drawing.Point(9, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 13);
+            this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 52;
-            this.label1.Text = "SERIAL NUMBER";
+            this.label1.Text = "PART NAME";
             // 
             // First_box
             // 
             this.First_box.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.First_box.Controls.Add(this.FirstTime);
-            this.First_box.Controls.Add(this.First_date);
-            this.First_box.Controls.Add(this.First_endorser);
-            this.First_box.Controls.Add(this.First_site);
-            this.First_box.Controls.Add(this.First_tester);
-            this.First_box.Controls.Add(this.First_slot);
+            this.First_box.Controls.Add(this.DATE_ENCOUNTERED);
+            this.First_box.Controls.Add(this.USER);
             this.First_box.Controls.Add(this.label19);
             this.First_box.Controls.Add(this.label9);
             this.First_box.Controls.Add(this.Add_first_verif);
-            this.First_box.Controls.Add(this.label11);
-            this.First_box.Controls.Add(this.label4);
             this.First_box.Controls.Add(this.First_verif_link);
-            this.First_box.Controls.Add(this.label7);
             this.First_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.First_box.Location = new System.Drawing.Point(366, 7);
             this.First_box.Name = "First_box";
-            this.First_box.Size = new System.Drawing.Size(336, 271);
+            this.First_box.Size = new System.Drawing.Size(336, 199);
             this.First_box.TabIndex = 65;
             this.First_box.TabStop = false;
             this.First_box.Text = "FIRST VERIFICATION DETAILS";
             // 
-            // FirstTime
+            // DATE_ENCOUNTERED
             // 
-            this.FirstTime.AutoSize = true;
-            this.FirstTime.Location = new System.Drawing.Point(221, 98);
-            this.FirstTime.Name = "FirstTime";
-            this.FirstTime.Size = new System.Drawing.Size(0, 13);
-            this.FirstTime.TabIndex = 41;
+            this.DATE_ENCOUNTERED.AutoSize = true;
+            this.DATE_ENCOUNTERED.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DATE_ENCOUNTERED.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.DATE_ENCOUNTERED.Location = new System.Drawing.Point(136, 98);
+            this.DATE_ENCOUNTERED.Name = "DATE_ENCOUNTERED";
+            this.DATE_ENCOUNTERED.Size = new System.Drawing.Size(0, 13);
+            this.DATE_ENCOUNTERED.TabIndex = 40;
             // 
-            // First_date
+            // USER
             // 
-            this.First_date.AutoSize = true;
-            this.First_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.First_date.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.First_date.Location = new System.Drawing.Point(136, 98);
-            this.First_date.Name = "First_date";
-            this.First_date.Size = new System.Drawing.Size(0, 13);
-            this.First_date.TabIndex = 40;
-            // 
-            // First_endorser
-            // 
-            this.First_endorser.AutoSize = true;
-            this.First_endorser.Location = new System.Drawing.Point(136, 232);
-            this.First_endorser.Name = "First_endorser";
-            this.First_endorser.Size = new System.Drawing.Size(0, 13);
-            this.First_endorser.TabIndex = 38;
-            // 
-            // First_site
-            // 
-            this.First_site.AutoSize = true;
-            this.First_site.Location = new System.Drawing.Point(136, 163);
-            this.First_site.Name = "First_site";
-            this.First_site.Size = new System.Drawing.Size(0, 13);
-            this.First_site.TabIndex = 39;
-            // 
-            // First_tester
-            // 
-            this.First_tester.AutoSize = true;
-            this.First_tester.Location = new System.Drawing.Point(134, 132);
-            this.First_tester.Name = "First_tester";
-            this.First_tester.Size = new System.Drawing.Size(0, 13);
-            this.First_tester.TabIndex = 36;
-            // 
-            // First_slot
-            // 
-            this.First_slot.AutoSize = true;
-            this.First_slot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.First_slot.Location = new System.Drawing.Point(136, 200);
-            this.First_slot.Name = "First_slot";
-            this.First_slot.Size = new System.Drawing.Size(0, 13);
-            this.First_slot.TabIndex = 37;
+            this.USER.AutoSize = true;
+            this.USER.Location = new System.Drawing.Point(136, 143);
+            this.USER.Name = "USER";
+            this.USER.Size = new System.Drawing.Size(0, 13);
+            this.USER.TabIndex = 38;
             // 
             // label19
             // 
@@ -284,7 +221,7 @@ namespace PROJECT
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 235);
+            this.label9.Location = new System.Drawing.Point(18, 146);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(84, 13);
             this.label9.TabIndex = 27;
@@ -301,24 +238,6 @@ namespace PROJECT
             this.Add_first_verif.Text = "DATALOG";
             this.Add_first_verif.UseVisualStyleBackColor = false;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(18, 166);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(35, 13);
-            this.label11.TabIndex = 32;
-            this.label11.Text = "SITE";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 135);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "TESTER";
-            // 
             // First_verif_link
             // 
             this.First_verif_link.AutoSize = true;
@@ -331,181 +250,27 @@ namespace PROJECT
             this.First_verif_link.TabIndex = 17;
             this.First_verif_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.First_verif_link_LinkClicked);
             // 
-            // label7
+            // PROBLEM
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(18, 203);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(39, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "SLOT";
-            // 
-            // Second_box
-            // 
-            this.Second_box.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.Second_box.Controls.Add(this.SecondTime);
-            this.Second_box.Controls.Add(this.Second_date);
-            this.Second_box.Controls.Add(this.Second_endorser);
-            this.Second_box.Controls.Add(this.Second_site);
-            this.Second_box.Controls.Add(this.label20);
-            this.Second_box.Controls.Add(this.Second_tester);
-            this.Second_box.Controls.Add(this.label14);
-            this.Second_box.Controls.Add(this.Second_slot);
-            this.Second_box.Controls.Add(this.Add_second_verif);
-            this.Second_box.Controls.Add(this.Second_verif_link);
-            this.Second_box.Controls.Add(this.label12);
-            this.Second_box.Controls.Add(this.Second_verif_text);
-            this.Second_box.Controls.Add(this.label13);
-            this.Second_box.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.Second_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Second_box.Location = new System.Drawing.Point(712, 7);
-            this.Second_box.Name = "Second_box";
-            this.Second_box.Size = new System.Drawing.Size(336, 271);
-            this.Second_box.TabIndex = 64;
-            this.Second_box.TabStop = false;
-            this.Second_box.Text = "LAST VERIFICATION DETAILS";
-            // 
-            // SecondTime
-            // 
-            this.SecondTime.AutoSize = true;
-            this.SecondTime.Location = new System.Drawing.Point(228, 98);
-            this.SecondTime.Name = "SecondTime";
-            this.SecondTime.Size = new System.Drawing.Size(0, 13);
-            this.SecondTime.TabIndex = 42;
-            // 
-            // Second_date
-            // 
-            this.Second_date.AutoSize = true;
-            this.Second_date.Location = new System.Drawing.Point(137, 98);
-            this.Second_date.Name = "Second_date";
-            this.Second_date.Size = new System.Drawing.Size(0, 13);
-            this.Second_date.TabIndex = 41;
-            // 
-            // Second_endorser
-            // 
-            this.Second_endorser.AutoSize = true;
-            this.Second_endorser.Location = new System.Drawing.Point(135, 232);
-            this.Second_endorser.Name = "Second_endorser";
-            this.Second_endorser.Size = new System.Drawing.Size(0, 13);
-            this.Second_endorser.TabIndex = 42;
-            // 
-            // Second_site
-            // 
-            this.Second_site.AutoSize = true;
-            this.Second_site.Location = new System.Drawing.Point(135, 163);
-            this.Second_site.Name = "Second_site";
-            this.Second_site.Size = new System.Drawing.Size(0, 13);
-            this.Second_site.TabIndex = 43;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(16, 98);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(101, 13);
-            this.label20.TabIndex = 36;
-            this.label20.Text = "DATE VERIFIED";
-            // 
-            // Second_tester
-            // 
-            this.Second_tester.AutoSize = true;
-            this.Second_tester.Location = new System.Drawing.Point(135, 132);
-            this.Second_tester.Name = "Second_tester";
-            this.Second_tester.Size = new System.Drawing.Size(0, 13);
-            this.Second_tester.TabIndex = 40;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(18, 203);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(39, 13);
-            this.label14.TabIndex = 35;
-            this.label14.Text = "SLOT";
-            // 
-            // Second_slot
-            // 
-            this.Second_slot.AutoSize = true;
-            this.Second_slot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Second_slot.Location = new System.Drawing.Point(135, 200);
-            this.Second_slot.Name = "Second_slot";
-            this.Second_slot.Size = new System.Drawing.Size(0, 13);
-            this.Second_slot.TabIndex = 41;
-            // 
-            // Add_second_verif
-            // 
-            this.Add_second_verif.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Add_second_verif.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Add_second_verif.Location = new System.Drawing.Point(19, 19);
-            this.Add_second_verif.Name = "Add_second_verif";
-            this.Add_second_verif.Size = new System.Drawing.Size(143, 24);
-            this.Add_second_verif.TabIndex = 19;
-            this.Add_second_verif.Text = "DATALOG";
-            this.Add_second_verif.UseVisualStyleBackColor = false;
-            // 
-            // Second_verif_link
-            // 
-            this.Second_verif_link.ActiveLinkColor = System.Drawing.Color.Red;
-            this.Second_verif_link.AutoSize = true;
-            this.Second_verif_link.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Second_verif_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Second_verif_link.LinkColor = System.Drawing.Color.Black;
-            this.Second_verif_link.Location = new System.Drawing.Point(18, 60);
-            this.Second_verif_link.Name = "Second_verif_link";
-            this.Second_verif_link.Size = new System.Drawing.Size(0, 13);
-            this.Second_verif_link.TabIndex = 20;
-            this.Second_verif_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Second_verif_link_LinkClicked);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(18, 166);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(35, 13);
-            this.label12.TabIndex = 36;
-            this.label12.Text = "SITE";
-            // 
-            // Second_verif_text
-            // 
-            this.Second_verif_text.AutoSize = true;
-            this.Second_verif_text.Location = new System.Drawing.Point(18, 232);
-            this.Second_verif_text.Name = "Second_verif_text";
-            this.Second_verif_text.Size = new System.Drawing.Size(84, 13);
-            this.Second_verif_text.TabIndex = 28;
-            this.Second_verif_text.Text = "VERIFIED BY";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(16, 135);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(56, 13);
-            this.label13.TabIndex = 35;
-            this.label13.Text = "TESTER";
-            // 
-            // Remarks
-            // 
-            this.Remarks.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.Remarks.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Remarks.Location = new System.Drawing.Point(366, 297);
-            this.Remarks.Multiline = true;
-            this.Remarks.Name = "Remarks";
-            this.Remarks.ReadOnly = true;
-            this.Remarks.Size = new System.Drawing.Size(336, 197);
-            this.Remarks.TabIndex = 63;
+            this.PROBLEM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.PROBLEM.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PROBLEM.Location = new System.Drawing.Point(366, 221);
+            this.PROBLEM.Multiline = true;
+            this.PROBLEM.Name = "PROBLEM";
+            this.PROBLEM.ReadOnly = true;
+            this.PROBLEM.Size = new System.Drawing.Size(682, 128);
+            this.PROBLEM.TabIndex = 63;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label10.Location = new System.Drawing.Point(363, 281);
+            this.label10.Location = new System.Drawing.Point(363, 207);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(154, 13);
+            this.label10.Size = new System.Drawing.Size(66, 13);
             this.label10.TabIndex = 62;
-            this.label10.Text = "PROBLEM DESCRIPTION";
+            this.label10.Text = "PROBLEM";
             // 
             // Exit_btn
             // 
@@ -520,103 +285,103 @@ namespace PROJECT
             this.Exit_btn.UseVisualStyleBackColor = false;
             this.Exit_btn.Click += new System.EventHandler(this.Exit_btn_Click);
             // 
-            // Failure_mode
+            // HANDLER_ID
             // 
-            this.Failure_mode.AutoSize = true;
-            this.Failure_mode.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Failure_mode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Failure_mode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Failure_mode.Location = new System.Drawing.Point(176, 228);
-            this.Failure_mode.Name = "Failure_mode";
-            this.Failure_mode.Size = new System.Drawing.Size(0, 13);
-            this.Failure_mode.TabIndex = 75;
+            this.HANDLER_ID.AutoSize = true;
+            this.HANDLER_ID.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.HANDLER_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HANDLER_ID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.HANDLER_ID.Location = new System.Drawing.Point(176, 228);
+            this.HANDLER_ID.Name = "HANDLER_ID";
+            this.HANDLER_ID.Size = new System.Drawing.Size(0, 13);
+            this.HANDLER_ID.TabIndex = 75;
             // 
-            // Failed_during
+            // TESTER_ID
             // 
-            this.Failed_during.AutoSize = true;
-            this.Failed_during.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Failed_during.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Failed_during.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Failed_during.Location = new System.Drawing.Point(176, 193);
-            this.Failed_during.Name = "Failed_during";
-            this.Failed_during.Size = new System.Drawing.Size(0, 13);
-            this.Failed_during.TabIndex = 74;
+            this.TESTER_ID.AutoSize = true;
+            this.TESTER_ID.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TESTER_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TESTER_ID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.TESTER_ID.Location = new System.Drawing.Point(176, 193);
+            this.TESTER_ID.Name = "TESTER_ID";
+            this.TESTER_ID.Size = new System.Drawing.Size(0, 13);
+            this.TESTER_ID.TabIndex = 74;
             // 
-            // Revision
+            // REVISION
             // 
-            this.Revision.AutoSize = true;
-            this.Revision.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Revision.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Revision.Location = new System.Drawing.Point(176, 86);
-            this.Revision.Name = "Revision";
-            this.Revision.Size = new System.Drawing.Size(0, 13);
-            this.Revision.TabIndex = 73;
+            this.REVISION.AutoSize = true;
+            this.REVISION.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.REVISION.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.REVISION.Location = new System.Drawing.Point(176, 86);
+            this.REVISION.Name = "REVISION";
+            this.REVISION.Size = new System.Drawing.Size(0, 13);
+            this.REVISION.TabIndex = 73;
             // 
-            // Status
+            // TEST_NUMBER
             // 
-            this.Status.AutoSize = true;
-            this.Status.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Status.Location = new System.Drawing.Point(176, 334);
-            this.Status.Name = "Status";
-            this.Status.Size = new System.Drawing.Size(0, 13);
-            this.Status.TabIndex = 72;
+            this.TEST_NUMBER.AutoSize = true;
+            this.TEST_NUMBER.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TEST_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TEST_NUMBER.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.TEST_NUMBER.Location = new System.Drawing.Point(176, 334);
+            this.TEST_NUMBER.Name = "TEST_NUMBER";
+            this.TEST_NUMBER.Size = new System.Drawing.Size(0, 13);
+            this.TEST_NUMBER.TabIndex = 72;
             // 
-            // Test_option
+            // BOARD_ID
             // 
-            this.Test_option.AutoSize = true;
-            this.Test_option.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Test_option.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Test_option.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Test_option.Location = new System.Drawing.Point(176, 267);
-            this.Test_option.Name = "Test_option";
-            this.Test_option.Size = new System.Drawing.Size(0, 13);
-            this.Test_option.TabIndex = 71;
+            this.BOARD_ID.AutoSize = true;
+            this.BOARD_ID.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.BOARD_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BOARD_ID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.BOARD_ID.Location = new System.Drawing.Point(176, 267);
+            this.BOARD_ID.Name = "BOARD_ID";
+            this.BOARD_ID.Size = new System.Drawing.Size(0, 13);
+            this.BOARD_ID.TabIndex = 71;
             // 
-            // Test_program
+            // TEST_STEP
             // 
-            this.Test_program.AutoSize = true;
-            this.Test_program.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Test_program.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Test_program.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Test_program.Location = new System.Drawing.Point(176, 159);
-            this.Test_program.Name = "Test_program";
-            this.Test_program.Size = new System.Drawing.Size(0, 13);
-            this.Test_program.TabIndex = 70;
+            this.TEST_STEP.AutoSize = true;
+            this.TEST_STEP.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TEST_STEP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TEST_STEP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.TEST_STEP.Location = new System.Drawing.Point(176, 159);
+            this.TEST_STEP.Name = "TEST_STEP";
+            this.TEST_STEP.Size = new System.Drawing.Size(0, 13);
+            this.TEST_STEP.TabIndex = 70;
             // 
-            // Board
+            // VSPEC
             // 
-            this.Board.AutoSize = true;
-            this.Board.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Board.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Board.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Board.Location = new System.Drawing.Point(176, 122);
-            this.Board.Name = "Board";
-            this.Board.Size = new System.Drawing.Size(0, 13);
-            this.Board.TabIndex = 69;
+            this.VSPEC.AutoSize = true;
+            this.VSPEC.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.VSPEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VSPEC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.VSPEC.Location = new System.Drawing.Point(176, 122);
+            this.VSPEC.Name = "VSPEC";
+            this.VSPEC.Size = new System.Drawing.Size(0, 13);
+            this.VSPEC.TabIndex = 69;
             // 
-            // Part_number
+            // LOT_ID
             // 
-            this.Part_number.AutoSize = true;
-            this.Part_number.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Part_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Part_number.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Part_number.Location = new System.Drawing.Point(176, 47);
-            this.Part_number.Name = "Part_number";
-            this.Part_number.Size = new System.Drawing.Size(0, 13);
-            this.Part_number.TabIndex = 68;
+            this.LOT_ID.AutoSize = true;
+            this.LOT_ID.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.LOT_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LOT_ID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.LOT_ID.Location = new System.Drawing.Point(176, 47);
+            this.LOT_ID.Name = "LOT_ID";
+            this.LOT_ID.Size = new System.Drawing.Size(0, 13);
+            this.LOT_ID.TabIndex = 68;
             // 
-            // Serial_number
+            // PART_NAME
             // 
-            this.Serial_number.AutoSize = true;
-            this.Serial_number.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Serial_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Serial_number.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Serial_number.Location = new System.Drawing.Point(176, 13);
-            this.Serial_number.Name = "Serial_number";
-            this.Serial_number.Size = new System.Drawing.Size(0, 13);
-            this.Serial_number.TabIndex = 67;
+            this.PART_NAME.AutoSize = true;
+            this.PART_NAME.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.PART_NAME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PART_NAME.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.PART_NAME.Location = new System.Drawing.Point(176, 13);
+            this.PART_NAME.Name = "PART_NAME";
+            this.PART_NAME.Size = new System.Drawing.Size(0, 13);
+            this.PART_NAME.TabIndex = 67;
             // 
             // label18
             // 
@@ -625,33 +390,19 @@ namespace PROJECT
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label18.Location = new System.Drawing.Point(9, 300);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(40, 13);
+            this.label18.Size = new System.Drawing.Size(85, 13);
             this.label18.TabIndex = 76;
-            this.label18.Text = "AREA";
+            this.label18.Text = "BIN NUMBER";
             // 
-            // AREA
+            // BIN_NUMBER
             // 
-            this.AREA.AutoSize = true;
-            this.AREA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AREA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.AREA.Location = new System.Drawing.Point(176, 300);
-            this.AREA.Name = "AREA";
-            this.AREA.Size = new System.Drawing.Size(0, 13);
-            this.AREA.TabIndex = 77;
-            // 
-            // REPAIR_BTN
-            // 
-            this.REPAIR_BTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.REPAIR_BTN.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.REPAIR_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.REPAIR_BTN.Location = new System.Drawing.Point(260, 440);
-            this.REPAIR_BTN.Name = "REPAIR_BTN";
-            this.REPAIR_BTN.Size = new System.Drawing.Size(100, 54);
-            this.REPAIR_BTN.TabIndex = 78;
-            this.REPAIR_BTN.Text = "REPAIRED";
-            this.REPAIR_BTN.UseVisualStyleBackColor = false;
-            this.REPAIR_BTN.Visible = false;
-            this.REPAIR_BTN.Click += new System.EventHandler(this.REPAIR_BTN_Click);
+            this.BIN_NUMBER.AutoSize = true;
+            this.BIN_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BIN_NUMBER.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.BIN_NUMBER.Location = new System.Drawing.Point(176, 300);
+            this.BIN_NUMBER.Name = "BIN_NUMBER";
+            this.BIN_NUMBER.Size = new System.Drawing.Size(0, 13);
+            this.BIN_NUMBER.TabIndex = 77;
             // 
             // label22
             // 
@@ -660,19 +411,19 @@ namespace PROJECT
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.label22.Location = new System.Drawing.Point(9, 370);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(83, 13);
+            this.label22.Size = new System.Drawing.Size(118, 13);
             this.label22.TabIndex = 79;
-            this.label22.Text = "AGING DAYS";
+            this.label22.Text = "PRODUCT OWNER";
             // 
-            // AGING
+            // PRODUCT_OWNER
             // 
-            this.AGING.AutoSize = true;
-            this.AGING.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AGING.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.AGING.Location = new System.Drawing.Point(175, 363);
-            this.AGING.Name = "AGING";
-            this.AGING.Size = new System.Drawing.Size(0, 20);
-            this.AGING.TabIndex = 80;
+            this.PRODUCT_OWNER.AutoSize = true;
+            this.PRODUCT_OWNER.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PRODUCT_OWNER.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.PRODUCT_OWNER.Location = new System.Drawing.Point(175, 363);
+            this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
+            this.PRODUCT_OWNER.Size = new System.Drawing.Size(0, 20);
+            this.PRODUCT_OWNER.TabIndex = 80;
             // 
             // label21
             // 
@@ -753,40 +504,34 @@ namespace PROJECT
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.Third_dlog);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(712, 297);
+            this.groupBox1.Location = new System.Drawing.Point(712, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(336, 197);
+            this.groupBox1.Size = new System.Drawing.Size(336, 199);
             this.groupBox1.TabIndex = 89;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "OTHER DATALOGS";
             // 
-            // EDIT
+            // ACTION
             // 
-            this.EDIT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.EDIT.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.EDIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.EDIT.Location = new System.Drawing.Point(138, 440);
-            this.EDIT.Name = "EDIT";
-            this.EDIT.Size = new System.Drawing.Size(100, 54);
-            this.EDIT.TabIndex = 90;
-            this.EDIT.Text = "EDIT";
-            this.EDIT.UseVisualStyleBackColor = false;
-            this.EDIT.Visible = false;
-            this.EDIT.Click += new System.EventHandler(this.EDIT_DETAILS);
+            this.ACTION.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.ACTION.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ACTION.Location = new System.Drawing.Point(366, 366);
+            this.ACTION.Multiline = true;
+            this.ACTION.Name = "ACTION";
+            this.ACTION.ReadOnly = true;
+            this.ACTION.Size = new System.Drawing.Size(682, 128);
+            this.ACTION.TabIndex = 91;
             // 
-            // OUT_SOURCE
+            // label12
             // 
-            this.OUT_SOURCE.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.OUT_SOURCE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.OUT_SOURCE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OUT_SOURCE.Location = new System.Drawing.Point(260, 380);
-            this.OUT_SOURCE.Name = "OUT_SOURCE";
-            this.OUT_SOURCE.Size = new System.Drawing.Size(100, 54);
-            this.OUT_SOURCE.TabIndex = 91;
-            this.OUT_SOURCE.Text = "OUTSOURCE";
-            this.OUT_SOURCE.UseVisualStyleBackColor = false;
-            this.OUT_SOURCE.Visible = false;
-            this.OUT_SOURCE.Click += new System.EventHandler(this.OUT_SOURCE_Click);
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.label12.Location = new System.Drawing.Point(363, 350);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 13);
+            this.label12.TabIndex = 90;
+            this.label12.Text = "ACTION";
             // 
             // BOARD_DETAILS
             // 
@@ -794,27 +539,25 @@ namespace PROJECT
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1060, 506);
-            this.Controls.Add(this.OUT_SOURCE);
-            this.Controls.Add(this.EDIT);
+            this.Controls.Add(this.ACTION);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.AGING);
+            this.Controls.Add(this.PRODUCT_OWNER);
             this.Controls.Add(this.label22);
-            this.Controls.Add(this.REPAIR_BTN);
-            this.Controls.Add(this.AREA);
+            this.Controls.Add(this.BIN_NUMBER);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.Failure_mode);
-            this.Controls.Add(this.Failed_during);
-            this.Controls.Add(this.Revision);
-            this.Controls.Add(this.Status);
-            this.Controls.Add(this.Test_option);
-            this.Controls.Add(this.Test_program);
-            this.Controls.Add(this.Board);
-            this.Controls.Add(this.Part_number);
-            this.Controls.Add(this.Serial_number);
+            this.Controls.Add(this.HANDLER_ID);
+            this.Controls.Add(this.TESTER_ID);
+            this.Controls.Add(this.REVISION);
+            this.Controls.Add(this.TEST_NUMBER);
+            this.Controls.Add(this.BOARD_ID);
+            this.Controls.Add(this.TEST_STEP);
+            this.Controls.Add(this.VSPEC);
+            this.Controls.Add(this.LOT_ID);
+            this.Controls.Add(this.PART_NAME);
             this.Controls.Add(this.Exit_btn);
             this.Controls.Add(this.First_box);
-            this.Controls.Add(this.Second_box);
-            this.Controls.Add(this.Remarks);
+            this.Controls.Add(this.PROBLEM);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
@@ -835,8 +578,6 @@ namespace PROJECT
             this.Load += new System.EventHandler(this.Load_Boards);
             this.First_box.ResumeLayout(false);
             this.First_box.PerformLayout();
-            this.Second_box.ResumeLayout(false);
-            this.Second_box.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -857,48 +598,26 @@ namespace PROJECT
         private System.Windows.Forms.GroupBox First_box;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button Add_first_verif;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel First_verif_link;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.GroupBox Second_box;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button Add_second_verif;
-        private System.Windows.Forms.LinkLabel Second_verif_link;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label Second_verif_text;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox Remarks;
+        private System.Windows.Forms.TextBox PROBLEM;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button Exit_btn;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label First_endorser;
-        private System.Windows.Forms.Label First_site;
-        private System.Windows.Forms.Label First_tester;
-        private System.Windows.Forms.Label First_slot;
-        private System.Windows.Forms.Label Second_endorser;
-        private System.Windows.Forms.Label Second_site;
-        private System.Windows.Forms.Label Second_tester;
-        private System.Windows.Forms.Label Second_slot;
-        private System.Windows.Forms.Label Failure_mode;
-        private System.Windows.Forms.Label Failed_during;
-        private System.Windows.Forms.Label Revision;
-        private System.Windows.Forms.Label Status;
-        private System.Windows.Forms.Label Test_option;
-        private System.Windows.Forms.Label Test_program;
-        private System.Windows.Forms.Label Board;
-        private System.Windows.Forms.Label Part_number;
-        private System.Windows.Forms.Label Serial_number;
-        private System.Windows.Forms.Label First_date;
-        private System.Windows.Forms.Label Second_date;
+        private System.Windows.Forms.Label USER;
+        private System.Windows.Forms.Label HANDLER_ID;
+        private System.Windows.Forms.Label TESTER_ID;
+        private System.Windows.Forms.Label REVISION;
+        private System.Windows.Forms.Label TEST_NUMBER;
+        private System.Windows.Forms.Label BOARD_ID;
+        private System.Windows.Forms.Label TEST_STEP;
+        private System.Windows.Forms.Label VSPEC;
+        private System.Windows.Forms.Label LOT_ID;
+        private System.Windows.Forms.Label PART_NAME;
+        private System.Windows.Forms.Label DATE_ENCOUNTERED;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label AREA;
-        private System.Windows.Forms.Button REPAIR_BTN;
+        private System.Windows.Forms.Label BIN_NUMBER;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label AGING;
-        private System.Windows.Forms.Label FirstTime;
-        private System.Windows.Forms.Label SecondTime;
+        private System.Windows.Forms.Label PRODUCT_OWNER;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
@@ -906,7 +625,7 @@ namespace PROJECT
         private System.Windows.Forms.LinkLabel Fourth_dlog;
         private System.Windows.Forms.LinkLabel Fifth_dlog;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button EDIT;
-        private System.Windows.Forms.Button OUT_SOURCE;
+        private System.Windows.Forms.TextBox ACTION;
+        private System.Windows.Forms.Label label12;
     }
 }
