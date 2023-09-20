@@ -134,7 +134,6 @@ namespace PROJECT
                     PART_NAME.Visible = true;
                     PART_NAME.Clear();
                     LOT_ID.Clear();
-                    LoadTesterPlatforms();
                     PART_NAME.Focus();
                     break;
                 case DialogResult.No:
@@ -145,21 +144,16 @@ namespace PROJECT
         {
             switch (Pick)
             {
-                case 1:  // FOR CHECKING THE STATUS
+                case 1:  // FOR CHECKING THE ENDORSEMENT NUMBER
                     command = new MySqlCommand("SELECT `ENDORSEMENT_NUMBER` FROM `hit`.`details`" +
                         " WHERE (`PART_NAME` = '" + PART_NAME.Text + "' and `LOT_ID` = '" + LOT_ID.Text + "') " +
                         "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 1");
                     break;
-                case 2:  //FOR THE TESTER PLATFORMS
-                    command = new MySqlCommand("SELECT * FROM `hit`.`tester_platforms`", Connection.connect);
+                case 2:  //NOT USED
                     break;
-                case 3:  //LOAD TESTER PLATFORMS
-                    tester_platform = string.Format("SELECT * FROM `hit`.`{0}`", Test_system.Text.ToLower());
-                    command = new MySqlCommand(tester_platform, Connection.connect);
+                case 3:  //NOT USED
                     break;
-                case 4:  // OPEN DATALOG
-                    command = new MySqlCommand(string.Format("SELECT `{0}` FROM  `hit`.`details`" +
-                        "WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_Number + "')", DATALOG));
+                case 4:  //NOT USED
                     break;
                 case 5: // INSERT DATALOG
                     command = new MySqlCommand(string.Format("UPDATE `hit`.`details` SET `{0}` = @{1},`{2}` = '{3}'" +
@@ -450,72 +444,40 @@ namespace PROJECT
             }
         }
 
-        public void DatalogOpen (string link, string data_server)
+        public void DatalogOpen(string link)
         {
-            if (link.Contains("\\"))
+            try
             {
-                try
-                {
-                    System.Diagnostics.Process.Start(link);
-                }
-                catch (Exception mess)
-                {
-                    MessageBox.Show("ERROR " + mess.ToString());
-                }
+                System.Diagnostics.Process.Start(link);
             }
-            else
+            catch (Exception mess)
             {
-                DATALOG = data_server;
-                Commands(7);
-                command.Connection = Connection.connect;
-                try
-                {
-                    if (Connection.OpenConnection())
-                    {
-                        MySqlDataReader read_data = command.ExecuteReader();
-                        read_data.Read();
-
-                        Data = (byte[])read_data[data_server];
-                        Connection.CloseConnection();
-                    }
-                    string DatalogFile = string.Format("C:\\Users\\{0}\\Desktop\\{1}", Environment.UserName, link);
-                    File.WriteAllBytes(DatalogFile, Data);
-                    System.Diagnostics.Process.Start(DatalogFile);
-                }
-                catch (Exception m)
-                {
-                    MessageBox.Show(m.ToString());
-                }
+                MessageBox.Show("ERROR " + mess.ToString());
             }
         }
 
-        private void first_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void First_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DatalogOpen(first_verif_link.Text, "FIRST DATALOG");
+            DatalogOpen(first_verif_link.Text);
         }
         private void ThirdDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DatalogOpen(THIRD_VERIF.Text, "THIRD DATALOG");
+            DatalogOpen(THIRD_VERIF.Text);
         }
 
         private void FourthDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DatalogOpen(FOURTH_VERIF.Text, "FOURTH DATALOG");
+            DatalogOpen(FOURTH_VERIF.Text);
         }
 
         private void FifthDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DatalogOpen(FIFTH_VERIF.Text, "FIFTH DATALOG");
+            DatalogOpen(FIFTH_VERIF.Text);
         }
 
         private void ADD_Load(object sender, EventArgs e)
         {
-            LoadTesterPlatforms();
-        }
-
-        private void LoadTesterPlatforms()
-        {
-            Commands(2);
+            USERNAME.Text = UserName;
         }
     }
 }

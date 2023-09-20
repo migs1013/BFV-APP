@@ -206,7 +206,7 @@
             this.first_verif_link.Name = "first_verif_link";
             this.first_verif_link.Size = new System.Drawing.Size(0, 13);
             this.first_verif_link.TabIndex = 17;
-            this.first_verif_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.first_verif_link_LinkClicked);
+            this.first_verif_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.First_verif_link_LinkClicked);
             // 
             // label8
             // 

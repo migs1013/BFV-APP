@@ -102,10 +102,9 @@ namespace PROJECT
                 BOARD_DETAILS details = new BOARD_DETAILS(endorsement_number);
                 details.ShowDialog();
             }
-            catch (Exception Sample)
+            catch (Exception ErrorMessage)
             {
-                MessageBox.Show(Sample.ToString());
-                return;
+                MessageBox.Show(ErrorMessage.ToString());
             }
         }
         private void Commands(int cmd)
@@ -151,27 +150,33 @@ namespace PROJECT
                         "(`BOARD_ID` LIKE '%{0}%') OR (`HANDLER_ID` LIKE '%{0}%') OR (`BIN_NUMBER` LIKE '%{0}%')" +
                         "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", search_text.Text), Connection.connect);
                     break;
-                case 9:
-                    command = new MySqlCommand(string.Format("select * from `hit`.`{0}`",TESTER_PLATFORM_FILTER.Text.ToLower()), Connection.connect);
+                case 9: // LOAD TESTER
+                    command = new MySqlCommand(string.Format("select * from `hit`.`hostnames` where `TESTER_PLATFORM` = '{0}'",
+                        TESTER_PLATFORM_FILTER.Text.ToLower()), Connection.connect);
                     break;
-                case 10:
+                case 10: // LOAD PRODUCT OWNER DEVICES
                     command = new MySqlCommand(string.Format("select * from `hit`.`{0}`", PO.ToLower()), Connection.connect);
                     break;
             }
         }
         private DataTable Table(int COMMAND)
         {
-            Commands(COMMAND);
-            DataTable new_data = new DataTable();
-            if (Connection.OpenConnection())
+            try
             {
+                Commands(COMMAND);
+                DataTable new_data = new DataTable();
+                Connection.OpenConnection();
                 MySqlDataAdapter read = new MySqlDataAdapter(command);
                 read.Fill(new_data);
                 Connection.CloseConnection();
                 return new_data;
             }
-            else 
-                return new_data;
+            catch (Exception Error)
+            {
+                MessageBox.Show(Error.ToString());
+                Connection.CloseConnection();
+                return null;
+            }
         }
         private void Load_data(int commandss)
         {
@@ -375,7 +380,7 @@ namespace PROJECT
                 MySqlDataReader read_data = command.ExecuteReader();
                 while (read_data.Read())
                 {
-                    TESTER_ID_FILTER.Items.Add(read_data.GetString(TESTER_PLATFORM_FILTER.Text.ToLower()));
+                    TESTER_ID_FILTER.Items.Add(read_data.GetString("TESTER"));
                 }
                 Connection.CloseConnection();
             }
