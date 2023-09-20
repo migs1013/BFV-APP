@@ -60,8 +60,7 @@ namespace PROJECT
             CurrentList1.Items.Clear();
             CurrentList2.Items.Clear();
             if (Tester_platforms.SelectedIndex == 0) return;
-            CurrentList1_text.Text = "TESTER"; CurrentList2_text.Text = "HOSTNAME";
-            NewList1.Text = "TESTER"; NewList2.Text = "HOSTNAME";
+            CurrentList1_text.Text = NewList1.Text = "TESTER"; CurrentList2_text.Text = NewList2.Text = "HOSTNAME";
             PRODUCT_OWNER_FILTER.SelectedIndex = 0;
             Tester_platform = Tester_platforms.Text;
             LoadDataToCurrentList("TESTER", 1);
@@ -266,6 +265,9 @@ namespace PROJECT
                         return;
                     }
                     Save_data(2);
+                    AddOrDeleteList1.Items.Clear();
+                    AddOrDeleteList2.Items.Clear();
+                    LoadDataToCurrentList("TESTER", 1);
                 }
             }
             else if (Mode.SelectedIndex == 1)    // FOR REMOVING DATA FROM DATABASE

@@ -80,7 +80,7 @@ namespace PROJECT
             this.ADD_TEXT.AutoSize = true;
             this.ADD_TEXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ADD_TEXT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.ADD_TEXT.Location = new System.Drawing.Point(12, 118);
+            this.ADD_TEXT.Location = new System.Drawing.Point(9, 115);
             this.ADD_TEXT.Name = "ADD_TEXT";
             this.ADD_TEXT.Size = new System.Drawing.Size(0, 16);
             this.ADD_TEXT.TabIndex = 3;
