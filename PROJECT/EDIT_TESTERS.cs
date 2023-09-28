@@ -32,6 +32,7 @@ namespace PROJECT
                 while (ReadData.Read())
                 {
                     CurrentList1.Items.Add(ReadData.GetString(List1));
+                    CurrentList2.Items.Add(ReadData.GetString("HOSTNAME"));
                 }
                 Connection.CloseConnection();
             }
@@ -62,7 +63,7 @@ namespace PROJECT
             if (Tester_platforms.SelectedIndex == 0) return;
             CurrentList1_text.Text = NewList1.Text = "TESTER"; CurrentList2_text.Text = NewList2.Text = "HOSTNAME";
             PRODUCT_OWNER_FILTER.SelectedIndex = 0;
-            Tester_platform = Tester_platforms.Text;
+            Tester_platform = Tester_platforms.Text;            
             LoadDataToCurrentList("TESTER", 1);
         }
         private void EDIT_TESTERS_Load(object sender, EventArgs e)
@@ -267,6 +268,8 @@ namespace PROJECT
                     Save_data(2);
                     AddOrDeleteList1.Items.Clear();
                     AddOrDeleteList2.Items.Clear();
+                    CurrentList1.Items.Clear();
+                    CurrentList2.Items.Clear();
                     LoadDataToCurrentList("TESTER", 1);
                 }
             }
@@ -346,7 +349,7 @@ namespace PROJECT
                     Command = new MySqlCommand("SELECT * FROM `hit`.`tester_platforms`", Connection.connect);
                     break;
                 case 1:  //LOAD TESTERS
-                    Command = new MySqlCommand(string.Format("SELECT `TESTER` FROM `hit`.`hostnames` where `TESTER_PLATFORM` = '{0}'",
+                    Command = new MySqlCommand(string.Format("SELECT `TESTER`,`HOSTNAME` FROM `hit`.`hostnames` where `TESTER_PLATFORM` = '{0}'",
                     Tester_platform.ToLower()), Connection.connect);
                     break;
                 case 2:  //INSERT NEW TESTER AND HOSTNAME

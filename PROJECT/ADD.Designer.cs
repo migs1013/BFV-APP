@@ -11,6 +11,8 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// 
+        /*
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -19,7 +21,7 @@
             }
             base.Dispose(disposing);
         }
-
+        */
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -52,12 +54,12 @@
             this.Action = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.FIFTH_VERIF = new System.Windows.Forms.LinkLabel();
-            this.ADD3 = new System.Windows.Forms.Label();
-            this.ADD5 = new System.Windows.Forms.Label();
-            this.FOURTH_VERIF = new System.Windows.Forms.LinkLabel();
+            this.FOURTH_DLOG = new System.Windows.Forms.LinkLabel();
+            this.ADD2 = new System.Windows.Forms.Label();
             this.ADD4 = new System.Windows.Forms.Label();
-            this.THIRD_VERIF = new System.Windows.Forms.LinkLabel();
+            this.THIRD_DLOG = new System.Windows.Forms.LinkLabel();
+            this.ADD3 = new System.Windows.Forms.Label();
+            this.SECOND_DLOG = new System.Windows.Forms.LinkLabel();
             this.HANDLER_ID = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.Failure_mode = new System.Windows.Forms.ComboBox();
@@ -112,10 +114,10 @@
             // 
             this.PART_NAME.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.PART_NAME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PART_NAME.Location = new System.Drawing.Point(146, 9);
+            this.PART_NAME.Location = new System.Drawing.Point(135, 9);
             this.PART_NAME.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PART_NAME.Name = "PART_NAME";
-            this.PART_NAME.Size = new System.Drawing.Size(174, 20);
+            this.PART_NAME.Size = new System.Drawing.Size(185, 20);
             this.PART_NAME.TabIndex = 1;
             // 
             // label_serial
@@ -144,10 +146,10 @@
             // 
             this.LOT_ID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.LOT_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LOT_ID.Location = new System.Drawing.Point(146, 49);
+            this.LOT_ID.Location = new System.Drawing.Point(135, 49);
             this.LOT_ID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LOT_ID.Name = "LOT_ID";
-            this.LOT_ID.Size = new System.Drawing.Size(174, 20);
+            this.LOT_ID.Size = new System.Drawing.Size(185, 20);
             this.LOT_ID.TabIndex = 2;
             // 
             // label3
@@ -198,13 +200,14 @@
             // 
             // first_verif_link
             // 
+            this.first_verif_link.AutoEllipsis = true;
             this.first_verif_link.AutoSize = true;
             this.first_verif_link.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.first_verif_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.first_verif_link.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.first_verif_link.LinkColor = System.Drawing.Color.Black;
-            this.first_verif_link.Location = new System.Drawing.Point(21, 74);
+            this.first_verif_link.Location = new System.Drawing.Point(18, 69);
             this.first_verif_link.Name = "first_verif_link";
-            this.first_verif_link.Size = new System.Drawing.Size(0, 13);
+            this.first_verif_link.Size = new System.Drawing.Size(0, 19);
             this.first_verif_link.TabIndex = 17;
             this.first_verif_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.First_verif_link_LinkClicked);
             // 
@@ -264,13 +267,13 @@
             this.First_box.Controls.Add(this.first_verif_link);
             this.First_box.Controls.Add(this.label25);
             this.First_box.Controls.Add(this.label10);
-            this.First_box.Controls.Add(this.FIFTH_VERIF);
+            this.First_box.Controls.Add(this.FOURTH_DLOG);
             this.First_box.Controls.Add(this.Problem);
-            this.First_box.Controls.Add(this.ADD3);
-            this.First_box.Controls.Add(this.ADD5);
-            this.First_box.Controls.Add(this.FOURTH_VERIF);
+            this.First_box.Controls.Add(this.ADD2);
             this.First_box.Controls.Add(this.ADD4);
-            this.First_box.Controls.Add(this.THIRD_VERIF);
+            this.First_box.Controls.Add(this.THIRD_DLOG);
+            this.First_box.Controls.Add(this.ADD3);
+            this.First_box.Controls.Add(this.SECOND_DLOG);
             this.First_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.First_box.Location = new System.Drawing.Point(326, 9);
             this.First_box.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -342,55 +345,30 @@
             this.label25.TabIndex = 70;
             this.label25.Text = "OTHER DATALOGS:";
             // 
-            // FIFTH_VERIF
+            // FOURTH_DLOG
             // 
-            this.FIFTH_VERIF.AutoSize = true;
-            this.FIFTH_VERIF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.FIFTH_VERIF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.FIFTH_VERIF.LinkColor = System.Drawing.Color.Yellow;
-            this.FIFTH_VERIF.Location = new System.Drawing.Point(304, 216);
-            this.FIFTH_VERIF.Name = "FIFTH_VERIF";
-            this.FIFTH_VERIF.Size = new System.Drawing.Size(0, 19);
-            this.FIFTH_VERIF.TabIndex = 69;
-            this.FIFTH_VERIF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FifthDlog);
+            this.FOURTH_DLOG.AutoSize = true;
+            this.FOURTH_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FOURTH_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.FOURTH_DLOG.LinkColor = System.Drawing.Color.Black;
+            this.FOURTH_DLOG.Location = new System.Drawing.Point(295, 214);
+            this.FOURTH_DLOG.Name = "FOURTH_DLOG";
+            this.FOURTH_DLOG.Size = new System.Drawing.Size(0, 19);
+            this.FOURTH_DLOG.TabIndex = 69;
+            this.FOURTH_DLOG.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FourthDlog);
             // 
-            // ADD3
+            // ADD2
             // 
-            this.ADD3.AutoSize = true;
-            this.ADD3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ADD3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.ADD3.ForeColor = System.Drawing.Color.Black;
-            this.ADD3.Location = new System.Drawing.Point(293, 34);
-            this.ADD3.Name = "ADD3";
-            this.ADD3.Size = new System.Drawing.Size(156, 19);
-            this.ADD3.TabIndex = 64;
-            this.ADD3.Text = "CLICK HERE TO ADD";
-            this.ADD3.Click += new System.EventHandler(this.ThirdVerifClick);
-            // 
-            // ADD5
-            // 
-            this.ADD5.AutoSize = true;
-            this.ADD5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ADD5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.ADD5.ForeColor = System.Drawing.Color.Black;
-            this.ADD5.Location = new System.Drawing.Point(293, 186);
-            this.ADD5.Name = "ADD5";
-            this.ADD5.Size = new System.Drawing.Size(156, 19);
-            this.ADD5.TabIndex = 66;
-            this.ADD5.Text = "CLICK HERE TO ADD";
-            this.ADD5.Click += new System.EventHandler(this.FifthVerif);
-            // 
-            // FOURTH_VERIF
-            // 
-            this.FOURTH_VERIF.AutoSize = true;
-            this.FOURTH_VERIF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.FOURTH_VERIF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.FOURTH_VERIF.LinkColor = System.Drawing.Color.Yellow;
-            this.FOURTH_VERIF.Location = new System.Drawing.Point(300, 151);
-            this.FOURTH_VERIF.Name = "FOURTH_VERIF";
-            this.FOURTH_VERIF.Size = new System.Drawing.Size(0, 19);
-            this.FOURTH_VERIF.TabIndex = 68;
-            this.FOURTH_VERIF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FourthDlog);
+            this.ADD2.AutoSize = true;
+            this.ADD2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.ADD2.ForeColor = System.Drawing.Color.Black;
+            this.ADD2.Location = new System.Drawing.Point(293, 34);
+            this.ADD2.Name = "ADD2";
+            this.ADD2.Size = new System.Drawing.Size(156, 19);
+            this.ADD2.TabIndex = 64;
+            this.ADD2.Text = "CLICK HERE TO ADD";
+            this.ADD2.Click += new System.EventHandler(this.ADD_SECOND_DLOG);
             // 
             // ADD4
             // 
@@ -398,24 +376,49 @@
             this.ADD4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD4.ForeColor = System.Drawing.Color.Black;
-            this.ADD4.Location = new System.Drawing.Point(293, 106);
+            this.ADD4.Location = new System.Drawing.Point(293, 186);
             this.ADD4.Name = "ADD4";
             this.ADD4.Size = new System.Drawing.Size(156, 19);
-            this.ADD4.TabIndex = 65;
+            this.ADD4.TabIndex = 66;
             this.ADD4.Text = "CLICK HERE TO ADD";
-            this.ADD4.Click += new System.EventHandler(this.FourthVerif);
+            this.ADD4.Click += new System.EventHandler(this.ADD_FOURTH_DLOG);
             // 
-            // THIRD_VERIF
+            // THIRD_DLOG
             // 
-            this.THIRD_VERIF.AutoSize = true;
-            this.THIRD_VERIF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.THIRD_VERIF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.THIRD_VERIF.LinkColor = System.Drawing.Color.Yellow;
-            this.THIRD_VERIF.Location = new System.Drawing.Point(302, 74);
-            this.THIRD_VERIF.Name = "THIRD_VERIF";
-            this.THIRD_VERIF.Size = new System.Drawing.Size(0, 19);
-            this.THIRD_VERIF.TabIndex = 67;
-            this.THIRD_VERIF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ThirdDlog);
+            this.THIRD_DLOG.AutoSize = true;
+            this.THIRD_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.THIRD_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.THIRD_DLOG.LinkColor = System.Drawing.Color.Black;
+            this.THIRD_DLOG.Location = new System.Drawing.Point(295, 148);
+            this.THIRD_DLOG.Name = "THIRD_DLOG";
+            this.THIRD_DLOG.Size = new System.Drawing.Size(0, 19);
+            this.THIRD_DLOG.TabIndex = 68;
+            this.THIRD_DLOG.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ThirdDlog);
+            // 
+            // ADD3
+            // 
+            this.ADD3.AutoSize = true;
+            this.ADD3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.ADD3.ForeColor = System.Drawing.Color.Black;
+            this.ADD3.Location = new System.Drawing.Point(293, 106);
+            this.ADD3.Name = "ADD3";
+            this.ADD3.Size = new System.Drawing.Size(156, 19);
+            this.ADD3.TabIndex = 65;
+            this.ADD3.Text = "CLICK HERE TO ADD";
+            this.ADD3.Click += new System.EventHandler(this.ADD_THIRD_DLOG);
+            // 
+            // SECOND_DLOG
+            // 
+            this.SECOND_DLOG.AutoSize = true;
+            this.SECOND_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SECOND_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.SECOND_DLOG.LinkColor = System.Drawing.Color.Black;
+            this.SECOND_DLOG.Location = new System.Drawing.Point(295, 69);
+            this.SECOND_DLOG.Name = "SECOND_DLOG";
+            this.SECOND_DLOG.Size = new System.Drawing.Size(0, 19);
+            this.SECOND_DLOG.TabIndex = 67;
+            this.SECOND_DLOG.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SecondDlog);
             // 
             // HANDLER_ID
             // 
@@ -425,10 +428,10 @@
             this.HANDLER_ID.Items.AddRange(new object[] {
             "01MT99LT",
             "411RASCO"});
-            this.HANDLER_ID.Location = new System.Drawing.Point(146, 232);
+            this.HANDLER_ID.Location = new System.Drawing.Point(135, 232);
             this.HANDLER_ID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HANDLER_ID.Name = "HANDLER_ID";
-            this.HANDLER_ID.Size = new System.Drawing.Size(174, 21);
+            this.HANDLER_ID.Size = new System.Drawing.Size(185, 21);
             this.HANDLER_ID.Sorted = true;
             this.HANDLER_ID.TabIndex = 7;
             // 
@@ -461,10 +464,10 @@
             "PHYSICAL DAMAGE",
             "POST CALIBRATION",
             "VERIFY"});
-            this.Failure_mode.Location = new System.Drawing.Point(146, 272);
+            this.Failure_mode.Location = new System.Drawing.Point(135, 272);
             this.Failure_mode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Failure_mode.Name = "Failure_mode";
-            this.Failure_mode.Size = new System.Drawing.Size(174, 21);
+            this.Failure_mode.Size = new System.Drawing.Size(185, 21);
             this.Failure_mode.Sorted = true;
             this.Failure_mode.TabIndex = 8;
             // 
@@ -483,10 +486,10 @@
             // 
             this.Failure_mode_others.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.Failure_mode_others.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Failure_mode_others.Location = new System.Drawing.Point(146, 304);
+            this.Failure_mode_others.Location = new System.Drawing.Point(135, 304);
             this.Failure_mode_others.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Failure_mode_others.Name = "Failure_mode_others";
-            this.Failure_mode_others.Size = new System.Drawing.Size(174, 20);
+            this.Failure_mode_others.Size = new System.Drawing.Size(185, 20);
             this.Failure_mode_others.TabIndex = 49;
             // 
             // label18
@@ -507,10 +510,10 @@
             this.BOARD_ID.FormattingEnabled = true;
             this.BOARD_ID.Items.AddRange(new object[] {
             "P55330008"});
-            this.BOARD_ID.Location = new System.Drawing.Point(146, 341);
+            this.BOARD_ID.Location = new System.Drawing.Point(135, 341);
             this.BOARD_ID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BOARD_ID.Name = "BOARD_ID";
-            this.BOARD_ID.Size = new System.Drawing.Size(174, 21);
+            this.BOARD_ID.Size = new System.Drawing.Size(185, 21);
             this.BOARD_ID.TabIndex = 61;
             // 
             // label19
@@ -528,10 +531,10 @@
             // 
             this.BIN_NUMBER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.BIN_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BIN_NUMBER.Location = new System.Drawing.Point(146, 380);
+            this.BIN_NUMBER.Location = new System.Drawing.Point(135, 380);
             this.BIN_NUMBER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BIN_NUMBER.Name = "BIN_NUMBER";
-            this.BIN_NUMBER.Size = new System.Drawing.Size(174, 20);
+            this.BIN_NUMBER.Size = new System.Drawing.Size(185, 20);
             this.BIN_NUMBER.TabIndex = 6;
             // 
             // label5
@@ -560,10 +563,10 @@
             // 
             this.TEST_NUMBER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TEST_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TEST_NUMBER.Location = new System.Drawing.Point(146, 417);
+            this.TEST_NUMBER.Location = new System.Drawing.Point(135, 417);
             this.TEST_NUMBER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TEST_NUMBER.Name = "TEST_NUMBER";
-            this.TEST_NUMBER.Size = new System.Drawing.Size(174, 20);
+            this.TEST_NUMBER.Size = new System.Drawing.Size(185, 20);
             this.TEST_NUMBER.TabIndex = 74;
             // 
             // label7
@@ -581,10 +584,10 @@
             // 
             this.TEST_NAME.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TEST_NAME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TEST_NAME.Location = new System.Drawing.Point(148, 458);
+            this.TEST_NAME.Location = new System.Drawing.Point(135, 458);
             this.TEST_NAME.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TEST_NAME.Name = "TEST_NAME";
-            this.TEST_NAME.Size = new System.Drawing.Size(174, 20);
+            this.TEST_NAME.Size = new System.Drawing.Size(187, 20);
             this.TEST_NAME.TabIndex = 76;
             // 
             // PRODUCT_OWNER
@@ -592,7 +595,7 @@
             this.PRODUCT_OWNER.AutoSize = true;
             this.PRODUCT_OWNER.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.PRODUCT_OWNER.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.PRODUCT_OWNER.Location = new System.Drawing.Point(178, 494);
+            this.PRODUCT_OWNER.Location = new System.Drawing.Point(163, 494);
             this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
             this.PRODUCT_OWNER.Size = new System.Drawing.Size(0, 19);
             this.PRODUCT_OWNER.TabIndex = 78;
@@ -601,40 +604,40 @@
             // 
             this.TEST_STEP.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TEST_STEP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TEST_STEP.Location = new System.Drawing.Point(146, 124);
+            this.TEST_STEP.Location = new System.Drawing.Point(135, 124);
             this.TEST_STEP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TEST_STEP.Name = "TEST_STEP";
-            this.TEST_STEP.Size = new System.Drawing.Size(174, 20);
+            this.TEST_STEP.Size = new System.Drawing.Size(185, 20);
             this.TEST_STEP.TabIndex = 79;
             // 
             // VSPEC
             // 
             this.VSPEC.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.VSPEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VSPEC.Location = new System.Drawing.Point(146, 86);
+            this.VSPEC.Location = new System.Drawing.Point(135, 86);
             this.VSPEC.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.VSPEC.Name = "VSPEC";
-            this.VSPEC.Size = new System.Drawing.Size(174, 20);
+            this.VSPEC.Size = new System.Drawing.Size(185, 20);
             this.VSPEC.TabIndex = 80;
             // 
             // TESTER_ID
             // 
             this.TESTER_ID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TESTER_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TESTER_ID.Location = new System.Drawing.Point(146, 196);
+            this.TESTER_ID.Location = new System.Drawing.Point(135, 196);
             this.TESTER_ID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TESTER_ID.Name = "TESTER_ID";
-            this.TESTER_ID.Size = new System.Drawing.Size(174, 20);
+            this.TESTER_ID.Size = new System.Drawing.Size(185, 20);
             this.TESTER_ID.TabIndex = 81;
             // 
             // Test_system
             // 
             this.Test_system.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.Test_system.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Test_system.Location = new System.Drawing.Point(146, 159);
+            this.Test_system.Location = new System.Drawing.Point(135, 159);
             this.Test_system.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Test_system.Name = "Test_system";
-            this.Test_system.Size = new System.Drawing.Size(174, 20);
+            this.Test_system.Size = new System.Drawing.Size(185, 20);
             this.Test_system.TabIndex = 82;
             // 
             // ADD
@@ -719,12 +722,12 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label FirstDate;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label ADD2;
         private System.Windows.Forms.Label ADD3;
         private System.Windows.Forms.Label ADD4;
-        private System.Windows.Forms.Label ADD5;
-        private System.Windows.Forms.LinkLabel THIRD_VERIF;
-        private System.Windows.Forms.LinkLabel FOURTH_VERIF;
-        private System.Windows.Forms.LinkLabel FIFTH_VERIF;
+        private System.Windows.Forms.LinkLabel SECOND_DLOG;
+        private System.Windows.Forms.LinkLabel THIRD_DLOG;
+        private System.Windows.Forms.LinkLabel FOURTH_DLOG;
         private System.Windows.Forms.Label USERNAME;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox Action;

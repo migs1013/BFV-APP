@@ -12,8 +12,8 @@ namespace PROJECT
         MySqlCommand command;
         long FileSize;
         byte[] Data;
-        public string tester_platform, FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck;
-        public int Endorsement_Number;
+        public string tester_platform, FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck, hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "";
+        public int Endorsement_Number,FileNameLength;
         public string UserName { get; set; }
         public int Load_number { get; set; }
         public DateTime WriteTime = new DateTime();
@@ -51,28 +51,28 @@ namespace PROJECT
                 DATALOG = "FIRST_DATALOG";
                 UpdateData = "FIRST_DATA";
                 FileNameNumber = "FILENAME_1";
-                Dataloglink = first_verif_link.Text;
+                Dataloglink = dlog1;
             }
             else if (DatalogNumber == 3)
             {
-                DATALOG = "THIRD DATALOG";
-                UpdateData = "THIRD_DATA";
-                FileNameNumber = "FILENAME 3";
-                Dataloglink = THIRD_VERIF.Text;
+                DATALOG = "SECOND_DATALOG";
+                UpdateData = "SECOND_DATA";
+                FileNameNumber = "FILENAME_2";
+                Dataloglink = dlog2;
             }
             else if (DatalogNumber == 4)
             {
-                DATALOG = "FOURTH DATALOG";
-                UpdateData = "FOURTH_DATA";
-                FileNameNumber = "FILENAME 4";
-                Dataloglink = FOURTH_VERIF.Text;
+                DATALOG = "THIRD_DATALOG";
+                UpdateData = "THIRD_DATA";
+                FileNameNumber = "FILENAME_3";
+                Dataloglink = dlog3;
             }
             else
             {
-                DATALOG = "FIFTH DATALOG";
-                UpdateData = "FIFTH_DATA";
-                FileNameNumber = "FILENAME 5";
-                Dataloglink = FIFTH_VERIF.Text;
+                DATALOG = "FOURTH_DATALOG";
+                UpdateData = "FOURTH_DATA";
+                FileNameNumber = "FILENAME_4";
+                Dataloglink = dlog4;
             }
         }
 
@@ -112,19 +112,19 @@ namespace PROJECT
                         Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT_NUMBER"].ToString());
                     }
                     Connection.CloseConnection();
-                    if (first_verif_link.Text.Contains("\\"))
+                    if (dlog1.Contains("\\"))
                     {
                         DatalogNumber(1); SendData(5);
                     }
-                    if (THIRD_VERIF.Text.Contains("\\"))
+                    if (dlog2.Contains("\\"))
                     {
                         DatalogNumber(3); SendData(5);
                     }
-                    if (FOURTH_VERIF.Text.Contains("\\"))
+                    if (dlog3.Contains("\\"))
                     {
                         DatalogNumber(4); SendData(5);
                     }
-                    if (FIFTH_VERIF.Text.Contains("\\"))
+                    if (dlog4.Contains("\\"))
                     {
                         DatalogNumber(5); SendData(5);
                     }
@@ -149,7 +149,8 @@ namespace PROJECT
                         " WHERE (`PART_NAME` = '" + PART_NAME.Text + "' and `LOT_ID` = '" + LOT_ID.Text + "') " +
                         "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 1");
                     break;
-                case 2:  //NOT USED
+                case 2:
+                    command = new MySqlCommand(string.Format("SELECT `TESTER`,`TESTER_PLATFORM` FROM `hit`.`hostnames` where `HOSTNAME` = '{0}'",hostname));
                     break;
                 case 3:  //NOT USED
                     break;
@@ -245,24 +246,42 @@ namespace PROJECT
                     return;
                 }
                 DlogName.Visible = true;
-                DlogName.Text = openFileDialog1.FileName;
+                first_verif_link.Text = Filename(openFileDialog1.FileName).Remove(20, Filename(openFileDialog1.FileName).Length - 20) + ".....";
+                dlog1 = openFileDialog1.FileName;
                 WriteTime = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
                 Date.Text = WriteTime.ToString("yyyy-MM-dd");
             }
         }
         private void Add_first_verif_Click(object sender, EventArgs e)
         {
-            InsertDatalog(first_verif_link, FirstDate);
+            try
+            {
+                InsertDatalog(first_verif_link, FirstDate);
+                
+                WordCheck = Filename(dlog1).Replace("_", " ");
 
-            WordCheck = Filename(first_verif_link.Text).Replace("_", " ");
+                string[] words = Regex.Split(WordCheck, @"\s+");
 
-            string[] words = Regex.Split(WordCheck, @"\s+");
+                LOT_ID.Text = words[0];
+                PART_NAME.Text = words[1];
+                TEST_STEP.Text = string.Join(" ", words[2], words[3], words[4], words[5], words[6]);
+                VSPEC.Text = words[7];
+                hostname = words[8];
 
-            LOT_ID.Text = words[0];
-            PART_NAME.Text = words[1];
-            VSPEC.Text = words[7];
-            TESTER_ID.Text = words[8];
-            TEST_STEP.Text = string.Join(" ", words[2], words[3], words[4], words[5], words[6]);
+                Commands(2);
+                command.Connection = Connection.connect;
+                Connection.OpenConnection();
+                MySqlDataReader read_data = command.ExecuteReader();
+                read_data.Read();
+                TESTER_ID.Text = read_data.GetString("TESTER");
+                Test_system.Text = read_data.GetString("TESTER_PLATFORM");
+                Connection.CloseConnection();
+            }
+            catch (Exception Error)
+            {
+                MessageBox.Show(Error.ToString());
+                Connection.CloseConnection();
+            }
         }
 
         private void Exit_btn_Click(object sender, EventArgs e)
@@ -370,19 +389,13 @@ namespace PROJECT
                 }
             }
         }
-       
 
-        private void ThirdVerifClick(object sender, EventArgs e)
+        private void OtherDatalog(LinkLabel Link)
         {
-            if (string.IsNullOrEmpty(first_verif_link.Text))
-            {
-                MessageBox.Show("FIRST VERIFICATION DATALOG IS NEEDED");
-                return;
-            }
             openFileDialog1.InitialDirectory = @"c:\";
             openFileDialog1.Title = "BROWSE A FILE";
             openFileDialog1.FileName = null;
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog1.Filter = "All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 FileSize = new System.IO.FileInfo(openFileDialog1.FileName).Length;
@@ -391,59 +404,26 @@ namespace PROJECT
                     MessageBox.Show("FILE SIZE MUST NOT EXCEED 5MB");
                     return;
                 }
-                THIRD_VERIF.Visible = true;
-                THIRD_VERIF.Text = openFileDialog1.FileName;
+                Link.Visible = true;
+                Link.Text = Filename(openFileDialog1.FileName).Remove(20, Filename(openFileDialog1.FileName).Length - 20) + ".....";
             }
         }
 
-        private void FourthVerif(object sender, EventArgs e)
+        private void ADD_SECOND_DLOG(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(first_verif_link.Text))
-            {
-                MessageBox.Show("FIRST VERIFICATION DATALOG IS NEEDED");
-                return;
-            }
-            openFileDialog1.InitialDirectory = @"c:\";
-            openFileDialog1.Title = "BROWSE A FILE";
-            openFileDialog1.FileName = null;
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                FileSize = new System.IO.FileInfo(openFileDialog1.FileName).Length;
-                if (FileSize > 5150000)
-                {
-                    MessageBox.Show("FILE SIZE MUST NOT EXCEED 5MB");
-                    return;
-                }
-                FOURTH_VERIF.Visible = true;
-                FOURTH_VERIF.Text = openFileDialog1.FileName;
-            }
+            OtherDatalog(SECOND_DLOG);
+            dlog2 = openFileDialog1.FileName;
         }
-
-        private void FifthVerif(object sender, EventArgs e)
+        private void ADD_THIRD_DLOG(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(first_verif_link.Text))
-            {
-                MessageBox.Show("FIRST VERIFICATION DATALOG IS NEEDED");
-                return;
-            }
-            openFileDialog1.InitialDirectory = @"c:\";
-            openFileDialog1.Title = "BROWSE A FILE";
-            openFileDialog1.FileName = null;
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                FileSize = new System.IO.FileInfo(openFileDialog1.FileName).Length;
-                if (FileSize > 5150000)
-                {
-                    MessageBox.Show("FILE SIZE MUST NOT EXCEED 5MB");
-                    return;
-                }
-                FIFTH_VERIF.Visible = true;
-                FIFTH_VERIF.Text = openFileDialog1.FileName;
-            }
+            OtherDatalog(THIRD_DLOG);
+            dlog3 = openFileDialog1.FileName;
         }
-
+        private void ADD_FOURTH_DLOG(object sender, EventArgs e)
+        {
+            OtherDatalog(FOURTH_DLOG);
+            dlog4 = openFileDialog1.FileName;
+        }
         public void DatalogOpen(string link)
         {
             try
@@ -458,22 +438,21 @@ namespace PROJECT
 
         private void First_verif_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DatalogOpen(first_verif_link.Text);
+            DatalogOpen(dlog1);
+        }
+        private void SecondDlog(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DatalogOpen(dlog2);
         }
         private void ThirdDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DatalogOpen(THIRD_VERIF.Text);
+            DatalogOpen(dlog3);
         }
-
         private void FourthDlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DatalogOpen(FOURTH_VERIF.Text);
+            DatalogOpen(dlog4);
         }
 
-        private void FifthDlog(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            DatalogOpen(FIFTH_VERIF.Text);
-        }
 
         private void ADD_Load(object sender, EventArgs e)
         {

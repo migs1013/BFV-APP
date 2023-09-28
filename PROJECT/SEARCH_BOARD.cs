@@ -481,7 +481,7 @@ namespace PROJECT
             TESTER_PLATFORM_FILTER.SelectedIndex = 0;
             PRODUCT_OWNER_FILTER.SelectedIndex = 0;
             TEST_STEP_FILTER.SelectedIndex = 0;
-            PART_NAME_FILTER.SelectedIndex = 0;
+            PART_NAME_FILTER.SelectedIndex = -1;
         }
 
         private void CommandComboBox()
