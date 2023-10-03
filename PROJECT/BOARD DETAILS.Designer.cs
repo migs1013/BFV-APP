@@ -355,7 +355,7 @@ namespace PROJECT
             this.PART_NAME.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.PART_NAME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PART_NAME.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.PART_NAME.Location = new System.Drawing.Point(135, 15);
+            this.PART_NAME.Location = new System.Drawing.Point(176, 16);
             this.PART_NAME.Name = "PART_NAME";
             this.PART_NAME.Size = new System.Drawing.Size(0, 13);
             this.PART_NAME.TabIndex = 67;

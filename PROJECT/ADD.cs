@@ -53,14 +53,14 @@ namespace PROJECT
                 FileNameNumber = "FILENAME_1";
                 Dataloglink = dlog1;
             }
-            else if (DatalogNumber == 3)
+            else if (DatalogNumber == 2)
             {
                 DATALOG = "SECOND_DATALOG";
                 UpdateData = "SECOND_DATA";
                 FileNameNumber = "FILENAME_2";
                 Dataloglink = dlog2;
             }
-            else if (DatalogNumber == 4)
+            else if (DatalogNumber == 3)
             {
                 DATALOG = "THIRD_DATALOG";
                 UpdateData = "THIRD_DATA";
@@ -97,6 +97,7 @@ namespace PROJECT
         }
         private void Save_btn_Click(object sender, EventArgs e)
         {
+            if (!CheckDetails()) return;
             DialogResult yes_no = MessageBox.Show(("PLEASE DOUBLE CHECK YOUR DATA,THIS WILL BE SAVE PERMANENTLY. SAVE IT?"), "ATTENTION", MessageBoxButtons.YesNo);
             switch (yes_no)
             {
@@ -118,15 +119,15 @@ namespace PROJECT
                     }
                     if (dlog2.Contains("\\"))
                     {
-                        DatalogNumber(3); SendData(5);
+                        DatalogNumber(2); SendData(5);
                     }
                     if (dlog3.Contains("\\"))
                     {
-                        DatalogNumber(4); SendData(5);
+                        DatalogNumber(3); SendData(5);
                     }
                     if (dlog4.Contains("\\"))
                     {
-                        DatalogNumber(5); SendData(5);
+                        DatalogNumber(4); SendData(5);
                     }
                     MessageBox.Show("FILE SAVED SUCCESSFULLY");
                     Clear_all();
@@ -149,12 +150,14 @@ namespace PROJECT
                         " WHERE (`PART_NAME` = '" + PART_NAME.Text + "' and `LOT_ID` = '" + LOT_ID.Text + "') " +
                         "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 1");
                     break;
-                case 2:
+                case 2:  // LOAD TESTER PLATFORM AND TESTER ID
                     command = new MySqlCommand(string.Format("SELECT `TESTER`,`TESTER_PLATFORM` FROM `hit`.`hostnames` where `HOSTNAME` = '{0}'",hostname));
                     break;
-                case 3:  //NOT USED
+                case 3:  // LOAD HANDLER ID
+                    command = new MySqlCommand(string.Format("SELECT `HANDLER_ID` from `hit`.`details` WHERE `PART_NAME` = '{0}' GROUP BY `HANDLER_ID`",PART_NAME.Text));
                     break;
-                case 4:  //NOT USED
+                case 4:  // LOAD BOARD ID
+                    command = new MySqlCommand(string.Format("SELECT `BOARD_ID` from `hit`.`details` WHERE `PART_NAME` = '{0}' GROUP BY `BOARD_ID`", PART_NAME.Text));
                     break;
                 case 5: // INSERT DATALOG
                     command = new MySqlCommand(string.Format("UPDATE `hit`.`details` SET `{0}` = @{1},`{2}` = '{3}'" +
@@ -163,10 +166,10 @@ namespace PROJECT
                     break;
                 case 6: // INSERT NEW TRANSACTION
                     command = new MySqlCommand("INSERT INTO `hit`.`details` " +
-                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_MODE_OTHERS`,`BOARD_ID`," +
+                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`BOARD_ID`," +
                         "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`) " +
                         "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + TEST_STEP.Text + "','" + Test_system.Text + "'," +
-                        "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + Failure_mode_others.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
+                        "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
                         "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + PRODUCT_OWNER.Text + "','" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "')");
                     break;
             }
@@ -178,7 +181,7 @@ namespace PROJECT
                 if (c is TextBox)
                 {
                     TextBox textBox = c as TextBox;
-                    if (textBox == Failure_mode_others || textBox == Problem)
+                    if (textBox == Problem || textBox == Action)
                         continue;
                     else
                     {
@@ -187,7 +190,7 @@ namespace PROJECT
                             Error();
                             return false;
                         }
-                        else if (textBox.Text.Length > 20)
+                        else if (textBox.Text.Length > 40)
                         {
                             MessageBox.Show("TOO LONG INPUT!");
                             return false;
@@ -198,27 +201,15 @@ namespace PROJECT
                 else if (c is ComboBox)
                 {
                     ComboBox comboBox = c as ComboBox;
-                    if (comboBox.SelectedIndex == -1)
+                    if (string.IsNullOrWhiteSpace(comboBox.Text))
                     {
                         Error();
                         return false;
                     }
-                    else if (comboBox == Failure_mode)
+                    else if (comboBox.Text.Length >40)
                     {
-                        if (Failure_mode.SelectedIndex == 8)
-                        {
-                            if (string.IsNullOrWhiteSpace(Failure_mode_others.Text))
-                            {
-                                Error();
-                                return false;
-                            }
-                            else if (Failure_mode_others.Text.Length > 40)
-                            {
-                                MessageBox.Show("TOO LONG INPUT!");
-                                return false;
-                            }
-                            else continue;
-                        }
+                            MessageBox.Show("TOO LONG INPUT!");
+                            return false;
                     }
                 }
                 else continue;
@@ -228,7 +219,7 @@ namespace PROJECT
                 Error();
                 return false;
             }
-            return false;
+            return true;
         }
 
         private void InsertDatalog(LinkLabel DlogName,Label Date)
@@ -257,7 +248,7 @@ namespace PROJECT
             try
             {
                 InsertDatalog(first_verif_link, FirstDate);
-                
+
                 WordCheck = Filename(dlog1).Replace("_", " ");
 
                 string[] words = Regex.Split(WordCheck, @"\s+");
@@ -276,12 +267,53 @@ namespace PROJECT
                 TESTER_ID.Text = read_data.GetString("TESTER");
                 Test_system.Text = read_data.GetString("TESTER_PLATFORM");
                 Connection.CloseConnection();
+
+                Commands(3);
+                command.Connection = Connection.connect;
+                Connection.OpenConnection();
+                read_data = command.ExecuteReader();
+                while (read_data.Read())
+                {
+                    HANDLER_ID.Items.Add(read_data.GetString("HANDLER_ID"));
+                }
+                Connection.CloseConnection();
+
+                Commands(4);
+                command.Connection = Connection.connect;
+                Connection.OpenConnection();
+                read_data = command.ExecuteReader();
+                while (read_data.Read())
+                {
+                    BOARD_ID.Items.Add(read_data.GetString("BOARD_ID"));
+                }
+                Connection.CloseConnection();
             }
             catch (Exception Error)
             {
                 MessageBox.Show(Error.ToString());
                 Connection.CloseConnection();
             }
+        }
+
+        private void ChangeLetterToUpperCase(KeyPressEventArgs Input)
+        {
+            if (Input.KeyChar >= 'a' && Input.KeyChar <= 'z')
+                Input.KeyChar -= (char)32;
+        }
+
+        private void HANDLER_ID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ChangeLetterToUpperCase(e);
+        }
+
+        private void Failure_mode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ChangeLetterToUpperCase(e);
+        }
+
+        private void BOARD_ID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ChangeLetterToUpperCase(e);
         }
 
         private void Exit_btn_Click(object sender, EventArgs e)
@@ -322,15 +354,7 @@ namespace PROJECT
                 if (c is TextBox)
                 {
                     TextBox textBox = c as TextBox;
-                    if (textBox == PART_NAME || textBox == LOT_ID)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        textBox.Visible = false;
-                        textBox.Clear();
-                    }
+                    textBox.Clear();
                 }
                 else if (c is LinkLabel)
                 {
@@ -340,8 +364,7 @@ namespace PROJECT
                 else if (c is ComboBox)
                 {
                     ComboBox comboBox = c as ComboBox;
-                    comboBox.Visible = false;
-                    comboBox.SelectedIndex = -1;
+                    comboBox.Text = "";
                 }
                 else if (c is GroupBox)
                 {
@@ -358,11 +381,6 @@ namespace PROJECT
                             ComboBox comboBox = b as ComboBox;
                             comboBox.SelectedIndex = -1;
                         }
-                        else if (b is DateTimePicker)
-                        {
-                            DateTimePicker dateTime = b as DateTimePicker;
-                            dateTime.ResetText();
-                        }
                         else if (b is TextBox)
                         {
                             TextBox textBox = b as TextBox;
@@ -378,14 +396,6 @@ namespace PROJECT
                         }
                         else continue;
                     }
-                    groupBox.Visible = false;
-                }
-                else if (c is Label)
-                {
-                    Label label = c as Label;
-                    if (label == label_serial || label == label_PartNumber)
-                        label.Enabled = true;
-                    else label.Visible = false;
                 }
             }
         }

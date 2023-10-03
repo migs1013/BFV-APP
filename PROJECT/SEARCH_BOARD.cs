@@ -368,7 +368,9 @@ namespace PROJECT
         {
             if (TESTER_PLATFORM_FILTER.SelectedIndex == 0)
             { 
-                TESTER_PLATFORM_FILTER.DroppedDown = false; 
+                TESTER_PLATFORM_FILTER.DroppedDown = false;
+                TESTER_ID_FILTER.SelectedIndex = 0;
+                TESTER_ID_FILTER.Items.Clear();
                 return; 
             }
             TESTER_ID_FILTER.Items.Clear();
@@ -494,7 +496,7 @@ namespace PROJECT
                 FullTextCommand = string.Format("where `TEST_SYSTEM`= '{0}'", TESTER_PLATFORM_FILTER.Text);
                 ComboBoxCount++;
             } 
-            if (TESTER_ID_FILTER.Text != "")                                                                 // TESTER ID
+            if (!string.IsNullOrWhiteSpace(TESTER_ID_FILTER.Text))                                                                 // TESTER ID
             {
                 FullTextCommand += string.Format(" and `TESTER_ID` = '{0}'", TESTER_ID_FILTER.Text);
             }

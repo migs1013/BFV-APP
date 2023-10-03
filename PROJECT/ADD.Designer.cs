@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         /// 
-        /*
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,7 +21,7 @@
             }
             base.Dispose(disposing);
         }
-        */
+       
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -64,7 +64,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.Failure_mode = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.Failure_mode_others = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.BOARD_ID = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -114,7 +113,7 @@
             // 
             this.PART_NAME.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.PART_NAME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PART_NAME.Location = new System.Drawing.Point(135, 9);
+            this.PART_NAME.Location = new System.Drawing.Point(135, 11);
             this.PART_NAME.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PART_NAME.Name = "PART_NAME";
             this.PART_NAME.Size = new System.Drawing.Size(185, 20);
@@ -189,12 +188,12 @@
             // 
             this.Add_first_verif.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Add_first_verif.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Add_first_verif.Location = new System.Drawing.Point(22, 23);
+            this.Add_first_verif.Location = new System.Drawing.Point(22, 21);
             this.Add_first_verif.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Add_first_verif.Name = "Add_first_verif";
-            this.Add_first_verif.Size = new System.Drawing.Size(167, 30);
+            this.Add_first_verif.Size = new System.Drawing.Size(218, 30);
             this.Add_first_verif.TabIndex = 16;
-            this.Add_first_verif.Text = "ADD DATALOG";
+            this.Add_first_verif.Text = "CLICK HERE TO ADD TEXT FILE";
             this.Add_first_verif.UseVisualStyleBackColor = false;
             this.Add_first_verif.Click += new System.EventHandler(this.Add_first_verif_Click);
             // 
@@ -216,7 +215,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label8.Location = new System.Drawing.Point(14, 494);
+            this.label8.Location = new System.Drawing.Point(14, 465);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(144, 19);
             this.label8.TabIndex = 22;
@@ -339,7 +338,7 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(293, 15);
+            this.label25.Location = new System.Drawing.Point(290, 25);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(148, 19);
             this.label25.TabIndex = 70;
@@ -351,7 +350,7 @@
             this.FOURTH_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FOURTH_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.FOURTH_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.FOURTH_DLOG.Location = new System.Drawing.Point(295, 214);
+            this.FOURTH_DLOG.Location = new System.Drawing.Point(292, 170);
             this.FOURTH_DLOG.Name = "FOURTH_DLOG";
             this.FOURTH_DLOG.Size = new System.Drawing.Size(0, 19);
             this.FOURTH_DLOG.TabIndex = 69;
@@ -363,11 +362,11 @@
             this.ADD2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD2.ForeColor = System.Drawing.Color.Black;
-            this.ADD2.Location = new System.Drawing.Point(293, 34);
+            this.ADD2.Location = new System.Drawing.Point(18, 106);
             this.ADD2.Name = "ADD2";
-            this.ADD2.Size = new System.Drawing.Size(156, 19);
+            this.ADD2.Size = new System.Drawing.Size(194, 19);
             this.ADD2.TabIndex = 64;
-            this.ADD2.Text = "CLICK HERE TO ADD";
+            this.ADD2.Text = "CLICK HERE TO ADD STDF";
             this.ADD2.Click += new System.EventHandler(this.ADD_SECOND_DLOG);
             // 
             // ADD4
@@ -376,7 +375,7 @@
             this.ADD4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD4.ForeColor = System.Drawing.Color.Black;
-            this.ADD4.Location = new System.Drawing.Point(293, 186);
+            this.ADD4.Location = new System.Drawing.Point(290, 142);
             this.ADD4.Name = "ADD4";
             this.ADD4.Size = new System.Drawing.Size(156, 19);
             this.ADD4.TabIndex = 66;
@@ -389,7 +388,7 @@
             this.THIRD_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.THIRD_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.THIRD_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.THIRD_DLOG.Location = new System.Drawing.Point(295, 148);
+            this.THIRD_DLOG.Location = new System.Drawing.Point(292, 107);
             this.THIRD_DLOG.Name = "THIRD_DLOG";
             this.THIRD_DLOG.Size = new System.Drawing.Size(0, 19);
             this.THIRD_DLOG.TabIndex = 68;
@@ -401,7 +400,7 @@
             this.ADD3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD3.ForeColor = System.Drawing.Color.Black;
-            this.ADD3.Location = new System.Drawing.Point(293, 106);
+            this.ADD3.Location = new System.Drawing.Point(290, 62);
             this.ADD3.Name = "ADD3";
             this.ADD3.Size = new System.Drawing.Size(156, 19);
             this.ADD3.TabIndex = 65;
@@ -414,7 +413,7 @@
             this.SECOND_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SECOND_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.SECOND_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.SECOND_DLOG.Location = new System.Drawing.Point(295, 69);
+            this.SECOND_DLOG.Location = new System.Drawing.Point(18, 148);
             this.SECOND_DLOG.Name = "SECOND_DLOG";
             this.SECOND_DLOG.Size = new System.Drawing.Size(0, 19);
             this.SECOND_DLOG.TabIndex = 67;
@@ -422,18 +421,15 @@
             // 
             // HANDLER_ID
             // 
-            this.HANDLER_ID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.HANDLER_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HANDLER_ID.FormattingEnabled = true;
-            this.HANDLER_ID.Items.AddRange(new object[] {
-            "01MT99LT",
-            "411RASCO"});
             this.HANDLER_ID.Location = new System.Drawing.Point(135, 232);
             this.HANDLER_ID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HANDLER_ID.Name = "HANDLER_ID";
             this.HANDLER_ID.Size = new System.Drawing.Size(185, 21);
             this.HANDLER_ID.Sorted = true;
             this.HANDLER_ID.TabIndex = 7;
+            this.HANDLER_ID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HANDLER_ID_KeyPress);
             // 
             // label16
             // 
@@ -448,28 +444,20 @@
             // 
             // Failure_mode
             // 
-            this.Failure_mode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Failure_mode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Failure_mode.FormattingEnabled = true;
             this.Failure_mode.Items.AddRange(new object[] {
-            "BURNT COMPONENT",
-            "CALIBRATION",
-            "CHECKER",
-            "DETECTION PROBLEM",
-            "DVI SPIKE CHECKER",
-            "EXTERNAL DRIVER",
-            "GAUGE",
-            "N/A",
-            "OTHERS",
-            "PHYSICAL DAMAGE",
-            "POST CALIBRATION",
-            "VERIFY"});
-            this.Failure_mode.Location = new System.Drawing.Point(135, 272);
+            "ILSF",
+            "LOW YIELD",
+            "NOT PASSING",
+            "SITE TO SITE VARIANCE"});
+            this.Failure_mode.Location = new System.Drawing.Point(135, 269);
             this.Failure_mode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Failure_mode.Name = "Failure_mode";
             this.Failure_mode.Size = new System.Drawing.Size(185, 21);
             this.Failure_mode.Sorted = true;
             this.Failure_mode.TabIndex = 8;
+            this.Failure_mode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Failure_mode_KeyPress);
             // 
             // label17
             // 
@@ -481,16 +469,6 @@
             this.label17.Size = new System.Drawing.Size(117, 19);
             this.label17.TabIndex = 46;
             this.label17.Text = "FAILURE MODE";
-            // 
-            // Failure_mode_others
-            // 
-            this.Failure_mode_others.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.Failure_mode_others.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Failure_mode_others.Location = new System.Drawing.Point(135, 304);
-            this.Failure_mode_others.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Failure_mode_others.Name = "Failure_mode_others";
-            this.Failure_mode_others.Size = new System.Drawing.Size(185, 20);
-            this.Failure_mode_others.TabIndex = 49;
             // 
             // label18
             // 
@@ -505,23 +483,21 @@
             // 
             // BOARD_ID
             // 
-            this.BOARD_ID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.BOARD_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BOARD_ID.FormattingEnabled = true;
-            this.BOARD_ID.Items.AddRange(new object[] {
-            "P55330008"});
-            this.BOARD_ID.Location = new System.Drawing.Point(135, 341);
+            this.BOARD_ID.Location = new System.Drawing.Point(135, 312);
             this.BOARD_ID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BOARD_ID.Name = "BOARD_ID";
             this.BOARD_ID.Size = new System.Drawing.Size(185, 21);
             this.BOARD_ID.TabIndex = 61;
+            this.BOARD_ID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BOARD_ID_KeyPress);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label19.Location = new System.Drawing.Point(12, 343);
+            this.label19.Location = new System.Drawing.Point(12, 314);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(82, 19);
             this.label19.TabIndex = 62;
@@ -531,7 +507,7 @@
             // 
             this.BIN_NUMBER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.BIN_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BIN_NUMBER.Location = new System.Drawing.Point(135, 380);
+            this.BIN_NUMBER.Location = new System.Drawing.Point(135, 352);
             this.BIN_NUMBER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BIN_NUMBER.Name = "BIN_NUMBER";
             this.BIN_NUMBER.Size = new System.Drawing.Size(185, 20);
@@ -542,7 +518,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label5.Location = new System.Drawing.Point(12, 380);
+            this.label5.Location = new System.Drawing.Point(12, 351);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 19);
             this.label5.TabIndex = 11;
@@ -553,7 +529,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label2.Location = new System.Drawing.Point(12, 417);
+            this.label2.Location = new System.Drawing.Point(12, 388);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 19);
             this.label2.TabIndex = 75;
@@ -563,7 +539,7 @@
             // 
             this.TEST_NUMBER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TEST_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TEST_NUMBER.Location = new System.Drawing.Point(135, 417);
+            this.TEST_NUMBER.Location = new System.Drawing.Point(135, 388);
             this.TEST_NUMBER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TEST_NUMBER.Name = "TEST_NUMBER";
             this.TEST_NUMBER.Size = new System.Drawing.Size(185, 20);
@@ -574,7 +550,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label7.Location = new System.Drawing.Point(14, 458);
+            this.label7.Location = new System.Drawing.Point(14, 429);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(89, 19);
             this.label7.TabIndex = 77;
@@ -584,7 +560,7 @@
             // 
             this.TEST_NAME.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TEST_NAME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TEST_NAME.Location = new System.Drawing.Point(135, 458);
+            this.TEST_NAME.Location = new System.Drawing.Point(135, 429);
             this.TEST_NAME.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TEST_NAME.Name = "TEST_NAME";
             this.TEST_NAME.Size = new System.Drawing.Size(187, 20);
@@ -595,7 +571,7 @@
             this.PRODUCT_OWNER.AutoSize = true;
             this.PRODUCT_OWNER.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.PRODUCT_OWNER.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.PRODUCT_OWNER.Location = new System.Drawing.Point(163, 494);
+            this.PRODUCT_OWNER.Location = new System.Drawing.Point(163, 465);
             this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
             this.PRODUCT_OWNER.Size = new System.Drawing.Size(0, 19);
             this.PRODUCT_OWNER.TabIndex = 78;
@@ -624,7 +600,7 @@
             // 
             this.TESTER_ID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TESTER_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TESTER_ID.Location = new System.Drawing.Point(135, 196);
+            this.TESTER_ID.Location = new System.Drawing.Point(135, 199);
             this.TESTER_ID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TESTER_ID.Name = "TESTER_ID";
             this.TESTER_ID.Size = new System.Drawing.Size(185, 20);
@@ -660,7 +636,6 @@
             this.Controls.Add(this.BOARD_ID);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.Failure_mode_others);
             this.Controls.Add(this.Failure_mode);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.HANDLER_ID);
@@ -714,7 +689,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox Failure_mode;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox Failure_mode_others;
         private System.Windows.Forms.Label label18;
         public System.Windows.Forms.TextBox PART_NAME;
         public System.Windows.Forms.TextBox LOT_ID;
