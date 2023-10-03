@@ -12,7 +12,7 @@ namespace PROJECT
     {
         public string check,all;
         public int count, ComboBoxCount, firstCount, secondCount, range = 0;
-        public string DATE_FILTER,FullTextCommand, PO;
+        public string DATE_FILTER, FullTextCommand;
         public string UserAccount { get; set; }
         MySqlCommand command;
         public SEARCH_BOARD(string User)
@@ -28,56 +28,54 @@ namespace PROJECT
         }
         private async void LoadData()
         {
-            Commands(5);
-            if (Connection.OpenConnection())
+            try
             {
+                Commands(5);
+                Connection.OpenConnection();
+
                 MySqlDataReader read_data = command.ExecuteReader();
                 while (read_data.Read())
                 {
                     TESTER_PLATFORM_FILTER.Items.Add(read_data.GetString("tester_platforms"));
                 }
                 Connection.CloseConnection();
-            }
-            else
-            {
-                Connection.CloseConnection();
-                this.Close();
-            }
-            Commands(2);
-            if (Connection.OpenConnection())
-            {
-                MySqlDataReader read_data = command.ExecuteReader();
+
+                Commands(2);
+                Connection.OpenConnection();
+
+                read_data = command.ExecuteReader();
                 while (read_data.Read())
                 {
-                     PRODUCT_OWNER_FILTER.Items.Add(read_data.GetString("product_owner"));
+                    PRODUCT_OWNER_FILTER.Items.Add(read_data.GetString("PRODUCT_OWNER"));
                 }
                 Connection.CloseConnection();
+
+                await Task.Run(() =>
+                {
+                    FROM_DATE.Invoke((MethodInvoker)(() => FROM_DATE.CustomFormat = " "));
+                    TO_DATE.Invoke((MethodInvoker)(() => TO_DATE.CustomFormat = " "));
+                    dataGridViewList.Invoke((MethodInvoker)(() => dataGridViewList.DataSource = Table(3)));
+                    Commands(0);
+                    if (Connection.OpenConnection())
+                    {
+                        all = command.ExecuteScalar().ToString();
+                        Connection.CloseConnection();
+                    }
+                    else
+                    {
+                        Connection.CloseConnection();
+                        this.Close();
+                    }
+                }
+                );
+                Counts();
+                Results();
             }
-            else
+            catch (Exception error)
             {
+                MessageBox.Show(error.ToString());
                 Connection.CloseConnection();
-                this.Close();
             }
-            await Task.Run(() =>
-            {
-                FROM_DATE.Invoke((MethodInvoker)(()=> FROM_DATE.CustomFormat = " "));
-                TO_DATE.Invoke((MethodInvoker)(() => TO_DATE.CustomFormat = " "));
-                dataGridViewList.Invoke((MethodInvoker)(() => dataGridViewList.DataSource = Table(3)));
-                Commands(0);
-                if (Connection.OpenConnection())
-                {
-                    all = command.ExecuteScalar().ToString();
-                    Connection.CloseConnection();
-                }
-                else
-                {
-                    Connection.CloseConnection();
-                    this.Close();
-                }
-            }
-            );
-            Counts();
-            Results();
         }
         private void Results()
         {
@@ -122,7 +120,7 @@ namespace PROJECT
                         "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30",search_text.Text),Connection.connect);
                     break;
                 case 2: // PRODUCT OWNER
-                    command = new MySqlCommand("SELECT * FROM `hit`.`product_owner`", Connection.connect);
+                    command = new MySqlCommand("SELECT `PRODUCT_OWNER` FROM `hit`.`device` GROUP BY `PRODUCT_OWNER` ", Connection.connect);
                     break;
                 case 3:  //FOR UPDATING PURPOSES
                     command = new MySqlCommand("SELECT `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`,`DATE_ENCOUNTERED`,`PRODUCT_OWNER`," +
@@ -155,7 +153,7 @@ namespace PROJECT
                         TESTER_PLATFORM_FILTER.Text.ToLower()), Connection.connect);
                     break;
                 case 10: // LOAD PRODUCT OWNER DEVICES
-                    command = new MySqlCommand(string.Format("select * from `hit`.`{0}`", PO.ToLower()), Connection.connect);
+                    command = new MySqlCommand(string.Format("select `DEVICE` from `hit`.`device` where `PRODUCT_OWNER` = '{0}'", PRODUCT_OWNER_FILTER.Text), Connection.connect);
                     break;
             }
         }
@@ -397,28 +395,30 @@ namespace PROJECT
         {
             if (PRODUCT_OWNER_FILTER.SelectedIndex == 0)
             {
-                PRODUCT_OWNER_FILTER.DroppedDown = false; 
+                PRODUCT_OWNER_FILTER.DroppedDown = false;
+                PART_NAME_FILTER.SelectedIndex = 0;
+                PART_NAME_FILTER.Items.Clear();
                 return;
             }
             PART_NAME_FILTER.Items.Clear();
             PART_NAME_FILTER.Items.Add("");
             Connection.CloseConnection();
-            PO = PRODUCT_OWNER_FILTER.Text;
-            PO = PO.Replace(" ","_");
-            Commands(10);
-            if (Connection.OpenConnection())
+            try
             {
+                Commands(10);
+                Connection.OpenConnection();
+
                 MySqlDataReader read_data = command.ExecuteReader();
                 while (read_data.Read())
                 {
-                    PART_NAME_FILTER.Items.Add(read_data.GetString(PO));
+                    PART_NAME_FILTER.Items.Add(read_data.GetString("DEVICE"));
                 }
                 Connection.CloseConnection();
             }
-            else
+            catch (Exception ERROR)
             {
+                MessageBox.Show(ERROR.ToString());
                 Connection.CloseConnection();
-                this.Close();
             }
         }
 
