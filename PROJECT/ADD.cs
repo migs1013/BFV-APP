@@ -131,11 +131,7 @@ namespace PROJECT
                     }
                     MessageBox.Show("FILE SAVED SUCCESSFULLY");
                     Clear_all();
-                    Save_btn.Visible = false;
-                    PART_NAME.Visible = true;
-                    PART_NAME.Clear();
-                    LOT_ID.Clear();
-                    PART_NAME.Focus();
+                    PRODUCT_OWNER.Text = "";
                     break;
                 case DialogResult.No:
                     return;
@@ -171,6 +167,9 @@ namespace PROJECT
                         "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + TEST_STEP.Text + "','" + Test_system.Text + "'," +
                         "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
                         "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + PRODUCT_OWNER.Text + "','" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "')");
+                    break;
+                case 7:
+                    command = new MySqlCommand(string.Format("select `PRODUCT_OWNER` from `device` where locate(`DEVICE`,'{0}') = 1",PART_NAME.Text));
                     break;
             }
         }
@@ -247,18 +246,28 @@ namespace PROJECT
         {
             try
             {
+                HANDLER_ID.Items.Clear();
+                BOARD_ID.Items.Clear();
                 InsertDatalog(first_verif_link, FirstDate);
 
                 WordCheck = Filename(dlog1).Replace("_", " ");
 
                 string[] words = Regex.Split(WordCheck, @"\s+");
 
-                LOT_ID.Text = words[0];
-                PART_NAME.Text = words[1];
-                TEST_STEP.Text = string.Join(" ", words[2], words[3], words[4], words[5], words[6]);
-                VSPEC.Text = words[7];
-                hostname = words[8];
+                foreach (string LotSummary in words)
+                {
+                    if (LotSummary.ToUpper().Contains("AY") || LotSummary.ToUpper().Contains("AX"))
+                        LOT_ID.Text = LotSummary;
+                    else if (LotSummary.ToUpper().Contains("LT") || LotSummary.ToUpper().Contains("AD"))
+                        PART_NAME.Text = LotSummary;
+                    else if (LotSummary.ToUpper().Contains("V") && LotSummary.ToUpper().Contains("P"))
+                        VSPEC.Text = LotSummary;
+                    else if (LotSummary.ToUpper().Contains("ETS") || LotSummary.ToUpper().Contains("STS"))
+                        hostname = LotSummary;
+                }
 
+                TEST_STEP.Text = string.Join(" ", words[2], words[3], words[4], words[5], words[6]);
+                
                 Commands(2);
                 command.Connection = Connection.connect;
                 Connection.OpenConnection();
@@ -287,12 +296,21 @@ namespace PROJECT
                     BOARD_ID.Items.Add(read_data.GetString("BOARD_ID"));
                 }
                 Connection.CloseConnection();
+
+                Commands(7);
+                command.Connection = Connection.connect;
+                Connection.OpenConnection();
+                read_data = command.ExecuteReader();
+                read_data.Read();
+                PRODUCT_OWNER.Text = read_data.GetString("PRODUCT_OWNER");
+                Connection.CloseConnection();
             }
             catch (Exception Error)
             {
                 MessageBox.Show(Error.ToString());
                 Connection.CloseConnection();
             }
+
         }
 
         private void ChangeLetterToUpperCase(KeyPressEventArgs Input)

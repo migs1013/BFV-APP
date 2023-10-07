@@ -36,7 +36,7 @@ namespace PROJECT
                 MySqlDataReader read_data = command.ExecuteReader();
                 while (read_data.Read())
                 {
-                    TESTER_PLATFORM_FILTER.Items.Add(read_data.GetString("tester_platforms"));
+                    TESTER_PLATFORM_FILTER.Items.Add(read_data.GetString("TESTER_PLATFORM"));
                 }
                 Connection.CloseConnection();
 
@@ -130,11 +130,11 @@ namespace PROJECT
                     command = new MySqlCommand(string.Format("SELECT COUNT(*) FROM `hit`.`details` {0}",FullTextCommand), Connection.connect);
                     break;
                 case 5:  //TESTER PLATFORMS
-                    command = new MySqlCommand("SELECT * FROM `hit`.`tester_platforms`", Connection.connect);
+                    command = new MySqlCommand("SELECT `TESTER_PLATFORM` FROM `hit`.`hostnames` GROUP BY `TESTER_PLATFORM`", Connection.connect);
                     break;
                 case 6:  // FOR SEARCH IN COMBO BOXES
-                    command = new MySqlCommand(string.Format("Select `ENDORSEMENT_NUMBER`,`PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`," +
-                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`" +
+                    command = new MySqlCommand(string.Format("Select `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`," +
+                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`ENDORSEMENT_NUMBER`" +
                         "FROM `hit`.`details` {0} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30",FullTextCommand), Connection.connect);
                     break;
                 case 7: //NEXT BUTTON
@@ -149,11 +149,19 @@ namespace PROJECT
                         "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", search_text.Text), Connection.connect);
                     break;
                 case 9: // LOAD TESTER
-                    command = new MySqlCommand(string.Format("select * from `hit`.`hostnames` where `TESTER_PLATFORM` = '{0}'",
+                    command = new MySqlCommand(string.Format("SELECT `TESTER` from `hit`.`hostnames` where `TESTER_PLATFORM` = '{0}'",
                         TESTER_PLATFORM_FILTER.Text.ToLower()), Connection.connect);
                     break;
                 case 10: // LOAD PRODUCT OWNER DEVICES
                     command = new MySqlCommand(string.Format("select `DEVICE` from `hit`.`device` where `PRODUCT_OWNER` = '{0}'", PRODUCT_OWNER_FILTER.Text), Connection.connect);
+                    break;
+                case 11: // LOAD VSPEC
+                    command = new MySqlCommand(string.Format("SELECT `VSPEC` from `details` WHERE locate('{0}',`PART_NAME`) = 1 GROUP BY `VSPEC`"
+                        ,PART_NAME_FILTER.Text),Connection.connect);
+                    break;
+                case 12: // LOAD TEST STEP
+                    command = new MySqlCommand(string.Format("SELECT `TEST_STEP` from `details` WHERE locate('{0}',`PART_NAME`) = 1 GROUP BY `TEST_STEP`"
+                        , PART_NAME_FILTER.Text), Connection.connect);
                     break;
             }
         }
@@ -233,10 +241,10 @@ namespace PROJECT
                             return;
                         }
                     }
-                    return;
                 }
                 CommandComboBox();
                 Connection.CloseConnection();
+                MessageBox.Show(FullTextCommand.ToString());
                 Commands(4);
                 if (Connection.OpenConnection())
                 {
@@ -391,6 +399,16 @@ namespace PROJECT
             }
         }
 
+        private void ClearVspecTestStep()
+        {
+            VSPECS.Items.Clear();
+            TEST_STEP_FILTER.Items.Clear();
+            VSPECS.SelectedIndex = -1;
+            TEST_STEP_FILTER.SelectedIndex = -1;
+            VSPECS.Items.Add(" ");
+            TEST_STEP_FILTER.Items.Add(" ");
+        }
+
         private void PRODUCT_OWNER_FILTER_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (PRODUCT_OWNER_FILTER.SelectedIndex == 0)
@@ -402,6 +420,7 @@ namespace PROJECT
             }
             PART_NAME_FILTER.Items.Clear();
             PART_NAME_FILTER.Items.Add("");
+            ClearVspecTestStep();
             Connection.CloseConnection();
             try
             {
@@ -412,6 +431,38 @@ namespace PROJECT
                 while (read_data.Read())
                 {
                     PART_NAME_FILTER.Items.Add(read_data.GetString("DEVICE"));
+                }
+                Connection.CloseConnection();
+            }
+            catch (Exception ERROR)
+            {
+                MessageBox.Show(ERROR.ToString());
+                Connection.CloseConnection();
+            }
+        }
+
+        private void PART_NAME_FILTER_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ClearVspecTestStep();
+            try
+            {
+                Commands(11);
+                Connection.OpenConnection();
+
+                MySqlDataReader read_data = command.ExecuteReader();
+                while (read_data.Read())
+                {
+                    VSPECS.Items.Add(read_data.GetString("VSPEC"));
+                }
+                Connection.CloseConnection();
+
+                Commands(12);
+                Connection.OpenConnection();
+
+                read_data = command.ExecuteReader();
+                while (read_data.Read())
+                {
+                    TEST_STEP_FILTER.Items.Add(read_data.GetString("TEST_STEP"));
                 }
                 Connection.CloseConnection();
             }
@@ -478,12 +529,15 @@ namespace PROJECT
             TO_DATE.CustomFormat = " ";
             BIN_NUMBER_FILTER.Clear();
             TESTER_ID_FILTER.Items.Clear();
+            VSPECS.Items.Clear();
+            TEST_STEP_FILTER.Items.Clear();
             TESTER_ID_FILTER.Items.Add(" ");
             TESTER_ID_FILTER.SelectedIndex = 0;
             TESTER_PLATFORM_FILTER.SelectedIndex = 0;
             PRODUCT_OWNER_FILTER.SelectedIndex = 0;
-            TEST_STEP_FILTER.SelectedIndex = 0;
+            TEST_STEP_FILTER.SelectedIndex = -1;
             PART_NAME_FILTER.SelectedIndex = -1;
+            VSPECS.SelectedIndex = -1;
         }
 
         private void CommandComboBox()
@@ -517,18 +571,13 @@ namespace PROJECT
             {
                 FullTextCommand += String.Format(" and `PART_NAME` LIKE '%{0}%'", PART_NAME_FILTER.Text);
             }
-            if (TEST_STEP_FILTER.Text != "")                                                                 // TEST STEP
+            if (!String.IsNullOrWhiteSpace(TEST_STEP_FILTER.Text))                                                                 // TEST STEP
             {
-                if (ComboBoxCount != 0)
-                {
-                    FullTextCommand += string.Format(" and `TEST_STEP` = '{0}'", TEST_STEP_FILTER.Text);
-                    ComboBoxCount++;
-                }
-                else
-                {
-                    FullTextCommand = string.Format("where `TEST_STEP` = '{0}'", TEST_STEP_FILTER.Text);
-                    ComboBoxCount++;
-                }
+                FullTextCommand += string.Format(" and `TEST_STEP` = '{0}'", TEST_STEP_FILTER.Text);
+            }
+            if (!String.IsNullOrWhiteSpace(VSPECS.Text))
+            {
+                FullTextCommand += string.Format(" and `VSPEC` = '{0}'", VSPECS.Text);
             }
             if (!String.IsNullOrWhiteSpace(BIN_NUMBER_FILTER.Text))
             {

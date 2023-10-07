@@ -66,6 +66,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.BIN_NUMBER_FILTER = new System.Windows.Forms.TextBox();
+            this.VSPECS = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -243,7 +245,7 @@
             this.FROM_DATE.CustomFormat = "yyyy-MM-dd";
             this.FROM_DATE.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.FROM_DATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FROM_DATE.Location = new System.Drawing.Point(1151, 43);
+            this.FROM_DATE.Location = new System.Drawing.Point(1151, 36);
             this.FROM_DATE.Name = "FROM_DATE";
             this.FROM_DATE.Size = new System.Drawing.Size(112, 20);
             this.FROM_DATE.TabIndex = 26;
@@ -353,7 +355,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label6.Location = new System.Drawing.Point(1092, 46);
+            this.label6.Location = new System.Drawing.Point(1092, 39);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 16);
             this.label6.TabIndex = 39;
@@ -400,7 +402,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label7.Location = new System.Drawing.Point(1262, 48);
+            this.label7.Location = new System.Drawing.Point(1262, 41);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(28, 13);
             this.label7.TabIndex = 44;
@@ -411,7 +413,7 @@
             this.TO_DATE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TO_DATE.CustomFormat = "yyyy-MM-dd";
             this.TO_DATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TO_DATE.Location = new System.Drawing.Point(1291, 43);
+            this.TO_DATE.Location = new System.Drawing.Point(1291, 36);
             this.TO_DATE.Name = "TO_DATE";
             this.TO_DATE.Size = new System.Drawing.Size(106, 20);
             this.TO_DATE.TabIndex = 45;
@@ -432,20 +434,9 @@
             this.TEST_STEP_FILTER.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TEST_STEP_FILTER.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TEST_STEP_FILTER.FormattingEnabled = true;
-            this.TEST_STEP_FILTER.Items.AddRange(new object[] {
-            "",
-            "FT_COLD",
-            "FT_HOT",
-            "FT_ROOM",
-            "POST_BI",
-            "PRE_BURNIN",
-            "QA_COLD",
-            "QA_HOT",
-            "QA_ROOM",
-            "QASS"});
-            this.TEST_STEP_FILTER.Location = new System.Drawing.Point(718, 39);
+            this.TEST_STEP_FILTER.Location = new System.Drawing.Point(712, 38);
             this.TEST_STEP_FILTER.Name = "TEST_STEP_FILTER";
-            this.TEST_STEP_FILTER.Size = new System.Drawing.Size(147, 21);
+            this.TEST_STEP_FILTER.Size = new System.Drawing.Size(191, 21);
             this.TEST_STEP_FILTER.Sorted = true;
             this.TEST_STEP_FILTER.TabIndex = 48;
             // 
@@ -470,6 +461,7 @@
             this.PART_NAME_FILTER.Size = new System.Drawing.Size(188, 21);
             this.PART_NAME_FILTER.Sorted = true;
             this.PART_NAME_FILTER.TabIndex = 50;
+            this.PART_NAME_FILTER.SelectionChangeCommitted += new System.EventHandler(this.PART_NAME_FILTER_SelectionChangeCommitted);
             // 
             // label8
             // 
@@ -498,7 +490,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label10.Location = new System.Drawing.Point(610, 69);
+            this.label10.Location = new System.Drawing.Point(912, 67);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(106, 16);
             this.label10.TabIndex = 52;
@@ -508,10 +500,32 @@
             // 
             this.BIN_NUMBER_FILTER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.BIN_NUMBER_FILTER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BIN_NUMBER_FILTER.Location = new System.Drawing.Point(718, 67);
+            this.BIN_NUMBER_FILTER.Location = new System.Drawing.Point(1024, 65);
             this.BIN_NUMBER_FILTER.Name = "BIN_NUMBER_FILTER";
-            this.BIN_NUMBER_FILTER.Size = new System.Drawing.Size(147, 20);
+            this.BIN_NUMBER_FILTER.Size = new System.Drawing.Size(65, 20);
             this.BIN_NUMBER_FILTER.TabIndex = 53;
+            // 
+            // VSPECS
+            // 
+            this.VSPECS.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.VSPECS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.VSPECS.FormattingEnabled = true;
+            this.VSPECS.Location = new System.Drawing.Point(712, 66);
+            this.VSPECS.Name = "VSPECS";
+            this.VSPECS.Size = new System.Drawing.Size(191, 21);
+            this.VSPECS.Sorted = true;
+            this.VSPECS.TabIndex = 55;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.label11.Location = new System.Drawing.Point(625, 67);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(72, 16);
+            this.label11.TabIndex = 54;
+            this.label11.Text = "VSPECS:";
             // 
             // SEARCH_BOARD
             // 
@@ -519,6 +533,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(1404, 575);
+            this.Controls.Add(this.VSPECS);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.BIN_NUMBER_FILTER);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -602,5 +618,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox BIN_NUMBER_FILTER;
+        private System.Windows.Forms.ComboBox VSPECS;
+        private System.Windows.Forms.Label label11;
     }
 }

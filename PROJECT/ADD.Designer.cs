@@ -571,7 +571,7 @@
             this.PRODUCT_OWNER.AutoSize = true;
             this.PRODUCT_OWNER.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.PRODUCT_OWNER.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.PRODUCT_OWNER.Location = new System.Drawing.Point(163, 465);
+            this.PRODUCT_OWNER.Location = new System.Drawing.Point(87, 495);
             this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
             this.PRODUCT_OWNER.Size = new System.Drawing.Size(0, 19);
             this.PRODUCT_OWNER.TabIndex = 78;
@@ -620,7 +620,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(926, 639);
             this.Controls.Add(this.Test_system);
             this.Controls.Add(this.TESTER_ID);
