@@ -198,6 +198,7 @@ namespace PROJECT
             this.UPDATE_BTN.TabIndex = 6;
             this.UPDATE_BTN.Text = "UPDATE APP";
             this.UPDATE_BTN.UseVisualStyleBackColor = false;
+            this.UPDATE_BTN.Visible = false;
             this.UPDATE_BTN.Click += new System.EventHandler(this.UPDATE_BTN_Click);
             // 
             // LOGIN

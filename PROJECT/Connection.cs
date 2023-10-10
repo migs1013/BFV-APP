@@ -5,10 +5,6 @@ namespace PROJECT
 {
     class Connection
     {
-        // OLD SERVER:
-        //public static MySqlConnection connect = new MySqlConnection("server=CAV-DT-TSG36A;user id=newuser;password=onemigso101996;database=boards_for_verification");
-        //public static MySqlConnection ConnectBoards = new MySqlConnection("server=CAV-DT-TSG36A;user id=newuser;password=onemigso101996;database=boards_of_testers");
-
         // LOCAL HOST
         // public static MySqlConnection connect = new MySqlConnection("server=localhost;user id=root;password=onemigso1013;database=hit;persistsecurityinfo=True");
 
