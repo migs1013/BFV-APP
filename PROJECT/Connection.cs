@@ -12,7 +12,7 @@ namespace PROJECT
         // LOCAL HOST
         // public static MySqlConnection connect = new MySqlConnection("server=localhost;user id=root;password=onemigso1013;database=hit;persistsecurityinfo=True");
 
-        // NEW SERVER
+        // NEW SERVER //
         public static MySqlConnection connect = new MySqlConnection("server=CAV-BMS-D01;user id=root;password=onemigso1013;database=hit");
 
         public static bool OpenConnection()
