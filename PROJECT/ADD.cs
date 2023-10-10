@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using System.IO;
 using MySql.Data.MySqlClient;
@@ -12,7 +13,8 @@ namespace PROJECT
         MySqlCommand command;
         long FileSize;
         byte[] Data;
-        public string tester_platform, FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck, hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "";
+        public string tester_platform, FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption, 
+                        hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "";
         public int Endorsement_Number,FileNameLength;
         public string UserName { get; set; }
         public int Load_number { get; set; }
@@ -22,7 +24,6 @@ namespace PROJECT
             InitializeComponent();
             Load_number = Load;
             UserName = User;
-
         }
 
         private void Error()
@@ -246,6 +247,7 @@ namespace PROJECT
         {
             try
             {
+               
                 HANDLER_ID.Items.Clear();
                 BOARD_ID.Items.Clear();
                 InsertDatalog(first_verif_link, FirstDate);
@@ -264,9 +266,14 @@ namespace PROJECT
                         VSPEC.Text = LotSummary;
                     else if (LotSummary.ToUpper().Contains("ETS") || LotSummary.ToUpper().Contains("STS"))
                         hostname = LotSummary;
+                    else if (LotSummary.ToUpper().EndsWith("C") && LotSummary.Length <= 5 && char.IsDigit(Convert.ToChar(LotSummary.Substring(1,1))))
+                        Temp = LotSummary;
+                    else if (LotSummary.Length == 2)
+                        TestOption = LotSummary;
+                    else continue;
                 }
 
-                TEST_STEP.Text = string.Join(" ", words[2], words[3], words[4], words[5], words[6]);
+                TEST_STEP.Text = string.Join(" ", TestOption, Temp);
                 
                 Commands(2);
                 command.Connection = Connection.connect;
@@ -307,6 +314,12 @@ namespace PROJECT
             }
             catch (Exception Error)
             {
+                // Get stack trace for the exception with source file information
+                // var st = new StackTrace(Error, true);
+                // Get the top stack frame
+                // var frame = st.GetFrame(0);
+                // Get the line number from the stack frame
+                // var line = frame.GetFileLineNumber();
                 MessageBox.Show(Error.ToString());
                 Connection.CloseConnection();
             }
@@ -433,7 +446,12 @@ namespace PROJECT
                     return;
                 }
                 Link.Visible = true;
-                Link.Text = Filename(openFileDialog1.FileName).Remove(20, Filename(openFileDialog1.FileName).Length - 20) + ".....";
+                if (Filename(openFileDialog1.FileName).Length < 21)
+                {
+                    Link.Text = Filename(openFileDialog1.FileName);
+                }
+                else
+                    Link.Text = Filename(openFileDialog1.FileName).Remove(20, Filename(openFileDialog1.FileName).Length - 20) + ".....";
             }
         }
 

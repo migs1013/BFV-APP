@@ -244,7 +244,6 @@ namespace PROJECT
                 }
                 CommandComboBox();
                 Connection.CloseConnection();
-                MessageBox.Show(FullTextCommand.ToString());
                 Commands(4);
                 if (Connection.OpenConnection())
                 {

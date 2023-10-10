@@ -204,7 +204,7 @@
             this.first_verif_link.Cursor = System.Windows.Forms.Cursors.Hand;
             this.first_verif_link.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.first_verif_link.LinkColor = System.Drawing.Color.Black;
-            this.first_verif_link.Location = new System.Drawing.Point(18, 69);
+            this.first_verif_link.Location = new System.Drawing.Point(18, 78);
             this.first_verif_link.Name = "first_verif_link";
             this.first_verif_link.Size = new System.Drawing.Size(0, 19);
             this.first_verif_link.TabIndex = 17;
@@ -350,7 +350,7 @@
             this.FOURTH_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FOURTH_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.FOURTH_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.FOURTH_DLOG.Location = new System.Drawing.Point(292, 170);
+            this.FOURTH_DLOG.Location = new System.Drawing.Point(292, 224);
             this.FOURTH_DLOG.Name = "FOURTH_DLOG";
             this.FOURTH_DLOG.Size = new System.Drawing.Size(0, 19);
             this.FOURTH_DLOG.TabIndex = 69;
@@ -362,11 +362,11 @@
             this.ADD2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD2.ForeColor = System.Drawing.Color.Black;
-            this.ADD2.Location = new System.Drawing.Point(18, 106);
+            this.ADD2.Location = new System.Drawing.Point(292, 44);
             this.ADD2.Name = "ADD2";
-            this.ADD2.Size = new System.Drawing.Size(194, 19);
+            this.ADD2.Size = new System.Drawing.Size(156, 19);
             this.ADD2.TabIndex = 64;
-            this.ADD2.Text = "CLICK HERE TO ADD STDF";
+            this.ADD2.Text = "CLICK HERE TO ADD";
             this.ADD2.Click += new System.EventHandler(this.ADD_SECOND_DLOG);
             // 
             // ADD4
@@ -375,7 +375,7 @@
             this.ADD4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD4.ForeColor = System.Drawing.Color.Black;
-            this.ADD4.Location = new System.Drawing.Point(290, 142);
+            this.ADD4.Location = new System.Drawing.Point(290, 196);
             this.ADD4.Name = "ADD4";
             this.ADD4.Size = new System.Drawing.Size(156, 19);
             this.ADD4.TabIndex = 66;
@@ -388,7 +388,7 @@
             this.THIRD_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.THIRD_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.THIRD_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.THIRD_DLOG.Location = new System.Drawing.Point(292, 107);
+            this.THIRD_DLOG.Location = new System.Drawing.Point(292, 161);
             this.THIRD_DLOG.Name = "THIRD_DLOG";
             this.THIRD_DLOG.Size = new System.Drawing.Size(0, 19);
             this.THIRD_DLOG.TabIndex = 68;
@@ -400,7 +400,7 @@
             this.ADD3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD3.ForeColor = System.Drawing.Color.Black;
-            this.ADD3.Location = new System.Drawing.Point(290, 62);
+            this.ADD3.Location = new System.Drawing.Point(290, 116);
             this.ADD3.Name = "ADD3";
             this.ADD3.Size = new System.Drawing.Size(156, 19);
             this.ADD3.TabIndex = 65;
@@ -413,7 +413,7 @@
             this.SECOND_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SECOND_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.SECOND_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.SECOND_DLOG.Location = new System.Drawing.Point(18, 148);
+            this.SECOND_DLOG.Location = new System.Drawing.Point(292, 78);
             this.SECOND_DLOG.Name = "SECOND_DLOG";
             this.SECOND_DLOG.Size = new System.Drawing.Size(0, 19);
             this.SECOND_DLOG.TabIndex = 67;
