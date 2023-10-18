@@ -67,10 +67,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.BOARD_ID = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.BIN_NUMBER = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.TEST_NUMBER = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.TEST_NAME = new System.Windows.Forms.TextBox();
             this.PRODUCT_OWNER = new System.Windows.Forms.Label();
@@ -78,6 +76,12 @@
             this.VSPEC = new System.Windows.Forms.TextBox();
             this.TESTER_ID = new System.Windows.Forms.TextBox();
             this.Test_system = new System.Windows.Forms.TextBox();
+            this.BIN_NUMBER = new System.Windows.Forms.ComboBox();
+            this.ROOTCAUSE_TEXT = new System.Windows.Forms.Label();
+            this.ROOTCAUSE = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.STATUS = new System.Windows.Forms.ComboBox();
+            this.TEST_NUMBER = new System.Windows.Forms.ComboBox();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,7 +90,7 @@
             this.Save_btn.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Save_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Save_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Save_btn.Location = new System.Drawing.Point(18, 563);
+            this.Save_btn.Location = new System.Drawing.Point(326, 563);
             this.Save_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Save_btn.Name = "Save_btn";
             this.Save_btn.Size = new System.Drawing.Size(141, 66);
@@ -215,7 +219,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label8.Location = new System.Drawing.Point(14, 465);
+            this.label8.Location = new System.Drawing.Point(12, 563);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(144, 19);
             this.label8.TabIndex = 22;
@@ -503,16 +507,6 @@
             this.label19.TabIndex = 62;
             this.label19.Text = "BOARD ID";
             // 
-            // BIN_NUMBER
-            // 
-            this.BIN_NUMBER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.BIN_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BIN_NUMBER.Location = new System.Drawing.Point(135, 352);
-            this.BIN_NUMBER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.BIN_NUMBER.Name = "BIN_NUMBER";
-            this.BIN_NUMBER.Size = new System.Drawing.Size(185, 20);
-            this.BIN_NUMBER.TabIndex = 6;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -535,22 +529,12 @@
             this.label2.TabIndex = 75;
             this.label2.Text = "TEST NUMBER";
             // 
-            // TEST_NUMBER
-            // 
-            this.TEST_NUMBER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TEST_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TEST_NUMBER.Location = new System.Drawing.Point(135, 388);
-            this.TEST_NUMBER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.TEST_NUMBER.Name = "TEST_NUMBER";
-            this.TEST_NUMBER.Size = new System.Drawing.Size(185, 20);
-            this.TEST_NUMBER.TabIndex = 74;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label7.Location = new System.Drawing.Point(14, 429);
+            this.label7.Location = new System.Drawing.Point(12, 427);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(89, 19);
             this.label7.TabIndex = 77;
@@ -571,7 +555,7 @@
             this.PRODUCT_OWNER.AutoSize = true;
             this.PRODUCT_OWNER.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.PRODUCT_OWNER.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.PRODUCT_OWNER.Location = new System.Drawing.Point(87, 495);
+            this.PRODUCT_OWNER.Location = new System.Drawing.Point(85, 593);
             this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
             this.PRODUCT_OWNER.Size = new System.Drawing.Size(0, 19);
             this.PRODUCT_OWNER.TabIndex = 78;
@@ -616,12 +600,86 @@
             this.Test_system.Size = new System.Drawing.Size(185, 20);
             this.Test_system.TabIndex = 82;
             // 
+            // BIN_NUMBER
+            // 
+            this.BIN_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BIN_NUMBER.FormattingEnabled = true;
+            this.BIN_NUMBER.Location = new System.Drawing.Point(135, 349);
+            this.BIN_NUMBER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.BIN_NUMBER.Name = "BIN_NUMBER";
+            this.BIN_NUMBER.Size = new System.Drawing.Size(185, 21);
+            this.BIN_NUMBER.TabIndex = 83;
+            // 
+            // ROOTCAUSE_TEXT
+            // 
+            this.ROOTCAUSE_TEXT.AutoSize = true;
+            this.ROOTCAUSE_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ROOTCAUSE_TEXT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.ROOTCAUSE_TEXT.Location = new System.Drawing.Point(12, 510);
+            this.ROOTCAUSE_TEXT.Name = "ROOTCAUSE_TEXT";
+            this.ROOTCAUSE_TEXT.Size = new System.Drawing.Size(101, 19);
+            this.ROOTCAUSE_TEXT.TabIndex = 85;
+            this.ROOTCAUSE_TEXT.Text = "ROOTCAUSE";
+            this.ROOTCAUSE_TEXT.Visible = false;
+            // 
+            // ROOTCAUSE
+            // 
+            this.ROOTCAUSE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.ROOTCAUSE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ROOTCAUSE.Location = new System.Drawing.Point(135, 510);
+            this.ROOTCAUSE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ROOTCAUSE.Name = "ROOTCAUSE";
+            this.ROOTCAUSE.Size = new System.Drawing.Size(187, 20);
+            this.ROOTCAUSE.TabIndex = 84;
+            this.ROOTCAUSE.Visible = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.label11.Location = new System.Drawing.Point(12, 468);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(61, 19);
+            this.label11.TabIndex = 86;
+            this.label11.Text = "STATUS";
+            // 
+            // STATUS
+            // 
+            this.STATUS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.STATUS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.STATUS.FormattingEnabled = true;
+            this.STATUS.Items.AddRange(new object[] {
+            "OPEN",
+            "CLOSED"});
+            this.STATUS.Location = new System.Drawing.Point(135, 468);
+            this.STATUS.Name = "STATUS";
+            this.STATUS.Size = new System.Drawing.Size(185, 21);
+            this.STATUS.TabIndex = 87;
+            this.STATUS.SelectionChangeCommitted += new System.EventHandler(this.STATUS_SelectionChangeCommitted);
+            // 
+            // TEST_NUMBER
+            // 
+            this.TEST_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TEST_NUMBER.FormattingEnabled = true;
+            this.TEST_NUMBER.Location = new System.Drawing.Point(135, 388);
+            this.TEST_NUMBER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.TEST_NUMBER.Name = "TEST_NUMBER";
+            this.TEST_NUMBER.Size = new System.Drawing.Size(185, 21);
+            this.TEST_NUMBER.TabIndex = 88;
+            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(926, 639);
+            this.Controls.Add(this.TEST_NUMBER);
+            this.Controls.Add(this.STATUS);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.ROOTCAUSE_TEXT);
+            this.Controls.Add(this.ROOTCAUSE);
+            this.Controls.Add(this.BIN_NUMBER);
             this.Controls.Add(this.Test_system);
             this.Controls.Add(this.TESTER_ID);
             this.Controls.Add(this.VSPEC);
@@ -630,7 +688,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.TEST_NAME);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.TEST_NUMBER);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.BOARD_ID);
@@ -643,7 +700,6 @@
             this.Controls.Add(this.First_box);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.BIN_NUMBER);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label_PartNumber);
             this.Controls.Add(this.LOT_ID);
@@ -706,10 +762,8 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox Action;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox BIN_NUMBER;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox TEST_NUMBER;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox TEST_NAME;
         private System.Windows.Forms.Label PRODUCT_OWNER;
@@ -717,5 +771,11 @@
         private System.Windows.Forms.TextBox VSPEC;
         private System.Windows.Forms.TextBox TESTER_ID;
         private System.Windows.Forms.TextBox Test_system;
+        private System.Windows.Forms.ComboBox BIN_NUMBER;
+        private System.Windows.Forms.Label ROOTCAUSE_TEXT;
+        private System.Windows.Forms.TextBox ROOTCAUSE;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox STATUS;
+        private System.Windows.Forms.ComboBox TEST_NUMBER;
     }
 }

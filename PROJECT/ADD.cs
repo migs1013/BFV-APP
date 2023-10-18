@@ -14,7 +14,7 @@ namespace PROJECT
         long FileSize;
         byte[] Data;
         public string tester_platform, FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption, 
-                        hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "";
+                      hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "";
         public int Endorsement_Number,FileNameLength;
         public string UserName { get; set; }
         public int Load_number { get; set; }
@@ -103,6 +103,7 @@ namespace PROJECT
             switch (yes_no)
             {
                 case DialogResult.Yes:
+                    if (STATUS.SelectedIndex == 0) ROOTCAUSE.Text = "UNDER INVESTIGATION";
                     SendData(6);
                     Commands(1);
                     command.Connection = Connection.connect;
@@ -164,13 +165,18 @@ namespace PROJECT
                 case 6: // INSERT NEW TRANSACTION
                     command = new MySqlCommand("INSERT INTO `hit`.`details` " +
                         "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`BOARD_ID`," +
-                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`) " +
+                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`) " +
                         "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + TEST_STEP.Text + "','" + Test_system.Text + "'," +
                         "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
-                        "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + PRODUCT_OWNER.Text + "','" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "')");
+                        "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + STATUS.Text + "','" + ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
+                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "')");
                     break;
                 case 7:
                     command = new MySqlCommand(string.Format("select `PRODUCT_OWNER` from `device` where locate(`DEVICE`,'{0}') = 1",PART_NAME.Text));
+                    break;
+                case 8:
+                    command = new MySqlCommand(string.Format("SELECT `BIN_NUMBER` from `hit`.`details` WHERE `PART_NAME` = '{0}' and `TEST_STEP` = '{1}' " +
+                        "GROUP BY `BIN_NUMBER`", PART_NAME.Text, TEST_STEP.Text));
                     break;
             }
         }
@@ -187,8 +193,12 @@ namespace PROJECT
                     {
                         if (string.IsNullOrWhiteSpace(textBox.Text))
                         {
-                            Error();
-                            return false;
+                            if (textBox == ROOTCAUSE && STATUS.SelectedIndex == 0) continue;
+                            else
+                            {
+                                Error();
+                                return false;
+                            }
                         }
                         else if (textBox.Text.Length > 40)
                         {
@@ -245,12 +255,20 @@ namespace PROJECT
         }
         private void Add_first_verif_Click(object sender, EventArgs e)
         {
+
             try
             {
-               
+
+                InsertDatalog(first_verif_link, FirstDate);
+
+                if (string.IsNullOrEmpty(dlog1)) return;
+
                 HANDLER_ID.Items.Clear();
                 BOARD_ID.Items.Clear();
-                InsertDatalog(first_verif_link, FirstDate);
+                BIN_NUMBER.Items.Clear();
+                TEST_NUMBER.Items.Clear();
+
+                HANDLER_ID.Text = BOARD_ID.Text = BIN_NUMBER.Text = TEST_NUMBER.Text = "";
 
                 WordCheck = Filename(dlog1).Replace("_", " ");
 
@@ -264,9 +282,9 @@ namespace PROJECT
                         PART_NAME.Text = LotSummary;
                     else if (LotSummary.ToUpper().Contains("V") && LotSummary.ToUpper().Contains("P"))
                         VSPEC.Text = LotSummary;
-                    else if (LotSummary.ToUpper().Contains("ETS") || LotSummary.ToUpper().Contains("STS"))
+                    else if ((LotSummary.ToUpper().Contains("ETS") || LotSummary.ToUpper().Contains("STS")) && LotSummary.Contains("-"))
                         hostname = LotSummary;
-                    else if (LotSummary.ToUpper().EndsWith("C") && LotSummary.Length <= 5 && char.IsDigit(Convert.ToChar(LotSummary.Substring(1,1))))
+                    else if (LotSummary.ToUpper().EndsWith("C") && LotSummary.Length <= 5 && char.IsDigit(Convert.ToChar(LotSummary.Substring(1, 1))))
                         Temp = LotSummary;
                     else if (LotSummary.Length == 2)
                         TestOption = LotSummary;
@@ -274,7 +292,7 @@ namespace PROJECT
                 }
 
                 TEST_STEP.Text = string.Join(" ", TestOption, Temp);
-                
+
                 Commands(2);
                 command.Connection = Connection.connect;
                 Connection.OpenConnection();
@@ -304,6 +322,16 @@ namespace PROJECT
                 }
                 Connection.CloseConnection();
 
+                Commands(8);
+                command.Connection = Connection.connect;
+                Connection.OpenConnection();
+                read_data = command.ExecuteReader();
+                while (read_data.Read())
+                {
+                    BIN_NUMBER.Items.Add(read_data.GetString("BIN_NUMBER"));
+                }
+                Connection.CloseConnection();
+
                 Commands(7);
                 command.Connection = Connection.connect;
                 Connection.OpenConnection();
@@ -314,16 +342,20 @@ namespace PROJECT
             }
             catch (Exception Error)
             {
-                // Get stack trace for the exception with source file information
-                // var st = new StackTrace(Error, true);
-                // Get the top stack frame
-                // var frame = st.GetFrame(0);
-                // Get the line number from the stack frame
-                // var line = frame.GetFileLineNumber();
                 MessageBox.Show(Error.ToString());
                 Connection.CloseConnection();
             }
 
+        }
+
+        private void STATUS_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (STATUS.SelectedIndex == 0)
+            {
+                ROOTCAUSE.Visible = ROOTCAUSE_TEXT.Visible = false;
+                ROOTCAUSE.Clear();
+            }
+            else ROOTCAUSE.Visible = ROOTCAUSE_TEXT.Visible = true;
         }
 
         private void ChangeLetterToUpperCase(KeyPressEventArgs Input)
@@ -351,7 +383,7 @@ namespace PROJECT
         {
             this.Hide();
         }
-
+        /*
         private bool CheckTextBox(string textBox)                         // CHECK TEXTBOX INPUTS
         {
             char[] text = textBox.ToCharArray();
@@ -377,6 +409,7 @@ namespace PROJECT
             }
             return true;
         }
+        */
 
         private void Clear_all()
         {
@@ -395,6 +428,7 @@ namespace PROJECT
                 else if (c is ComboBox)
                 {
                     ComboBox comboBox = c as ComboBox;
+                    comboBox.SelectedIndex = -1;
                     comboBox.Text = "";
                 }
                 else if (c is GroupBox)
@@ -406,11 +440,6 @@ namespace PROJECT
                         {
                             LinkLabel link = b as LinkLabel;
                             link.Text = null;
-                        }
-                        else if (b is ComboBox)
-                        {
-                            ComboBox comboBox = b as ComboBox;
-                            comboBox.SelectedIndex = -1;
                         }
                         else if (b is TextBox)
                         {

@@ -100,7 +100,7 @@ namespace PROJECT
             this.button1.TabIndex = 4;
             this.button1.Text = "LOGIN";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // groupBox1
             // 
@@ -205,7 +205,7 @@ namespace PROJECT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(501, 416);
             this.Controls.Add(this.UPDATE_BTN);
             this.Controls.Add(this.groupBox1);
@@ -221,6 +221,7 @@ namespace PROJECT
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LOGIN (VERSION 1)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit);
+            this.Load += new System.EventHandler(this.LOGIN_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

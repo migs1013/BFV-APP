@@ -15,17 +15,6 @@ namespace PROJECT
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(User.Text) || string.IsNullOrWhiteSpace(Pass.Text))
-            {
-                MessageBox.Show("NO INPUT");
-                return;
-            }
-            else
-                LOGINUSER();
-        }
-
         private bool CheckTextBox(string textBox)
         {
             char[] text = textBox.ToCharArray();
@@ -201,12 +190,28 @@ namespace PROJECT
                     Connection.CloseConnection();
                     User.Clear();
                     Pass.Clear();
-                    SEARCH_BOARD next = new SEARCH_BOARD(UserName);
                     this.Hide();
+                    SEARCH_BOARD next = new SEARCH_BOARD(UserName);
                     next.ShowDialog();
                 }
             }
             else Connection.CloseConnection();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(User.Text) || string.IsNullOrWhiteSpace(Pass.Text))
+            {
+                MessageBox.Show("NO INPUT");
+                return;
+            }
+            else
+                LOGINUSER();
+        }
+
+        private void LOGIN_Load(object sender, EventArgs e)
+        {
+            User.Focus();
         }
     }
 }

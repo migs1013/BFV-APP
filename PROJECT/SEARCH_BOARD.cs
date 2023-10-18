@@ -14,6 +14,7 @@ namespace PROJECT
         public int count, ComboBoxCount, firstCount, secondCount, range = 0;
         public string DATE_FILTER, FullTextCommand;
         public string UserAccount { get; set; }
+
         MySqlCommand command;
         public SEARCH_BOARD(string User)
         {
@@ -96,7 +97,7 @@ namespace PROJECT
             //MessageBox.Show(dataGridViewList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
             try
             {
-                string endorsement_number = dataGridViewList.SelectedCells[7].Value.ToString();
+                string endorsement_number = dataGridViewList.SelectedCells[8].Value.ToString();
                 BOARD_DETAILS details = new BOARD_DETAILS(endorsement_number);
                 details.ShowDialog();
             }
@@ -114,7 +115,8 @@ namespace PROJECT
                     command = new MySqlCommand("SELECT COUNT(*) FROM `hit`.`details`",Connection.connect);
                     break;
                 case 1:  //TO DISPLAY THE DATA THAT IS SEARCHED BY THE USER
-                    command = new MySqlCommand(string.Format("SELECT `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`,`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`ENDORSEMENT_NUMBER` " +
+                    command = new MySqlCommand(string.Format("SELECT `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`,`DATE_ENCOUNTERED`," +
+                        "`PRODUCT_OWNER`,`STATUS`,`ENDORSEMENT_NUMBER` " +
                         "FROM `hit`.`details` WHERE (`PART_NAME` LIKE '%{0}%') OR (`LOT_ID` LIKE '%{0}%') OR (`TEST_NUMBER` LIKE '%{0}%') OR (`VSPEC` LIKE '%{0}%') OR" +
                         "(`BOARD_ID` LIKE '%{0}%') OR (`HANDLER_ID` LIKE '%{0}%') OR (`BIN_NUMBER` LIKE '%{0}%')" +
                         "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30",search_text.Text),Connection.connect);
@@ -124,7 +126,7 @@ namespace PROJECT
                     break;
                 case 3:  //FOR UPDATING PURPOSES
                     command = new MySqlCommand("SELECT `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`,`DATE_ENCOUNTERED`,`PRODUCT_OWNER`," +
-                        "`ENDORSEMENT_NUMBER` FROM `hit`.`details` ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", Connection.connect);
+                        "`STATUS`,`ENDORSEMENT_NUMBER` FROM `hit`.`details` ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", Connection.connect);
                     break;
                 case 4: // SEARCHING TRANSACTION COUNTS WITH FILTER
                     command = new MySqlCommand(string.Format("SELECT COUNT(*) FROM `hit`.`details` {0}",FullTextCommand), Connection.connect);
@@ -134,12 +136,12 @@ namespace PROJECT
                     break;
                 case 6:  // FOR SEARCH IN COMBO BOXES
                     command = new MySqlCommand(string.Format("Select `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`," +
-                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`ENDORSEMENT_NUMBER`" +
+                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`STATUS`,`ENDORSEMENT_NUMBER`" +
                         "FROM `hit`.`details` {0} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30",FullTextCommand), Connection.connect);
                     break;
                 case 7: //NEXT BUTTON
-                    command = new MySqlCommand(string.Format("Select `ENDORSEMENT_NUMBER`,`PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`," +
-                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER` " +
+                    command = new MySqlCommand(string.Format("Select `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`," +
+                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`STATUS`,`ENDORSEMENT_NUMBER` " +
                         "FROM `hit`.`details` {0} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT {1},30", FullTextCommand, range), Connection.connect);
                     break;
                 case 8: // SEARCH DATA COUNT WITH TEXTBOX
@@ -342,9 +344,14 @@ namespace PROJECT
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            LOGIN Back = new LOGIN();
+            this.Close();
+        }
+
+        private void Close(object sender, FormClosedEventArgs e)
+        {
+            LOGIN back = new LOGIN();
             this.Hide();
-            Back.Show();
+            back.ShowDialog();
         }
 
         private void Enter_search(object sender, KeyEventArgs e)
@@ -472,12 +479,6 @@ namespace PROJECT
             }
         }
 
-        private void FormClose(object sender, FormClosingEventArgs e)
-        {
-            LOGIN Back = new LOGIN();
-            Back.Show();
-        }
-
         private void TO_DATE_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Back)
@@ -544,6 +545,7 @@ namespace PROJECT
             FullTextCommand = "";
             ComboBoxCount = 0;
             search_text.Clear();
+
             if (TESTER_PLATFORM_FILTER.Text != "")                                                        //TESTER PLATFORM
             {
                 FullTextCommand = string.Format("where `TEST_SYSTEM`= '{0}'", TESTER_PLATFORM_FILTER.Text);
@@ -578,7 +580,20 @@ namespace PROJECT
             {
                 FullTextCommand += string.Format(" and `VSPEC` = '{0}'", VSPECS.Text);
             }
-            if (!String.IsNullOrWhiteSpace(BIN_NUMBER_FILTER.Text))
+            if (STATUS_FILTER.Text != "")                                                                 // STATUS
+            {
+                if (ComboBoxCount != 0)
+                {
+                    FullTextCommand += string.Format(" and `STATUS` = '{0}'", STATUS_FILTER.Text);
+                    ComboBoxCount++;
+                }
+                else
+                {
+                    FullTextCommand = string.Format("where `STATUS` = '{0}'", STATUS_FILTER.Text);
+                    ComboBoxCount++;
+                }
+            }
+            if (!String.IsNullOrWhiteSpace(BIN_NUMBER_FILTER.Text))                                     // BIN NUMBER
             {
                 if (ComboBoxCount != 0)
                 {

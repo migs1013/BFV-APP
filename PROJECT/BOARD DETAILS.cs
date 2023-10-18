@@ -11,7 +11,7 @@ namespace PROJECT
         byte[] Data;
         public string DATALOG;
         public int Endorsement_number { get; set; }
-        public string DLOG1, DLOG2, DLOG3, DLOG4;
+        public string DLOG1 ,DLOG2 ,DLOG3 ,DLOG4;
         private DateTime Date = new DateTime();
 
         public BOARD_DETAILS(string number)
@@ -44,6 +44,8 @@ namespace PROJECT
                 FAILURE_MODE.Text = read_data["FAILURE_MODE"].ToString();
                 Date = Convert.ToDateTime(read_data["DATE_ENCOUNTERED"].ToString());
                 USER.Text = read_data["USER"].ToString();
+                STATUS.Text = read_data["STATUS"].ToString();
+                ROOTCAUSE.Text = read_data["ROOTCAUSE"].ToString();
                 PRODUCT_OWNER.Text = read_data["PRODUCT_OWNER"].ToString();
                 DLOG1 = read_data["FILENAME_1"].ToString();
                 DLOG2 = read_data["FILENAME_2"].ToString();
@@ -59,7 +61,6 @@ namespace PROJECT
             }
             else
                 this.Close();
-
         }
 
         private void Dlog(LinkLabel DlogLink,string DlogName)
@@ -74,8 +75,8 @@ namespace PROJECT
             {
                 case 0:
                     command = new MySqlCommand("SELECT `ENDORSEMENT_NUMBER`,`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TESTER_ID`,`HANDLER_ID`," +
-                            "`FAILURE_MODE`,`BOARD_ID`,`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`PRODUCT_OWNER`,`FIRST_DATALOG`,`SECOND_DATALOG`,`THIRD_DATALOG`," +
-                            "`FOURTH_DATALOG`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FILENAME_1`,`FILENAME_2`,`FILENAME_3`,`FILENAME_4`" +
+                            "`FAILURE_MODE`,`BOARD_ID`,`BIN_NUMBER`,`TEST_NUMBER`,`PRODUCT_OWNER`,`FIRST_DATALOG`,`SECOND_DATALOG`,`THIRD_DATALOG`," +
+                            "`FOURTH_DATALOG`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FILENAME_1`,`FILENAME_2`,`FILENAME_3`,`FILENAME_4`,`STATUS`,`ROOTCAUSE`" +
                             " FROM `hit`.`details` WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_number + "')");
                     break;
                 case 1:

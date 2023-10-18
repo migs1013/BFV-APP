@@ -40,6 +40,7 @@
             this.TEST_STEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DATE_ENCOUNTERED = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRODUCT_OWNER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STATUS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ENDORSEMENT_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.REFRESH = new System.Windows.Forms.Button();
             this.EDIT = new System.Windows.Forms.Button();
@@ -68,6 +69,8 @@
             this.BIN_NUMBER_FILTER = new System.Windows.Forms.TextBox();
             this.VSPECS = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.STATUS_FILTER = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,6 +132,7 @@
             this.TEST_STEP,
             this.DATE_ENCOUNTERED,
             this.PRODUCT_OWNER,
+            this.STATUS,
             this.ENDORSEMENT_NUMBER});
             this.dataGridViewList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridViewList.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -200,6 +204,13 @@
             this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
             this.PRODUCT_OWNER.ReadOnly = true;
             // 
+            // STATUS
+            // 
+            this.STATUS.DataPropertyName = "STATUS";
+            this.STATUS.HeaderText = "STATUS";
+            this.STATUS.Name = "STATUS";
+            this.STATUS.ReadOnly = true;
+            // 
             // ENDORSEMENT_NUMBER
             // 
             this.ENDORSEMENT_NUMBER.DataPropertyName = "ENDORSEMENT_NUMBER";
@@ -234,7 +245,7 @@
             this.EDIT.Name = "EDIT";
             this.EDIT.Size = new System.Drawing.Size(130, 50);
             this.EDIT.TabIndex = 24;
-            this.EDIT.Text = "TESTER / BOARDS";
+            this.EDIT.Text = "TESTER / DEVICE";
             this.EDIT.UseVisualStyleBackColor = false;
             this.EDIT.Click += new System.EventHandler(this.EDIT_Click);
             // 
@@ -245,9 +256,9 @@
             this.FROM_DATE.CustomFormat = "yyyy-MM-dd";
             this.FROM_DATE.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.FROM_DATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FROM_DATE.Location = new System.Drawing.Point(1151, 36);
+            this.FROM_DATE.Location = new System.Drawing.Point(1282, 40);
             this.FROM_DATE.Name = "FROM_DATE";
-            this.FROM_DATE.Size = new System.Drawing.Size(112, 20);
+            this.FROM_DATE.Size = new System.Drawing.Size(115, 20);
             this.FROM_DATE.TabIndex = 26;
             this.FROM_DATE.CloseUp += new System.EventHandler(this.Select_FirstDate);
             this.FROM_DATE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FirstDate);
@@ -258,11 +269,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label1.Location = new System.Drawing.Point(640, 525);
+            this.label1.Location = new System.Drawing.Point(624, 524);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 24);
+            this.label1.Size = new System.Drawing.Size(152, 24);
             this.label1.TabIndex = 27;
-            this.label1.Text = "VERSION 1";
+            this.label1.Text = "VERSION 1.0.2";
             // 
             // button1
             // 
@@ -355,7 +366,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label6.Location = new System.Drawing.Point(1092, 39);
+            this.label6.Location = new System.Drawing.Point(1221, 44);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 16);
             this.label6.TabIndex = 39;
@@ -366,7 +377,7 @@
             this.Count_search.AutoSize = true;
             this.Count_search.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Count_search.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.Count_search.Location = new System.Drawing.Point(345, 8);
+            this.Count_search.Location = new System.Drawing.Point(342, 8);
             this.Count_search.Name = "Count_search";
             this.Count_search.Size = new System.Drawing.Size(0, 16);
             this.Count_search.TabIndex = 41;
@@ -402,7 +413,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label7.Location = new System.Drawing.Point(1262, 41);
+            this.label7.Location = new System.Drawing.Point(1248, 70);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(28, 13);
             this.label7.TabIndex = 44;
@@ -413,9 +424,9 @@
             this.TO_DATE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TO_DATE.CustomFormat = "yyyy-MM-dd";
             this.TO_DATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TO_DATE.Location = new System.Drawing.Point(1291, 36);
+            this.TO_DATE.Location = new System.Drawing.Point(1282, 67);
             this.TO_DATE.Name = "TO_DATE";
-            this.TO_DATE.Size = new System.Drawing.Size(106, 20);
+            this.TO_DATE.Size = new System.Drawing.Size(115, 20);
             this.TO_DATE.TabIndex = 45;
             this.TO_DATE.CloseUp += new System.EventHandler(this.TO_DATE_select);
             this.TO_DATE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TO_DATE_KeyDown);
@@ -424,7 +435,7 @@
             // 
             this.NAME.AutoSize = true;
             this.NAME.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.NAME.Location = new System.Drawing.Point(816, 10);
+            this.NAME.Location = new System.Drawing.Point(811, 12);
             this.NAME.Name = "NAME";
             this.NAME.Size = new System.Drawing.Size(0, 13);
             this.NAME.TabIndex = 46;
@@ -527,12 +538,39 @@
             this.label11.TabIndex = 54;
             this.label11.Text = "VSPECS:";
             // 
+            // STATUS_FILTER
+            // 
+            this.STATUS_FILTER.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.STATUS_FILTER.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.STATUS_FILTER.FormattingEnabled = true;
+            this.STATUS_FILTER.Items.AddRange(new object[] {
+            "",
+            "OPEN",
+            "CLOSED"});
+            this.STATUS_FILTER.Location = new System.Drawing.Point(988, 38);
+            this.STATUS_FILTER.Name = "STATUS_FILTER";
+            this.STATUS_FILTER.Size = new System.Drawing.Size(101, 21);
+            this.STATUS_FILTER.TabIndex = 57;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.label12.Location = new System.Drawing.Point(909, 41);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(73, 16);
+            this.label12.TabIndex = 56;
+            this.label12.Text = "STATUS:";
+            // 
             // SEARCH_BOARD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1404, 575);
+            this.Controls.Add(this.STATUS_FILTER);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.VSPECS);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.BIN_NUMBER_FILTER);
@@ -571,7 +609,7 @@
             this.Name = "SEARCH_BOARD";
             this.Text = " ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormClose);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Close);
             this.Load += new System.EventHandler(this.SEARCH_BOARD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).EndInit();
             this.ResumeLayout(false);
@@ -605,14 +643,6 @@
         private System.Windows.Forms.Label NAME;
         private System.Windows.Forms.ComboBox TEST_STEP_FILTER;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PART_NAME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LOT_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TEST_NUMBER;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TESTER_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TEST_STEP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DATE_ENCOUNTERED;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCT_OWNER;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ENDORSEMENT_NUMBER;
         private System.Windows.Forms.ComboBox PART_NAME_FILTER;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
@@ -620,5 +650,16 @@
         private System.Windows.Forms.TextBox BIN_NUMBER_FILTER;
         private System.Windows.Forms.ComboBox VSPECS;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PART_NAME;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LOT_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TEST_NUMBER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TESTER_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TEST_STEP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DATE_ENCOUNTERED;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCT_OWNER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STATUS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ENDORSEMENT_NUMBER;
+        private System.Windows.Forms.ComboBox STATUS_FILTER;
+        private System.Windows.Forms.Label label12;
     }
 }
