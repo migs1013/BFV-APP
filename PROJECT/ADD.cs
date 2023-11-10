@@ -103,8 +103,13 @@ namespace PROJECT
             switch (yes_no)
             {
                 case DialogResult.Yes:
-                    if (STATUS.SelectedIndex == 0) ROOTCAUSE.Text = "UNDER INVESTIGATION";
-                    SendData(6);
+                    if (STATUS.SelectedIndex == 0)
+                    {
+                        ROOTCAUSE.Text = "UNDER INVESTIGATION";
+                        SendData(6);
+                    }
+                    else SendData(9);
+                     
                     Commands(1);
                     command.Connection = Connection.connect;
                     if (Connection.OpenConnection())
@@ -178,6 +183,16 @@ namespace PROJECT
                     command = new MySqlCommand(string.Format("SELECT `BIN_NUMBER` from `hit`.`details` WHERE `PART_NAME` = '{0}' and `TEST_STEP` = '{1}' " +
                         "GROUP BY `BIN_NUMBER`", PART_NAME.Text, TEST_STEP.Text));
                     break;
+                case 9:
+                    command = new MySqlCommand("INSERT INTO `hit`.`details` " +
+                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`BOARD_ID`," +
+                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`," +
+                        "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER`) " +
+                        "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + TEST_STEP.Text + "','" + Test_system.Text + "'," +
+                        "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
+                        "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + STATUS.Text + "','" + ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
+                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','PLEASE REFER TO DISPOSITION','" + DateTime.Today.ToString("yyyy-MM-dd") + "','" + UserName + "')");
+                    break;
             }
         }
         private bool CheckDetails()
@@ -200,7 +215,7 @@ namespace PROJECT
                                 return false;
                             }
                         }
-                        else if (textBox.Text.Length > 40)
+                        else if (textBox.Text.Length > 60)
                         {
                             MessageBox.Show("TOO LONG INPUT!");
                             return false;

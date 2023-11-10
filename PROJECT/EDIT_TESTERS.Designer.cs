@@ -209,7 +209,7 @@ namespace PROJECT
             // 
             // CURRENT_LIST
             // 
-            this.CURRENT_LIST.BackColor = System.Drawing.Color.White;
+            this.CURRENT_LIST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.CURRENT_LIST.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TESTER,
             this.HOSTNAME});
@@ -285,7 +285,7 @@ namespace PROJECT
             // 
             // NEWLIST
             // 
-            this.NEWLIST.BackColor = System.Drawing.Color.White;
+            this.NEWLIST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.NEWLIST.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.COLUMN1_NEW,
             this.COLUMN2_NEW});
@@ -293,7 +293,7 @@ namespace PROJECT
             this.NEWLIST.FullRowSelect = true;
             this.NEWLIST.GridLines = true;
             this.NEWLIST.HideSelection = false;
-            this.NEWLIST.Location = new System.Drawing.Point(10, 209);
+            this.NEWLIST.Location = new System.Drawing.Point(10, 203);
             this.NEWLIST.Name = "NEWLIST";
             this.NEWLIST.Size = new System.Drawing.Size(258, 229);
             this.NEWLIST.Sorting = System.Windows.Forms.SortOrder.Ascending;

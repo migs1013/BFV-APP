@@ -98,7 +98,7 @@ namespace PROJECT
             try
             {
                 string endorsement_number = dataGridViewList.SelectedCells[8].Value.ToString();
-                BOARD_DETAILS details = new BOARD_DETAILS(endorsement_number);
+                BOARD_DETAILS details = new BOARD_DETAILS(endorsement_number,UserAccount);
                 details.ShowDialog();
             }
             catch (Exception ErrorMessage)

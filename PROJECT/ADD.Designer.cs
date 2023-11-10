@@ -90,10 +90,10 @@
             this.Save_btn.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Save_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Save_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Save_btn.Location = new System.Drawing.Point(326, 563);
+            this.Save_btn.Location = new System.Drawing.Point(372, 497);
             this.Save_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Save_btn.Name = "Save_btn";
-            this.Save_btn.Size = new System.Drawing.Size(141, 66);
+            this.Save_btn.Size = new System.Drawing.Size(141, 77);
             this.Save_btn.TabIndex = 0;
             this.Save_btn.Text = "SAVE";
             this.Save_btn.UseVisualStyleBackColor = false;
@@ -104,10 +104,10 @@
             this.Exit_btn.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Exit_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Exit_btn.Location = new System.Drawing.Point(773, 563);
+            this.Exit_btn.Location = new System.Drawing.Point(775, 497);
             this.Exit_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Exit_btn.Name = "Exit_btn";
-            this.Exit_btn.Size = new System.Drawing.Size(141, 66);
+            this.Exit_btn.Size = new System.Drawing.Size(141, 77);
             this.Exit_btn.TabIndex = 60;
             this.Exit_btn.Text = "EXIT";
             this.Exit_btn.UseVisualStyleBackColor = false;
@@ -208,7 +208,7 @@
             this.first_verif_link.Cursor = System.Windows.Forms.Cursors.Hand;
             this.first_verif_link.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.first_verif_link.LinkColor = System.Drawing.Color.Black;
-            this.first_verif_link.Location = new System.Drawing.Point(18, 78);
+            this.first_verif_link.Location = new System.Drawing.Point(18, 55);
             this.first_verif_link.Name = "first_verif_link";
             this.first_verif_link.Size = new System.Drawing.Size(0, 19);
             this.first_verif_link.TabIndex = 17;
@@ -219,7 +219,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.label8.Location = new System.Drawing.Point(12, 563);
+            this.label8.Location = new System.Drawing.Point(12, 544);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(144, 19);
             this.label8.TabIndex = 22;
@@ -229,7 +229,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(5, 239);
+            this.label9.Location = new System.Drawing.Point(18, 115);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 19);
             this.label9.TabIndex = 27;
@@ -240,7 +240,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(5, 263);
+            this.label10.Location = new System.Drawing.Point(4, 191);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(179, 19);
             this.label10.TabIndex = 30;
@@ -250,11 +250,11 @@
             // 
             this.Problem.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.Problem.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Problem.Location = new System.Drawing.Point(5, 286);
+            this.Problem.Location = new System.Drawing.Point(6, 218);
             this.Problem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Problem.Multiline = true;
             this.Problem.Name = "Problem";
-            this.Problem.Size = new System.Drawing.Size(578, 107);
+            this.Problem.Size = new System.Drawing.Size(578, 112);
             this.Problem.TabIndex = 31;
             // 
             // First_box
@@ -282,7 +282,7 @@
             this.First_box.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.First_box.Name = "First_box";
             this.First_box.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.First_box.Size = new System.Drawing.Size(590, 546);
+            this.First_box.Size = new System.Drawing.Size(590, 480);
             this.First_box.TabIndex = 41;
             this.First_box.TabStop = false;
             this.First_box.Text = "VERIFICATION DETAILS";
@@ -291,7 +291,7 @@
             // 
             this.USERNAME.AutoSize = true;
             this.USERNAME.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.USERNAME.Location = new System.Drawing.Point(131, 238);
+            this.USERNAME.Location = new System.Drawing.Point(96, 115);
             this.USERNAME.Name = "USERNAME";
             this.USERNAME.Size = new System.Drawing.Size(0, 19);
             this.USERNAME.TabIndex = 40;
@@ -300,17 +300,17 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label21.Location = new System.Drawing.Point(5, 215);
+            this.label21.Location = new System.Drawing.Point(18, 89);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(118, 19);
+            this.label21.Size = new System.Drawing.Size(165, 19);
             this.label21.TabIndex = 37;
-            this.label21.Text = "DATE VERIFIED:";
+            this.label21.Text = "DATE ENCOUNTERED:";
             // 
             // FirstDate
             // 
             this.FirstDate.AutoSize = true;
             this.FirstDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.FirstDate.Location = new System.Drawing.Point(131, 214);
+            this.FirstDate.Location = new System.Drawing.Point(187, 89);
             this.FirstDate.Name = "FirstDate";
             this.FirstDate.Size = new System.Drawing.Size(0, 19);
             this.FirstDate.TabIndex = 36;
@@ -319,7 +319,7 @@
             // 
             this.Action.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.Action.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Action.Location = new System.Drawing.Point(6, 420);
+            this.Action.Location = new System.Drawing.Point(6, 352);
             this.Action.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Action.Multiline = true;
             this.Action.Name = "Action";
@@ -331,18 +331,18 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(5, 397);
+            this.label1.Location = new System.Drawing.Point(6, 331);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 19);
+            this.label1.Size = new System.Drawing.Size(102, 19);
             this.label1.TabIndex = 71;
-            this.label1.Text = "ACTION DONE";
+            this.label1.Text = "DISPOSITION";
             // 
             // label25
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(290, 25);
+            this.label25.Location = new System.Drawing.Point(290, 17);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(148, 19);
             this.label25.TabIndex = 70;
@@ -354,7 +354,7 @@
             this.FOURTH_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FOURTH_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.FOURTH_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.FOURTH_DLOG.Location = new System.Drawing.Point(292, 224);
+            this.FOURTH_DLOG.Location = new System.Drawing.Point(292, 171);
             this.FOURTH_DLOG.Name = "FOURTH_DLOG";
             this.FOURTH_DLOG.Size = new System.Drawing.Size(0, 19);
             this.FOURTH_DLOG.TabIndex = 69;
@@ -366,7 +366,7 @@
             this.ADD2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD2.ForeColor = System.Drawing.Color.Black;
-            this.ADD2.Location = new System.Drawing.Point(292, 44);
+            this.ADD2.Location = new System.Drawing.Point(292, 36);
             this.ADD2.Name = "ADD2";
             this.ADD2.Size = new System.Drawing.Size(156, 19);
             this.ADD2.TabIndex = 64;
@@ -379,7 +379,7 @@
             this.ADD4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD4.ForeColor = System.Drawing.Color.Black;
-            this.ADD4.Location = new System.Drawing.Point(290, 196);
+            this.ADD4.Location = new System.Drawing.Point(290, 143);
             this.ADD4.Name = "ADD4";
             this.ADD4.Size = new System.Drawing.Size(156, 19);
             this.ADD4.TabIndex = 66;
@@ -392,7 +392,7 @@
             this.THIRD_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.THIRD_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.THIRD_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.THIRD_DLOG.Location = new System.Drawing.Point(292, 161);
+            this.THIRD_DLOG.Location = new System.Drawing.Point(292, 124);
             this.THIRD_DLOG.Name = "THIRD_DLOG";
             this.THIRD_DLOG.Size = new System.Drawing.Size(0, 19);
             this.THIRD_DLOG.TabIndex = 68;
@@ -404,7 +404,7 @@
             this.ADD3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD3.ForeColor = System.Drawing.Color.Black;
-            this.ADD3.Location = new System.Drawing.Point(290, 116);
+            this.ADD3.Location = new System.Drawing.Point(290, 89);
             this.ADD3.Name = "ADD3";
             this.ADD3.Size = new System.Drawing.Size(156, 19);
             this.ADD3.TabIndex = 65;
@@ -417,7 +417,7 @@
             this.SECOND_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SECOND_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.SECOND_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.SECOND_DLOG.Location = new System.Drawing.Point(292, 78);
+            this.SECOND_DLOG.Location = new System.Drawing.Point(292, 55);
             this.SECOND_DLOG.Name = "SECOND_DLOG";
             this.SECOND_DLOG.Size = new System.Drawing.Size(0, 19);
             this.SECOND_DLOG.TabIndex = 67;
@@ -555,7 +555,7 @@
             this.PRODUCT_OWNER.AutoSize = true;
             this.PRODUCT_OWNER.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.PRODUCT_OWNER.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
-            this.PRODUCT_OWNER.Location = new System.Drawing.Point(85, 593);
+            this.PRODUCT_OWNER.Location = new System.Drawing.Point(162, 544);
             this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
             this.PRODUCT_OWNER.Size = new System.Drawing.Size(0, 19);
             this.PRODUCT_OWNER.TabIndex = 78;
@@ -673,7 +673,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(926, 639);
+            this.ClientSize = new System.Drawing.Size(926, 581);
             this.Controls.Add(this.TEST_NUMBER);
             this.Controls.Add(this.STATUS);
             this.Controls.Add(this.label11);
@@ -711,8 +711,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(942, 678);
-            this.MinimumSize = new System.Drawing.Size(942, 678);
+            this.MaximumSize = new System.Drawing.Size(942, 620);
+            this.MinimumSize = new System.Drawing.Size(942, 620);
             this.Name = "ADD";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ADD NEW ISSUE";
