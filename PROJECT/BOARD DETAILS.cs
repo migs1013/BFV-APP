@@ -230,7 +230,7 @@ namespace PROJECT
                     break;
                 case 2:
                     command = new MySqlCommand(string.Format("use `hit`; select (select count(*) from `details` where `BIN_NUMBER` = '{0}' AND `TEST_NUMBER` = '{1}' AND `PRODUCT_OWNER` = '{2}' AND `STATUS` = '{3}') AS `{3}`," +
-                            "(select datediff(curdate(),`DATE_ENCOUNTERED`) from `details` where `ENDORSEMENT_NUMBER` = (SELECT max(`ENDORSEMENT_NUMBER`) from `details` " +
+                            "(select datediff(curdate(),`DATE_ENCOUNTERED`) from `details` where `ENDORSEMENT_NUMBER` = (SELECT min(`ENDORSEMENT_NUMBER`) from `details` " +
                             "where `BIN_NUMBER` = '{0}' AND `TEST_NUMBER` = '{1}' AND `PRODUCT_OWNER` = '{2}' AND `STATUS` = '{3}')) as `DATE`", 
                             BIN_NUMBER.Text,TEST_NUMBER.Text,PRODUCT_OWNER.Text,STATUS.Text));
                     break;
