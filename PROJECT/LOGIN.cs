@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Squirrel;
@@ -13,6 +15,7 @@ namespace PROJECT
         public LOGIN()
         {
             InitializeComponent();
+            
         }
 
         private bool CheckTextBox(string textBox)
@@ -45,7 +48,7 @@ namespace PROJECT
         {
             if (string.IsNullOrWhiteSpace(REG_USER.Text) || string.IsNullOrWhiteSpace(REG_PASS.Text) || string.IsNullOrWhiteSpace(REG_CONFIRM.Text))
             {
-                MessageBox.Show("FILL UP ALL FORMS");
+                ALERT.Text = "FILL UP ALL FORMS";
                 return;
             }
             if (REG_PASS.Text == REG_CONFIRM.Text)
@@ -80,7 +83,7 @@ namespace PROJECT
                                 return;
                             }
                             Connection.CloseConnection();
-                            MessageBox.Show("ACCOUNT SUCCESSFULLY REGISTERED");
+                            ALERT.Text = "ACCOUNT SUCCESSFULLY REGISTERED";
                             REG_USER.Clear();
                             REG_PASS.Clear();
                             REG_CONFIRM.Clear();
@@ -88,14 +91,14 @@ namespace PROJECT
                     }
                     else
                     {
-                        MessageBox.Show("ACCOUNT ALREADY EXIST");
+                        ALERT.Text = "ACCOUNT ALREADY EXIST";
                         return;
                     }
                 }
             }
             else
             {
-                MessageBox.Show("PASSWORD NOT MATCH");
+                ALERT.Text = "PASSWORD NOT MATCH";
                 return;
             }
         }
@@ -212,6 +215,11 @@ namespace PROJECT
         private void LOGIN_Load(object sender, EventArgs e)
         {
             User.Focus();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

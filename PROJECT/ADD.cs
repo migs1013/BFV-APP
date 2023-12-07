@@ -293,7 +293,7 @@ namespace PROJECT
                 {
                     if (LotSummary.ToUpper().Contains("AY") || LotSummary.ToUpper().Contains("AX"))
                         LOT_ID.Text = LotSummary;
-                    else if (LotSummary.ToUpper().Contains("LT") || LotSummary.ToUpper().Contains("AD"))
+                    else if (LotSummary.ToUpper().Contains("LT") || LotSummary.ToUpper().Contains("ADBMS"))
                         PART_NAME.Text = LotSummary;
                     else if (LotSummary.ToUpper().Contains("V") && LotSummary.ToUpper().Contains("P"))
                         VSPEC.Text = LotSummary;
