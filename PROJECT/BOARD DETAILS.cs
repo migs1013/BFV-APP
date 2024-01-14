@@ -234,7 +234,7 @@ namespace PROJECT
                             "where `BIN_NUMBER` = '{0}' AND `TEST_NUMBER` = '{1}' AND `PRODUCT_OWNER` = '{2}' AND `STATUS` = '{3}')) as `DATE`", 
                             BIN_NUMBER.Text,TEST_NUMBER.Text,PRODUCT_OWNER.Text,STATUS.Text));
                     break;
-                case 3:
+                case 3: // LOAD OTHER TRANSACTIONS WITH THE SAME FAILURE
                     command = new MySqlCommand(string.Format("SELECT `DATE_ENCOUNTERED`,`USER`,`ENDORSEMENT_NUMBER` FROM `hit`.`details`" +
                             "where (`BIN_NUMBER` = '{0}' AND `TEST_NUMBER` = '{1}' AND `PRODUCT_OWNER` = '{2}' AND `STATUS` = '{3}')",
                             BIN_NUMBER.Text,TEST_NUMBER.Text,PRODUCT_OWNER.Text,STATUS.Text));
