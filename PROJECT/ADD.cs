@@ -202,7 +202,7 @@ namespace PROJECT
                 if (c is TextBox)
                 {
                     TextBox textBox = c as TextBox;
-                    if (textBox == Problem || textBox == Action)
+                    if (textBox == Problem || textBox == Action || textBox == TEST_NAME)
                         continue;
                     else
                     {
@@ -231,10 +231,10 @@ namespace PROJECT
                         Error();
                         return false;
                     }
-                    else if (comboBox.Text.Length >40)
+                    else if (comboBox.Text.Length > 40)
                     {
-                            MessageBox.Show("TOO LONG INPUT!");
-                            return false;
+                        MessageBox.Show("TOO LONG INPUT!");
+                        return false;
                     }
                 }
                 else continue;
@@ -291,7 +291,7 @@ namespace PROJECT
 
                 foreach (string LotSummary in words)
                 {
-                    if (LotSummary.ToUpper().Contains("AY") || LotSummary.ToUpper().Contains("AX"))
+                    if (LotSummary.ToUpper().Contains("AY") || LotSummary.ToUpper().Contains("AX") || LotSummary.ToUpper().Contains("AZ"))
                         LOT_ID.Text = LotSummary;
                     else if (LotSummary.ToUpper().Contains("LT") || LotSummary.ToUpper().Contains("ADBMS"))
                         PART_NAME.Text = LotSummary;

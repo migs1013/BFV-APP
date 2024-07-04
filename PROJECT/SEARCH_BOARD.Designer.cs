@@ -281,7 +281,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 24);
             this.label1.TabIndex = 27;
-            this.label1.Text = "VERSION 1.0.3";
+            this.label1.Text = "VERSION 1.0.4";
             // 
             // button1
             // 
@@ -667,10 +667,10 @@
             this.linkLabel2.LinkColor = System.Drawing.Color.Black;
             this.linkLabel2.Location = new System.Drawing.Point(4, 123);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(79, 16);
+            this.linkLabel2.Size = new System.Drawing.Size(70, 16);
             this.linkLabel2.TabIndex = 60;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "linkLabel2";
+            this.linkLabel2.Text = "PARETO";
             // 
             // linkLabel3
             // 
@@ -681,10 +681,10 @@
             this.linkLabel3.LinkColor = System.Drawing.Color.Black;
             this.linkLabel3.Location = new System.Drawing.Point(4, 163);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(79, 16);
+            this.linkLabel3.Size = new System.Drawing.Size(82, 16);
             this.linkLabel3.TabIndex = 61;
             this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "linkLabel3";
+            this.linkLabel3.Text = "OVERDUE";
             // 
             // SEARCH_BOARD
             // 

@@ -45,6 +45,7 @@ namespace PROJECT
                 ACTION.Text = read_data["ACTION"].ToString();
                 BIN_NUMBER.Text = read_data["BIN_NUMBER"].ToString();
                 TEST_NUMBER.Text = read_data["TEST_NUMBER"].ToString();
+                TEST_NAME.Text = read_data["TEST_NAME"].ToString();
                 FAILURE_MODE.Text = read_data["FAILURE_MODE"].ToString();
                 Date = Convert.ToDateTime(read_data["DATE_ENCOUNTERED"].ToString());
                 USER_LOG.Text = read_data["USER"].ToString();
@@ -219,13 +220,13 @@ namespace PROJECT
         {
             switch (pick)
             {
-                case 0:
+                case 0: // LOAD ALL TRANSACTION DETAILS
                     command = new MySqlCommand("SELECT `ENDORSEMENT_NUMBER`,`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TESTER_ID`,`HANDLER_ID`," +
-                            "`FAILURE_MODE`,`BOARD_ID`,`BIN_NUMBER`,`TEST_NUMBER`,`PRODUCT_OWNER`,`FIRST_DATALOG`,`SECOND_DATALOG`,`THIRD_DATALOG`," +
+                            "`FAILURE_MODE`,`BOARD_ID`,`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`PRODUCT_OWNER`,`FIRST_DATALOG`,`SECOND_DATALOG`,`THIRD_DATALOG`," +
                             "`FOURTH_DATALOG`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FILENAME_1`,`FILENAME_2`,`FILENAME_3`,`FILENAME_4`,`STATUS`,`ROOTCAUSE`," +
                             "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER` FROM `hit`.`details` WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_number + "')");
                     break;
-                case 1:
+                case 1: //LOAD DATALOG
                     command = new MySqlCommand(String.Format("SELECT `{0}` FROM `hit`.`details` WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_number + "')",DATALOG));
                     break;
                 case 2:
