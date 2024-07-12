@@ -7,7 +7,7 @@ using Squirrel;
 using System.Text.RegularExpressions;
 namespace PROJECT
 {
-    public partial class LOGIN : Form
+    public partial class LOGIN : System.Windows.Forms.Form
     {
         MySqlCommand command;
         public int count;

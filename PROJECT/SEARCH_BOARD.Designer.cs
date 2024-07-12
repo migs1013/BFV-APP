@@ -73,9 +73,11 @@
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.DEVICE_NAME = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.HIT_COUNT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -87,7 +89,7 @@
             this.Search_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Search_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.Search_button.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Search_button.Location = new System.Drawing.Point(159, 159);
+            this.Search_button.Location = new System.Drawing.Point(176, 166);
             this.Search_button.Name = "Search_button";
             this.Search_button.Size = new System.Drawing.Size(150, 27);
             this.Search_button.TabIndex = 0;
@@ -100,7 +102,7 @@
             this.search_text.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.search_text.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.search_text.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_text.Location = new System.Drawing.Point(687, 19);
+            this.search_text.Location = new System.Drawing.Point(500, 16);
             this.search_text.Name = "search_text";
             this.search_text.Size = new System.Drawing.Size(147, 20);
             this.search_text.TabIndex = 1;
@@ -113,7 +115,7 @@
             this.Add_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Add_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Add_btn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Add_btn.Location = new System.Drawing.Point(351, 577);
+            this.Add_btn.Location = new System.Drawing.Point(351, 657);
             this.Add_btn.Name = "Add_btn";
             this.Add_btn.Size = new System.Drawing.Size(130, 51);
             this.Add_btn.TabIndex = 2;
@@ -142,13 +144,13 @@
             this.ENDORSEMENT_NUMBER});
             this.dataGridViewList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridViewList.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dataGridViewList.Location = new System.Drawing.Point(7, 206);
+            this.dataGridViewList.Location = new System.Drawing.Point(7, 248);
             this.dataGridViewList.Name = "dataGridViewList";
             this.dataGridViewList.ReadOnly = true;
             this.dataGridViewList.RowHeadersVisible = false;
             this.dataGridViewList.RowHeadersWidth = 62;
             this.dataGridViewList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewList.Size = new System.Drawing.Size(1248, 365);
+            this.dataGridViewList.Size = new System.Drawing.Size(1437, 403);
             this.dataGridViewList.TabIndex = 4;
             this.dataGridViewList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Click_data);
             // 
@@ -247,7 +249,7 @@
             this.EDIT.Cursor = System.Windows.Forms.Cursors.Hand;
             this.EDIT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDIT.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.EDIT.Location = new System.Drawing.Point(773, 578);
+            this.EDIT.Location = new System.Drawing.Point(962, 658);
             this.EDIT.Name = "EDIT";
             this.EDIT.Size = new System.Drawing.Size(130, 50);
             this.EDIT.TabIndex = 24;
@@ -263,7 +265,7 @@
             this.FROM_DATE.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.FROM_DATE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FROM_DATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FROM_DATE.Location = new System.Drawing.Point(713, 75);
+            this.FROM_DATE.Location = new System.Drawing.Point(455, 154);
             this.FROM_DATE.Name = "FROM_DATE";
             this.FROM_DATE.Size = new System.Drawing.Size(115, 22);
             this.FROM_DATE.TabIndex = 26;
@@ -277,7 +279,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(553, 588);
+            this.label1.Location = new System.Drawing.Point(647, 668);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 24);
             this.label1.TabIndex = 27;
@@ -288,7 +290,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(7, 577);
+            this.button1.Location = new System.Drawing.Point(7, 657);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 50);
             this.button1.TabIndex = 30;
@@ -383,7 +385,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(652, 79);
+            this.label6.Location = new System.Drawing.Point(353, 159);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 16);
             this.label6.TabIndex = 39;
@@ -434,7 +436,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(652, 105);
+            this.label7.Location = new System.Drawing.Point(353, 185);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 18);
             this.label7.TabIndex = 44;
@@ -446,7 +448,7 @@
             this.TO_DATE.CustomFormat = "yyyy-MM-dd";
             this.TO_DATE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TO_DATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TO_DATE.Location = new System.Drawing.Point(713, 104);
+            this.TO_DATE.Location = new System.Drawing.Point(455, 182);
             this.TO_DATE.Name = "TO_DATE";
             this.TO_DATE.Size = new System.Drawing.Size(115, 22);
             this.TO_DATE.TabIndex = 45;
@@ -625,9 +627,9 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
-            this.groupBox1.Location = new System.Drawing.Point(415, 8);
+            this.groupBox1.Location = new System.Drawing.Point(786, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(840, 192);
+            this.groupBox1.Size = new System.Drawing.Size(653, 211);
             this.groupBox1.TabIndex = 58;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SEARCH FILTER";
@@ -638,53 +640,61 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(604, 20);
+            this.label13.Location = new System.Drawing.Point(419, 17);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(75, 16);
             this.label13.TabIndex = 58;
             this.label13.Text = "OTHERS:";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel1.Location = new System.Drawing.Point(4, 89);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(92, 16);
-            this.linkLabel1.TabIndex = 59;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "HOLD LOTS";
             // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.BackColor = System.Drawing.Color.Transparent;
             this.linkLabel2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel2.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel2.Location = new System.Drawing.Point(4, 123);
+            this.linkLabel2.Location = new System.Drawing.Point(4, 62);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(70, 16);
+            this.linkLabel2.Size = new System.Drawing.Size(80, 20);
             this.linkLabel2.TabIndex = 60;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "PARETO";
             // 
-            // linkLabel3
+            // listView1
             // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.linkLabel3.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel3.Location = new System.Drawing.Point(4, 163);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(82, 16);
-            this.linkLabel3.TabIndex = 61;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "OVERDUE";
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.DEVICE_NAME,
+            this.HIT_COUNT});
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(6, 85);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(289, 157);
+            this.listView1.TabIndex = 61;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // DEVICE_NAME
+            // 
+            this.DEVICE_NAME.Text = "DEVICE";
+            this.DEVICE_NAME.Width = 203;
+            // 
+            // HIT_COUNT
+            // 
+            this.HIT_COUNT.Text = "HIT COUNT";
+            this.HIT_COUNT.Width = 80;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button2.Location = new System.Drawing.Point(301, 208);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(81, 34);
+            this.button2.TabIndex = 62;
+            this.button2.Text = "VIEW ALL";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // SEARCH_BOARD
             // 
@@ -693,10 +703,10 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1262, 639);
-            this.Controls.Add(this.linkLabel3);
+            this.ClientSize = new System.Drawing.Size(1451, 719);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.NAME);
@@ -773,8 +783,10 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader DEVICE_NAME;
+        private System.Windows.Forms.ColumnHeader HIT_COUNT;
+        private System.Windows.Forms.Button button2;
     }
 }

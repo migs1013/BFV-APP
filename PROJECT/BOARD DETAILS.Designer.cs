@@ -91,6 +91,7 @@ namespace PROJECT
             this.label13 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.TEST_NAME = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.First_box.SuspendLayout();
             this.PO_DISPO.SuspendLayout();
             this.SuspendLayout();
@@ -786,12 +787,26 @@ namespace PROJECT
             // 
             // TEST_NAME
             // 
+            this.TEST_NAME.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.TEST_NAME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TEST_NAME.Location = new System.Drawing.Point(392, 297);
             this.TEST_NAME.Multiline = true;
             this.TEST_NAME.Name = "TEST_NAME";
+            this.TEST_NAME.ReadOnly = true;
             this.TEST_NAME.Size = new System.Drawing.Size(280, 32);
             this.TEST_NAME.TabIndex = 108;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(93, 12);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(78, 13);
+            this.label15.TabIndex = 109;
+            this.label15.Text = "ATTENTION";
             // 
             // BOARD_DETAILS
             // 
@@ -801,6 +816,7 @@ namespace PROJECT
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1142, 627);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.TEST_NAME);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.PO_DISPO);
@@ -919,5 +935,6 @@ namespace PROJECT
         private System.Windows.Forms.CheckBox ALL_TRANSACTION;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox TEST_NAME;
+        private System.Windows.Forms.Label label15;
     }
 }

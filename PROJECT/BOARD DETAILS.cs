@@ -5,7 +5,7 @@ using System.IO;
 
 namespace PROJECT
 {
-    public partial class BOARD_DETAILS : Form
+    public partial class BOARD_DETAILS : System.Windows.Forms.Form
     {
         MySqlCommand command;
         byte[] Data;

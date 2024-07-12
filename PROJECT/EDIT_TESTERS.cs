@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace PROJECT
 {
-    public partial class EDIT_TESTERS : Form
+    public partial class EDIT_TESTERS : System.Windows.Forms.Form
     { 
         MySqlCommand Command;
         string List_value, List_AddOrDelete,FullCommand,category;

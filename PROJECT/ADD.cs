@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace PROJECT
 {
-    public partial class ADD : Form
+    public partial class ADD : System.Windows.Forms.Form
     {
         MySqlCommand command;
         long FileSize;

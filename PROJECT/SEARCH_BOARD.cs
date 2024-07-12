@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace PROJECT
 {
-    public partial class SEARCH_BOARD : Form
+    public partial class SEARCH_BOARD : System.Windows.Forms.Form
     {
         public string check,all;
         public int count, ComboBoxCount, firstCount, secondCount, range = 0;
