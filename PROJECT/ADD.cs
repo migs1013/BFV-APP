@@ -15,7 +15,7 @@ namespace PROJECT
         byte[] Data;
         public string tester_platform, FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption, 
                       hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "";
-        public int Endorsement_Number,FileNameLength;
+        public int Endorsement_Number,FileNameLength, WordCount = 0;
         public string UserName { get; set; }
         public int Load_number { get; set; }
         public DateTime WriteTime = new DateTime();
@@ -291,9 +291,16 @@ namespace PROJECT
 
                 foreach (string LotSummary in words)
                 {
-                    if (LotSummary.ToUpper().Contains("AY") || LotSummary.ToUpper().Contains("AX") || LotSummary.ToUpper().Contains("AZ"))
-                        LOT_ID.Text = LotSummary;
-                    else if (LotSummary.ToUpper().Contains("LT") || LotSummary.ToUpper().Contains("ADBMS"))
+                    if (WordCount == 0)
+                    {
+                        if (LotSummary.ToUpper().Contains("AY") || LotSummary.ToUpper().Contains("AX") || LotSummary.ToUpper().Contains("AZ") || LotSummary.Contains("."))
+                        {
+                            WordCount = 1;
+                            LOT_ID.Text = LotSummary;
+                        }
+                    }
+
+                    if (LotSummary.ToUpper().Contains("LT") || LotSummary.ToUpper().Contains("ADBMS"))
                         PART_NAME.Text = LotSummary;
                     else if (LotSummary.ToUpper().Contains("V") && LotSummary.ToUpper().Contains("P"))
                         VSPEC.Text = LotSummary;
@@ -305,7 +312,7 @@ namespace PROJECT
                         TestOption = LotSummary;
                     else continue;
                 }
-
+                WordCount = 0;
                 TEST_STEP.Text = string.Join(" ", TestOption, Temp);
 
                 Commands(2);

@@ -566,6 +566,7 @@
             // PRODUCT_OWNER
             // 
             this.PRODUCT_OWNER.AutoSize = true;
+            this.PRODUCT_OWNER.BackColor = System.Drawing.Color.Transparent;
             this.PRODUCT_OWNER.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.PRODUCT_OWNER.ForeColor = System.Drawing.Color.Black;
             this.PRODUCT_OWNER.Location = new System.Drawing.Point(162, 544);

@@ -69,8 +69,9 @@ namespace PROJECT
             // ADD_TEXT
             // 
             this.ADD_TEXT.AutoSize = true;
+            this.ADD_TEXT.BackColor = System.Drawing.Color.Transparent;
             this.ADD_TEXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ADD_TEXT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.ADD_TEXT.ForeColor = System.Drawing.Color.Black;
             this.ADD_TEXT.Location = new System.Drawing.Point(10, 95);
             this.ADD_TEXT.Name = "ADD_TEXT";
             this.ADD_TEXT.Size = new System.Drawing.Size(0, 16);
@@ -123,8 +124,9 @@ namespace PROJECT
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(9, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(119, 16);
@@ -148,8 +150,9 @@ namespace PROJECT
             // AddOrRemoveText
             // 
             this.AddOrRemoveText.AutoSize = true;
+            this.AddOrRemoveText.BackColor = System.Drawing.Color.Transparent;
             this.AddOrRemoveText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddOrRemoveText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.AddOrRemoveText.ForeColor = System.Drawing.Color.Black;
             this.AddOrRemoveText.Location = new System.Drawing.Point(436, 73);
             this.AddOrRemoveText.Name = "AddOrRemoveText";
             this.AddOrRemoveText.Size = new System.Drawing.Size(0, 25);
@@ -173,8 +176,9 @@ namespace PROJECT
             // label
             // 
             this.label.AutoSize = true;
+            this.label.BackColor = System.Drawing.Color.Transparent;
             this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.label.ForeColor = System.Drawing.Color.Black;
             this.label.Location = new System.Drawing.Point(66, 184);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(146, 16);
@@ -184,8 +188,9 @@ namespace PROJECT
             // NewList2
             // 
             this.NewList2.AutoSize = true;
+            this.NewList2.BackColor = System.Drawing.Color.Transparent;
             this.NewList2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewList2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.NewList2.ForeColor = System.Drawing.Color.Black;
             this.NewList2.Location = new System.Drawing.Point(458, 184);
             this.NewList2.Name = "NewList2";
             this.NewList2.Size = new System.Drawing.Size(118, 16);
@@ -265,8 +270,9 @@ namespace PROJECT
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(9, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(158, 16);
@@ -276,8 +282,9 @@ namespace PROJECT
             // option_list
             // 
             this.option_list.AutoSize = true;
+            this.option_list.BackColor = System.Drawing.Color.Transparent;
             this.option_list.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.option_list.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.option_list.ForeColor = System.Drawing.Color.Black;
             this.option_list.Location = new System.Drawing.Point(10, 63);
             this.option_list.Name = "option_list";
             this.option_list.Size = new System.Drawing.Size(0, 16);
@@ -324,8 +331,9 @@ namespace PROJECT
             // HOSTNAME_LABEL
             // 
             this.HOSTNAME_LABEL.AutoSize = true;
+            this.HOSTNAME_LABEL.BackColor = System.Drawing.Color.Transparent;
             this.HOSTNAME_LABEL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HOSTNAME_LABEL.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.HOSTNAME_LABEL.ForeColor = System.Drawing.Color.Black;
             this.HOSTNAME_LABEL.Location = new System.Drawing.Point(10, 121);
             this.HOSTNAME_LABEL.Name = "HOSTNAME_LABEL";
             this.HOSTNAME_LABEL.Size = new System.Drawing.Size(0, 16);
@@ -337,6 +345,7 @@ namespace PROJECT
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(662, 491);
             this.Controls.Add(this.HOSTNAME_TEXTBOX);
             this.Controls.Add(this.HOSTNAME_LABEL);

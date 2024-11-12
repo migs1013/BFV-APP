@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -10,8 +11,8 @@ namespace PROJECT
 {
     public partial class SEARCH_BOARD : System.Windows.Forms.Form
     {
-        public string check,all;
-        public int count, ComboBoxCount, firstCount, secondCount, range = 0;
+        public string check,all,month1,month2,year,DateFilter;
+        public int count, ComboBoxCount, firstCount, secondCount, range = 0, WW, ConvertYear;
         public string DATE_FILTER, FullTextCommand;
         public string UserAccount { get; set; }
 
@@ -48,6 +49,16 @@ namespace PROJECT
                 while (read_data.Read())
                 {
                     PRODUCT_OWNER_FILTER.Items.Add(read_data.GetString("PRODUCT_OWNER"));
+                }
+                Connection.CloseConnection();
+
+                Commands(13);
+                Connection.OpenConnection();
+
+                read_data = command.ExecuteReader();
+                while (read_data.Read())
+                {
+                    HITCOUNT.Items.Add(new ListViewItem(new[] { read_data.GetString("PART_NAME"), read_data.GetString("HITCOUNT") }));
                 }
                 Connection.CloseConnection();
 
@@ -165,6 +176,51 @@ namespace PROJECT
                     command = new MySqlCommand(string.Format("SELECT `TEST_STEP` from `details` WHERE locate('{0}',`PART_NAME`) = 1 GROUP BY `TEST_STEP`"
                         , PART_NAME_FILTER.Text), Connection.connect);
                     break;
+                case 13: // LOAD HIT COUNT
+                    command = new MySqlCommand("SELECT `PART_NAME`,count(`PART_NAME`) as HITCOUNT from `DETAILS` GROUP BY `PART_NAME` ORDER BY `HITCOUNT` DESC", Connection.connect);
+                    break;
+                case 14: // LOAD Q2-Q4
+                    command = new MySqlCommand(string.Format("select `part_name`,count(*) as HitCount from `details` " +
+                        "where month(`DATE_ENCOUNTERED`) between '{0}' and '{1}' and year(`DATE_ENCOUNTERED`) = '{2}' " +
+                        "group by `part_name` order by `HitCount` desc",month1,month2, FISCAL_YEAR.Text), Connection.connect);
+                    break;
+                case 15: // LOAD Q1
+                    command = new MySqlCommand(string.Format("SELECT `PART_NAME`,count(*) as HitCount from `DETAILS`" +
+                        "WHERE `DATE_ENCOUNTERED` BETWEEN '{0}-11-01' AND '{1}-01-31'" +
+                        "GROUP BY `PART_NAME` ORDER BY `HitCount` DESC", year, FISCAL_YEAR.Text), Connection.connect);
+                    break;
+                case 16: // LOAD YEAR
+                    command = new MySqlCommand(string.Format("SELECT `PART_NAME`,count(*) as HitCount from `DETAILS`" +
+                        "WHERE YEAR(`DATE_ENCOUNTERED`) = '{0}'" +
+                        "GROUP BY `PART_NAME` ORDER BY `HitCount` DESC", FISCAL_YEAR.Text), Connection.connect);
+                    break;
+                case 17: // LOAD DATA IN DATAGRIDVIEW THAT HAS BEEN CLICK IN THE PARETO LIST
+
+                    ConvertYear = Convert.ToInt32(FISCAL_YEAR.Text);
+
+                    year = Convert.ToString(ConvertYear - 1);
+
+                    if (QUARTER.Text == "1")
+                    {
+                        DateFilter = string.Format("and (`DATE_ENCOUNTERED` BETWEEN '{0}-11-01' AND '{1}-01-31') ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", year, FISCAL_YEAR.Text);
+                    }
+                    else if (QUARTER.Text == "2" || QUARTER.Text == "3" || QUARTER.Text == "4")
+                    {
+                        if (QUARTER.Text == "2") { month1 = "2"; month2 = "4"; }
+                        else if (QUARTER.Text == "3") { month1 = "5"; month2 = "7"; }
+                        else { month1 = "8"; month2 = "10"; }
+
+                        DateFilter = string.Format("and (month(`DATE_ENCOUNTERED`) between '{0}' and '{1}' and year(`DATE_ENCOUNTERED`) = '{2}') " +
+                        "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", month1, month2, FISCAL_YEAR.Text);
+                    }
+                    else
+                        DateFilter = string.Format("and YEAR(`DATE_ENCOUNTERED`) = '{0}'", FISCAL_YEAR.Text);
+
+
+                    command = new MySqlCommand(string.Format("SELECT `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`," +
+                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`STATUS`,`ENDORSEMENT_NUMBER` FROM `DETAILS` " +
+                        "WHERE `PART_NAME` = '{0}'{1} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30 ", HITCOUNT.SelectedItems[0].Text,DateFilter), Connection.connect);
+                    break;
             }
         }
         private DataTable Table(int COMMAND)
@@ -246,6 +302,7 @@ namespace PROJECT
                 }
                 CommandComboBox();
                 Connection.CloseConnection();
+
                 Commands(4);
                 if (Connection.OpenConnection())
                 {
@@ -294,6 +351,17 @@ namespace PROJECT
             if (Connection.OpenConnection())
             {
                 all = command.ExecuteScalar().ToString();
+                Connection.CloseConnection();
+
+                HITCOUNT.Items.Clear();
+                Commands(13);
+                Connection.OpenConnection();
+
+                MySqlDataReader Read_data = command.ExecuteReader();
+                while (Read_data.Read())
+                {
+                    HITCOUNT.Items.Add(new ListViewItem(new[] { Read_data.GetString("PART_NAME"), Read_data.GetString("HITCOUNT") }));
+                }
                 Connection.CloseConnection();
             }
             else return;
@@ -354,6 +422,21 @@ namespace PROJECT
             back.ShowDialog();
         }
 
+        private void Click_Pareto(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                dataGridViewList.DataSource = Table(17);
+
+            }
+            catch (Exception ErrorMessage)
+            {
+                MessageBox.Show(ErrorMessage.ToString());
+                Connection.CloseConnection();
+            }
+        }
+
         private void Enter_search(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -402,6 +485,37 @@ namespace PROJECT
             {
                 Connection.CloseConnection();
                 this.Close();
+            }
+        }
+
+        private void SEARCH_PARETO_Click(object sender, EventArgs e)
+        {
+
+            if (!String.IsNullOrEmpty(FISCAL_YEAR.Text))
+            {
+                HITCOUNT.Items.Clear();
+                ConvertYear = Convert.ToInt32(FISCAL_YEAR.Text);
+
+                year = Convert.ToString(ConvertYear - 1);
+
+                if (QUARTER.Text == "2") { month1 = "2"; month2 = "4"; Commands(14); }
+                else if (QUARTER.Text == "3") { month1 = "5"; month2 = "7"; Commands(14); }
+                else if (QUARTER.Text == "4") { month1 = "8"; month2 = "10"; Commands(14); }
+                else if (QUARTER.Text == "1") { Commands(15); }
+                else Commands(16); 
+
+                Connection.OpenConnection();
+
+                MySqlDataReader Read_data = command.ExecuteReader();
+                while (Read_data.Read())
+                {
+                    HITCOUNT.Items.Add(new ListViewItem(new[] { Read_data.GetString("PART_NAME"), Read_data.GetString("HITCOUNT") }));
+                }
+                Connection.CloseConnection();
+            }
+            else
+            {
+                MessageBox.Show("PLEASE CHOOSE FISCAL YEAR");
             }
         }
 
