@@ -13,14 +13,16 @@ namespace PROJECT
         public int Endorsement_number { get; set; }
         public string DLOG1 ,DLOG2 ,DLOG3 ,DLOG4, OPEN_COUNT,CLOSED_COUNT,STATUS_OPTION,DATE_ENCOUNTER,DATE_DIFFERENCE;
         public string UserName { get; set; }
+        public string Approver { get; set; }
         private DateTime Date = new DateTime();
         private DateTime Dispo_Date = new DateTime();
 
-        public BOARD_DETAILS(string number,String User)
+        public BOARD_DETAILS(string number,String User,string Approver_access)
         {
             InitializeComponent();
             Endorsement_number = Convert.ToInt32(number);
             UserName = User;
+            Approver = Approver_access;
         }
 
         private void LoadData()
@@ -56,6 +58,7 @@ namespace PROJECT
                 DLOG2 = read_data["FILENAME_2"].ToString();
                 DLOG3 = read_data["FILENAME_3"].ToString();
                 DLOG4 = read_data["FILENAME_4"].ToString();
+                FACTORY.Text = read_data["FACTORY"].ToString();
                 if (STATUS.Text == "CLOSED")
                 {
                     PO_COMMENT.Text = read_data["PO_COMMENT"].ToString();
@@ -64,6 +67,11 @@ namespace PROJECT
                     DISPO_DATE.Text = Dispo_Date.ToString("yyyy-MM-dd");
                     PO_ROOTCAUSE.Visible = Rootcause_label.Visible = false;
                     PO_COMMENT.ReadOnly = true;
+                }
+                else if (STATUS.Text == "FOR APPROVAL" && Approver.ToString() == "1")
+                {
+                    UPDATE.Text = "APPROVE";
+                    UPDATE.Visible = true;
                 }
                 else
                 {
@@ -224,7 +232,7 @@ namespace PROJECT
                     command = new MySqlCommand("SELECT `ENDORSEMENT_NUMBER`,`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TESTER_ID`,`HANDLER_ID`," +
                             "`FAILURE_MODE`,`BOARD_ID`,`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`PRODUCT_OWNER`,`FIRST_DATALOG`,`SECOND_DATALOG`,`THIRD_DATALOG`," +
                             "`FOURTH_DATALOG`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FILENAME_1`,`FILENAME_2`,`FILENAME_3`,`FILENAME_4`,`STATUS`,`ROOTCAUSE`," +
-                            "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER` FROM `hit`.`details` WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_number + "')");
+                            "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER`,`FACTORY` FROM `hit`.`details` WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_number + "')");
                     break;
                 case 1: //LOAD DATALOG
                     command = new MySqlCommand(String.Format("SELECT `{0}` FROM `hit`.`details` WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_number + "')",DATALOG));
@@ -242,7 +250,7 @@ namespace PROJECT
                     break;
                 case 4:
                     command = new MySqlCommand(string.Format("UPDATE `hit`.`details` SET `PO_COMMENT` = '{0}',`ROOTCAUSE` = '{1}',`DISPO_DATE` = '{2}',`DISPO_USER` = '{3}'," +
-                            "`STATUS` = 'CLOSED' WHERE (`ENDORSEMENT_NUMBER` = '{4}')",
+                            "`STATUS` = 'FOR APPROVAL' WHERE (`ENDORSEMENT_NUMBER` = '{4}')",
                             PO_COMMENT.Text,PO_ROOTCAUSE.Text,DISPO_DATE.Text,DISPO_USER.Text,Endorsement_number));
                     break;
             }

@@ -92,6 +92,8 @@ namespace PROJECT
             this.label23 = new System.Windows.Forms.Label();
             this.TEST_NAME = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.FACTORY = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.First_box.SuspendLayout();
             this.PO_DISPO.SuspendLayout();
             this.SuspendLayout();
@@ -196,7 +198,9 @@ namespace PROJECT
             // 
             this.First_box.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.First_box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.First_box.Controls.Add(this.FACTORY);
             this.First_box.Controls.Add(this.label4);
+            this.First_box.Controls.Add(this.label25);
             this.First_box.Controls.Add(this.DATE_VERIFIED);
             this.First_box.Controls.Add(this.Fourth_dlog);
             this.First_box.Controls.Add(this.USER_LOG);
@@ -583,7 +587,7 @@ namespace PROJECT
             // 
             this.UPDATE.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.UPDATE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UPDATE.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UPDATE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UPDATE.Location = new System.Drawing.Point(452, 97);
             this.UPDATE.Name = "UPDATE";
             this.UPDATE.Size = new System.Drawing.Size(95, 48);
@@ -808,6 +812,30 @@ namespace PROJECT
             this.label15.TabIndex = 109;
             this.label15.Text = "ATTENTION";
             // 
+            // FACTORY
+            // 
+            this.FACTORY.AutoSize = true;
+            this.FACTORY.BackColor = System.Drawing.Color.Transparent;
+            this.FACTORY.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FACTORY.ForeColor = System.Drawing.Color.Black;
+            this.FACTORY.Location = new System.Drawing.Point(343, 45);
+            this.FACTORY.Name = "FACTORY";
+            this.FACTORY.Size = new System.Drawing.Size(0, 13);
+            this.FACTORY.TabIndex = 111;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.Color.Transparent;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.Black;
+            this.label25.Location = new System.Drawing.Point(269, 45);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(68, 13);
+            this.label25.TabIndex = 110;
+            this.label25.Text = "FACTORY:";
+            // 
             // BOARD_DETAILS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -936,5 +964,7 @@ namespace PROJECT
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox TEST_NAME;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label FACTORY;
+        private System.Windows.Forms.Label label25;
     }
 }

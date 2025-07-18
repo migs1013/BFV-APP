@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 using Squirrel;
 using System.Reflection;
 
@@ -15,12 +16,14 @@ namespace PROJECT
         public int count, ComboBoxCount, firstCount, secondCount, range = 0, WW, ConvertYear;
         public string DATE_FILTER, FullTextCommand;
         public string UserAccount { get; set; }
+        public string Approver { get; set; }
 
         MySqlCommand command;
-        public SEARCH_BOARD(string User)
+        public SEARCH_BOARD(string User,string Approver_access)
         {
             InitializeComponent();
             UserAccount = User;
+            Approver = Approver_access;
         }
 
         private void SEARCH_BOARD_Load(object sender, EventArgs e)
@@ -32,30 +35,11 @@ namespace PROJECT
         {
             try
             {
-                Commands(5);
-                Connection.OpenConnection();
-
-                MySqlDataReader read_data = command.ExecuteReader();
-                while (read_data.Read())
-                {
-                    TESTER_PLATFORM_FILTER.Items.Add(read_data.GetString("TESTER_PLATFORM"));
-                }
-                Connection.CloseConnection();
-
-                Commands(2);
-                Connection.OpenConnection();
-
-                read_data = command.ExecuteReader();
-                while (read_data.Read())
-                {
-                    PRODUCT_OWNER_FILTER.Items.Add(read_data.GetString("PRODUCT_OWNER"));
-                }
-                Connection.CloseConnection();
 
                 Commands(13);
                 Connection.OpenConnection();
+                MySqlDataReader read_data = command.ExecuteReader();
 
-                read_data = command.ExecuteReader();
                 while (read_data.Read())
                 {
                     HITCOUNT.Items.Add(new ListViewItem(new[] { read_data.GetString("PART_NAME"), read_data.GetString("HITCOUNT") }));
@@ -105,11 +89,11 @@ namespace PROJECT
         }
         private void Click_data(object sender, DataGridViewCellEventArgs e)
         {
-            //MessageBox.Show(dataGridViewList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+            //MessageBox.Show(dataGridViewList.SelectedCells[9].Value.ToString());
             try
             {
-                string endorsement_number = dataGridViewList.SelectedCells[8].Value.ToString();
-                BOARD_DETAILS details = new BOARD_DETAILS(endorsement_number,UserAccount);
+                string endorsement_number = dataGridViewList.SelectedCells[9].Value.ToString();
+                BOARD_DETAILS details = new BOARD_DETAILS(endorsement_number,UserAccount,Approver);
                 details.ShowDialog();
             }
             catch (Exception ErrorMessage)
@@ -125,56 +109,22 @@ namespace PROJECT
                 case 0: //TO CHECK IF THERE'S EXISTING DATA SEARCHED
                     command = new MySqlCommand("SELECT COUNT(*) FROM `hit`.`details`",Connection.connect);
                     break;
-                case 1:  //TO DISPLAY THE DATA THAT IS SEARCHED BY THE USER
-                    command = new MySqlCommand(string.Format("SELECT `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`,`DATE_ENCOUNTERED`," +
-                        "`PRODUCT_OWNER`,`STATUS`,`ENDORSEMENT_NUMBER` " +
-                        "FROM `hit`.`details` WHERE (`PART_NAME` LIKE '%{0}%') OR (`LOT_ID` LIKE '%{0}%') OR (`TEST_NUMBER` LIKE '%{0}%') OR (`VSPEC` LIKE '%{0}%') OR" +
-                        "(`BOARD_ID` LIKE '%{0}%') OR (`HANDLER_ID` LIKE '%{0}%') OR (`BIN_NUMBER` LIKE '%{0}%')" +
-                        "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30",search_text.Text),Connection.connect);
-                    break;
-                case 2: // PRODUCT OWNER
-                    command = new MySqlCommand("SELECT `PRODUCT_OWNER` FROM `hit`.`device` GROUP BY `PRODUCT_OWNER` ", Connection.connect);
-                    break;
                 case 3:  //FOR UPDATING PURPOSES
-                    command = new MySqlCommand("SELECT `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`,`DATE_ENCOUNTERED`,`PRODUCT_OWNER`," +
-                        "`STATUS`,`ENDORSEMENT_NUMBER` FROM `hit`.`details` ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", Connection.connect);
+                    command = new MySqlCommand("SELECT `PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STEP`,`DATE_ENCOUNTERED`,`PRODUCT_OWNER`," +
+                        "`STATUS`,if(`STATUS` = 'OPEN' OR `STATUS` = 'FOR APPROVAL',datediff(curdate(),`DATE_ENCOUNTERED`),'CLOSED') as `CYCLE_TIME`,`ENDORSEMENT_NUMBER` FROM `hit`.`details` ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", Connection.connect);
                     break;
                 case 4: // SEARCHING TRANSACTION COUNTS WITH FILTER
                     command = new MySqlCommand(string.Format("SELECT COUNT(*) FROM `hit`.`details` {0}",FullTextCommand), Connection.connect);
                     break;
-                case 5:  //TESTER PLATFORMS
-                    command = new MySqlCommand("SELECT `TESTER_PLATFORM` FROM `hit`.`hostnames` GROUP BY `TESTER_PLATFORM`", Connection.connect);
-                    break;
                 case 6:  // FOR SEARCH IN COMBO BOXES
-                    command = new MySqlCommand(string.Format("Select `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`," +
-                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`STATUS`,`ENDORSEMENT_NUMBER`" +
+                    command = new MySqlCommand(string.Format("Select `PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STEP`," +
+                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`STATUS`,if(`STATUS` = 'OPEN' OR `STATUS` = 'FOR APPROVAL',datediff(curdate(),`DATE_ENCOUNTERED`),'CLOSED') as `CYCLE_TIME`,`ENDORSEMENT_NUMBER`" +
                         "FROM `hit`.`details` {0} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30",FullTextCommand), Connection.connect);
                     break;
                 case 7: //NEXT BUTTON
-                    command = new MySqlCommand(string.Format("Select `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`," +
-                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`STATUS`,`ENDORSEMENT_NUMBER` " +
+                    command = new MySqlCommand(string.Format("Select `PRODUCT_OWNER`,`PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STEP`," +
+                        "`DATE_ENCOUNTERED`,`STATUS`,if(`STATUS` = 'OPEN',datediff(curdate(),`DATE_ENCOUNTERED`),'CLOSED') as `CYCLE_TIME`,`ENDORSEMENT_NUMBER` " +
                         "FROM `hit`.`details` {0} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT {1},30", FullTextCommand, range), Connection.connect);
-                    break;
-                case 8: // SEARCH DATA COUNT WITH TEXTBOX
-                    command = new MySqlCommand(string.Format("SELECT count(*) FROM `hit`.`details` " +
-                        "WHERE (`PART_NAME` LIKE '%{0}%') OR (`LOT_ID` LIKE '%{0}%') OR (`TEST_NUMBER` LIKE '%{0}%') OR (`VSPEC` LIKE '%{0}%') OR" +
-                        "(`BOARD_ID` LIKE '%{0}%') OR (`HANDLER_ID` LIKE '%{0}%') OR (`BIN_NUMBER` LIKE '%{0}%')" +
-                        "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", search_text.Text), Connection.connect);
-                    break;
-                case 9: // LOAD TESTER
-                    command = new MySqlCommand(string.Format("SELECT `TESTER` from `hit`.`hostnames` where `TESTER_PLATFORM` = '{0}'",
-                        TESTER_PLATFORM_FILTER.Text.ToLower()), Connection.connect);
-                    break;
-                case 10: // LOAD PRODUCT OWNER DEVICES
-                    command = new MySqlCommand(string.Format("select `DEVICE` from `hit`.`device` where `PRODUCT_OWNER` = '{0}'", PRODUCT_OWNER_FILTER.Text), Connection.connect);
-                    break;
-                case 11: // LOAD VSPEC
-                    command = new MySqlCommand(string.Format("SELECT `VSPEC` from `details` WHERE locate('{0}',`PART_NAME`) = 1 GROUP BY `VSPEC`"
-                        ,PART_NAME_FILTER.Text),Connection.connect);
-                    break;
-                case 12: // LOAD TEST STEP
-                    command = new MySqlCommand(string.Format("SELECT `TEST_STEP` from `details` WHERE locate('{0}',`PART_NAME`) = 1 GROUP BY `TEST_STEP`"
-                        , PART_NAME_FILTER.Text), Connection.connect);
                     break;
                 case 13: // LOAD HIT COUNT
                     command = new MySqlCommand("SELECT `PART_NAME`,count(`PART_NAME`) as HITCOUNT from `DETAILS` GROUP BY `PART_NAME` ORDER BY `HITCOUNT` DESC", Connection.connect);
@@ -196,30 +146,37 @@ namespace PROJECT
                     break;
                 case 17: // LOAD DATA IN DATAGRIDVIEW THAT HAS BEEN CLICK IN THE PARETO LIST
 
-                    ConvertYear = Convert.ToInt32(FISCAL_YEAR.Text);
-
-                    year = Convert.ToString(ConvertYear - 1);
-
-                    if (QUARTER.Text == "1")
+                    if (!string.IsNullOrEmpty(FISCAL_YEAR.Text) || !string.IsNullOrEmpty(QUARTER.Text) || !string.IsNullOrEmpty(WORKWEEK.Text))
                     {
-                        DateFilter = string.Format("and (`DATE_ENCOUNTERED` BETWEEN '{0}-11-01' AND '{1}-01-31') ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", year, FISCAL_YEAR.Text);
+                        ConvertYear = Convert.ToInt32(FISCAL_YEAR.Text);
+
+                        year = Convert.ToString(ConvertYear - 1);
+
+                        if (QUARTER.Text == "1")
+                        {
+                            DateFilter = string.Format("and (`DATE_ENCOUNTERED` BETWEEN '{0}-11-01' AND '{1}-01-31') ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", year, FISCAL_YEAR.Text);
+                        }
+                        else if (QUARTER.Text == "2" || QUARTER.Text == "3" || QUARTER.Text == "4")
+                        {
+                            if (QUARTER.Text == "2") { month1 = "2"; month2 = "4"; }
+                            else if (QUARTER.Text == "3") { month1 = "5"; month2 = "7"; }
+                            else { month1 = "8"; month2 = "10"; }
+
+                            DateFilter = string.Format("and (month(`DATE_ENCOUNTERED`) between '{0}' and '{1}' and year(`DATE_ENCOUNTERED`) = '{2}') " +
+                            "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", month1, month2, FISCAL_YEAR.Text);
+                        }
+                        else
+                            DateFilter = string.Format("and YEAR(`DATE_ENCOUNTERED`) = '{0}'", FISCAL_YEAR.Text);
                     }
-                    else if (QUARTER.Text == "2" || QUARTER.Text == "3" || QUARTER.Text == "4")
-                    {
-                        if (QUARTER.Text == "2") { month1 = "2"; month2 = "4"; }
-                        else if (QUARTER.Text == "3") { month1 = "5"; month2 = "7"; }
-                        else { month1 = "8"; month2 = "10"; }
-
-                        DateFilter = string.Format("and (month(`DATE_ENCOUNTERED`) between '{0}' and '{1}' and year(`DATE_ENCOUNTERED`) = '{2}') " +
-                        "ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", month1, month2, FISCAL_YEAR.Text);
-                    }
-                    else
-                        DateFilter = string.Format("and YEAR(`DATE_ENCOUNTERED`) = '{0}'", FISCAL_YEAR.Text);
 
 
-                    command = new MySqlCommand(string.Format("SELECT `PART_NAME`,`LOT_ID`,`TEST_NUMBER`,`TESTER_ID`,`TEST_STEP`," +
-                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`STATUS`,`ENDORSEMENT_NUMBER` FROM `DETAILS` " +
+                    command = new MySqlCommand(string.Format("SELECT `PRODUCT_OWNER`,`PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STEP`," +
+                        "`DATE_ENCOUNTERED`,`STATUS`,if(`STATUS` = 'OPEN' OR `STATUS` = 'FOR APPROVAL',datediff(curdate(),`DATE_ENCOUNTERED`),'CLOSED') as `CYCLE_TIME`,`ENDORSEMENT_NUMBER` FROM `DETAILS` " +
                         "WHERE `PART_NAME` = '{0}'{1} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30 ", HITCOUNT.SelectedItems[0].Text,DateFilter), Connection.connect);
+                    break;
+                case 18:
+                    command = new MySqlCommand(string.Format("SELECT COUNT(*) FROM `hit`.`DETAILS` " +
+                        "WHERE `PART_NAME` = '{0}'{1} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30 ", HITCOUNT.SelectedItems[0].Text, DateFilter), Connection.connect);
                     break;
             }
         }
@@ -253,7 +210,7 @@ namespace PROJECT
                     if (check == "0")
                     {
                         MessageBox.Show("NO DATA");
-                        search_text.Clear();
+                        //search_text.Clear();
                         return;
                     }
                     else
@@ -275,65 +232,25 @@ namespace PROJECT
         private void Search_button_Click(object sender, EventArgs e)
         {
             range = 0;
-            if (string.IsNullOrWhiteSpace(search_text.Text))
-            {
-                if (!string.IsNullOrWhiteSpace(BIN_NUMBER_FILTER.Text))
-                {
-                    char[] Word = BIN_NUMBER_FILTER.Text.ToCharArray();
-                    if (Word.Length > 4)
-                    {
-                        MessageBox.Show("MAXIMUM BIN NUMBER IS 4 DIGITS ONLY");
-                        return;
-                    }
-                    for (int Txt = 0; Txt < Word.Length; Txt++)
-                    {
-                        if (char.IsDigit(Word[Txt])) continue;
-                        else if (Word[Txt] == ' ')
-                        {
-                            MessageBox.Show("SPACE IN BIN NUMBER IS NOT ALLOWED");
-                            return;
-                        }
-                        else
-                        {
-                            MessageBox.Show("PLEASE ENTER NUMBER ONLY FOR BIN NUMBER");
-                            return;
-                        }
-                    }
-                }
-                CommandComboBox();
-                Connection.CloseConnection();
 
-                Commands(4);
-                if (Connection.OpenConnection())
-                {
-                    all = command.ExecuteScalar().ToString();
-                    Connection.CloseConnection();
-                }
-                else return;
-                dataGridViewList.DataSource = Table(6);
-                Counts();
-                Results();
+            foreach (Control CheckText in this.groupBox1.Controls)
+            {
+                if (CheckText is TextBox)
+                    CheckText.Text.Trim();
+            }
+            CommandComboBox();
+
+            Commands(4);
+            if (Connection.OpenConnection())
+            {
+                all = command.ExecuteScalar().ToString();
                 Connection.CloseConnection();
             }
-            else
-            {
-                count = 0;
-                Commands(8);
-                if (Connection.OpenConnection())
-                {
-                    all = command.ExecuteScalar().ToString();
-                    Connection.CloseConnection();
-                }
-                else
-                {
-                    Connection.CloseConnection();
-                    return;
-                }
-                Counts();
-                Results();
-                Load_data(1);
-                ClearFilter();
-            }
+            else return;
+            dataGridViewList.DataSource = Table(6);
+            Counts();
+            Results();
+            Connection.CloseConnection();
         }
 
         private void Add_btn_Click(object sender, EventArgs e)
@@ -345,7 +262,6 @@ namespace PROJECT
         private void REFRESH_Click(object sender, EventArgs e)
         {
             ClearFilter();
-            search_text.Clear();
             dataGridViewList.DataSource = Table(3);
             Commands(0);
             if (Connection.OpenConnection())
@@ -422,11 +338,25 @@ namespace PROJECT
             back.ShowDialog();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //this.Hide();
+            ADD next = new ADD(2, UserAccount);
+            next.ShowDialog();
+        }
+
         private void Click_Pareto(object sender, EventArgs e)
         {
+            range = 0;
             try
-            {
+            {   
+                Commands(18);
+                Connection.OpenConnection();
                 
+                all = command.ExecuteScalar().ToString();
+                Connection.CloseConnection();
+                Counts();
+                Results();
                 dataGridViewList.DataSource = Table(17);
 
             }
@@ -436,57 +366,7 @@ namespace PROJECT
                 Connection.CloseConnection();
             }
         }
-
-        private void Enter_search(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                range = 0;
-                count = 0;
-                Commands(8);
-                if (Connection.OpenConnection())
-                {
-                    all = command.ExecuteScalar().ToString();
-                    Connection.CloseConnection();
-                }
-                else return;
-                Counts();
-                Results();
-                Load_data(1);
-                FROM_DATE.CustomFormat = " ";
-                TO_DATE.CustomFormat = " ";
-                ClearFilter();
-            }
-
-        }
-        private void TESTER_PLATFORM_FILTER_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (TESTER_PLATFORM_FILTER.SelectedIndex == 0)
-            { 
-                TESTER_PLATFORM_FILTER.DroppedDown = false;
-                TESTER_ID_FILTER.SelectedIndex = 0;
-                TESTER_ID_FILTER.Items.Clear();
-                return; 
-            }
-            TESTER_ID_FILTER.Items.Clear();
-            TESTER_ID_FILTER.Items.Add("");
-            Connection.CloseConnection();
-            Commands(9);
-            if (Connection.OpenConnection())
-            {
-                MySqlDataReader read_data = command.ExecuteReader();
-                while (read_data.Read())
-                {
-                    TESTER_ID_FILTER.Items.Add(read_data.GetString("TESTER"));
-                }
-                Connection.CloseConnection();
-            }
-            else
-            {
-                Connection.CloseConnection();
-                this.Close();
-            }
-        }
+        
 
         private void SEARCH_PARETO_Click(object sender, EventArgs e)
         {
@@ -516,80 +396,6 @@ namespace PROJECT
             else
             {
                 MessageBox.Show("PLEASE CHOOSE FISCAL YEAR");
-            }
-        }
-
-        private void ClearVspecTestStep()
-        {
-            VSPECS.Items.Clear();
-            TEST_STEP_FILTER.Items.Clear();
-            VSPECS.SelectedIndex = -1;
-            TEST_STEP_FILTER.SelectedIndex = -1;
-            VSPECS.Items.Add(" ");
-            TEST_STEP_FILTER.Items.Add(" ");
-        }
-
-        private void PRODUCT_OWNER_FILTER_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (PRODUCT_OWNER_FILTER.SelectedIndex == 0)
-            {
-                PRODUCT_OWNER_FILTER.DroppedDown = false;
-                PART_NAME_FILTER.SelectedIndex = 0;
-                PART_NAME_FILTER.Items.Clear();
-                return;
-            }
-            PART_NAME_FILTER.Items.Clear();
-            PART_NAME_FILTER.Items.Add("");
-            ClearVspecTestStep();
-            Connection.CloseConnection();
-            try
-            {
-                Commands(10);
-                Connection.OpenConnection();
-
-                MySqlDataReader read_data = command.ExecuteReader();
-                while (read_data.Read())
-                {
-                    PART_NAME_FILTER.Items.Add(read_data.GetString("DEVICE"));
-                }
-                Connection.CloseConnection();
-            }
-            catch (Exception ERROR)
-            {
-                MessageBox.Show(ERROR.ToString());
-                Connection.CloseConnection();
-            }
-        }
-
-        private void PART_NAME_FILTER_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            ClearVspecTestStep();
-            try
-            {
-                Commands(11);
-                Connection.OpenConnection();
-
-                MySqlDataReader read_data = command.ExecuteReader();
-                while (read_data.Read())
-                {
-                    VSPECS.Items.Add(read_data.GetString("VSPEC"));
-                }
-                Connection.CloseConnection();
-
-                Commands(12);
-                Connection.OpenConnection();
-
-                read_data = command.ExecuteReader();
-                while (read_data.Read())
-                {
-                    TEST_STEP_FILTER.Items.Add(read_data.GetString("TEST_STEP"));
-                }
-                Connection.CloseConnection();
-            }
-            catch (Exception ERROR)
-            {
-                MessageBox.Show(ERROR.ToString());
-                Connection.CloseConnection();
             }
         }
 
@@ -639,106 +445,85 @@ namespace PROJECT
 
         private void ClearFilter()
         {
-            FROM_DATE.CustomFormat = " ";
-            TO_DATE.CustomFormat = " ";
-            BIN_NUMBER_FILTER.Clear();
-            TESTER_ID_FILTER.Items.Clear();
-            VSPECS.Items.Clear();
+            FACTORY.SelectedIndex = -1;
+            PRODUCT_OWNER_FILTER.Clear();
+            PART_NAME_FILTER.Clear();
+            TESTER_PLATFORM_FILTER.Clear();
+            TESTER_ID_FILTER.Clear();
+            TEST_NUMBER_SEARCH.Clear();
+            TEST_NAME_SEARCH.Clear();
             TEST_STEP_FILTER.Items.Clear();
-            TESTER_ID_FILTER.Items.Add(" ");
-            TESTER_ID_FILTER.SelectedIndex = 0;
-            TESTER_PLATFORM_FILTER.SelectedIndex = 0;
-            PRODUCT_OWNER_FILTER.SelectedIndex = 0;
-            TEST_STEP_FILTER.SelectedIndex = -1;
-            PART_NAME_FILTER.SelectedIndex = -1;
-            VSPECS.SelectedIndex = -1;
+            VSPEC.Clear();
+            STATUS_FILTER.SelectedIndex = -1;
+            FROM_DATE.CustomFormat = " ";
+            TO_DATE.CustomFormat = " "; 
         }
 
         private void CommandComboBox()
         {
+            List<string> Conditions = new List<string>();
             FullTextCommand = "";
-            ComboBoxCount = 0;
-            search_text.Clear();
 
-            if (TESTER_PLATFORM_FILTER.Text != "")                                                        //TESTER PLATFORM
+            if (!string.IsNullOrEmpty(FACTORY.Text))
             {
-                FullTextCommand = string.Format("where `TEST_SYSTEM`= '{0}'", TESTER_PLATFORM_FILTER.Text);
-                ComboBoxCount++;
-            } 
-            if (!string.IsNullOrWhiteSpace(TESTER_ID_FILTER.Text))                                                                 // TESTER ID
-            {
-                FullTextCommand += string.Format(" and `TESTER_ID` = '{0}'", TESTER_ID_FILTER.Text);
+                Conditions.Add($"`FACTORY` LIKE '%{FACTORY.Text}%'");
             }
-            if (PRODUCT_OWNER_FILTER.Text != "")                                                                 // PRODUCT OWNER
+            if (!string.IsNullOrEmpty(PRODUCT_OWNER_FILTER.Text))
             {
-                if (ComboBoxCount != 0)
-                {
-                    FullTextCommand += string.Format(" and `PRODUCT_OWNER` = '{0}'", PRODUCT_OWNER_FILTER.Text);
-                    ComboBoxCount++;
-                }
-                else
-                {
-                    FullTextCommand = string.Format("where `PRODUCT_OWNER` = '{0}'", PRODUCT_OWNER_FILTER.Text);
-                    ComboBoxCount++;
-                }
+                Conditions.Add($"`PRODUCT_OWNER` LIKE '%{PRODUCT_OWNER_FILTER.Text}%'");
             }
-            if (PART_NAME_FILTER.Text != "")                                                                 // PART NAME
+            if (!string.IsNullOrEmpty(PART_NAME_FILTER.Text))
             {
-                FullTextCommand += String.Format(" and `PART_NAME` LIKE '%{0}%'", PART_NAME_FILTER.Text);
+                Conditions.Add($"`PART_NAME` LIKE '%{PART_NAME_FILTER.Text}%'");
             }
-            if (!String.IsNullOrWhiteSpace(TEST_STEP_FILTER.Text))                                                                 // TEST STEP
+            if (!string.IsNullOrEmpty(TESTER_PLATFORM_FILTER.Text))
             {
-                FullTextCommand += string.Format(" and `TEST_STEP` = '{0}'", TEST_STEP_FILTER.Text);
+                Conditions.Add($"`TESTER_PLATFORM` LIKE '%{TESTER_PLATFORM_FILTER.Text}%'");
             }
-            if (!String.IsNullOrWhiteSpace(VSPECS.Text))
+            if (!string.IsNullOrEmpty(TESTER_ID_FILTER.Text))
             {
-                FullTextCommand += string.Format(" and `VSPEC` = '{0}'", VSPECS.Text);
+                Conditions.Add($"`TESTER_ID` LIKE '%{TESTER_ID_FILTER}%'");
             }
-            if (STATUS_FILTER.Text != "")                                                                 // STATUS
+            if (!string.IsNullOrEmpty(TEST_NUMBER_SEARCH.Text))
             {
-                if (ComboBoxCount != 0)
-                {
-                    FullTextCommand += string.Format(" and `STATUS` = '{0}'", STATUS_FILTER.Text);
-                    ComboBoxCount++;
-                }
-                else
-                {
-                    FullTextCommand = string.Format("where `STATUS` = '{0}'", STATUS_FILTER.Text);
-                    ComboBoxCount++;
-                }
+                Conditions.Add($"`TEST_NUMBER` LIKE '%{TEST_NUMBER_SEARCH.Text}%'");
             }
-            if (!String.IsNullOrWhiteSpace(BIN_NUMBER_FILTER.Text))                                     // BIN NUMBER
+            if (!string.IsNullOrEmpty(TEST_NAME_SEARCH.Text))
             {
-                if (ComboBoxCount != 0)
-                {
-                    FullTextCommand += string.Format(" and `BIN_NUMBER` = '{0}'", BIN_NUMBER_FILTER.Text);
-                    ComboBoxCount++;
-                }
-                else
-                {
-                    FullTextCommand = string.Format("where `BIN_NUMBER` = '{0}'", BIN_NUMBER_FILTER.Text);
-                    ComboBoxCount++;
-                }
+                Conditions.Add($"`TEST_NAME` LIKE '%{TEST_NAME_SEARCH.Text}%'");
             }
-            if (!string.IsNullOrWhiteSpace(FROM_DATE.Text))                                                // DATE FILTERING
+            if (!string.IsNullOrEmpty(TEST_STEP_FILTER.Text))
+            {
+                Conditions.Add($"`TEST_STEP` LIKE '%{TEST_STEP_FILTER.Text}%'");
+            }
+            if (!string.IsNullOrEmpty(VSPEC.Text))
+            {
+                Conditions.Add($"`VSPEC` LIKE '%{VSPEC.Text}%'");
+            }
+            if (!string.IsNullOrEmpty(STATUS_FILTER.Text))
+            {
+                Conditions.Add($"`STATUS` LIKE '%{STATUS_FILTER.Text}%'");
+            }
+            if (!string.IsNullOrWhiteSpace(FROM_DATE.Text))
             {
                 if (!string.IsNullOrWhiteSpace(TO_DATE.Text))
                 {
-                    DATE_FILTER = string.Format("(`DATE_ENCOUNTERED` between '{0}' and '{1}')", FROM_DATE.Text, TO_DATE.Text);
+                    Conditions.Add(string.Format("(`DATE_ENCOUNTERED` between '{0}' and '{1}')", FROM_DATE.Text, TO_DATE.Text));
                 }
                 else
                 {
-                    DATE_FILTER = string.Format("(`DATE_ENCOUNTERED` = '{0}')", FROM_DATE.Text);
-                }
-                if (ComboBoxCount != 0)
-                {
-                    FullTextCommand += string.Format(" and {0}", DATE_FILTER);
-                }
-                else
-                {
-                    FullTextCommand = string.Format("where {0}", DATE_FILTER);
+                    Conditions.Add(string.Format("(`DATE_ENCOUNTERED` = '{0}')", FROM_DATE.Text));
                 }
             }
+            if (Conditions.Count == 1)
+            {
+                FullTextCommand = "where" + Conditions[0];
+            }
+            else if (Conditions.Count > 1)
+            {
+                FullTextCommand = "where" + string.Join(" and", Conditions);
+            }
+            else FullTextCommand = string.Empty;
         }
     }
 }

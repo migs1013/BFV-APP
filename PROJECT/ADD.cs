@@ -17,12 +17,12 @@ namespace PROJECT
                       hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "";
         public int Endorsement_Number,FileNameLength, WordCount = 0;
         public string UserName { get; set; }
-        public int Load_number { get; set; }
+        public int Device_option { get; set; }
         public DateTime WriteTime = new DateTime();
-        public ADD(int Load,string User)
+        public ADD(int Option,string User)
         {
             InitializeComponent();
-            Load_number = Load;
+            Device_option = Option;
             UserName = User;
         }
 
@@ -170,11 +170,11 @@ namespace PROJECT
                 case 6: // INSERT NEW TRANSACTION
                     command = new MySqlCommand("INSERT INTO `hit`.`details` " +
                         "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`BOARD_ID`," +
-                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`) " +
+                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FACTORY`) " +
                         "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + TEST_STEP.Text + "','" + Test_system.Text + "'," +
                         "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
                         "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + STATUS.Text + "','" + ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
-                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "')");
+                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','" + FACTORY.Text + "')");
                     break;
                 case 7:
                     command = new MySqlCommand(string.Format("select `PRODUCT_OWNER` from `device` where locate(`DEVICE`,'{0}') = 1",PART_NAME.Text));
@@ -187,11 +187,11 @@ namespace PROJECT
                     command = new MySqlCommand("INSERT INTO `hit`.`details` " +
                         "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`BOARD_ID`," +
                         "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`," +
-                        "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER`) " +
+                        "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER`,`FACTORY`) " +
                         "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + TEST_STEP.Text + "','" + Test_system.Text + "'," +
                         "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
                         "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + STATUS.Text + "','" + ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
-                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','PLEASE REFER TO DISPOSITION','" + DateTime.Today.ToString("yyyy-MM-dd") + "','" + UserName + "')");
+                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','PLEASE REFER TO DISPOSITION','" + DateTime.Today.ToString("yyyy-MM-dd") + "','" + UserName + "','" + FACTORY.Text + "')");
                     break;
             }
         }
@@ -202,6 +202,9 @@ namespace PROJECT
                 if (c is TextBox)
                 {
                     TextBox textBox = c as TextBox;
+
+                    textBox.Text.Trim();
+
                     if (textBox == Problem || textBox == Action || textBox == TEST_NAME)
                         continue;
                     else
@@ -226,6 +229,9 @@ namespace PROJECT
                 else if (c is ComboBox)
                 {
                     ComboBox comboBox = c as ComboBox;
+
+                    comboBox.Text.Trim();
+
                     if (string.IsNullOrWhiteSpace(comboBox.Text))
                     {
                         Error();
@@ -239,7 +245,7 @@ namespace PROJECT
                 }
                 else continue;
             }
-            if (first_verif_link.Text == string.Empty)
+            if (first_verif_link.Text == string.Empty || FACTORY.Text == string.Empty)
             {
                 Error();
                 return false;
@@ -262,7 +268,12 @@ namespace PROJECT
                     return;
                 }
                 DlogName.Visible = true;
-                first_verif_link.Text = Filename(openFileDialog1.FileName).Remove(20, Filename(openFileDialog1.FileName).Length - 20) + ".....";
+                if (Filename(openFileDialog1.FileName).Length < 20)
+                {
+                    first_verif_link.Text = Filename(openFileDialog1.FileName);
+                }
+                else
+                    first_verif_link.Text = Filename(openFileDialog1.FileName).Remove(20, Filename(openFileDialog1.FileName).Length - 20) + ".....";
                 dlog1 = openFileDialog1.FileName;
                 WriteTime = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
                 Date.Text = WriteTime.ToString("yyyy-MM-dd");
@@ -278,96 +289,100 @@ namespace PROJECT
 
                 if (string.IsNullOrEmpty(dlog1)) return;
 
-                HANDLER_ID.Items.Clear();
-                BOARD_ID.Items.Clear();
-                BIN_NUMBER.Items.Clear();
-                TEST_NUMBER.Items.Clear();
-
-                HANDLER_ID.Text = BOARD_ID.Text = BIN_NUMBER.Text = TEST_NUMBER.Text = "";
-
-                WordCheck = Filename(dlog1).Replace("_", " ");
-
-                string[] words = Regex.Split(WordCheck, @"\s+");
-
-                foreach (string LotSummary in words)
+                if (Device_option == 1)
                 {
-                    if (WordCount == 0)
+                    HANDLER_ID.Items.Clear();
+                    BOARD_ID.Items.Clear();
+                    BIN_NUMBER.Items.Clear();
+                    TEST_NUMBER.Items.Clear();
+
+                    HANDLER_ID.Text = BOARD_ID.Text = BIN_NUMBER.Text = TEST_NUMBER.Text = "";
+
+                    WordCheck = Filename(dlog1).Replace("_", " ");
+
+                    string[] words = Regex.Split(WordCheck, @"\s+");
+
+                    foreach (string LotSummary in words)
                     {
-                        if (LotSummary.ToUpper().Contains("AY") || LotSummary.ToUpper().Contains("AX") || LotSummary.ToUpper().Contains("AZ") || LotSummary.Contains("."))
+                        if (WordCount == 0)
                         {
-                            WordCount = 1;
-                            LOT_ID.Text = LotSummary;
+                            if (LotSummary.ToUpper().Contains("AY") || LotSummary.ToUpper().Contains("AX") || LotSummary.ToUpper().Contains("AZ") || LotSummary.Contains("."))
+                            {
+                                WordCount = 1;
+                                LOT_ID.Text = LotSummary;
+                            }
                         }
+
+                        if (LotSummary.ToUpper().Contains("LT") || LotSummary.ToUpper().Contains("ADBMS"))
+                            PART_NAME.Text = LotSummary;
+                        else if (LotSummary.ToUpper().Contains("V") && LotSummary.ToUpper().Contains("P"))
+                            VSPEC.Text = LotSummary;
+                        else if ((LotSummary.ToUpper().Contains("ETS") || LotSummary.ToUpper().Contains("STS")) && LotSummary.Contains("-"))
+                            hostname = LotSummary;
+                        //else if (LotSummary.ToUpper().EndsWith("C") && LotSummary.Length <= 5 && char.IsDigit(Convert.ToChar(LotSummary.Substring(1, 1))))
+                        //    Temp = LotSummary;
+                        //else if (LotSummary.Length == 2)
+                        //    TestOption = LotSummary;
+                        else continue;
                     }
+                    WordCount = 0;
+                    //TEST_STEP.Text = string.Join(" ", TestOption, Temp);
 
-                    if (LotSummary.ToUpper().Contains("LT") || LotSummary.ToUpper().Contains("ADBMS"))
-                        PART_NAME.Text = LotSummary;
-                    else if (LotSummary.ToUpper().Contains("V") && LotSummary.ToUpper().Contains("P"))
-                        VSPEC.Text = LotSummary;
-                    else if ((LotSummary.ToUpper().Contains("ETS") || LotSummary.ToUpper().Contains("STS")) && LotSummary.Contains("-"))
-                        hostname = LotSummary;
-                    else if (LotSummary.ToUpper().EndsWith("C") && LotSummary.Length <= 5 && char.IsDigit(Convert.ToChar(LotSummary.Substring(1, 1))))
-                        Temp = LotSummary;
-                    else if (LotSummary.Length == 2)
-                        TestOption = LotSummary;
-                    else continue;
+                    Commands(2);
+                    command.Connection = Connection.connect;
+                    Connection.OpenConnection();
+                    MySqlDataReader read_data = command.ExecuteReader();
+                    read_data.Read();
+                    TESTER_ID.Text = read_data.GetString("TESTER");
+                    Test_system.Text = read_data.GetString("TESTER_PLATFORM");
+                    Connection.CloseConnection();
+
+                    Commands(3);
+                    command.Connection = Connection.connect;
+                    Connection.OpenConnection();
+                    read_data = command.ExecuteReader();
+                    while (read_data.Read())
+                    {
+                        HANDLER_ID.Items.Add(read_data.GetString("HANDLER_ID"));
+                    }
+                    Connection.CloseConnection();
+
+                    Commands(4);
+                    command.Connection = Connection.connect;
+                    Connection.OpenConnection();
+                    read_data = command.ExecuteReader();
+                    while (read_data.Read())
+                    {
+                        BOARD_ID.Items.Add(read_data.GetString("BOARD_ID"));
+                    }
+                    Connection.CloseConnection();
+
+                    Commands(8);
+                    command.Connection = Connection.connect;
+                    Connection.OpenConnection();
+                    read_data = command.ExecuteReader();
+                    while (read_data.Read())
+                    {
+                        BIN_NUMBER.Items.Add(read_data.GetString("BIN_NUMBER"));
+                    }
+                    Connection.CloseConnection();
+
+
+                    Commands(7);
+                    command.Connection = Connection.connect;
+                    Connection.OpenConnection();
+                    read_data = command.ExecuteReader();
+                    read_data.Read();
+                    PRODUCT_OWNER.Text = read_data.GetString("PRODUCT_OWNER");
+                    Connection.CloseConnection();
                 }
-                WordCount = 0;
-                TEST_STEP.Text = string.Join(" ", TestOption, Temp);
 
-                Commands(2);
-                command.Connection = Connection.connect;
-                Connection.OpenConnection();
-                MySqlDataReader read_data = command.ExecuteReader();
-                read_data.Read();
-                TESTER_ID.Text = read_data.GetString("TESTER");
-                Test_system.Text = read_data.GetString("TESTER_PLATFORM");
-                Connection.CloseConnection();
-
-                Commands(3);
-                command.Connection = Connection.connect;
-                Connection.OpenConnection();
-                read_data = command.ExecuteReader();
-                while (read_data.Read())
-                {
-                    HANDLER_ID.Items.Add(read_data.GetString("HANDLER_ID"));
-                }
-                Connection.CloseConnection();
-
-                Commands(4);
-                command.Connection = Connection.connect;
-                Connection.OpenConnection();
-                read_data = command.ExecuteReader();
-                while (read_data.Read())
-                {
-                    BOARD_ID.Items.Add(read_data.GetString("BOARD_ID"));
-                }
-                Connection.CloseConnection();
-
-                Commands(8);
-                command.Connection = Connection.connect;
-                Connection.OpenConnection();
-                read_data = command.ExecuteReader();
-                while (read_data.Read())
-                {
-                    BIN_NUMBER.Items.Add(read_data.GetString("BIN_NUMBER"));
-                }
-                Connection.CloseConnection();
-
-                Commands(7);
-                command.Connection = Connection.connect;
-                Connection.OpenConnection();
-                read_data = command.ExecuteReader();
-                read_data.Read();
-                PRODUCT_OWNER.Text = read_data.GetString("PRODUCT_OWNER");
-                Connection.CloseConnection();
             }
             catch (Exception Error)
             {
                 MessageBox.Show(Error.ToString());
                 Connection.CloseConnection();
             }
-
         }
 
         private void STATUS_SelectionChangeCommitted(object sender, EventArgs e)
@@ -553,6 +568,11 @@ namespace PROJECT
 
         private void ADD_Load(object sender, EventArgs e)
         {
+            if (Device_option == 2)
+            {
+                PRODUCT_OWNER.Text = "NOT APPLICABLE";
+                Add_first_verif.Text = "ADD FIRST DATALOG";
+            }
             USERNAME.Text = UserName;
         }
     }

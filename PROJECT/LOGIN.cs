@@ -11,11 +11,10 @@ namespace PROJECT
     {
         MySqlCommand command;
         public int count;
-        public string UserName;
+        public string UserName,Approver;
         public LOGIN()
         {
             InitializeComponent();
-            
         }
 
         private bool CheckTextBox(string textBox)
@@ -116,8 +115,13 @@ namespace PROJECT
                         "`PASSWORD` = '" + REG_PASS.Text + "'"));
                     break;
                 case 3:
-                    command = new MySqlCommand("SELECT `USERNAME`,`PASSWORD`,COUNT(*) as count FROM `hit`.`useraccount` " +
-                     "WHERE (`USERNAME` = '" + User.Text + "' and `PASSWORD` = '" + Pass.Text + "')");
+                    command = new MySqlCommand("SELECT IFNULL(u.`USERNAME`, NULL) AS `USERNAME`," +
+                                                      "IFNULL(u.`PASSWORD`, NULL) AS `PASSWORD`," +
+                                                      "IFNULL(u.`APPROVER`, NULL) AS `APPROVER`," +
+                                                      "IFNULL(c.count, 0) AS count " +
+                                                      "FROM (SELECT `USERNAME`, `PASSWORD`, `APPROVER` FROM `USERACCOUNT`" +
+                                                      "WHERE `username` = '" + User.Text + "' AND `password` = '" + Pass.Text + "' LIMIT 1) u " +
+                                                      "RIGHT JOIN (SELECT COUNT(*) AS count FROM `useraccount` WHERE `username` = '" + User.Text + "' AND password = '" + Pass.Text + "' ) c ON 1 = 1; ");
                     break;
             }
         }
@@ -190,11 +194,12 @@ namespace PROJECT
                 else
                 {
                     UserName = read_status["USERNAME"].ToString();
+                    Approver = read_status["APPROVER"].ToString();
                     Connection.CloseConnection();
                     User.Clear();
                     Pass.Clear();
                     this.Hide();
-                    SEARCH_BOARD next = new SEARCH_BOARD(UserName);
+                    SEARCH_BOARD next = new SEARCH_BOARD(UserName,Approver);
                     next.ShowDialog();
                 }
             }
