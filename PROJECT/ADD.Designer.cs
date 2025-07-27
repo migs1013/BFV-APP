@@ -40,7 +40,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.Add_first_verif = new System.Windows.Forms.Button();
+            this.ADD_FILE1 = new System.Windows.Forms.Button();
             this.first_verif_link = new System.Windows.Forms.LinkLabel();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -76,7 +76,6 @@
             this.PRODUCT_OWNER = new System.Windows.Forms.Label();
             this.VSPEC = new System.Windows.Forms.TextBox();
             this.TESTER_ID = new System.Windows.Forms.TextBox();
-            this.Test_system = new System.Windows.Forms.TextBox();
             this.BIN_NUMBER = new System.Windows.Forms.ComboBox();
             this.ROOTCAUSE_TEXT = new System.Windows.Forms.Label();
             this.ROOTCAUSE = new System.Windows.Forms.TextBox();
@@ -84,6 +83,13 @@
             this.STATUS = new System.Windows.Forms.ComboBox();
             this.TEST_NUMBER = new System.Windows.Forms.ComboBox();
             this.TEST_STEP = new System.Windows.Forms.ComboBox();
+            this.ADD_FILE2 = new System.Windows.Forms.Button();
+            this.ADD_FILE3 = new System.Windows.Forms.Button();
+            this.ADD_FILE4 = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.Test_system = new System.Windows.Forms.ComboBox();
+            this.SUB_FACTORY_TEXT = new System.Windows.Forms.Label();
+            this.SUB_FACTORY = new System.Windows.Forms.ComboBox();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -195,18 +201,18 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "TEST STEP";
             // 
-            // Add_first_verif
+            // ADD_FILE1
             // 
-            this.Add_first_verif.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.Add_first_verif.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Add_first_verif.Location = new System.Drawing.Point(22, 21);
-            this.Add_first_verif.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Add_first_verif.Name = "Add_first_verif";
-            this.Add_first_verif.Size = new System.Drawing.Size(218, 30);
-            this.Add_first_verif.TabIndex = 16;
-            this.Add_first_verif.Text = "CLICK HERE TO ADD TEXT FILE";
-            this.Add_first_verif.UseVisualStyleBackColor = false;
-            this.Add_first_verif.Click += new System.EventHandler(this.Add_first_verif_Click);
+            this.ADD_FILE1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ADD_FILE1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD_FILE1.Location = new System.Drawing.Point(63, 35);
+            this.ADD_FILE1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ADD_FILE1.Name = "ADD_FILE1";
+            this.ADD_FILE1.Size = new System.Drawing.Size(67, 20);
+            this.ADD_FILE1.TabIndex = 16;
+            this.ADD_FILE1.Text = "ADD";
+            this.ADD_FILE1.UseVisualStyleBackColor = false;
+            this.ADD_FILE1.Click += new System.EventHandler(this.Add_first_verif_Click);
             // 
             // first_verif_link
             // 
@@ -215,7 +221,7 @@
             this.first_verif_link.Cursor = System.Windows.Forms.Cursors.Hand;
             this.first_verif_link.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.first_verif_link.LinkColor = System.Drawing.Color.Black;
-            this.first_verif_link.Location = new System.Drawing.Point(18, 55);
+            this.first_verif_link.Location = new System.Drawing.Point(11, 54);
             this.first_verif_link.Name = "first_verif_link";
             this.first_verif_link.Size = new System.Drawing.Size(0, 19);
             this.first_verif_link.TabIndex = 17;
@@ -237,7 +243,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(18, 115);
+            this.label9.Location = new System.Drawing.Point(11, 116);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 19);
             this.label9.TabIndex = 27;
@@ -268,25 +274,31 @@
             // First_box
             // 
             this.First_box.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.First_box.Controls.Add(this.SUB_FACTORY);
+            this.First_box.Controls.Add(this.SUB_FACTORY_TEXT);
             this.First_box.Controls.Add(this.FACTORY);
+            this.First_box.Controls.Add(this.label13);
             this.First_box.Controls.Add(this.label12);
+            this.First_box.Controls.Add(this.ADD_FILE4);
+            this.First_box.Controls.Add(this.Action);
             this.First_box.Controls.Add(this.USERNAME);
+            this.First_box.Controls.Add(this.ADD_FILE1);
             this.First_box.Controls.Add(this.label21);
             this.First_box.Controls.Add(this.FirstDate);
-            this.First_box.Controls.Add(this.label9);
-            this.First_box.Controls.Add(this.Action);
-            this.First_box.Controls.Add(this.Add_first_verif);
             this.First_box.Controls.Add(this.label1);
             this.First_box.Controls.Add(this.first_verif_link);
+            this.First_box.Controls.Add(this.label9);
+            this.First_box.Controls.Add(this.ADD_FILE3);
             this.First_box.Controls.Add(this.label25);
             this.First_box.Controls.Add(this.label10);
-            this.First_box.Controls.Add(this.FOURTH_DLOG);
             this.First_box.Controls.Add(this.Problem);
             this.First_box.Controls.Add(this.ADD2);
-            this.First_box.Controls.Add(this.ADD4);
-            this.First_box.Controls.Add(this.THIRD_DLOG);
-            this.First_box.Controls.Add(this.ADD3);
             this.First_box.Controls.Add(this.SECOND_DLOG);
+            this.First_box.Controls.Add(this.ADD_FILE2);
+            this.First_box.Controls.Add(this.ADD3);
+            this.First_box.Controls.Add(this.THIRD_DLOG);
+            this.First_box.Controls.Add(this.ADD4);
+            this.First_box.Controls.Add(this.FOURTH_DLOG);
             this.First_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.First_box.Location = new System.Drawing.Point(326, 9);
             this.First_box.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -306,16 +318,17 @@
             "F1",
             "F2",
             "F3"});
-            this.FACTORY.Location = new System.Drawing.Point(102, 151);
+            this.FACTORY.Location = new System.Drawing.Point(95, 145);
             this.FACTORY.Name = "FACTORY";
             this.FACTORY.Size = new System.Drawing.Size(56, 21);
             this.FACTORY.TabIndex = 88;
+            this.FACTORY.SelectionChangeCommitted += new System.EventHandler(this.FACTORY_SelectionChangeCommitted);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label12.Location = new System.Drawing.Point(18, 151);
+            this.label12.Location = new System.Drawing.Point(11, 145);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(84, 19);
             this.label12.TabIndex = 73;
@@ -325,7 +338,7 @@
             // 
             this.USERNAME.AutoSize = true;
             this.USERNAME.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.USERNAME.Location = new System.Drawing.Point(96, 115);
+            this.USERNAME.Location = new System.Drawing.Point(89, 116);
             this.USERNAME.Name = "USERNAME";
             this.USERNAME.Size = new System.Drawing.Size(0, 19);
             this.USERNAME.TabIndex = 40;
@@ -334,7 +347,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label21.Location = new System.Drawing.Point(18, 89);
+            this.label21.Location = new System.Drawing.Point(11, 90);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(165, 19);
             this.label21.TabIndex = 37;
@@ -344,7 +357,7 @@
             // 
             this.FirstDate.AutoSize = true;
             this.FirstDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.FirstDate.Location = new System.Drawing.Point(187, 89);
+            this.FirstDate.Location = new System.Drawing.Point(180, 90);
             this.FirstDate.Name = "FirstDate";
             this.FirstDate.Size = new System.Drawing.Size(0, 19);
             this.FirstDate.TabIndex = 36;
@@ -376,11 +389,11 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(290, 17);
+            this.label25.Location = new System.Drawing.Point(11, 16);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(148, 19);
+            this.label25.Size = new System.Drawing.Size(96, 19);
             this.label25.TabIndex = 70;
-            this.label25.Text = "OTHER DATALOGS:";
+            this.label25.Text = "DATALOGS:";
             // 
             // FOURTH_DLOG
             // 
@@ -388,7 +401,7 @@
             this.FOURTH_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FOURTH_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.FOURTH_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.FOURTH_DLOG.Location = new System.Drawing.Point(292, 171);
+            this.FOURTH_DLOG.Location = new System.Drawing.Point(300, 173);
             this.FOURTH_DLOG.Name = "FOURTH_DLOG";
             this.FOURTH_DLOG.Size = new System.Drawing.Size(0, 19);
             this.FOURTH_DLOG.TabIndex = 69;
@@ -400,12 +413,11 @@
             this.ADD2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD2.ForeColor = System.Drawing.Color.Black;
-            this.ADD2.Location = new System.Drawing.Point(292, 36);
+            this.ADD2.Location = new System.Drawing.Point(298, 38);
             this.ADD2.Name = "ADD2";
-            this.ADD2.Size = new System.Drawing.Size(156, 19);
+            this.ADD2.Size = new System.Drawing.Size(49, 19);
             this.ADD2.TabIndex = 64;
-            this.ADD2.Text = "CLICK HERE TO ADD";
-            this.ADD2.Click += new System.EventHandler(this.ADD_SECOND_DLOG);
+            this.ADD2.Text = "FILE 2";
             // 
             // ADD4
             // 
@@ -413,12 +425,11 @@
             this.ADD4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD4.ForeColor = System.Drawing.Color.Black;
-            this.ADD4.Location = new System.Drawing.Point(290, 143);
+            this.ADD4.Location = new System.Drawing.Point(298, 145);
             this.ADD4.Name = "ADD4";
-            this.ADD4.Size = new System.Drawing.Size(156, 19);
+            this.ADD4.Size = new System.Drawing.Size(49, 19);
             this.ADD4.TabIndex = 66;
-            this.ADD4.Text = "CLICK HERE TO ADD";
-            this.ADD4.Click += new System.EventHandler(this.ADD_FOURTH_DLOG);
+            this.ADD4.Text = "FILE 4";
             // 
             // THIRD_DLOG
             // 
@@ -426,7 +437,7 @@
             this.THIRD_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.THIRD_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.THIRD_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.THIRD_DLOG.Location = new System.Drawing.Point(292, 124);
+            this.THIRD_DLOG.Location = new System.Drawing.Point(300, 126);
             this.THIRD_DLOG.Name = "THIRD_DLOG";
             this.THIRD_DLOG.Size = new System.Drawing.Size(0, 19);
             this.THIRD_DLOG.TabIndex = 68;
@@ -438,12 +449,11 @@
             this.ADD3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ADD3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.ADD3.ForeColor = System.Drawing.Color.Black;
-            this.ADD3.Location = new System.Drawing.Point(290, 89);
+            this.ADD3.Location = new System.Drawing.Point(298, 91);
             this.ADD3.Name = "ADD3";
-            this.ADD3.Size = new System.Drawing.Size(156, 19);
+            this.ADD3.Size = new System.Drawing.Size(49, 19);
             this.ADD3.TabIndex = 65;
-            this.ADD3.Text = "CLICK HERE TO ADD";
-            this.ADD3.Click += new System.EventHandler(this.ADD_THIRD_DLOG);
+            this.ADD3.Text = "FILE 3";
             // 
             // SECOND_DLOG
             // 
@@ -451,7 +461,7 @@
             this.SECOND_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SECOND_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.SECOND_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.SECOND_DLOG.Location = new System.Drawing.Point(292, 55);
+            this.SECOND_DLOG.Location = new System.Drawing.Point(300, 57);
             this.SECOND_DLOG.Name = "SECOND_DLOG";
             this.SECOND_DLOG.Size = new System.Drawing.Size(0, 19);
             this.SECOND_DLOG.TabIndex = 67;
@@ -624,16 +634,6 @@
             this.TESTER_ID.Size = new System.Drawing.Size(185, 20);
             this.TESTER_ID.TabIndex = 5;
             // 
-            // Test_system
-            // 
-            this.Test_system.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.Test_system.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Test_system.Location = new System.Drawing.Point(135, 123);
-            this.Test_system.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Test_system.Name = "Test_system";
-            this.Test_system.Size = new System.Drawing.Size(185, 20);
-            this.Test_system.TabIndex = 4;
-            // 
             // BIN_NUMBER
             // 
             this.BIN_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -731,6 +731,106 @@
             this.TEST_STEP.Sorted = true;
             this.TEST_STEP.TabIndex = 6;
             // 
+            // ADD_FILE2
+            // 
+            this.ADD_FILE2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ADD_FILE2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD_FILE2.Location = new System.Drawing.Point(355, 38);
+            this.ADD_FILE2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ADD_FILE2.Name = "ADD_FILE2";
+            this.ADD_FILE2.Size = new System.Drawing.Size(67, 20);
+            this.ADD_FILE2.TabIndex = 89;
+            this.ADD_FILE2.Text = "ADD";
+            this.ADD_FILE2.UseVisualStyleBackColor = false;
+            this.ADD_FILE2.Click += new System.EventHandler(this.ADD_SECOND_DLOG_CLICK);
+            // 
+            // ADD_FILE3
+            // 
+            this.ADD_FILE3.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ADD_FILE3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD_FILE3.Location = new System.Drawing.Point(355, 91);
+            this.ADD_FILE3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ADD_FILE3.Name = "ADD_FILE3";
+            this.ADD_FILE3.Size = new System.Drawing.Size(67, 20);
+            this.ADD_FILE3.TabIndex = 90;
+            this.ADD_FILE3.Text = "ADD";
+            this.ADD_FILE3.UseVisualStyleBackColor = false;
+            this.ADD_FILE3.Click += new System.EventHandler(this.ADD_THIRD_DLOG_CLICK);
+            // 
+            // ADD_FILE4
+            // 
+            this.ADD_FILE4.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ADD_FILE4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD_FILE4.Location = new System.Drawing.Point(355, 146);
+            this.ADD_FILE4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ADD_FILE4.Name = "ADD_FILE4";
+            this.ADD_FILE4.Size = new System.Drawing.Size(67, 20);
+            this.ADD_FILE4.TabIndex = 91;
+            this.ADD_FILE4.Text = "ADD";
+            this.ADD_FILE4.UseVisualStyleBackColor = false;
+            this.ADD_FILE4.Click += new System.EventHandler(this.ADD_FOURTH_DLOG_CLICK);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(11, 35);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(49, 19);
+            this.label13.TabIndex = 92;
+            this.label13.Text = "FILE 1";
+            // 
+            // Test_system
+            // 
+            this.Test_system.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Test_system.FormattingEnabled = true;
+            this.Test_system.Location = new System.Drawing.Point(135, 124);
+            this.Test_system.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Test_system.Name = "Test_system";
+            this.Test_system.Size = new System.Drawing.Size(185, 21);
+            this.Test_system.Sorted = true;
+            this.Test_system.TabIndex = 87;
+            // 
+            // SUB_FACTORY_TEXT
+            // 
+            this.SUB_FACTORY_TEXT.AutoSize = true;
+            this.SUB_FACTORY_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.SUB_FACTORY_TEXT.Location = new System.Drawing.Point(11, 173);
+            this.SUB_FACTORY_TEXT.Name = "SUB_FACTORY_TEXT";
+            this.SUB_FACTORY_TEXT.Size = new System.Drawing.Size(115, 19);
+            this.SUB_FACTORY_TEXT.TabIndex = 93;
+            this.SUB_FACTORY_TEXT.Text = "SUB FACTORY:";
+            this.SUB_FACTORY_TEXT.Visible = false;
+            // 
+            // SUB_FACTORY
+            // 
+            this.SUB_FACTORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SUB_FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.SUB_FACTORY.FormattingEnabled = true;
+            this.SUB_FACTORY.Items.AddRange(new object[] {
+            "HPCA",
+            "HPCC",
+            "HPCS",
+            "INT",
+            "COM",
+            "STR",
+            "RFC",
+            "MPD",
+            "PRB",
+            "WLT",
+            "STD",
+            "MIC_WIL",
+            "MIC_SC",
+            "AERO",
+            "N/A"});
+            this.SUB_FACTORY.Location = new System.Drawing.Point(130, 173);
+            this.SUB_FACTORY.Name = "SUB_FACTORY";
+            this.SUB_FACTORY.Size = new System.Drawing.Size(108, 21);
+            this.SUB_FACTORY.TabIndex = 94;
+            this.SUB_FACTORY.Visible = false;
+            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -739,6 +839,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(926, 581);
+            this.Controls.Add(this.Test_system);
             this.Controls.Add(this.TEST_STEP);
             this.Controls.Add(this.TEST_NUMBER);
             this.Controls.Add(this.STATUS);
@@ -746,7 +847,6 @@
             this.Controls.Add(this.ROOTCAUSE_TEXT);
             this.Controls.Add(this.ROOTCAUSE);
             this.Controls.Add(this.BIN_NUMBER);
-            this.Controls.Add(this.Test_system);
             this.Controls.Add(this.TESTER_ID);
             this.Controls.Add(this.VSPEC);
             this.Controls.Add(this.PRODUCT_OWNER);
@@ -799,7 +899,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button Add_first_verif;
+        private System.Windows.Forms.Button ADD_FILE1;
         private System.Windows.Forms.LinkLabel first_verif_link;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
@@ -835,7 +935,6 @@
         private System.Windows.Forms.Label PRODUCT_OWNER;
         private System.Windows.Forms.TextBox VSPEC;
         private System.Windows.Forms.TextBox TESTER_ID;
-        private System.Windows.Forms.TextBox Test_system;
         private System.Windows.Forms.ComboBox BIN_NUMBER;
         private System.Windows.Forms.Label ROOTCAUSE_TEXT;
         private System.Windows.Forms.TextBox ROOTCAUSE;
@@ -845,5 +944,12 @@
         private System.Windows.Forms.ComboBox FACTORY;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox TEST_STEP;
+        private System.Windows.Forms.Button ADD_FILE2;
+        private System.Windows.Forms.Button ADD_FILE4;
+        private System.Windows.Forms.Button ADD_FILE3;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox Test_system;
+        private System.Windows.Forms.ComboBox SUB_FACTORY;
+        private System.Windows.Forms.Label SUB_FACTORY_TEXT;
     }
 }

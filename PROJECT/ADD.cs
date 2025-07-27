@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.IO;
 using MySql.Data.MySqlClient;
 using System.Text.RegularExpressions;
+using System.Net.Mail;
 
 
 namespace PROJECT
@@ -167,31 +168,35 @@ namespace PROJECT
                         "WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_Number + "')", DATALOG, UpdateData, FileNameNumber, Filename(Dataloglink)));
                     command.Parameters.Add(string.Format("@{0}", UpdateData), MySqlDbType.LongBlob).Value = SaveFile(Dataloglink);
                     break;
-                case 6: // INSERT NEW TRANSACTION
+                case 6: // INSERT NEW TRANSACTION WITH OPEN STATUS
                     command = new MySqlCommand("INSERT INTO `hit`.`details` " +
                         "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`BOARD_ID`," +
-                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FACTORY`) " +
+                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FACTORY`,`SUB_FACTORY`) " +
                         "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + TEST_STEP.Text + "','" + Test_system.Text + "'," +
                         "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
                         "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + STATUS.Text + "','" + ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
-                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','" + FACTORY.Text + "')");
+                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "')");
                     break;
-                case 7:
+                case 7: // LOAD PRODUCT OWNER
                     command = new MySqlCommand(string.Format("select `PRODUCT_OWNER` from `device` where locate(`DEVICE`,'{0}') = 1",PART_NAME.Text));
                     break;
-                case 8:
+                case 8: // LOAD BIN NUMBER
                     command = new MySqlCommand(string.Format("SELECT `BIN_NUMBER` from `hit`.`details` WHERE `PART_NAME` = '{0}' and `TEST_STEP` = '{1}' " +
                         "GROUP BY `BIN_NUMBER`", PART_NAME.Text, TEST_STEP.Text));
                     break;
-                case 9:
+                case 9:  // INSERT NEW TRANSACTION WITH CLOSED STATUS
                     command = new MySqlCommand("INSERT INTO `hit`.`details` " +
                         "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`BOARD_ID`," +
                         "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`," +
-                        "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER`,`FACTORY`) " +
+                        "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER`,`FACTORY`,`SUB_FACTORY`) " +
                         "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + TEST_STEP.Text + "','" + Test_system.Text + "'," +
                         "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
                         "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + STATUS.Text + "','" + ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
-                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','PLEASE REFER TO DISPOSITION','" + DateTime.Today.ToString("yyyy-MM-dd") + "','" + UserName + "','" + FACTORY.Text + "')");
+                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','FOR APPROVAL','PLEASE REFER TO DISPOSITION'," +
+                        "'" + DateTime.Today.ToString("yyyy-MM-dd") + "','" + UserName + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "')");
+                    break;
+                case 10: // LOAD TESTER PLATFORMS
+                    command = new MySqlCommand("SELECT `TEST_SYSTEM` FROM `DETAILS` GROUP BY `TEST_SYSTEM`");
                     break;
             }
         }
@@ -395,6 +400,50 @@ namespace PROJECT
             else ROOTCAUSE.Visible = ROOTCAUSE_TEXT.Visible = true;
         }
 
+        private void ADD_SECOND_DLOG(object sender, EventArgs e)
+        {
+            OtherDatalog(SECOND_DLOG);
+            dlog2 = openFileDialog1.FileName;
+        }
+
+        private void ADD_THIRD_DLOG(object sender, EventArgs e)
+        {
+            OtherDatalog(THIRD_DLOG);
+            dlog3 = openFileDialog1.FileName;
+        }
+
+        private void ADD_FOURTH_DLOG(object sender, EventArgs e)
+        {
+            OtherDatalog(FOURTH_DLOG);
+            dlog4 = openFileDialog1.FileName;
+        }
+
+        private void FACTORY_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (FACTORY.Text == "F1")
+                SUB_FACTORY_TEXT.Visible = SUB_FACTORY.Visible = true;
+            else 
+                SUB_FACTORY_TEXT.Visible = SUB_FACTORY.Visible = false;
+        }
+
+        private void ADD_SECOND_DLOG_CLICK(object sender, EventArgs e)
+        {
+            OtherDatalog(SECOND_DLOG);
+            dlog2 = openFileDialog1.FileName;
+        }
+
+        private void ADD_THIRD_DLOG_CLICK(object sender, EventArgs e)
+        {
+            OtherDatalog(THIRD_DLOG);
+            dlog3 = openFileDialog1.FileName;
+        }
+
+        private void ADD_FOURTH_DLOG_CLICK(object sender, EventArgs e)
+        {
+            OtherDatalog(FOURTH_DLOG);
+            dlog4 = openFileDialog1.FileName;
+        }
+
         private void ChangeLetterToUpperCase(KeyPressEventArgs Input)
         {
             if (Input.KeyChar >= 'a' && Input.KeyChar <= 'z')
@@ -521,21 +570,6 @@ namespace PROJECT
             }
         }
 
-        private void ADD_SECOND_DLOG(object sender, EventArgs e)
-        {
-            OtherDatalog(SECOND_DLOG);
-            dlog2 = openFileDialog1.FileName;
-        }
-        private void ADD_THIRD_DLOG(object sender, EventArgs e)
-        {
-            OtherDatalog(THIRD_DLOG);
-            dlog3 = openFileDialog1.FileName;
-        }
-        private void ADD_FOURTH_DLOG(object sender, EventArgs e)
-        {
-            OtherDatalog(FOURTH_DLOG);
-            dlog4 = openFileDialog1.FileName;
-        }
         public void DatalogOpen(string link)
         {
             try
@@ -568,10 +602,27 @@ namespace PROJECT
 
         private void ADD_Load(object sender, EventArgs e)
         {
+            try
+            {
+                Commands(10);
+                command.Connection = Connection.connect;
+                Connection.OpenConnection();
+                MySqlDataReader Read_data = command.ExecuteReader();
+
+                while (Read_data.Read())
+                {
+                    Test_system.Items.Add(Read_data.GetString("TEST_SYSTEM"));
+                }
+                Connection.CloseConnection();
+            }
+            catch (Exception Error)
+            {
+                MessageBox.Show(Error.ToString());
+                Connection.CloseConnection();
+            }
             if (Device_option == 2)
             {
                 PRODUCT_OWNER.Text = "NOT APPLICABLE";
-                Add_first_verif.Text = "ADD FIRST DATALOG";
             }
             USERNAME.Text = UserName;
         }

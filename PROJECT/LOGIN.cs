@@ -5,6 +5,9 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Squirrel;
 using System.Text.RegularExpressions;
+using System.Net.Mail;
+using System.Net;
+
 namespace PROJECT
 {
     public partial class LOGIN : System.Windows.Forms.Form
@@ -220,6 +223,32 @@ namespace PROJECT
         private void LOGIN_Load(object sender, EventArgs e)
         {
             User.Focus();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress("johnmichael.so@analog.com");
+                    mail.To.Add("areljoshua.anos@analog.com");
+                    mail.Subject = "Test Email from Outlook via C#";
+                    mail.Body = "HELLO WORLD!";
+                    MessageBox.Show("DONE PART 1");
+                    // Configure SMTP client for Outlook
+                    SmtpClient smtpClient = new SmtpClient("smtp-mail.outlook.com", 587);
+                    smtpClient.EnableSsl = true;
+                    smtpClient.Credentials = new NetworkCredential("johnmichael.so@analog.com", "Onemigso10131996!");
+                    MessageBox.Show("DONE PART 2");
+                    smtpClient.Timeout = 10000;
+                    smtpClient.Send(mail);
+
+                    MessageBox.Show("email sent!");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error sending email: " + ex.Message);
+                }
         }
 
         private void button2_Click(object sender, EventArgs e)
