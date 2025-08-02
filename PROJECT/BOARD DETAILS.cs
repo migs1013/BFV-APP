@@ -2,16 +2,18 @@
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
+using static System.Windows.Forms.LinkLabel;
 
 namespace PROJECT
 {
     public partial class BOARD_DETAILS : System.Windows.Forms.Form
     {
         MySqlCommand command;
+        long FileSize;
         byte[] Data;
         public string DATALOG;
         public int Endorsement_number { get; set; }
-        public string DLOG1 ,DLOG2 ,DLOG3 ,DLOG4, OPEN_COUNT,CLOSED_COUNT,STATUS_OPTION,DATE_ENCOUNTER,DATE_DIFFERENCE;
+        public string DLOG1 ,DLOG2 ,DLOG3 ,DLOG4, OPEN_COUNT,CLOSED_COUNT,STATUS_OPTION,DATE_ENCOUNTER,DATE_DIFFERENCE,FileName;
         public string UserName { get; set; }
         public string Approver { get; set; }
         private DateTime Date = new DateTime();
@@ -23,6 +25,21 @@ namespace PROJECT
             Endorsement_number = Convert.ToInt32(number);
             UserName = User;
             Approver = Approver_access;
+        }
+
+        private string Filename(string filename)
+        {
+            FileName = new FileInfo(filename).Name;
+            return FileName;
+        }
+        private byte[] SaveFile(string file)
+        {
+            using (Stream getDatalog = File.OpenRead(file))
+            {
+                Data = new byte[getDatalog.Length];
+                getDatalog.Read(Data, 0, Data.Length);
+            }
+            return Data;
         }
 
         private void LoadData()
@@ -59,6 +76,7 @@ namespace PROJECT
                 DLOG3 = read_data["FILENAME_3"].ToString();
                 DLOG4 = read_data["FILENAME_4"].ToString();
                 FACTORY.Text = read_data["FACTORY"].ToString();
+                SUB_FACTORY.Text = read_data["SUB_FACTORY"].ToString();
                 if (STATUS.Text == "CLOSED")
                 {
                     PO_COMMENT.Text = read_data["PO_COMMENT"].ToString();
@@ -67,16 +85,17 @@ namespace PROJECT
                     DISPO_DATE.Text = Dispo_Date.ToString("yyyy-MM-dd");
                     PO_ROOTCAUSE.Visible = Rootcause_label.Visible = false;
                     PO_COMMENT.ReadOnly = true;
+                    UPDATE.Visible = false;
                 }
                 else if (STATUS.Text == "FOR APPROVAL" && Approver.ToString() == "1")
                 {
                     UPDATE.Text = "APPROVE";
-                    UPDATE.Visible = true;
                 }
                 else
                 {
                     DISPO_DATE.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     DISPO_USER.Text = UserName;
+                    ADD_PROOF_FILE.Visible = true;
                 }
                 Connection.CloseConnection();
 
@@ -134,9 +153,7 @@ namespace PROJECT
                     OTHER_TRANSACTION.Items.Add(new ListViewItem(new[] { DATE_ENCOUNTER = Date.ToString("yyyy-MM-dd"), ReadData.GetString("USER"), ReadData.GetString("ENDORSEMENT_NUMBER") }));
                 }
                 Connection.CloseConnection();
-                if (ROOTCAUSE.Text == "UNDER INVESTIGATION") ALL_TRANSACTION.Visible = UPDATE.Visible = true;
 
-                if (OTHER_TRANSACTION.Items.Count == 1) ALL_TRANSACTION.Visible = false;
             }
             catch (Exception Error)
             {
@@ -173,49 +190,51 @@ namespace PROJECT
                 switch(yes_no)
                 {
                     case DialogResult.Yes:
-                        if (ALL_TRANSACTION.Checked == true)
+                        DialogResult yes_or_no = MessageBox.Show(("DO YOU WANT TO UPDATE ALSO THE OTHER TRANSACTIONS MADE WITH THE SAME ISSUE?"), "ATTENTION", MessageBoxButtons.YesNo);
+                        switch (yes_or_no)
                         {
-                            try
-                            {
-                                for (int count = 0; count < OTHER_TRANSACTION.Items.Count; count++)
+                            case DialogResult.Yes:
+                                try
                                 {
-                                    Endorsement_number = Convert.ToInt32(OTHER_TRANSACTION.Items[count].SubItems[2].Text);
-                                    
+                                    for (int count = 0; count < OTHER_TRANSACTION.Items.Count; count++)
+                                    {
+                                        Endorsement_number = Convert.ToInt32(OTHER_TRANSACTION.Items[count].SubItems[2].Text);
+
+                                        Commands(4);
+                                        command.Connection = Connection.connect;
+                                        if (Connection.OpenConnection())
+                                        {
+                                            command.ExecuteNonQuery();
+                                        }
+                                        Connection.CloseConnection();
+                                    }
+                                    MessageBox.Show("UPDATED SUCCESSFULLY, PLEASE REFRESH DATA");
+                                    this.Hide();
+                                }
+                                catch (Exception Error)
+                                {
+                                    MessageBox.Show(Error.ToString());
+                                    Connection.CloseConnection();
+                                }
+                                break;
+                            case DialogResult.No:
+                                try
+                                {
                                     Commands(4);
                                     command.Connection = Connection.connect;
                                     if (Connection.OpenConnection())
                                     {
                                         command.ExecuteNonQuery();
                                     }
+                                    MessageBox.Show("UPDATED SUCCESSFULLY");
                                     Connection.CloseConnection();
                                 }
-                                MessageBox.Show("UPDATED SUCCESSFULLY, PLEASE REFRESH DATA");
-                                this.Hide();
-                            }
-                            catch (Exception Error)
-                            {
-                                MessageBox.Show(Error.ToString());
-                                Connection.CloseConnection();
-                            }
-                        }
-                        else
-                        {
-                            try
-                            {
-                                Commands(4);
-                                command.Connection = Connection.connect;
-                                if (Connection.OpenConnection())
+                                catch (Exception Error)
                                 {
-                                    command.ExecuteNonQuery();
+                                    MessageBox.Show(Error.ToString());
+                                    Connection.CloseConnection();
                                 }
-                                MessageBox.Show("UPDATED SUCCESSFULLY");
-                                Connection.CloseConnection();
-                            }
-                            catch (Exception Error)
-                            {
-                                MessageBox.Show(Error.ToString());
-                                Connection.CloseConnection();
-                            }
+                                break;
                         }
                         break;
                     case DialogResult.No:
@@ -224,15 +243,36 @@ namespace PROJECT
             }
         }
 
+        private void ADD_PROOF_FILE_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = @"c:\";
+            openFileDialog1.Title = "BROWSE A FILE";
+            openFileDialog1.FileName = null;
+            openFileDialog1.Filter = "All files (*.*)|*.*";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                FileSize = new System.IO.FileInfo(openFileDialog1.FileName).Length;
+                if (FileSize > 5150000)
+                {
+                    MessageBox.Show("FILE SIZE MUST NOT EXCEED 5MB");
+                    return;
+                }
+                FIXED_PROOF_FILE.Visible = true;
+                if (Filename(openFileDialog1.FileName).Length < 21)
+                {
+                    FIXED_PROOF_FILE.Text = Filename(openFileDialog1.FileName);
+                }
+                else
+                    FIXED_PROOF_FILE.Text = Filename(openFileDialog1.FileName).Remove(20, Filename(openFileDialog1.FileName).Length - 20) + ".....";
+            }
+        }
+
         private void Commands(int pick)
         {
             switch (pick)
             {
                 case 0: // LOAD ALL TRANSACTION DETAILS
-                    command = new MySqlCommand("SELECT `ENDORSEMENT_NUMBER`,`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TESTER_ID`,`HANDLER_ID`," +
-                            "`FAILURE_MODE`,`BOARD_ID`,`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`PRODUCT_OWNER`,`FIRST_DATALOG`,`SECOND_DATALOG`,`THIRD_DATALOG`," +
-                            "`FOURTH_DATALOG`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FILENAME_1`,`FILENAME_2`,`FILENAME_3`,`FILENAME_4`,`STATUS`,`ROOTCAUSE`," +
-                            "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER`,`FACTORY` FROM `hit`.`details` WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_number + "')");
+                    command = new MySqlCommand("SELECT * FROM `hit`.`details` WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_number + "')");
                     break;
                 case 1: //LOAD DATALOG
                     command = new MySqlCommand(String.Format("SELECT `{0}` FROM `hit`.`details` WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_number + "')",DATALOG));
@@ -249,9 +289,10 @@ namespace PROJECT
                             BIN_NUMBER.Text,TEST_NUMBER.Text,PRODUCT_OWNER.Text,STATUS.Text));
                     break;
                 case 4:
-                    command = new MySqlCommand(string.Format("UPDATE `hit`.`details` SET `PO_COMMENT` = '{0}',`ROOTCAUSE` = '{1}',`DISPO_DATE` = '{2}',`DISPO_USER` = '{3}'," +
-                            "`STATUS` = 'FOR APPROVAL' WHERE (`ENDORSEMENT_NUMBER` = '{4}')",
-                            PO_COMMENT.Text,PO_ROOTCAUSE.Text,DISPO_DATE.Text,DISPO_USER.Text,Endorsement_number));
+                    command = new MySqlCommand(string.Format("UPDATE `hit`.`details` SET `PO_COMMENT` = '{0}',`ROOTCAUSE` = '{1}',`DISPO_DATE` = '{2}',`DISPO_USER` = '{3}',`DLOG_PROOF` = @{4},`DLOG_PROOF_NAME` = '{5}'," +
+                            "`STATUS` = 'FOR APPROVAL' WHERE (`ENDORSEMENT_NUMBER` = '{6}')",
+                            PO_COMMENT.Text,PO_ROOTCAUSE.Text,DISPO_DATE.Text,DISPO_USER.Text, DATALOG, Filename(openFileDialog1.FileName),Endorsement_number));
+                            command.Parameters.Add("@DLOG_PROOF", MySqlDbType.LongBlob).Value = SaveFile(openFileDialog1.FileName);
                     break;
             }
         }

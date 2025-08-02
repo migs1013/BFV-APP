@@ -131,7 +131,7 @@ namespace PROJECT
             // ALERT
             // 
             this.ALERT.AutoSize = true;
-            this.ALERT.Location = new System.Drawing.Point(112, 161);
+            this.ALERT.Location = new System.Drawing.Point(112, 170);
             this.ALERT.Name = "ALERT";
             this.ALERT.Size = new System.Drawing.Size(0, 16);
             this.ALERT.TabIndex = 7;
@@ -139,7 +139,7 @@ namespace PROJECT
             // REG_CONFIRM
             // 
             this.REG_CONFIRM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.REG_CONFIRM.Location = new System.Drawing.Point(196, 111);
+            this.REG_CONFIRM.Location = new System.Drawing.Point(196, 120);
             this.REG_CONFIRM.Name = "REG_CONFIRM";
             this.REG_CONFIRM.PasswordChar = '*';
             this.REG_CONFIRM.Size = new System.Drawing.Size(213, 22);
@@ -148,7 +148,7 @@ namespace PROJECT
             // REG_PASS
             // 
             this.REG_PASS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.REG_PASS.Location = new System.Drawing.Point(196, 71);
+            this.REG_PASS.Location = new System.Drawing.Point(196, 80);
             this.REG_PASS.Name = "REG_PASS";
             this.REG_PASS.PasswordChar = '*';
             this.REG_PASS.Size = new System.Drawing.Size(213, 22);
@@ -157,7 +157,7 @@ namespace PROJECT
             // REG_USER
             // 
             this.REG_USER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.REG_USER.Location = new System.Drawing.Point(196, 32);
+            this.REG_USER.Location = new System.Drawing.Point(196, 41);
             this.REG_USER.Name = "REG_USER";
             this.REG_USER.Size = new System.Drawing.Size(213, 22);
             this.REG_USER.TabIndex = 4;
@@ -165,7 +165,7 @@ namespace PROJECT
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 115);
+            this.label5.Location = new System.Drawing.Point(17, 124);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(167, 16);
             this.label5.TabIndex = 3;
@@ -174,7 +174,7 @@ namespace PROJECT
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 77);
+            this.label4.Location = new System.Drawing.Point(17, 86);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 16);
             this.label4.TabIndex = 2;
@@ -183,7 +183,7 @@ namespace PROJECT
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 38);
+            this.label3.Location = new System.Drawing.Point(17, 44);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 16);
             this.label3.TabIndex = 1;

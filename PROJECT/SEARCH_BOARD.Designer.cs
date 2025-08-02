@@ -65,6 +65,8 @@
             this.STATUS_FILTER = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.SUB_FACTORY_FILTER = new System.Windows.Forms.ComboBox();
             this.VSPEC = new System.Windows.Forms.TextBox();
             this.TESTER_ID_FILTER = new System.Windows.Forms.TextBox();
             this.TESTER_PLATFORM_FILTER = new System.Windows.Forms.TextBox();
@@ -89,8 +91,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.QUARTER = new System.Windows.Forms.ComboBox();
             this.ADD_NBMS = new System.Windows.Forms.Button();
-            this.SUB_FACTORY_FILTER = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -329,7 +329,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(15, 160);
+            this.label4.Location = new System.Drawing.Point(13, 160);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 16);
             this.label4.TabIndex = 35;
@@ -585,6 +585,49 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SEARCH FILTER";
             // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(15, 51);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(118, 16);
+            this.label13.TabIndex = 71;
+            this.label13.Text = "SUB FACTORY:";
+            // 
+            // SUB_FACTORY_FILTER
+            // 
+            this.SUB_FACTORY_FILTER.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SUB_FACTORY_FILTER.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SUB_FACTORY_FILTER.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SUB_FACTORY_FILTER.FormattingEnabled = true;
+            this.SUB_FACTORY_FILTER.Items.AddRange(new object[] {
+            "",
+            "HPCA",
+            "HPCC",
+            "HPCS",
+            "INT",
+            "COM",
+            "STR",
+            "RFC",
+            "MPD",
+            "PRB",
+            "WLT",
+            "STD",
+            "MIC_WIL",
+            "MIC_SC",
+            "AERO",
+            "BMS",
+            "NBMS",
+            "LTX"});
+            this.SUB_FACTORY_FILTER.Location = new System.Drawing.Point(167, 47);
+            this.SUB_FACTORY_FILTER.Name = "SUB_FACTORY_FILTER";
+            this.SUB_FACTORY_FILTER.Size = new System.Drawing.Size(188, 24);
+            this.SUB_FACTORY_FILTER.TabIndex = 70;
+            // 
             // VSPEC
             // 
             this.VSPEC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -672,7 +715,7 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(15, 212);
+            this.label19.Location = new System.Drawing.Point(13, 212);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(99, 16);
             this.label19.TabIndex = 62;
@@ -695,7 +738,7 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(15, 186);
+            this.label18.Location = new System.Drawing.Point(13, 186);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(121, 16);
             this.label18.TabIndex = 60;
@@ -867,49 +910,6 @@
             this.ADD_NBMS.Text = "TRANSACT OTHER PLATFORM";
             this.ADD_NBMS.UseVisualStyleBackColor = false;
             this.ADD_NBMS.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // SUB_FACTORY_FILTER
-            // 
-            this.SUB_FACTORY_FILTER.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SUB_FACTORY_FILTER.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SUB_FACTORY_FILTER.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SUB_FACTORY_FILTER.FormattingEnabled = true;
-            this.SUB_FACTORY_FILTER.Items.AddRange(new object[] {
-            "",
-            "HPCA",
-            "HPCC",
-            "HPCS",
-            "INT",
-            "COM",
-            "STR",
-            "RFC",
-            "MPD",
-            "PRB",
-            "WLT",
-            "STD",
-            "MIC_WIL",
-            "MIC_SC",
-            "AERO",
-            "BMS",
-            "NBMS",
-            "LTX"});
-            this.SUB_FACTORY_FILTER.Location = new System.Drawing.Point(167, 47);
-            this.SUB_FACTORY_FILTER.Name = "SUB_FACTORY_FILTER";
-            this.SUB_FACTORY_FILTER.Size = new System.Drawing.Size(188, 24);
-            this.SUB_FACTORY_FILTER.TabIndex = 70;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(15, 51);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(118, 16);
-            this.label13.TabIndex = 71;
-            this.label13.Text = "SUB FACTORY:";
             // 
             // SEARCH_BOARD
             // 

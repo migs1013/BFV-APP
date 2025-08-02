@@ -230,24 +230,22 @@ namespace PROJECT
                 try
                 {
                     MailMessage mail = new MailMessage();
-                    mail.From = new MailAddress("johnmichael.so@analog.com");
-                    mail.To.Add("areljoshua.anos@analog.com");
-                    mail.Subject = "Test Email from Outlook via C#";
+                    mail.From = new MailAddress("HIT.APP@analog.com");
+                    mail.To.Add("johnmichael.so@analog.com");
+                    mail.Subject = "Test Email from Outlook";
                     mail.Body = "HELLO WORLD!";
-                    MessageBox.Show("DONE PART 1");
+
                     // Configure SMTP client for Outlook
-                    SmtpClient smtpClient = new SmtpClient("smtp-mail.outlook.com", 587);
-                    smtpClient.EnableSsl = true;
-                    smtpClient.Credentials = new NetworkCredential("johnmichael.so@analog.com", "Onemigso10131996!");
-                    MessageBox.Show("DONE PART 2");
-                    smtpClient.Timeout = 10000;
+                    SmtpClient smtpClient = new SmtpClient("mail.analog.com", 25);
+                    smtpClient.EnableSsl = false;
+                    smtpClient.Credentials = new NetworkCredential("HIT.APP@analog.com", "Ana-@og123");
                     smtpClient.Send(mail);
 
                     MessageBox.Show("email sent!");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error sending email: " + ex.Message);
+                    MessageBox.Show("Error sending email: " + ex.Message);
                 }
         }
 

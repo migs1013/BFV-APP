@@ -104,6 +104,8 @@ namespace PROJECT
             switch (yes_no)
             {
                 case DialogResult.Yes:
+                    if (FACTORY.Text != "F1")
+                        SUB_FACTORY.Text = "N/A";
                     if (STATUS.SelectedIndex == 0)
                     {
                         ROOTCAUSE.Text = "UNDER INVESTIGATION";
