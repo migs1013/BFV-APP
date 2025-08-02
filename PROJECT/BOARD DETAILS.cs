@@ -18,6 +18,7 @@ namespace PROJECT
         public string Approver { get; set; }
         private DateTime Date = new DateTime();
         private DateTime Dispo_Date = new DateTime();
+        private DateTime Date_Approved = new DateTime();
 
         public BOARD_DETAILS(string number,String User,string Approver_access)
         {
@@ -75,14 +76,18 @@ namespace PROJECT
                 DLOG2 = read_data["FILENAME_2"].ToString();
                 DLOG3 = read_data["FILENAME_3"].ToString();
                 DLOG4 = read_data["FILENAME_4"].ToString();
+                
                 FACTORY.Text = read_data["FACTORY"].ToString();
                 SUB_FACTORY.Text = read_data["SUB_FACTORY"].ToString();
+                PO_COMMENT.Text = read_data["PO_COMMENT"].ToString();
+                Dispo_Date = Convert.ToDateTime(read_data["DISPO_DATE"].ToString());
+                DISPO_USER.Text = read_data["DISPO_USER"].ToString();
+                DISPO_DATE.Text = Dispo_Date.ToString("yyyy-MM-dd");
+                APPROVER.Text = read_data["APPROVER"].ToString();
+                Dispo_Date = Convert.ToDateTime(read_data["DATE_APPROVED"].ToString());
+                DATE_APPROVED.Text = Date_Approved.ToString("yyyy-MM-dd");
                 if (STATUS.Text == "CLOSED")
                 {
-                    PO_COMMENT.Text = read_data["PO_COMMENT"].ToString();
-                    Dispo_Date = Convert.ToDateTime(read_data["DISPO_DATE"].ToString());
-                    DISPO_USER.Text = read_data["DISPO_USER"].ToString();
-                    DISPO_DATE.Text = Dispo_Date.ToString("yyyy-MM-dd");
                     PO_ROOTCAUSE.Visible = Rootcause_label.Visible = false;
                     PO_COMMENT.ReadOnly = true;
                     UPDATE.Visible = false;
@@ -274,10 +279,10 @@ namespace PROJECT
                 case 0: // LOAD ALL TRANSACTION DETAILS
                     command = new MySqlCommand("SELECT * FROM `hit`.`details` WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_number + "')");
                     break;
-                case 1: //LOAD DATALOG
+                case 1: // OPEN DATALOG
                     command = new MySqlCommand(String.Format("SELECT `{0}` FROM `hit`.`details` WHERE (`ENDORSEMENT_NUMBER` = '" + Endorsement_number + "')",DATALOG));
                     break;
-                case 2:
+                case 2: // LOAD TRANSACTION COUNTS WITH SAME ISSUE
                     command = new MySqlCommand(string.Format("use `hit`; select (select count(*) from `details` where `BIN_NUMBER` = '{0}' AND `TEST_NUMBER` = '{1}' AND `PRODUCT_OWNER` = '{2}' AND `STATUS` = '{3}') AS `{3}`," +
                             "(select datediff(curdate(),`DATE_ENCOUNTERED`) from `details` where `ENDORSEMENT_NUMBER` = (SELECT min(`ENDORSEMENT_NUMBER`) from `details` " +
                             "where `BIN_NUMBER` = '{0}' AND `TEST_NUMBER` = '{1}' AND `PRODUCT_OWNER` = '{2}' AND `STATUS` = '{3}')) as `DATE`", 
@@ -288,7 +293,7 @@ namespace PROJECT
                             "where (`BIN_NUMBER` = '{0}' AND `TEST_NUMBER` = '{1}' AND `PRODUCT_OWNER` = '{2}' AND `STATUS` = '{3}')",
                             BIN_NUMBER.Text,TEST_NUMBER.Text,PRODUCT_OWNER.Text,STATUS.Text));
                     break;
-                case 4:
+                case 4:  // UPDATE ROOTCASE
                     command = new MySqlCommand(string.Format("UPDATE `hit`.`details` SET `PO_COMMENT` = '{0}',`ROOTCAUSE` = '{1}',`DISPO_DATE` = '{2}',`DISPO_USER` = '{3}',`DLOG_PROOF` = @{4},`DLOG_PROOF_NAME` = '{5}'," +
                             "`STATUS` = 'FOR APPROVAL' WHERE (`ENDORSEMENT_NUMBER` = '{6}')",
                             PO_COMMENT.Text,PO_ROOTCAUSE.Text,DISPO_DATE.Text,DISPO_USER.Text, DATALOG, Filename(openFileDialog1.FileName),Endorsement_number));
