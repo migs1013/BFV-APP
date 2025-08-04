@@ -87,6 +87,13 @@ namespace PROJECT
             this.OPEN = new System.Windows.Forms.Label();
             this.VIEW = new System.Windows.Forms.Button();
             this.PO_DISPO = new System.Windows.Forms.GroupBox();
+            this.ADD_PROOF_FILE = new System.Windows.Forms.Button();
+            this.FIXED_PROOF_FILE = new System.Windows.Forms.LinkLabel();
+            this.label31 = new System.Windows.Forms.Label();
+            this.DATE_APPROVED = new System.Windows.Forms.Label();
+            this.APPROVER = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.DISPO_USER = new System.Windows.Forms.Label();
             this.DISPO_DATE = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -98,13 +105,6 @@ namespace PROJECT
             this.label23 = new System.Windows.Forms.Label();
             this.TEST_NAME = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.APPROVER = new System.Windows.Forms.Label();
-            this.DATE_APPROVED = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.FIXED_PROOF_FILE = new System.Windows.Forms.LinkLabel();
-            this.ADD_PROOF_FILE = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.First_box.SuspendLayout();
             this.PO_DISPO.SuspendLayout();
@@ -796,6 +796,81 @@ namespace PROJECT
             this.PO_DISPO.TabStop = false;
             this.PO_DISPO.Text = "PRODUCT OWNER DISPO";
             // 
+            // ADD_PROOF_FILE
+            // 
+            this.ADD_PROOF_FILE.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ADD_PROOF_FILE.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD_PROOF_FILE.Location = new System.Drawing.Point(363, 70);
+            this.ADD_PROOF_FILE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ADD_PROOF_FILE.Name = "ADD_PROOF_FILE";
+            this.ADD_PROOF_FILE.Size = new System.Drawing.Size(67, 20);
+            this.ADD_PROOF_FILE.TabIndex = 120;
+            this.ADD_PROOF_FILE.Text = "ADD";
+            this.ADD_PROOF_FILE.UseVisualStyleBackColor = false;
+            this.ADD_PROOF_FILE.Visible = false;
+            this.ADD_PROOF_FILE.Click += new System.EventHandler(this.ADD_PROOF_FILE_Click);
+            // 
+            // FIXED_PROOF_FILE
+            // 
+            this.FIXED_PROOF_FILE.AutoSize = true;
+            this.FIXED_PROOF_FILE.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FIXED_PROOF_FILE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FIXED_PROOF_FILE.LinkColor = System.Drawing.Color.Black;
+            this.FIXED_PROOF_FILE.Location = new System.Drawing.Point(324, 97);
+            this.FIXED_PROOF_FILE.Name = "FIXED_PROOF_FILE";
+            this.FIXED_PROOF_FILE.Size = new System.Drawing.Size(0, 13);
+            this.FIXED_PROOF_FILE.TabIndex = 118;
+            this.FIXED_PROOF_FILE.Click += new System.EventHandler(this.FIXED_PROOF_FILE_Click);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.ForeColor = System.Drawing.Color.Black;
+            this.label31.Location = new System.Drawing.Point(320, 74);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(37, 13);
+            this.label31.TabIndex = 119;
+            this.label31.Text = "FILE:";
+            // 
+            // DATE_APPROVED
+            // 
+            this.DATE_APPROVED.AutoSize = true;
+            this.DATE_APPROVED.Location = new System.Drawing.Point(448, 42);
+            this.DATE_APPROVED.Name = "DATE_APPROVED";
+            this.DATE_APPROVED.Size = new System.Drawing.Size(0, 13);
+            this.DATE_APPROVED.TabIndex = 118;
+            // 
+            // APPROVER
+            // 
+            this.APPROVER.AutoSize = true;
+            this.APPROVER.Location = new System.Drawing.Point(502, 19);
+            this.APPROVER.Name = "APPROVER";
+            this.APPROVER.Size = new System.Drawing.Size(0, 13);
+            this.APPROVER.TabIndex = 117;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.Color.Black;
+            this.label30.Location = new System.Drawing.Point(398, 42);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(44, 13);
+            this.label30.TabIndex = 116;
+            this.label30.Text = "DATE:";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.Black;
+            this.label29.Location = new System.Drawing.Point(398, 19);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(98, 13);
+            this.label29.TabIndex = 115;
+            this.label29.Text = "APPROVED BY:";
+            // 
             // DISPO_USER
             // 
             this.DISPO_USER.AutoSize = true;
@@ -909,80 +984,6 @@ namespace PROJECT
             this.label15.Size = new System.Drawing.Size(78, 13);
             this.label15.TabIndex = 109;
             this.label15.Text = "ATTENTION";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(398, 19);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(98, 13);
-            this.label29.TabIndex = 115;
-            this.label29.Text = "APPROVED BY:";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.ForeColor = System.Drawing.Color.Black;
-            this.label30.Location = new System.Drawing.Point(398, 42);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(44, 13);
-            this.label30.TabIndex = 116;
-            this.label30.Text = "DATE:";
-            // 
-            // APPROVER
-            // 
-            this.APPROVER.AutoSize = true;
-            this.APPROVER.Location = new System.Drawing.Point(502, 19);
-            this.APPROVER.Name = "APPROVER";
-            this.APPROVER.Size = new System.Drawing.Size(0, 13);
-            this.APPROVER.TabIndex = 117;
-            // 
-            // DATE_APPROVED
-            // 
-            this.DATE_APPROVED.AutoSize = true;
-            this.DATE_APPROVED.Location = new System.Drawing.Point(448, 42);
-            this.DATE_APPROVED.Name = "DATE_APPROVED";
-            this.DATE_APPROVED.Size = new System.Drawing.Size(0, 13);
-            this.DATE_APPROVED.TabIndex = 118;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.ForeColor = System.Drawing.Color.Black;
-            this.label31.Location = new System.Drawing.Point(320, 74);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(37, 13);
-            this.label31.TabIndex = 119;
-            this.label31.Text = "FILE:";
-            // 
-            // FIXED_PROOF_FILE
-            // 
-            this.FIXED_PROOF_FILE.AutoSize = true;
-            this.FIXED_PROOF_FILE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.FIXED_PROOF_FILE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FIXED_PROOF_FILE.LinkColor = System.Drawing.Color.Black;
-            this.FIXED_PROOF_FILE.Location = new System.Drawing.Point(324, 97);
-            this.FIXED_PROOF_FILE.Name = "FIXED_PROOF_FILE";
-            this.FIXED_PROOF_FILE.Size = new System.Drawing.Size(0, 13);
-            this.FIXED_PROOF_FILE.TabIndex = 118;
-            // 
-            // ADD_PROOF_FILE
-            // 
-            this.ADD_PROOF_FILE.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ADD_PROOF_FILE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ADD_PROOF_FILE.Location = new System.Drawing.Point(363, 70);
-            this.ADD_PROOF_FILE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ADD_PROOF_FILE.Name = "ADD_PROOF_FILE";
-            this.ADD_PROOF_FILE.Size = new System.Drawing.Size(67, 20);
-            this.ADD_PROOF_FILE.TabIndex = 120;
-            this.ADD_PROOF_FILE.Text = "ADD";
-            this.ADD_PROOF_FILE.UseVisualStyleBackColor = false;
-            this.ADD_PROOF_FILE.Visible = false;
-            this.ADD_PROOF_FILE.Click += new System.EventHandler(this.ADD_PROOF_FILE_Click);
             // 
             // openFileDialog1
             // 

@@ -13,7 +13,7 @@ namespace PROJECT
         byte[] Data;
         public string DATALOG;
         public int Endorsement_number { get; set; }
-        public string DLOG1 ,DLOG2 ,DLOG3 ,DLOG4, OPEN_COUNT,CLOSED_COUNT,STATUS_OPTION,DATE_ENCOUNTER,DATE_DIFFERENCE,FileName;
+        public string DLOG1 ,DLOG2 ,DLOG3 ,DLOG4, OPEN_COUNT,CLOSED_COUNT,STATUS_OPTION,DATE_ENCOUNTER,DATE_DIFFERENCE,Add_File_Proof,New_File_Link;
         public string UserName { get; set; }
         public string Approver { get; set; }
         private DateTime Date = new DateTime();
@@ -30,8 +30,8 @@ namespace PROJECT
 
         private string Filename(string filename)
         {
-            FileName = new FileInfo(filename).Name;
-            return FileName;
+            Add_File_Proof = new FileInfo(filename).Name;
+            return Add_File_Proof;
         }
         private byte[] SaveFile(string file)
         {
@@ -79,22 +79,35 @@ namespace PROJECT
                 
                 FACTORY.Text = read_data["FACTORY"].ToString();
                 SUB_FACTORY.Text = read_data["SUB_FACTORY"].ToString();
-                PO_COMMENT.Text = read_data["PO_COMMENT"].ToString();
-                Dispo_Date = Convert.ToDateTime(read_data["DISPO_DATE"].ToString());
-                DISPO_USER.Text = read_data["DISPO_USER"].ToString();
-                DISPO_DATE.Text = Dispo_Date.ToString("yyyy-MM-dd");
-                APPROVER.Text = read_data["APPROVER"].ToString();
-                Dispo_Date = Convert.ToDateTime(read_data["DATE_APPROVED"].ToString());
-                DATE_APPROVED.Text = Date_Approved.ToString("yyyy-MM-dd");
+                
                 if (STATUS.Text == "CLOSED")
                 {
+
+                    PO_COMMENT.Text = read_data["PO_COMMENT"].ToString();
+                    Dispo_Date = Convert.ToDateTime(read_data["DISPO_DATE"].ToString());
+                    DISPO_USER.Text = read_data["DISPO_USER"].ToString();
+                    APPROVER.Text = read_data["APPROVER"].ToString();
+                    Date_Approved = Convert.ToDateTime(read_data["DATE_APPROVED"].ToString());
+                    FIXED_PROOF_FILE.Text = read_data["DLOG_PROOF_NAME"].ToString();
+                    DISPO_DATE.Text = Dispo_Date.ToString("yyyy-MM-dd");
+                    DATE_APPROVED.Text = Date_Approved.ToString("yyyy-MM-dd");
+
                     PO_ROOTCAUSE.Visible = Rootcause_label.Visible = false;
                     PO_COMMENT.ReadOnly = true;
                     UPDATE.Visible = false;
                 }
                 else if (STATUS.Text == "FOR APPROVAL" && Approver.ToString() == "1")
                 {
+                    PO_COMMENT.Text = read_data["PO_COMMENT"].ToString();
+                    Dispo_Date = Convert.ToDateTime(read_data["DISPO_DATE"].ToString());
+                    DISPO_USER.Text = read_data["DISPO_USER"].ToString();
+                    FIXED_PROOF_FILE.Text = read_data["DLOG_PROOF_NAME"].ToString();
+                    DISPO_DATE.Text = Dispo_Date.ToString("yyyy-MM-dd");
+
                     UPDATE.Text = "APPROVE";
+                    Rootcause_label.Visible = PO_ROOTCAUSE.Visible = false;
+                    APPROVER.Text = UserName;
+                    DATE_APPROVED.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 }
                 else
                 {
@@ -226,6 +239,7 @@ namespace PROJECT
                                 try
                                 {
                                     Commands(4);
+                                    
                                     command.Connection = Connection.connect;
                                     if (Connection.OpenConnection())
                                     {
@@ -246,6 +260,11 @@ namespace PROJECT
                         return;
                 }
             }
+        }
+
+        private void FIXED_PROOF_FILE_Click(object sender, EventArgs e)
+        {
+            DatalogOpen("DLOG_PROOF_NAME", "DLOG_PROOF");
         }
 
         private void ADD_PROOF_FILE_Click(object sender, EventArgs e)
@@ -269,6 +288,7 @@ namespace PROJECT
                 }
                 else
                     FIXED_PROOF_FILE.Text = Filename(openFileDialog1.FileName).Remove(20, Filename(openFileDialog1.FileName).Length - 20) + ".....";
+                New_File_Link = openFileDialog1.FileName;
             }
         }
 
@@ -296,8 +316,8 @@ namespace PROJECT
                 case 4:  // UPDATE ROOTCASE
                     command = new MySqlCommand(string.Format("UPDATE `hit`.`details` SET `PO_COMMENT` = '{0}',`ROOTCAUSE` = '{1}',`DISPO_DATE` = '{2}',`DISPO_USER` = '{3}',`DLOG_PROOF` = @{4},`DLOG_PROOF_NAME` = '{5}'," +
                             "`STATUS` = 'FOR APPROVAL' WHERE (`ENDORSEMENT_NUMBER` = '{6}')",
-                            PO_COMMENT.Text,PO_ROOTCAUSE.Text,DISPO_DATE.Text,DISPO_USER.Text, DATALOG, Filename(openFileDialog1.FileName),Endorsement_number));
-                            command.Parameters.Add("@DLOG_PROOF", MySqlDbType.LongBlob).Value = SaveFile(openFileDialog1.FileName);
+                            PO_COMMENT.Text,PO_ROOTCAUSE.Text,DISPO_DATE.Text,DISPO_USER.Text,Filename(New_File_Link),Endorsement_number));
+                            command.Parameters.Add("@{4}", MySqlDbType.LongBlob).Value = SaveFile(New_File_Link);
                     break;
             }
         }

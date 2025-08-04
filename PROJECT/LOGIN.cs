@@ -180,10 +180,11 @@ namespace PROJECT
 
         private void LOGINUSER()
         {
-            Commands(3);
-            command.Connection = Connection.connect;
-            if (Connection.OpenConnection())
+            try
             {
+                Commands(3);
+                command.Connection = Connection.connect;
+                Connection.OpenConnection();
                 MySqlDataReader read_status = command.ExecuteReader();
                 read_status.Read();
 
@@ -202,11 +203,15 @@ namespace PROJECT
                     User.Clear();
                     Pass.Clear();
                     this.Hide();
-                    SEARCH_BOARD next = new SEARCH_BOARD(UserName,Approver);
+                    SEARCH_BOARD next = new SEARCH_BOARD(UserName, Approver);
                     next.ShowDialog();
                 }
             }
-            else Connection.CloseConnection();
+            catch (Exception error)
+            {
+                Connection.CloseConnection();
+                MessageBox.Show("Error: " + error.Message);
+            }
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -231,8 +236,9 @@ namespace PROJECT
                 {
                     MailMessage mail = new MailMessage();
                     mail.From = new MailAddress("HIT.APP@analog.com");
-                    mail.To.Add("johnmichael.so@analog.com");
-                    mail.Subject = "Test Email from Outlook";
+                    mail.To.Add("Emar.Natividad@analog.com");
+
+                    mail.Subject = "Test Email";
                     mail.Body = "HELLO WORLD!";
 
                     // Configure SMTP client for Outlook
