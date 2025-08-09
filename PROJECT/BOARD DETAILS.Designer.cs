@@ -240,7 +240,7 @@ namespace PROJECT
             this.SUB_FACTORY.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SUB_FACTORY.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SUB_FACTORY.LinkColor = System.Drawing.Color.Black;
-            this.SUB_FACTORY.Location = new System.Drawing.Point(372, 151);
+            this.SUB_FACTORY.Location = new System.Drawing.Point(372, 147);
             this.SUB_FACTORY.Name = "SUB_FACTORY";
             this.SUB_FACTORY.Size = new System.Drawing.Size(0, 16);
             this.SUB_FACTORY.TabIndex = 117;
@@ -800,7 +800,7 @@ namespace PROJECT
             // 
             this.ADD_PROOF_FILE.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ADD_PROOF_FILE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ADD_PROOF_FILE.Location = new System.Drawing.Point(363, 70);
+            this.ADD_PROOF_FILE.Location = new System.Drawing.Point(359, 71);
             this.ADD_PROOF_FILE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ADD_PROOF_FILE.Name = "ADD_PROOF_FILE";
             this.ADD_PROOF_FILE.Size = new System.Drawing.Size(67, 20);
@@ -816,7 +816,7 @@ namespace PROJECT
             this.FIXED_PROOF_FILE.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FIXED_PROOF_FILE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FIXED_PROOF_FILE.LinkColor = System.Drawing.Color.Black;
-            this.FIXED_PROOF_FILE.Location = new System.Drawing.Point(324, 97);
+            this.FIXED_PROOF_FILE.Location = new System.Drawing.Point(321, 92);
             this.FIXED_PROOF_FILE.Name = "FIXED_PROOF_FILE";
             this.FIXED_PROOF_FILE.Size = new System.Drawing.Size(0, 13);
             this.FIXED_PROOF_FILE.TabIndex = 118;
@@ -1039,7 +1039,7 @@ namespace PROJECT
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1090, 666);
+            this.MinimumSize = new System.Drawing.Size(857, 454);
             this.Name = "BOARD_DETAILS";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TRANSACTION DETAILS";

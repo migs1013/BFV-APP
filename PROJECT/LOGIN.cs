@@ -230,31 +230,6 @@ namespace PROJECT
             User.Focus();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-                try
-                {
-                    MailMessage mail = new MailMessage();
-                    mail.From = new MailAddress("HIT.APP@analog.com");
-                    mail.To.Add("Emar.Natividad@analog.com");
-
-                    mail.Subject = "Test Email";
-                    mail.Body = "HELLO WORLD!";
-
-                    // Configure SMTP client for Outlook
-                    SmtpClient smtpClient = new SmtpClient("mail.analog.com", 25);
-                    smtpClient.EnableSsl = false;
-                    smtpClient.Credentials = new NetworkCredential("HIT.APP@analog.com", "Ana-@og123");
-                    smtpClient.Send(mail);
-
-                    MessageBox.Show("email sent!");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error sending email: " + ex.Message);
-                }
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();

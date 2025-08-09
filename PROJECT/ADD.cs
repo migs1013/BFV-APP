@@ -5,6 +5,8 @@ using System.IO;
 using MySql.Data.MySqlClient;
 using System.Text.RegularExpressions;
 using System.Net.Mail;
+using System.Net;
+using System.Collections.Generic;
 
 
 namespace PROJECT
@@ -19,6 +21,7 @@ namespace PROJECT
         public int Endorsement_Number,FileNameLength, WordCount = 0;
         public string UserName { get; set; }
         public int Device_option { get; set; }
+        public List<string> Files = new List<string>();
         public DateTime WriteTime = new DateTime();
         public ADD(int Option,string User)
         {
@@ -97,6 +100,57 @@ namespace PROJECT
                 Connection.CloseConnection();
             }
         }
+        private void Email_send()
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("HIT.APP@analog.com");
+                //mail.To.Add("johnmichael.so@analog.com");
+                mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
+                mail.To.Add("ADPhilsLinearBMSTPE@analog.com");
+
+                mail.Subject = string.Join(" | ", LOT_ID.Text, PART_NAME.Text, TESTER_ID.Text, TEST_STEP.Text, Failure_mode.Text, TEST_NUMBER.Text, TEST_NAME.Text);
+                
+                string Body = String.Format(@"THIS IS A SAMPLE EMAIL ONLY.
+
+
+PROBLEM DESCRIPTION: {0}
+
+DISPOSITION: {1}
+
+LOGGED BY: {2}
+
+
+(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).",Problem.Text,Action.Text,UserName);
+
+
+                mail.Body = Body;
+
+                if (!string.IsNullOrWhiteSpace(dlog1)) Files.Add(dlog1);
+                if (!string.IsNullOrWhiteSpace(dlog2)) Files.Add(dlog2);
+                if (!string.IsNullOrWhiteSpace(dlog3)) Files.Add(dlog3);
+                if (!string.IsNullOrWhiteSpace(dlog4)) Files.Add(dlog4);
+                
+                foreach (string file in Files)
+                {
+                    Attachment AttachFile = new Attachment(file);
+                    mail.Attachments.Add(AttachFile);
+                }
+
+                // Configure SMTP client for Outlook
+                SmtpClient smtpClient = new SmtpClient("mail.analog.com", 25);
+                smtpClient.EnableSsl = false;
+                smtpClient.Credentials = new NetworkCredential("HIT.APP@analog.com", "Ana-@og123");
+                smtpClient.Send(mail);
+
+                //MessageBox.Show("email sent!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error sending email: " + ex.Message);
+            }
+        }
         private void Save_btn_Click(object sender, EventArgs e)
         {
             if (!CheckDetails()) return;
@@ -139,6 +193,7 @@ namespace PROJECT
                     {
                         DatalogNumber(4); SendData(5);
                     }
+                    Email_send();
                     MessageBox.Show("FILE SAVED SUCCESSFULLY");
                     Clear_all();
                     PRODUCT_OWNER.Text = "";
@@ -333,7 +388,6 @@ namespace PROJECT
                         else continue;
                     }
                     WordCount = 0;
-                    //TEST_STEP.Text = string.Join(" ", TestOption, Temp);
 
                     Commands(2);
                     command.Connection = Connection.connect;
@@ -402,24 +456,6 @@ namespace PROJECT
             else ROOTCAUSE.Visible = ROOTCAUSE_TEXT.Visible = true;
         }
 
-        private void ADD_SECOND_DLOG(object sender, EventArgs e)
-        {
-            OtherDatalog(SECOND_DLOG);
-            dlog2 = openFileDialog1.FileName;
-        }
-
-        private void ADD_THIRD_DLOG(object sender, EventArgs e)
-        {
-            OtherDatalog(THIRD_DLOG);
-            dlog3 = openFileDialog1.FileName;
-        }
-
-        private void ADD_FOURTH_DLOG(object sender, EventArgs e)
-        {
-            OtherDatalog(FOURTH_DLOG);
-            dlog4 = openFileDialog1.FileName;
-        }
-
         private void FACTORY_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (FACTORY.Text == "F1")
@@ -471,33 +507,6 @@ namespace PROJECT
         {
             this.Hide();
         }
-        /*
-        private bool CheckTextBox(string textBox)                         // CHECK TEXTBOX INPUTS
-        {
-            char[] text = textBox.ToCharArray();
-            if (textBox.Length > 40)
-            {
-                MessageBox.Show("MAXIMUM OF 40 CHARACTERS ONLY");
-                return false;
-            }
-            for (int Txt = 0; Txt < textBox.Length; Txt++)
-            {
-                if (char.IsLetterOrDigit(text[Txt])) continue;
-                else if (text[Txt] == '-') continue;
-                else if (text[Txt] == ' ')
-                {
-                    MessageBox.Show("SPACE IS NOT ALLOWED");
-                    return false;
-                }
-                else
-                {
-                    MessageBox.Show("PLEASE ENTER NUMBER OR LETTER ONLY");
-                    return false;
-                }
-            }
-            return true;
-        }
-        */
 
         private void Clear_all()
         {

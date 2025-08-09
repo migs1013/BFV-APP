@@ -48,20 +48,26 @@
             this.label10 = new System.Windows.Forms.Label();
             this.Problem = new System.Windows.Forms.TextBox();
             this.First_box = new System.Windows.Forms.GroupBox();
+            this.SUB_FACTORY = new System.Windows.Forms.ComboBox();
+            this.SUB_FACTORY_TEXT = new System.Windows.Forms.Label();
             this.FACTORY = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.ADD_FILE4 = new System.Windows.Forms.Button();
+            this.Action = new System.Windows.Forms.TextBox();
             this.USERNAME = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.FirstDate = new System.Windows.Forms.Label();
-            this.Action = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.ADD_FILE3 = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
-            this.FOURTH_DLOG = new System.Windows.Forms.LinkLabel();
             this.ADD2 = new System.Windows.Forms.Label();
-            this.ADD4 = new System.Windows.Forms.Label();
-            this.THIRD_DLOG = new System.Windows.Forms.LinkLabel();
-            this.ADD3 = new System.Windows.Forms.Label();
             this.SECOND_DLOG = new System.Windows.Forms.LinkLabel();
+            this.ADD_FILE2 = new System.Windows.Forms.Button();
+            this.ADD3 = new System.Windows.Forms.Label();
+            this.THIRD_DLOG = new System.Windows.Forms.LinkLabel();
+            this.ADD4 = new System.Windows.Forms.Label();
+            this.FOURTH_DLOG = new System.Windows.Forms.LinkLabel();
             this.HANDLER_ID = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.Failure_mode = new System.Windows.Forms.ComboBox();
@@ -83,13 +89,7 @@
             this.STATUS = new System.Windows.Forms.ComboBox();
             this.TEST_NUMBER = new System.Windows.Forms.ComboBox();
             this.TEST_STEP = new System.Windows.Forms.ComboBox();
-            this.ADD_FILE2 = new System.Windows.Forms.Button();
-            this.ADD_FILE3 = new System.Windows.Forms.Button();
-            this.ADD_FILE4 = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
             this.Test_system = new System.Windows.Forms.ComboBox();
-            this.SUB_FACTORY_TEXT = new System.Windows.Forms.Label();
-            this.SUB_FACTORY = new System.Windows.Forms.ComboBox();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -309,6 +309,44 @@
             this.First_box.TabStop = false;
             this.First_box.Text = "VERIFICATION DETAILS";
             // 
+            // SUB_FACTORY
+            // 
+            this.SUB_FACTORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SUB_FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.SUB_FACTORY.FormattingEnabled = true;
+            this.SUB_FACTORY.Items.AddRange(new object[] {
+            "HPCA",
+            "HPCC",
+            "HPCS",
+            "INT",
+            "COM",
+            "STR",
+            "RFC",
+            "MPD",
+            "PRB",
+            "WLT",
+            "STD",
+            "MIC_WIL",
+            "MIC_SC",
+            "AERO",
+            "N/A"});
+            this.SUB_FACTORY.Location = new System.Drawing.Point(126, 173);
+            this.SUB_FACTORY.Name = "SUB_FACTORY";
+            this.SUB_FACTORY.Size = new System.Drawing.Size(108, 21);
+            this.SUB_FACTORY.TabIndex = 94;
+            this.SUB_FACTORY.Visible = false;
+            // 
+            // SUB_FACTORY_TEXT
+            // 
+            this.SUB_FACTORY_TEXT.AutoSize = true;
+            this.SUB_FACTORY_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.SUB_FACTORY_TEXT.Location = new System.Drawing.Point(10, 173);
+            this.SUB_FACTORY_TEXT.Name = "SUB_FACTORY_TEXT";
+            this.SUB_FACTORY_TEXT.Size = new System.Drawing.Size(115, 19);
+            this.SUB_FACTORY_TEXT.TabIndex = 93;
+            this.SUB_FACTORY_TEXT.Text = "SUB FACTORY:";
+            this.SUB_FACTORY_TEXT.Visible = false;
+            // 
             // FACTORY
             // 
             this.FACTORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -324,6 +362,18 @@
             this.FACTORY.TabIndex = 88;
             this.FACTORY.SelectionChangeCommitted += new System.EventHandler(this.FACTORY_SelectionChangeCommitted);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(11, 35);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(49, 19);
+            this.label13.TabIndex = 92;
+            this.label13.Text = "FILE 1";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -333,6 +383,30 @@
             this.label12.Size = new System.Drawing.Size(84, 19);
             this.label12.TabIndex = 73;
             this.label12.Text = "FACTORY:";
+            // 
+            // ADD_FILE4
+            // 
+            this.ADD_FILE4.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ADD_FILE4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD_FILE4.Location = new System.Drawing.Point(355, 146);
+            this.ADD_FILE4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ADD_FILE4.Name = "ADD_FILE4";
+            this.ADD_FILE4.Size = new System.Drawing.Size(67, 20);
+            this.ADD_FILE4.TabIndex = 91;
+            this.ADD_FILE4.Text = "ADD";
+            this.ADD_FILE4.UseVisualStyleBackColor = false;
+            this.ADD_FILE4.Click += new System.EventHandler(this.ADD_FOURTH_DLOG_CLICK);
+            // 
+            // Action
+            // 
+            this.Action.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.Action.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Action.Location = new System.Drawing.Point(6, 352);
+            this.Action.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Action.Multiline = true;
+            this.Action.Name = "Action";
+            this.Action.Size = new System.Drawing.Size(578, 122);
+            this.Action.TabIndex = 16;
             // 
             // USERNAME
             // 
@@ -362,17 +436,6 @@
             this.FirstDate.Size = new System.Drawing.Size(0, 19);
             this.FirstDate.TabIndex = 36;
             // 
-            // Action
-            // 
-            this.Action.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.Action.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Action.Location = new System.Drawing.Point(6, 352);
-            this.Action.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Action.Multiline = true;
-            this.Action.Name = "Action";
-            this.Action.Size = new System.Drawing.Size(578, 122);
-            this.Action.TabIndex = 16;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -384,6 +447,19 @@
             this.label1.TabIndex = 71;
             this.label1.Text = "DISPOSITION";
             // 
+            // ADD_FILE3
+            // 
+            this.ADD_FILE3.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ADD_FILE3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD_FILE3.Location = new System.Drawing.Point(355, 91);
+            this.ADD_FILE3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ADD_FILE3.Name = "ADD_FILE3";
+            this.ADD_FILE3.Size = new System.Drawing.Size(67, 20);
+            this.ADD_FILE3.TabIndex = 90;
+            this.ADD_FILE3.Text = "ADD";
+            this.ADD_FILE3.UseVisualStyleBackColor = false;
+            this.ADD_FILE3.Click += new System.EventHandler(this.ADD_THIRD_DLOG_CLICK);
+            // 
             // label25
             // 
             this.label25.AutoSize = true;
@@ -394,18 +470,6 @@
             this.label25.Size = new System.Drawing.Size(96, 19);
             this.label25.TabIndex = 70;
             this.label25.Text = "DATALOGS:";
-            // 
-            // FOURTH_DLOG
-            // 
-            this.FOURTH_DLOG.AutoSize = true;
-            this.FOURTH_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.FOURTH_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.FOURTH_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.FOURTH_DLOG.Location = new System.Drawing.Point(300, 173);
-            this.FOURTH_DLOG.Name = "FOURTH_DLOG";
-            this.FOURTH_DLOG.Size = new System.Drawing.Size(0, 19);
-            this.FOURTH_DLOG.TabIndex = 69;
-            this.FOURTH_DLOG.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FourthDlog);
             // 
             // ADD2
             // 
@@ -419,29 +483,30 @@
             this.ADD2.TabIndex = 64;
             this.ADD2.Text = "FILE 2";
             // 
-            // ADD4
+            // SECOND_DLOG
             // 
-            this.ADD4.AutoSize = true;
-            this.ADD4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ADD4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.ADD4.ForeColor = System.Drawing.Color.Black;
-            this.ADD4.Location = new System.Drawing.Point(298, 145);
-            this.ADD4.Name = "ADD4";
-            this.ADD4.Size = new System.Drawing.Size(49, 19);
-            this.ADD4.TabIndex = 66;
-            this.ADD4.Text = "FILE 4";
+            this.SECOND_DLOG.AutoSize = true;
+            this.SECOND_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SECOND_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.SECOND_DLOG.LinkColor = System.Drawing.Color.Black;
+            this.SECOND_DLOG.Location = new System.Drawing.Point(300, 57);
+            this.SECOND_DLOG.Name = "SECOND_DLOG";
+            this.SECOND_DLOG.Size = new System.Drawing.Size(0, 19);
+            this.SECOND_DLOG.TabIndex = 67;
+            this.SECOND_DLOG.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SecondDlog);
             // 
-            // THIRD_DLOG
+            // ADD_FILE2
             // 
-            this.THIRD_DLOG.AutoSize = true;
-            this.THIRD_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.THIRD_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.THIRD_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.THIRD_DLOG.Location = new System.Drawing.Point(300, 126);
-            this.THIRD_DLOG.Name = "THIRD_DLOG";
-            this.THIRD_DLOG.Size = new System.Drawing.Size(0, 19);
-            this.THIRD_DLOG.TabIndex = 68;
-            this.THIRD_DLOG.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ThirdDlog);
+            this.ADD_FILE2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ADD_FILE2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD_FILE2.Location = new System.Drawing.Point(355, 38);
+            this.ADD_FILE2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ADD_FILE2.Name = "ADD_FILE2";
+            this.ADD_FILE2.Size = new System.Drawing.Size(67, 20);
+            this.ADD_FILE2.TabIndex = 89;
+            this.ADD_FILE2.Text = "ADD";
+            this.ADD_FILE2.UseVisualStyleBackColor = false;
+            this.ADD_FILE2.Click += new System.EventHandler(this.ADD_SECOND_DLOG_CLICK);
             // 
             // ADD3
             // 
@@ -455,17 +520,41 @@
             this.ADD3.TabIndex = 65;
             this.ADD3.Text = "FILE 3";
             // 
-            // SECOND_DLOG
+            // THIRD_DLOG
             // 
-            this.SECOND_DLOG.AutoSize = true;
-            this.SECOND_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SECOND_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.SECOND_DLOG.LinkColor = System.Drawing.Color.Black;
-            this.SECOND_DLOG.Location = new System.Drawing.Point(300, 57);
-            this.SECOND_DLOG.Name = "SECOND_DLOG";
-            this.SECOND_DLOG.Size = new System.Drawing.Size(0, 19);
-            this.SECOND_DLOG.TabIndex = 67;
-            this.SECOND_DLOG.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SecondDlog);
+            this.THIRD_DLOG.AutoSize = true;
+            this.THIRD_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.THIRD_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.THIRD_DLOG.LinkColor = System.Drawing.Color.Black;
+            this.THIRD_DLOG.Location = new System.Drawing.Point(300, 126);
+            this.THIRD_DLOG.Name = "THIRD_DLOG";
+            this.THIRD_DLOG.Size = new System.Drawing.Size(0, 19);
+            this.THIRD_DLOG.TabIndex = 68;
+            this.THIRD_DLOG.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ThirdDlog);
+            // 
+            // ADD4
+            // 
+            this.ADD4.AutoSize = true;
+            this.ADD4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ADD4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.ADD4.ForeColor = System.Drawing.Color.Black;
+            this.ADD4.Location = new System.Drawing.Point(298, 145);
+            this.ADD4.Name = "ADD4";
+            this.ADD4.Size = new System.Drawing.Size(49, 19);
+            this.ADD4.TabIndex = 66;
+            this.ADD4.Text = "FILE 4";
+            // 
+            // FOURTH_DLOG
+            // 
+            this.FOURTH_DLOG.AutoSize = true;
+            this.FOURTH_DLOG.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FOURTH_DLOG.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.FOURTH_DLOG.LinkColor = System.Drawing.Color.Black;
+            this.FOURTH_DLOG.Location = new System.Drawing.Point(300, 173);
+            this.FOURTH_DLOG.Name = "FOURTH_DLOG";
+            this.FOURTH_DLOG.Size = new System.Drawing.Size(0, 19);
+            this.FOURTH_DLOG.TabIndex = 69;
+            this.FOURTH_DLOG.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FourthDlog);
             // 
             // HANDLER_ID
             // 
@@ -687,7 +776,7 @@
             this.STATUS.FormattingEnabled = true;
             this.STATUS.Items.AddRange(new object[] {
             "OPEN",
-            "CLOSED"});
+            "FOR APPROVAL"});
             this.STATUS.Location = new System.Drawing.Point(135, 468);
             this.STATUS.Name = "STATUS";
             this.STATUS.Size = new System.Drawing.Size(185, 21);
@@ -731,57 +820,6 @@
             this.TEST_STEP.Sorted = true;
             this.TEST_STEP.TabIndex = 6;
             // 
-            // ADD_FILE2
-            // 
-            this.ADD_FILE2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ADD_FILE2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ADD_FILE2.Location = new System.Drawing.Point(355, 38);
-            this.ADD_FILE2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ADD_FILE2.Name = "ADD_FILE2";
-            this.ADD_FILE2.Size = new System.Drawing.Size(67, 20);
-            this.ADD_FILE2.TabIndex = 89;
-            this.ADD_FILE2.Text = "ADD";
-            this.ADD_FILE2.UseVisualStyleBackColor = false;
-            this.ADD_FILE2.Click += new System.EventHandler(this.ADD_SECOND_DLOG_CLICK);
-            // 
-            // ADD_FILE3
-            // 
-            this.ADD_FILE3.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ADD_FILE3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ADD_FILE3.Location = new System.Drawing.Point(355, 91);
-            this.ADD_FILE3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ADD_FILE3.Name = "ADD_FILE3";
-            this.ADD_FILE3.Size = new System.Drawing.Size(67, 20);
-            this.ADD_FILE3.TabIndex = 90;
-            this.ADD_FILE3.Text = "ADD";
-            this.ADD_FILE3.UseVisualStyleBackColor = false;
-            this.ADD_FILE3.Click += new System.EventHandler(this.ADD_THIRD_DLOG_CLICK);
-            // 
-            // ADD_FILE4
-            // 
-            this.ADD_FILE4.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ADD_FILE4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ADD_FILE4.Location = new System.Drawing.Point(355, 146);
-            this.ADD_FILE4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ADD_FILE4.Name = "ADD_FILE4";
-            this.ADD_FILE4.Size = new System.Drawing.Size(67, 20);
-            this.ADD_FILE4.TabIndex = 91;
-            this.ADD_FILE4.Text = "ADD";
-            this.ADD_FILE4.UseVisualStyleBackColor = false;
-            this.ADD_FILE4.Click += new System.EventHandler(this.ADD_FOURTH_DLOG_CLICK);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label13.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(11, 35);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(49, 19);
-            this.label13.TabIndex = 92;
-            this.label13.Text = "FILE 1";
-            // 
             // Test_system
             // 
             this.Test_system.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -792,44 +830,6 @@
             this.Test_system.Size = new System.Drawing.Size(185, 21);
             this.Test_system.Sorted = true;
             this.Test_system.TabIndex = 87;
-            // 
-            // SUB_FACTORY_TEXT
-            // 
-            this.SUB_FACTORY_TEXT.AutoSize = true;
-            this.SUB_FACTORY_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.SUB_FACTORY_TEXT.Location = new System.Drawing.Point(11, 173);
-            this.SUB_FACTORY_TEXT.Name = "SUB_FACTORY_TEXT";
-            this.SUB_FACTORY_TEXT.Size = new System.Drawing.Size(115, 19);
-            this.SUB_FACTORY_TEXT.TabIndex = 93;
-            this.SUB_FACTORY_TEXT.Text = "SUB FACTORY:";
-            this.SUB_FACTORY_TEXT.Visible = false;
-            // 
-            // SUB_FACTORY
-            // 
-            this.SUB_FACTORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SUB_FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.SUB_FACTORY.FormattingEnabled = true;
-            this.SUB_FACTORY.Items.AddRange(new object[] {
-            "HPCA",
-            "HPCC",
-            "HPCS",
-            "INT",
-            "COM",
-            "STR",
-            "RFC",
-            "MPD",
-            "PRB",
-            "WLT",
-            "STD",
-            "MIC_WIL",
-            "MIC_SC",
-            "AERO",
-            "N/A"});
-            this.SUB_FACTORY.Location = new System.Drawing.Point(130, 173);
-            this.SUB_FACTORY.Name = "SUB_FACTORY";
-            this.SUB_FACTORY.Size = new System.Drawing.Size(108, 21);
-            this.SUB_FACTORY.TabIndex = 94;
-            this.SUB_FACTORY.Visible = false;
             // 
             // ADD
             // 

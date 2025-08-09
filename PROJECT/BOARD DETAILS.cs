@@ -11,7 +11,7 @@ namespace PROJECT
         MySqlCommand command;
         long FileSize;
         byte[] Data;
-        public string DATALOG;
+        public string DATALOG,PROOF_FILE_LINK;
         public int Endorsement_number { get; set; }
         public string DLOG1 ,DLOG2 ,DLOG3 ,DLOG4, OPEN_COUNT,CLOSED_COUNT,STATUS_OPTION,DATE_ENCOUNTER,DATE_DIFFERENCE,Add_File_Proof,New_File_Link;
         public string UserName { get; set; }
@@ -200,7 +200,35 @@ namespace PROJECT
 
         private void UPDATE_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(PO_COMMENT.Text) || string.IsNullOrWhiteSpace(PO_ROOTCAUSE.Text))
+            if (UPDATE.Text == "APPROVE")
+            {
+                DialogResult yes_no = MessageBox.Show("APPROVE DISPOSITION?","ATTENTION!", MessageBoxButtons.YesNo);
+                switch(yes_no)
+                {
+                    case DialogResult.Yes:
+                        try
+                        {
+                            Commands(5);
+                            command.Connection = Connection.connect;
+                            if (Connection.OpenConnection())
+                            {
+                                command.ExecuteNonQuery();
+                            }
+                            Connection.CloseConnection();
+                            MessageBox.Show("APPROVED SUCCESSFULLY, PLEASE REFRESH DATA");
+                        }
+                        catch (Exception Error)
+                        {
+                            MessageBox.Show(Error.ToString());
+                            Connection.CloseConnection();
+                        }
+                        this.Hide();
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
+            }
+            else if (string.IsNullOrWhiteSpace(PO_COMMENT.Text) || string.IsNullOrWhiteSpace(PO_ROOTCAUSE.Text) || string.IsNullOrWhiteSpace(FIXED_PROOF_FILE.Text))
                 MessageBox.Show("PLEASE PROVIDE DETAILS");
             else
             {
@@ -227,13 +255,13 @@ namespace PROJECT
                                         Connection.CloseConnection();
                                     }
                                     MessageBox.Show("UPDATED SUCCESSFULLY, PLEASE REFRESH DATA");
-                                    this.Hide();
                                 }
                                 catch (Exception Error)
                                 {
                                     MessageBox.Show(Error.ToString());
                                     Connection.CloseConnection();
                                 }
+                                this.Hide();
                                 break;
                             case DialogResult.No:
                                 try
@@ -253,6 +281,7 @@ namespace PROJECT
                                     MessageBox.Show(Error.ToString());
                                     Connection.CloseConnection();
                                 }
+                                this.Hide();
                                 break;
                         }
                         break;
@@ -316,8 +345,11 @@ namespace PROJECT
                 case 4:  // UPDATE ROOTCASE
                     command = new MySqlCommand(string.Format("UPDATE `hit`.`details` SET `PO_COMMENT` = '{0}',`ROOTCAUSE` = '{1}',`DISPO_DATE` = '{2}',`DISPO_USER` = '{3}',`DLOG_PROOF` = @{4},`DLOG_PROOF_NAME` = '{5}'," +
                             "`STATUS` = 'FOR APPROVAL' WHERE (`ENDORSEMENT_NUMBER` = '{6}')",
-                            PO_COMMENT.Text,PO_ROOTCAUSE.Text,DISPO_DATE.Text,DISPO_USER.Text,Filename(New_File_Link),Endorsement_number));
-                            command.Parameters.Add("@{4}", MySqlDbType.LongBlob).Value = SaveFile(New_File_Link);
+                            PO_COMMENT.Text,PO_ROOTCAUSE.Text,DISPO_DATE.Text,DISPO_USER.Text,PROOF_FILE_LINK = "FILE",Filename(New_File_Link),Endorsement_number));
+                    command.Parameters.Add(string.Format("@{0}", PROOF_FILE_LINK), MySqlDbType.LongBlob).Value = SaveFile(New_File_Link);
+                    break;
+                case 5:  // APPROVE ROOTCAUSE ISSUE
+                    command = new MySqlCommand("UPDATE `hit`.`details` SET `STATUS` = 'CLOSED',`APPROVER` = '" + APPROVER.Text + "',`DATE_APPROVED` = '" + DATE_APPROVED.Text + "' where `ENDORSEMENT_NUMBER` = '" + Endorsement_number + "'");
                     break;
             }
         }
