@@ -17,7 +17,7 @@ namespace PROJECT
         long FileSize;
         byte[] Data;
         public string tester_platform, FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption, 
-                      hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "";
+                      hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "",Stage_Temp;
         public int Endorsement_Number,FileNameLength, WordCount = 0;
         public string UserName { get; set; }
         public int Device_option { get; set; }
@@ -106,23 +106,32 @@ namespace PROJECT
             {
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("HIT.APP@analog.com");
-                //mail.To.Add("johnmichael.so@analog.com");
-                mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
-                mail.To.Add("ADPhilsLinearBMSTPE@analog.com");
+                mail.To.Add("johnmichael.so@analog.com");
+                //mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
+                //mail.To.Add("ADPhilsLinearBMSTPE@analog.com");
 
-                mail.Subject = string.Join(" | ", LOT_ID.Text, PART_NAME.Text, TESTER_ID.Text, TEST_STEP.Text, Failure_mode.Text, TEST_NUMBER.Text, TEST_NAME.Text);
+                mail.Subject = string.Join(" | ", LOT_ID.Text, TEST_STAGE.Text, Failure_mode.Text, TEST_NUMBER.Text, TEST_NAME.Text);
                 
-                string Body = String.Format(@"THIS IS A SAMPLE EMAIL ONLY.
+                string Body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).
 
+PARTNAME: {0}
 
-PROBLEM DESCRIPTION: {0}
+TESTER: {1} HANDLER: {2}
 
-DISPOSITION: {1}
+BOARD ID: {3}
 
-LOGGED BY: {2}
+BU STRATEGY:
 
+PROBLEM DESCRIPTION: {4}
 
-(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).",Problem.Text,Action.Text,UserName);
+DISPOSITION: {5}
+
+STATUS: {6}
+
+LOGGED BY: {7}
+
+(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN)."
+, PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,Problem.Text,Action.Text,FAILURE_ASSESSMENT.Text,UserName);
 
 
                 mail.Body = Body;
@@ -154,15 +163,16 @@ LOGGED BY: {2}
         private void Save_btn_Click(object sender, EventArgs e)
         {
             if (!CheckDetails()) return;
+            TEMPERATURE.Text += "C";
+            Stage_Temp = string.Join(" ", TEST_STAGE.Text, TEMPERATURE.Text);
             DialogResult yes_no = MessageBox.Show(("PLEASE DOUBLE CHECK YOUR DATA,THIS WILL BE SAVE PERMANENTLY. SAVE IT?"), "ATTENTION", MessageBoxButtons.YesNo);
             switch (yes_no)
             {
                 case DialogResult.Yes:
                     if (FACTORY.Text != "F1")
                         SUB_FACTORY.Text = "N/A";
-                    if (STATUS.SelectedIndex == 0)
+                    if (FAILURE_ASSESSMENT.SelectedIndex == 1)
                     {
-                        ROOTCAUSE.Text = "UNDER INVESTIGATION";
                         SendData(6);
                     }
                     else SendData(9);
@@ -193,7 +203,7 @@ LOGGED BY: {2}
                     {
                         DatalogNumber(4); SendData(5);
                     }
-                    Email_send();
+                    //Email_send();
                     MessageBox.Show("FILE SAVED SUCCESSFULLY");
                     Clear_all();
                     PRODUCT_OWNER.Text = "";
@@ -227,11 +237,11 @@ LOGGED BY: {2}
                     break;
                 case 6: // INSERT NEW TRANSACTION WITH OPEN STATUS
                     command = new MySqlCommand("INSERT INTO `hit`.`details` " +
-                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`BOARD_ID`," +
-                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FACTORY`,`SUB_FACTORY`) " +
-                        "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + TEST_STEP.Text + "','" + Test_system.Text + "'," +
-                        "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
-                        "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + STATUS.Text + "','" + ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
+                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STAGE`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_PERFORMANCE`,`BOARD_ID`," +
+                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`POTENTIAL_ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FACTORY`,`SUB_FACTORY`) " +
+                        "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + Stage_Temp + "','" + Test_system.Text + "'," +
+                        "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + FAILURE_PERFORMANCE.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
+                        "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + FAILURE_ASSESSMENT.Text + "','" + POTENTIAL_ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
                         "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "')");
                     break;
                 case 7: // LOAD PRODUCT OWNER
@@ -239,17 +249,17 @@ LOGGED BY: {2}
                     break;
                 case 8: // LOAD BIN NUMBER
                     command = new MySqlCommand(string.Format("SELECT `BIN_NUMBER` from `hit`.`details` WHERE `PART_NAME` = '{0}' and `TEST_STEP` = '{1}' " +
-                        "GROUP BY `BIN_NUMBER`", PART_NAME.Text, TEST_STEP.Text));
+                        "GROUP BY `BIN_NUMBER`", PART_NAME.Text, TEST_STAGE.Text));
                     break;
                 case 9:  // INSERT NEW TRANSACTION WITH CLOSED STATUS
                     command = new MySqlCommand("INSERT INTO `hit`.`details` " +
-                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STEP`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`BOARD_ID`," +
-                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`," +
+                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STAGE`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_PERFORMANCE`,`BOARD_ID`," +
+                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`POTENTIAL_ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`," +
                         "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER`,`FACTORY`,`SUB_FACTORY`) " +
-                        "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + TEST_STEP.Text + "','" + Test_system.Text + "'," +
-                        "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
-                        "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + STATUS.Text + "','" + ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
-                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','FOR APPROVAL','PLEASE REFER TO DISPOSITION'," +
+                        "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + Stage_Temp + "','" + Test_system.Text + "'," +
+                        "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + FAILURE_PERFORMANCE.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
+                        "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','FOR APPROVAL','" + POTENTIAL_ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
+                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','PLEASE REFER TO DISPOSITION'," +
                         "'" + DateTime.Today.ToString("yyyy-MM-dd") + "','" + UserName + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "')");
                     break;
                 case 10: // LOAD TESTER PLATFORMS
@@ -273,12 +283,8 @@ LOGGED BY: {2}
                     {
                         if (string.IsNullOrWhiteSpace(textBox.Text))
                         {
-                            if (textBox == ROOTCAUSE && STATUS.SelectedIndex == 0) continue;
-                            else
-                            {
-                                Error();
-                                return false;
-                            }
+                            Error();
+                            return false;
                         }
                         else if (textBox.Text.Length > 60)
                         {
@@ -444,16 +450,6 @@ LOGGED BY: {2}
                 MessageBox.Show(Error.ToString());
                 Connection.CloseConnection();
             }
-        }
-
-        private void STATUS_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (STATUS.SelectedIndex == 0)
-            {
-                ROOTCAUSE.Visible = ROOTCAUSE_TEXT.Visible = false;
-                ROOTCAUSE.Clear();
-            }
-            else ROOTCAUSE.Visible = ROOTCAUSE_TEXT.Visible = true;
         }
 
         private void FACTORY_SelectionChangeCommitted(object sender, EventArgs e)

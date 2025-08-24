@@ -57,7 +57,7 @@ namespace PROJECT
                 PART_NAME.Text = read_data["PART_NAME"].ToString();
                 LOT_ID.Text = read_data["LOT_ID"].ToString();
                 VSPEC.Text = read_data["VSPEC"].ToString();
-                TEST_STEP.Text = read_data["TEST_STEP"].ToString();
+                TEST_STAGE.Text = read_data["TEST_STAGE"].ToString();
                 TESTER_ID.Text = read_data["TESTER_ID"].ToString();
                 HANDLER_ID.Text = read_data["HANDLER_ID"].ToString();
                 BOARD_ID.Text = read_data["BOARD_ID"].ToString();
@@ -67,10 +67,11 @@ namespace PROJECT
                 TEST_NUMBER.Text = read_data["TEST_NUMBER"].ToString();
                 TEST_NAME.Text = read_data["TEST_NAME"].ToString();
                 FAILURE_MODE.Text = read_data["FAILURE_MODE"].ToString();
+                FAILURE_PERFORMANCE.Text = read_data["FAILURE_PERFORMANCE"].ToString();
                 Date = Convert.ToDateTime(read_data["DATE_ENCOUNTERED"].ToString());
                 USER_LOG.Text = read_data["USER"].ToString();
                 STATUS.Text = read_data["STATUS"].ToString();
-                ROOTCAUSE.Text = read_data["ROOTCAUSE"].ToString();
+                ROOTCAUSE.Text = read_data["POTENTIAL_ROOTCAUSE"].ToString();
                 PRODUCT_OWNER.Text = read_data["PRODUCT_OWNER"].ToString();
                 DLOG1 = read_data["FILENAME_1"].ToString();
                 DLOG2 = read_data["FILENAME_2"].ToString();
@@ -82,7 +83,6 @@ namespace PROJECT
                 
                 if (STATUS.Text == "CLOSED")
                 {
-
                     PO_COMMENT.Text = read_data["PO_COMMENT"].ToString();
                     Dispo_Date = Convert.ToDateTime(read_data["DISPO_DATE"].ToString());
                     DISPO_USER.Text = read_data["DISPO_USER"].ToString();
@@ -91,26 +91,28 @@ namespace PROJECT
                     FIXED_PROOF_FILE.Text = read_data["DLOG_PROOF_NAME"].ToString();
                     DISPO_DATE.Text = Dispo_Date.ToString("yyyy-MM-dd");
                     DATE_APPROVED.Text = Date_Approved.ToString("yyyy-MM-dd");
-
+                    CLOSE.Visible = DATE_TEXT.Visible = APPROVE_TEXT.Visible = DATE2_TEXT.Visible = DISPO_USER.Visible = DISPO_DATE.Visible = APPROVER.Visible = DATE_APPROVED.Visible = true;
                     PO_ROOTCAUSE.Visible = Rootcause_label.Visible = false;
                     PO_COMMENT.ReadOnly = true;
                     UPDATE.Visible = false;
                 }
-                else if (STATUS.Text == "FOR APPROVAL" && Approver.ToString() == "1")
+                else if (STATUS.Text == "FOR APPROVAL")
                 {
                     PO_COMMENT.Text = read_data["PO_COMMENT"].ToString();
                     Dispo_Date = Convert.ToDateTime(read_data["DISPO_DATE"].ToString());
                     DISPO_USER.Text = read_data["DISPO_USER"].ToString();
                     FIXED_PROOF_FILE.Text = read_data["DLOG_PROOF_NAME"].ToString();
                     DISPO_DATE.Text = Dispo_Date.ToString("yyyy-MM-dd");
-
+                    CLOSE.Visible = DATE_TEXT.Visible = DISPO_USER.Visible = DISPO_DATE.Visible = true;
                     UPDATE.Text = "APPROVE";
+                    ROOTCAUSE.Text += " (POTENTIAL)";
                     Rootcause_label.Visible = PO_ROOTCAUSE.Visible = false;
                     APPROVER.Text = UserName;
                     DATE_APPROVED.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 }
                 else
                 {
+                    ROOTCAUSE.Text += " (POTENTIAL)";
                     DISPO_DATE.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     DISPO_USER.Text = UserName;
                     ADD_PROOF_FILE.Visible = true;

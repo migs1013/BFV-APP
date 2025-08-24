@@ -110,20 +110,20 @@ namespace PROJECT
                     command = new MySqlCommand("SELECT COUNT(*) FROM `hit`.`details`",Connection.connect);
                     break;
                 case 3:  //FOR UPDATING PURPOSES
-                    command = new MySqlCommand("SELECT `PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STEP`,`DATE_ENCOUNTERED`,`PRODUCT_OWNER`," +
-                        "`STATUS`,if(`STATUS` = 'OPEN' OR `STATUS` = 'FOR APPROVAL',datediff(curdate(),`DATE_ENCOUNTERED`),'CLOSED') as `CYCLE_TIME`,`ENDORSEMENT_NUMBER` FROM `hit`.`details` ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", Connection.connect);
+                    command = new MySqlCommand("SELECT `PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STAGE`,`DATE_ENCOUNTERED`,`PRODUCT_OWNER`," +
+                        "`STATUS`,if(`STATUS` = 'FOR FURTHER INVESTIGATION' OR `STATUS` = 'FOR APPROVAL',datediff(curdate(),`DATE_ENCOUNTERED`),'CLOSED') as `CYCLE_TIME`,`ENDORSEMENT_NUMBER` FROM `hit`.`details` ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30", Connection.connect);
                     break;
                 case 4: // SEARCHING TRANSACTION COUNTS WITH FILTER
                     command = new MySqlCommand(string.Format("SELECT COUNT(*) FROM `hit`.`details` {0}",FullTextCommand), Connection.connect);
                     break;
                 case 6:  // FOR SEARCH IN COMBO BOXES
-                    command = new MySqlCommand(string.Format("Select `PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STEP`," +
-                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`STATUS`,if(`STATUS` = 'OPEN' OR `STATUS` = 'FOR APPROVAL',datediff(curdate(),`DATE_ENCOUNTERED`),'CLOSED') as `CYCLE_TIME`,`ENDORSEMENT_NUMBER`" +
+                    command = new MySqlCommand(string.Format("Select `PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STAGE`," +
+                        "`DATE_ENCOUNTERED`,`PRODUCT_OWNER`,`STATUS`,if(`STATUS` = 'FOR FURTHER INVESTIGATION' OR `STATUS` = 'FOR APPROVAL',datediff(curdate(),`DATE_ENCOUNTERED`),'CLOSED') as `CYCLE_TIME`,`ENDORSEMENT_NUMBER`" +
                         "FROM `hit`.`details` {0} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30",FullTextCommand), Connection.connect);
                     break;
                 case 7: //NEXT BUTTON
-                    command = new MySqlCommand(string.Format("Select `PRODUCT_OWNER`,`PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STEP`," +
-                        "`DATE_ENCOUNTERED`,`STATUS`,if(`STATUS` = 'OPEN',datediff(curdate(),`DATE_ENCOUNTERED`),'CLOSED') as `CYCLE_TIME`,`ENDORSEMENT_NUMBER` " +
+                    command = new MySqlCommand(string.Format("Select `PRODUCT_OWNER`,`PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STAGE`," +
+                        "`DATE_ENCOUNTERED`,`STATUS`,if(`STATUS` = 'FOR FURTHER INVESTIGATION',datediff(curdate(),`DATE_ENCOUNTERED`),'CLOSED') as `CYCLE_TIME`,`ENDORSEMENT_NUMBER` " +
                         "FROM `hit`.`details` {0} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT {1},30", FullTextCommand, range), Connection.connect);
                     break;
                 case 13: // LOAD HIT COUNT
@@ -170,8 +170,8 @@ namespace PROJECT
                     }
 
 
-                    command = new MySqlCommand(string.Format("SELECT `PRODUCT_OWNER`,`PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STEP`," +
-                        "`DATE_ENCOUNTERED`,`STATUS`,if(`STATUS` = 'OPEN' OR `STATUS` = 'FOR APPROVAL',datediff(curdate(),`DATE_ENCOUNTERED`),'CLOSED') as `CYCLE_TIME`,`ENDORSEMENT_NUMBER` FROM `DETAILS` " +
+                    command = new MySqlCommand(string.Format("SELECT `PRODUCT_OWNER`,`PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STAGE`," +
+                        "`DATE_ENCOUNTERED`,`STATUS`,if(`STATUS` = 'FOR FURTHER INVESTIGATION' OR `STATUS` = 'FOR APPROVAL',datediff(curdate(),`DATE_ENCOUNTERED`),'CLOSED') as `CYCLE_TIME`,`ENDORSEMENT_NUMBER` FROM `DETAILS` " +
                         "WHERE `PART_NAME` = '{0}'{1} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30 ", HITCOUNT.SelectedItems[0].Text,DateFilter), Connection.connect);
                     break;
                 case 18:

@@ -83,13 +83,17 @@
             this.VSPEC = new System.Windows.Forms.TextBox();
             this.TESTER_ID = new System.Windows.Forms.TextBox();
             this.BIN_NUMBER = new System.Windows.Forms.ComboBox();
-            this.ROOTCAUSE_TEXT = new System.Windows.Forms.Label();
-            this.ROOTCAUSE = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.STATUS = new System.Windows.Forms.ComboBox();
+            this.FAILURE_ASSESSMENT = new System.Windows.Forms.ComboBox();
             this.TEST_NUMBER = new System.Windows.Forms.ComboBox();
-            this.TEST_STEP = new System.Windows.Forms.ComboBox();
+            this.TEST_STAGE = new System.Windows.Forms.ComboBox();
             this.Test_system = new System.Windows.Forms.ComboBox();
+            this.TEMPERATURE = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.FAILURE_PERFORMANCE = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.POTENTIAL_ROOTCAUSE = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,7 +102,7 @@
             this.Save_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Save_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Save_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Save_btn.Location = new System.Drawing.Point(517, 497);
+            this.Save_btn.Location = new System.Drawing.Point(396, 499);
             this.Save_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Save_btn.Name = "Save_btn";
             this.Save_btn.Size = new System.Drawing.Size(141, 77);
@@ -112,7 +116,7 @@
             this.Exit_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Exit_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Exit_btn.Location = new System.Drawing.Point(775, 497);
+            this.Exit_btn.Location = new System.Drawing.Point(845, 493);
             this.Exit_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Exit_btn.Name = "Exit_btn";
             this.Exit_btn.Size = new System.Drawing.Size(141, 77);
@@ -125,7 +129,7 @@
             // 
             this.PART_NAME.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.PART_NAME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PART_NAME.Location = new System.Drawing.Point(135, 11);
+            this.PART_NAME.Location = new System.Drawing.Point(203, 11);
             this.PART_NAME.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PART_NAME.Name = "PART_NAME";
             this.PART_NAME.Size = new System.Drawing.Size(185, 20);
@@ -149,7 +153,7 @@
             this.label_PartNumber.BackColor = System.Drawing.Color.Transparent;
             this.label_PartNumber.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_PartNumber.ForeColor = System.Drawing.Color.Black;
-            this.label_PartNumber.Location = new System.Drawing.Point(12, 50);
+            this.label_PartNumber.Location = new System.Drawing.Point(12, 40);
             this.label_PartNumber.Name = "label_PartNumber";
             this.label_PartNumber.Size = new System.Drawing.Size(55, 19);
             this.label_PartNumber.TabIndex = 5;
@@ -159,7 +163,7 @@
             // 
             this.LOT_ID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.LOT_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LOT_ID.Location = new System.Drawing.Point(135, 49);
+            this.LOT_ID.Location = new System.Drawing.Point(203, 39);
             this.LOT_ID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LOT_ID.Name = "LOT_ID";
             this.LOT_ID.Size = new System.Drawing.Size(185, 20);
@@ -171,7 +175,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(12, 87);
+            this.label3.Location = new System.Drawing.Point(12, 68);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 19);
             this.label3.TabIndex = 7;
@@ -183,7 +187,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(12, 164);
+            this.label4.Location = new System.Drawing.Point(12, 125);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 19);
             this.label4.TabIndex = 9;
@@ -195,11 +199,11 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(12, 198);
+            this.label6.Location = new System.Drawing.Point(12, 154);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 19);
+            this.label6.Size = new System.Drawing.Size(91, 19);
             this.label6.TabIndex = 13;
-            this.label6.Text = "TEST STEP";
+            this.label6.Text = "TEST STAGE";
             // 
             // ADD_FILE1
             // 
@@ -233,7 +237,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(12, 544);
+            this.label8.Location = new System.Drawing.Point(12, 497);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(144, 19);
             this.label8.TabIndex = 22;
@@ -269,7 +273,7 @@
             this.Problem.Multiline = true;
             this.Problem.Name = "Problem";
             this.Problem.Size = new System.Drawing.Size(578, 112);
-            this.Problem.TabIndex = 15;
+            this.Problem.TabIndex = 17;
             // 
             // First_box
             // 
@@ -300,7 +304,7 @@
             this.First_box.Controls.Add(this.ADD4);
             this.First_box.Controls.Add(this.FOURTH_DLOG);
             this.First_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.First_box.Location = new System.Drawing.Point(326, 9);
+            this.First_box.Location = new System.Drawing.Point(396, 11);
             this.First_box.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.First_box.Name = "First_box";
             this.First_box.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -406,7 +410,7 @@
             this.Action.Multiline = true;
             this.Action.Name = "Action";
             this.Action.Size = new System.Drawing.Size(578, 122);
-            this.Action.TabIndex = 16;
+            this.Action.TabIndex = 18;
             // 
             // USERNAME
             // 
@@ -560,12 +564,12 @@
             // 
             this.HANDLER_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HANDLER_ID.FormattingEnabled = true;
-            this.HANDLER_ID.Location = new System.Drawing.Point(135, 232);
+            this.HANDLER_ID.Location = new System.Drawing.Point(203, 209);
             this.HANDLER_ID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HANDLER_ID.Name = "HANDLER_ID";
             this.HANDLER_ID.Size = new System.Drawing.Size(185, 21);
             this.HANDLER_ID.Sorted = true;
-            this.HANDLER_ID.TabIndex = 7;
+            this.HANDLER_ID.TabIndex = 8;
             this.HANDLER_ID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HANDLER_ID_KeyPress);
             // 
             // label16
@@ -574,7 +578,7 @@
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(12, 234);
+            this.label16.Location = new System.Drawing.Point(12, 211);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(98, 19);
             this.label16.TabIndex = 44;
@@ -585,18 +589,24 @@
             this.Failure_mode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Failure_mode.FormattingEnabled = true;
             this.Failure_mode.Items.AddRange(new object[] {
+            "COLLAPSE",
             "ILSF",
+            "INTERMITTENT",
             "LOW YIELD",
+            "MLI",
             "NOT PASSING",
+            "OVER-REJECTION",
+            "PDA",
             "SBL HIT",
-            "SITE TO SITE VARIANCE",
+            "SITE-TO-SITE INTERACTION",
+            "SITE-TO-SITE VARIANCE",
             "TRIM BIN HIT"});
-            this.Failure_mode.Location = new System.Drawing.Point(135, 269);
+            this.Failure_mode.Location = new System.Drawing.Point(203, 238);
             this.Failure_mode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Failure_mode.Name = "Failure_mode";
             this.Failure_mode.Size = new System.Drawing.Size(185, 21);
             this.Failure_mode.Sorted = true;
-            this.Failure_mode.TabIndex = 8;
+            this.Failure_mode.TabIndex = 9;
             this.Failure_mode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Failure_mode_KeyPress);
             // 
             // label17
@@ -605,7 +615,7 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(12, 271);
+            this.label17.Location = new System.Drawing.Point(12, 240);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(117, 19);
             this.label17.TabIndex = 46;
@@ -617,7 +627,7 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(12, 124);
+            this.label18.Location = new System.Drawing.Point(12, 97);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(98, 19);
             this.label18.TabIndex = 51;
@@ -627,11 +637,11 @@
             // 
             this.BOARD_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BOARD_ID.FormattingEnabled = true;
-            this.BOARD_ID.Location = new System.Drawing.Point(135, 312);
+            this.BOARD_ID.Location = new System.Drawing.Point(203, 296);
             this.BOARD_ID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BOARD_ID.Name = "BOARD_ID";
             this.BOARD_ID.Size = new System.Drawing.Size(185, 21);
-            this.BOARD_ID.TabIndex = 9;
+            this.BOARD_ID.TabIndex = 11;
             this.BOARD_ID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BOARD_ID_KeyPress);
             // 
             // label19
@@ -640,7 +650,7 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(12, 314);
+            this.label19.Location = new System.Drawing.Point(13, 298);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(82, 19);
             this.label19.TabIndex = 62;
@@ -652,7 +662,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(12, 351);
+            this.label5.Location = new System.Drawing.Point(12, 327);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 19);
             this.label5.TabIndex = 11;
@@ -664,7 +674,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(12, 390);
+            this.label2.Location = new System.Drawing.Point(13, 356);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 19);
             this.label2.TabIndex = 75;
@@ -676,7 +686,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(12, 430);
+            this.label7.Location = new System.Drawing.Point(12, 384);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(89, 19);
             this.label7.TabIndex = 77;
@@ -686,11 +696,11 @@
             // 
             this.TEST_NAME.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TEST_NAME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TEST_NAME.Location = new System.Drawing.Point(135, 429);
+            this.TEST_NAME.Location = new System.Drawing.Point(203, 383);
             this.TEST_NAME.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TEST_NAME.Name = "TEST_NAME";
             this.TEST_NAME.Size = new System.Drawing.Size(187, 20);
-            this.TEST_NAME.TabIndex = 12;
+            this.TEST_NAME.TabIndex = 14;
             // 
             // PRODUCT_OWNER
             // 
@@ -698,7 +708,7 @@
             this.PRODUCT_OWNER.BackColor = System.Drawing.Color.Transparent;
             this.PRODUCT_OWNER.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.PRODUCT_OWNER.ForeColor = System.Drawing.Color.Black;
-            this.PRODUCT_OWNER.Location = new System.Drawing.Point(162, 544);
+            this.PRODUCT_OWNER.Location = new System.Drawing.Point(162, 497);
             this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
             this.PRODUCT_OWNER.Size = new System.Drawing.Size(0, 19);
             this.PRODUCT_OWNER.TabIndex = 78;
@@ -707,7 +717,7 @@
             // 
             this.VSPEC.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.VSPEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VSPEC.Location = new System.Drawing.Point(135, 86);
+            this.VSPEC.Location = new System.Drawing.Point(203, 67);
             this.VSPEC.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.VSPEC.Name = "VSPEC";
             this.VSPEC.Size = new System.Drawing.Size(185, 20);
@@ -717,7 +727,7 @@
             // 
             this.TESTER_ID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TESTER_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TESTER_ID.Location = new System.Drawing.Point(135, 163);
+            this.TESTER_ID.Location = new System.Drawing.Point(203, 124);
             this.TESTER_ID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TESTER_ID.Name = "TESTER_ID";
             this.TESTER_ID.Size = new System.Drawing.Size(185, 20);
@@ -727,35 +737,11 @@
             // 
             this.BIN_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BIN_NUMBER.FormattingEnabled = true;
-            this.BIN_NUMBER.Location = new System.Drawing.Point(135, 349);
+            this.BIN_NUMBER.Location = new System.Drawing.Point(203, 325);
             this.BIN_NUMBER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BIN_NUMBER.Name = "BIN_NUMBER";
             this.BIN_NUMBER.Size = new System.Drawing.Size(185, 21);
-            this.BIN_NUMBER.TabIndex = 10;
-            // 
-            // ROOTCAUSE_TEXT
-            // 
-            this.ROOTCAUSE_TEXT.AutoSize = true;
-            this.ROOTCAUSE_TEXT.BackColor = System.Drawing.Color.Transparent;
-            this.ROOTCAUSE_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ROOTCAUSE_TEXT.ForeColor = System.Drawing.Color.Black;
-            this.ROOTCAUSE_TEXT.Location = new System.Drawing.Point(12, 511);
-            this.ROOTCAUSE_TEXT.Name = "ROOTCAUSE_TEXT";
-            this.ROOTCAUSE_TEXT.Size = new System.Drawing.Size(101, 19);
-            this.ROOTCAUSE_TEXT.TabIndex = 85;
-            this.ROOTCAUSE_TEXT.Text = "ROOTCAUSE";
-            this.ROOTCAUSE_TEXT.Visible = false;
-            // 
-            // ROOTCAUSE
-            // 
-            this.ROOTCAUSE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.ROOTCAUSE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ROOTCAUSE.Location = new System.Drawing.Point(135, 510);
-            this.ROOTCAUSE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ROOTCAUSE.Name = "ROOTCAUSE";
-            this.ROOTCAUSE.Size = new System.Drawing.Size(187, 20);
-            this.ROOTCAUSE.TabIndex = 14;
-            this.ROOTCAUSE.Visible = false;
+            this.BIN_NUMBER.TabIndex = 12;
             // 
             // label11
             // 
@@ -763,73 +749,150 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(12, 470);
+            this.label11.Location = new System.Drawing.Point(12, 441);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(61, 19);
+            this.label11.Size = new System.Drawing.Size(164, 19);
             this.label11.TabIndex = 86;
-            this.label11.Text = "STATUS";
+            this.label11.Text = "FAILURE ASSESSMENT";
             // 
-            // STATUS
+            // FAILURE_ASSESSMENT
             // 
-            this.STATUS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.STATUS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.STATUS.FormattingEnabled = true;
-            this.STATUS.Items.AddRange(new object[] {
-            "OPEN",
-            "FOR APPROVAL"});
-            this.STATUS.Location = new System.Drawing.Point(135, 468);
-            this.STATUS.Name = "STATUS";
-            this.STATUS.Size = new System.Drawing.Size(185, 21);
-            this.STATUS.TabIndex = 13;
-            this.STATUS.SelectionChangeCommitted += new System.EventHandler(this.STATUS_SelectionChangeCommitted);
+            this.FAILURE_ASSESSMENT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.FAILURE_ASSESSMENT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.FAILURE_ASSESSMENT.FormattingEnabled = true;
+            this.FAILURE_ASSESSMENT.Items.AddRange(new object[] {
+            "VALID",
+            "FOR FURTHER INVESTIGATION"});
+            this.FAILURE_ASSESSMENT.Location = new System.Drawing.Point(203, 439);
+            this.FAILURE_ASSESSMENT.Name = "FAILURE_ASSESSMENT";
+            this.FAILURE_ASSESSMENT.Size = new System.Drawing.Size(185, 21);
+            this.FAILURE_ASSESSMENT.TabIndex = 16;
             // 
             // TEST_NUMBER
             // 
             this.TEST_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TEST_NUMBER.FormattingEnabled = true;
-            this.TEST_NUMBER.Location = new System.Drawing.Point(135, 388);
+            this.TEST_NUMBER.Location = new System.Drawing.Point(203, 354);
             this.TEST_NUMBER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TEST_NUMBER.Name = "TEST_NUMBER";
             this.TEST_NUMBER.Size = new System.Drawing.Size(185, 21);
-            this.TEST_NUMBER.TabIndex = 11;
+            this.TEST_NUMBER.TabIndex = 13;
             // 
-            // TEST_STEP
+            // TEST_STAGE
             // 
-            this.TEST_STEP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TEST_STEP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TEST_STEP.FormattingEnabled = true;
-            this.TEST_STEP.Items.AddRange(new object[] {
-            "FT -40C",
-            "FT 125C",
-            "FT 135C",
-            "FT 150C",
-            "FT 25C",
-            "FT 85C",
+            this.TEST_STAGE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TEST_STAGE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TEST_STAGE.FormattingEnabled = true;
+            this.TEST_STAGE.Items.AddRange(new object[] {
+            "FT",
             "POST-BI",
             "PRE-BI",
-            "QA -40C",
-            "QA 0C",
-            "QA 125C",
-            "QA 150C",
-            "QA 25C",
-            "QA 85C"});
-            this.TEST_STEP.Location = new System.Drawing.Point(135, 196);
-            this.TEST_STEP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.TEST_STEP.Name = "TEST_STEP";
-            this.TEST_STEP.Size = new System.Drawing.Size(185, 21);
-            this.TEST_STEP.Sorted = true;
-            this.TEST_STEP.TabIndex = 6;
+            "QA"});
+            this.TEST_STAGE.Location = new System.Drawing.Point(203, 152);
+            this.TEST_STAGE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.TEST_STAGE.Name = "TEST_STAGE";
+            this.TEST_STAGE.Size = new System.Drawing.Size(185, 21);
+            this.TEST_STAGE.Sorted = true;
+            this.TEST_STAGE.TabIndex = 6;
             // 
             // Test_system
             // 
             this.Test_system.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Test_system.FormattingEnabled = true;
-            this.Test_system.Location = new System.Drawing.Point(135, 124);
+            this.Test_system.Location = new System.Drawing.Point(203, 95);
             this.Test_system.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Test_system.Name = "Test_system";
             this.Test_system.Size = new System.Drawing.Size(185, 21);
             this.Test_system.Sorted = true;
-            this.Test_system.TabIndex = 87;
+            this.Test_system.TabIndex = 4;
+            // 
+            // TEMPERATURE
+            // 
+            this.TEMPERATURE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TEMPERATURE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TEMPERATURE.Location = new System.Drawing.Point(203, 181);
+            this.TEMPERATURE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.TEMPERATURE.Name = "TEMPERATURE";
+            this.TEMPERATURE.Size = new System.Drawing.Size(185, 20);
+            this.TEMPERATURE.TabIndex = 7;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(12, 182);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(110, 19);
+            this.label14.TabIndex = 89;
+            this.label14.Text = "TEMPERATURE";
+            // 
+            // FAILURE_PERFORMANCE
+            // 
+            this.FAILURE_PERFORMANCE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.FAILURE_PERFORMANCE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FAILURE_PERFORMANCE.FormattingEnabled = true;
+            this.FAILURE_PERFORMANCE.Items.AddRange(new object[] {
+            "ALARM",
+            "BIMODAL",
+            "DEGRADING",
+            "GROSS",
+            "LOW CPK",
+            "OPEN",
+            "SHORTER"});
+            this.FAILURE_PERFORMANCE.Location = new System.Drawing.Point(203, 267);
+            this.FAILURE_PERFORMANCE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.FAILURE_PERFORMANCE.Name = "FAILURE_PERFORMANCE";
+            this.FAILURE_PERFORMANCE.Size = new System.Drawing.Size(185, 21);
+            this.FAILURE_PERFORMANCE.Sorted = true;
+            this.FAILURE_PERFORMANCE.TabIndex = 10;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(12, 269);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(185, 19);
+            this.label15.TabIndex = 91;
+            this.label15.Text = "FAILURE PERFORMANCE";
+            // 
+            // POTENTIAL_ROOTCAUSE
+            // 
+            this.POTENTIAL_ROOTCAUSE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.POTENTIAL_ROOTCAUSE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.POTENTIAL_ROOTCAUSE.FormattingEnabled = true;
+            this.POTENTIAL_ROOTCAUSE.Items.AddRange(new object[] {
+            "BOARD",
+            "CONTACTOR",
+            "HANDLER",
+            "NETWORK",
+            "PRODUCT",
+            "PURGE AIR",
+            "SYSTEM",
+            "TEMPERATURE",
+            "TEST PROGRAM"});
+            this.POTENTIAL_ROOTCAUSE.Location = new System.Drawing.Point(203, 411);
+            this.POTENTIAL_ROOTCAUSE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.POTENTIAL_ROOTCAUSE.Name = "POTENTIAL_ROOTCAUSE";
+            this.POTENTIAL_ROOTCAUSE.Size = new System.Drawing.Size(185, 21);
+            this.POTENTIAL_ROOTCAUSE.Sorted = true;
+            this.POTENTIAL_ROOTCAUSE.TabIndex = 15;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.Transparent;
+            this.label20.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(12, 413);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(184, 19);
+            this.label20.TabIndex = 93;
+            this.label20.Text = "POTENTIAL ROOTCAUSE";
             // 
             // ADD
             // 
@@ -838,14 +901,18 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(926, 581);
+            this.ClientSize = new System.Drawing.Size(989, 581);
+            this.Controls.Add(this.POTENTIAL_ROOTCAUSE);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.FAILURE_PERFORMANCE);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.TEMPERATURE);
             this.Controls.Add(this.Test_system);
-            this.Controls.Add(this.TEST_STEP);
+            this.Controls.Add(this.TEST_STAGE);
             this.Controls.Add(this.TEST_NUMBER);
-            this.Controls.Add(this.STATUS);
+            this.Controls.Add(this.FAILURE_ASSESSMENT);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.ROOTCAUSE_TEXT);
-            this.Controls.Add(this.ROOTCAUSE);
             this.Controls.Add(this.BIN_NUMBER);
             this.Controls.Add(this.TESTER_ID);
             this.Controls.Add(this.VSPEC);
@@ -877,8 +944,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(942, 620);
-            this.MinimumSize = new System.Drawing.Size(942, 620);
             this.Name = "ADD";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ADD NEW ISSUE";
@@ -936,14 +1001,12 @@
         private System.Windows.Forms.TextBox VSPEC;
         private System.Windows.Forms.TextBox TESTER_ID;
         private System.Windows.Forms.ComboBox BIN_NUMBER;
-        private System.Windows.Forms.Label ROOTCAUSE_TEXT;
-        private System.Windows.Forms.TextBox ROOTCAUSE;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox STATUS;
+        private System.Windows.Forms.ComboBox FAILURE_ASSESSMENT;
         private System.Windows.Forms.ComboBox TEST_NUMBER;
         private System.Windows.Forms.ComboBox FACTORY;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox TEST_STEP;
+        private System.Windows.Forms.ComboBox TEST_STAGE;
         private System.Windows.Forms.Button ADD_FILE2;
         private System.Windows.Forms.Button ADD_FILE4;
         private System.Windows.Forms.Button ADD_FILE3;
@@ -951,5 +1014,11 @@
         private System.Windows.Forms.ComboBox Test_system;
         private System.Windows.Forms.ComboBox SUB_FACTORY;
         private System.Windows.Forms.Label SUB_FACTORY_TEXT;
+        private System.Windows.Forms.TextBox TEMPERATURE;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox FAILURE_PERFORMANCE;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox POTENTIAL_ROOTCAUSE;
+        private System.Windows.Forms.Label label20;
     }
 }

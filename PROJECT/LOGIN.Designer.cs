@@ -47,6 +47,8 @@ namespace PROJECT
             this.UPDATE_BTN = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.FACTORY = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,6 +112,8 @@ namespace PROJECT
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.FACTORY);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.ALERT);
             this.groupBox1.Controls.Add(this.REG_CONFIRM);
             this.groupBox1.Controls.Add(this.REG_PASS);
@@ -138,7 +142,7 @@ namespace PROJECT
             // REG_CONFIRM
             // 
             this.REG_CONFIRM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.REG_CONFIRM.Location = new System.Drawing.Point(196, 120);
+            this.REG_CONFIRM.Location = new System.Drawing.Point(196, 97);
             this.REG_CONFIRM.Name = "REG_CONFIRM";
             this.REG_CONFIRM.PasswordChar = '*';
             this.REG_CONFIRM.Size = new System.Drawing.Size(213, 22);
@@ -147,7 +151,7 @@ namespace PROJECT
             // REG_PASS
             // 
             this.REG_PASS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.REG_PASS.Location = new System.Drawing.Point(196, 80);
+            this.REG_PASS.Location = new System.Drawing.Point(196, 69);
             this.REG_PASS.Name = "REG_PASS";
             this.REG_PASS.PasswordChar = '*';
             this.REG_PASS.Size = new System.Drawing.Size(213, 22);
@@ -164,7 +168,7 @@ namespace PROJECT
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 124);
+            this.label5.Location = new System.Drawing.Point(17, 100);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(167, 16);
             this.label5.TabIndex = 3;
@@ -173,7 +177,7 @@ namespace PROJECT
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 86);
+            this.label4.Location = new System.Drawing.Point(17, 72);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 16);
             this.label4.TabIndex = 2;
@@ -239,6 +243,31 @@ namespace PROJECT
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 128);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(62, 16);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "GROUP";
+            // 
+            // FACTORY
+            // 
+            this.FACTORY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.FACTORY.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FACTORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FACTORY.FormattingEnabled = true;
+            this.FACTORY.Items.AddRange(new object[] {
+            "BMS",
+            "LTX",
+            "NBMS"});
+            this.FACTORY.Location = new System.Drawing.Point(196, 125);
+            this.FACTORY.Name = "FACTORY";
+            this.FACTORY.Size = new System.Drawing.Size(213, 24);
+            this.FACTORY.TabIndex = 65;
+            // 
             // LOGIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -290,5 +319,7 @@ namespace PROJECT
         private System.Windows.Forms.Label ALERT;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox FACTORY;
     }
 }

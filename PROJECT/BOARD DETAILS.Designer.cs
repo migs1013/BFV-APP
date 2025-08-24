@@ -62,7 +62,7 @@ namespace PROJECT
             this.TESTER_ID = new System.Windows.Forms.Label();
             this.TEST_NUMBER = new System.Windows.Forms.Label();
             this.BOARD_ID = new System.Windows.Forms.Label();
-            this.TEST_STEP = new System.Windows.Forms.Label();
+            this.TEST_STAGE = new System.Windows.Forms.Label();
             this.VSPEC = new System.Windows.Forms.Label();
             this.LOT_ID = new System.Windows.Forms.Label();
             this.PART_NAME = new System.Windows.Forms.Label();
@@ -92,13 +92,12 @@ namespace PROJECT
             this.label31 = new System.Windows.Forms.Label();
             this.DATE_APPROVED = new System.Windows.Forms.Label();
             this.APPROVER = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
+            this.DATE2_TEXT = new System.Windows.Forms.Label();
+            this.APPROVE_TEXT = new System.Windows.Forms.Label();
             this.DISPO_USER = new System.Windows.Forms.Label();
             this.DISPO_DATE = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.PO_ROOTCAUSE = new System.Windows.Forms.TextBox();
+            this.CLOSE = new System.Windows.Forms.Label();
+            this.DATE_TEXT = new System.Windows.Forms.Label();
             this.Rootcause_label = new System.Windows.Forms.Label();
             this.PO_COMMENT = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -106,6 +105,9 @@ namespace PROJECT
             this.TEST_NAME = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.FAILURE_PERFORMANCE = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.PO_ROOTCAUSE = new System.Windows.Forms.ComboBox();
             this.First_box.SuspendLayout();
             this.PO_DISPO.SuspendLayout();
             this.SuspendLayout();
@@ -116,7 +118,7 @@ namespace PROJECT
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(259, 176);
+            this.label17.Location = new System.Drawing.Point(259, 151);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(83, 13);
             this.label17.TabIndex = 60;
@@ -128,7 +130,7 @@ namespace PROJECT
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(259, 142);
+            this.label16.Location = new System.Drawing.Point(259, 122);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(73, 13);
             this.label16.TabIndex = 59;
@@ -140,7 +142,7 @@ namespace PROJECT
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(259, 272);
+            this.label8.Location = new System.Drawing.Point(258, 239);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(96, 13);
             this.label8.TabIndex = 57;
@@ -152,7 +154,7 @@ namespace PROJECT
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(259, 208);
+            this.label6.Location = new System.Drawing.Point(258, 182);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 13);
             this.label6.TabIndex = 56;
@@ -164,11 +166,11 @@ namespace PROJECT
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(259, 109);
+            this.label5.Location = new System.Drawing.Point(259, 94);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 13);
+            this.label5.Size = new System.Drawing.Size(84, 13);
             this.label5.TabIndex = 55;
-            this.label5.Text = "TEST STEP";
+            this.label5.Text = "TEST STAGE";
             // 
             // label3
             // 
@@ -176,7 +178,7 @@ namespace PROJECT
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(259, 75);
+            this.label3.Location = new System.Drawing.Point(260, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 54;
@@ -188,7 +190,7 @@ namespace PROJECT
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(259, 43);
+            this.label2.Location = new System.Drawing.Point(259, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 53;
@@ -240,7 +242,7 @@ namespace PROJECT
             this.SUB_FACTORY.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SUB_FACTORY.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SUB_FACTORY.LinkColor = System.Drawing.Color.Black;
-            this.SUB_FACTORY.Location = new System.Drawing.Point(372, 147);
+            this.SUB_FACTORY.Location = new System.Drawing.Point(405, 147);
             this.SUB_FACTORY.Name = "SUB_FACTORY";
             this.SUB_FACTORY.Size = new System.Drawing.Size(0, 16);
             this.SUB_FACTORY.TabIndex = 117;
@@ -251,7 +253,7 @@ namespace PROJECT
             this.label28.BackColor = System.Drawing.Color.Transparent;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.Color.Black;
-            this.label28.Location = new System.Drawing.Point(269, 151);
+            this.label28.Location = new System.Drawing.Point(302, 151);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(97, 13);
             this.label28.TabIndex = 116;
@@ -322,7 +324,7 @@ namespace PROJECT
             this.FACTORY.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FACTORY.ForeColor = System.Drawing.Color.Black;
-            this.FACTORY.Location = new System.Drawing.Point(343, 132);
+            this.FACTORY.Location = new System.Drawing.Point(376, 132);
             this.FACTORY.Name = "FACTORY";
             this.FACTORY.Size = new System.Drawing.Size(0, 13);
             this.FACTORY.TabIndex = 111;
@@ -333,7 +335,7 @@ namespace PROJECT
             this.label25.BackColor = System.Drawing.Color.Transparent;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(269, 132);
+            this.label25.Location = new System.Drawing.Point(302, 132);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(68, 13);
             this.label25.TabIndex = 110;
@@ -457,10 +459,11 @@ namespace PROJECT
             this.HANDLER_ID.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.HANDLER_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HANDLER_ID.ForeColor = System.Drawing.Color.Black;
-            this.HANDLER_ID.Location = new System.Drawing.Point(389, 178);
+            this.HANDLER_ID.Location = new System.Drawing.Point(426, 151);
             this.HANDLER_ID.Name = "HANDLER_ID";
-            this.HANDLER_ID.Size = new System.Drawing.Size(0, 13);
+            this.HANDLER_ID.Size = new System.Drawing.Size(59, 13);
             this.HANDLER_ID.TabIndex = 75;
+            this.HANDLER_ID.Text = "handlerid";
             // 
             // TESTER_ID
             // 
@@ -469,10 +472,11 @@ namespace PROJECT
             this.TESTER_ID.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TESTER_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TESTER_ID.ForeColor = System.Drawing.Color.Black;
-            this.TESTER_ID.Location = new System.Drawing.Point(389, 144);
+            this.TESTER_ID.Location = new System.Drawing.Point(426, 122);
             this.TESTER_ID.Name = "TESTER_ID";
-            this.TESTER_ID.Size = new System.Drawing.Size(0, 13);
+            this.TESTER_ID.Size = new System.Drawing.Size(49, 13);
             this.TESTER_ID.TabIndex = 74;
+            this.TESTER_ID.Text = "testerid";
             // 
             // TEST_NUMBER
             // 
@@ -481,10 +485,11 @@ namespace PROJECT
             this.TEST_NUMBER.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TEST_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TEST_NUMBER.ForeColor = System.Drawing.Color.Black;
-            this.TEST_NUMBER.Location = new System.Drawing.Point(389, 274);
+            this.TEST_NUMBER.Location = new System.Drawing.Point(426, 239);
             this.TEST_NUMBER.Name = "TEST_NUMBER";
-            this.TEST_NUMBER.Size = new System.Drawing.Size(0, 13);
+            this.TEST_NUMBER.Size = new System.Drawing.Size(69, 13);
             this.TEST_NUMBER.TabIndex = 72;
+            this.TEST_NUMBER.Text = "testnumber";
             // 
             // BOARD_ID
             // 
@@ -493,22 +498,24 @@ namespace PROJECT
             this.BOARD_ID.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.BOARD_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BOARD_ID.ForeColor = System.Drawing.Color.Black;
-            this.BOARD_ID.Location = new System.Drawing.Point(389, 210);
+            this.BOARD_ID.Location = new System.Drawing.Point(426, 182);
             this.BOARD_ID.Name = "BOARD_ID";
-            this.BOARD_ID.Size = new System.Drawing.Size(0, 13);
+            this.BOARD_ID.Size = new System.Drawing.Size(49, 13);
             this.BOARD_ID.TabIndex = 71;
+            this.BOARD_ID.Text = "boardid";
             // 
-            // TEST_STEP
+            // TEST_STAGE
             // 
-            this.TEST_STEP.AutoSize = true;
-            this.TEST_STEP.BackColor = System.Drawing.Color.Transparent;
-            this.TEST_STEP.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TEST_STEP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TEST_STEP.ForeColor = System.Drawing.Color.Black;
-            this.TEST_STEP.Location = new System.Drawing.Point(389, 111);
-            this.TEST_STEP.Name = "TEST_STEP";
-            this.TEST_STEP.Size = new System.Drawing.Size(0, 13);
-            this.TEST_STEP.TabIndex = 70;
+            this.TEST_STAGE.AutoSize = true;
+            this.TEST_STAGE.BackColor = System.Drawing.Color.Transparent;
+            this.TEST_STAGE.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TEST_STAGE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TEST_STAGE.ForeColor = System.Drawing.Color.Black;
+            this.TEST_STAGE.Location = new System.Drawing.Point(426, 91);
+            this.TEST_STAGE.Name = "TEST_STAGE";
+            this.TEST_STAGE.Size = new System.Drawing.Size(59, 13);
+            this.TEST_STAGE.TabIndex = 70;
+            this.TEST_STAGE.Text = "teststage";
             // 
             // VSPEC
             // 
@@ -517,10 +524,11 @@ namespace PROJECT
             this.VSPEC.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.VSPEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VSPEC.ForeColor = System.Drawing.Color.Black;
-            this.VSPEC.Location = new System.Drawing.Point(389, 77);
+            this.VSPEC.Location = new System.Drawing.Point(426, 63);
             this.VSPEC.Name = "VSPEC";
-            this.VSPEC.Size = new System.Drawing.Size(0, 13);
+            this.VSPEC.Size = new System.Drawing.Size(41, 13);
             this.VSPEC.TabIndex = 69;
+            this.VSPEC.Text = "vspec";
             // 
             // LOT_ID
             // 
@@ -529,10 +537,11 @@ namespace PROJECT
             this.LOT_ID.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.LOT_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LOT_ID.ForeColor = System.Drawing.Color.Black;
-            this.LOT_ID.Location = new System.Drawing.Point(389, 45);
+            this.LOT_ID.Location = new System.Drawing.Point(426, 38);
             this.LOT_ID.Name = "LOT_ID";
-            this.LOT_ID.Size = new System.Drawing.Size(0, 13);
+            this.LOT_ID.Size = new System.Drawing.Size(31, 13);
             this.LOT_ID.TabIndex = 68;
+            this.LOT_ID.Text = "lotid";
             // 
             // PART_NAME
             // 
@@ -541,10 +550,11 @@ namespace PROJECT
             this.PART_NAME.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.PART_NAME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PART_NAME.ForeColor = System.Drawing.Color.Black;
-            this.PART_NAME.Location = new System.Drawing.Point(389, 12);
+            this.PART_NAME.Location = new System.Drawing.Point(426, 12);
             this.PART_NAME.Name = "PART_NAME";
-            this.PART_NAME.Size = new System.Drawing.Size(0, 13);
+            this.PART_NAME.Size = new System.Drawing.Size(59, 13);
             this.PART_NAME.TabIndex = 67;
+            this.PART_NAME.Text = "partname";
             // 
             // label18
             // 
@@ -553,7 +563,7 @@ namespace PROJECT
             this.label18.Cursor = System.Windows.Forms.Cursors.No;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(259, 240);
+            this.label18.Location = new System.Drawing.Point(259, 210);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(85, 13);
             this.label18.TabIndex = 76;
@@ -565,10 +575,11 @@ namespace PROJECT
             this.BIN_NUMBER.BackColor = System.Drawing.Color.Transparent;
             this.BIN_NUMBER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BIN_NUMBER.ForeColor = System.Drawing.Color.Black;
-            this.BIN_NUMBER.Location = new System.Drawing.Point(389, 242);
+            this.BIN_NUMBER.Location = new System.Drawing.Point(426, 210);
             this.BIN_NUMBER.Name = "BIN_NUMBER";
-            this.BIN_NUMBER.Size = new System.Drawing.Size(0, 13);
+            this.BIN_NUMBER.Size = new System.Drawing.Size(65, 13);
             this.BIN_NUMBER.TabIndex = 77;
+            this.BIN_NUMBER.Text = "binnumber";
             // 
             // label22
             // 
@@ -588,10 +599,11 @@ namespace PROJECT
             this.PRODUCT_OWNER.BackColor = System.Drawing.Color.Transparent;
             this.PRODUCT_OWNER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.PRODUCT_OWNER.ForeColor = System.Drawing.Color.Black;
-            this.PRODUCT_OWNER.Location = new System.Drawing.Point(389, 440);
+            this.PRODUCT_OWNER.Location = new System.Drawing.Point(426, 440);
             this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
-            this.PRODUCT_OWNER.Size = new System.Drawing.Size(0, 13);
+            this.PRODUCT_OWNER.Size = new System.Drawing.Size(88, 13);
             this.PRODUCT_OWNER.TabIndex = 80;
+            this.PRODUCT_OWNER.Text = "product owner";
             // 
             // ACTION
             // 
@@ -623,10 +635,11 @@ namespace PROJECT
             this.FAILURE_MODE.BackColor = System.Drawing.Color.Transparent;
             this.FAILURE_MODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.FAILURE_MODE.ForeColor = System.Drawing.Color.Black;
-            this.FAILURE_MODE.Location = new System.Drawing.Point(389, 337);
+            this.FAILURE_MODE.Location = new System.Drawing.Point(426, 316);
             this.FAILURE_MODE.Name = "FAILURE_MODE";
-            this.FAILURE_MODE.Size = new System.Drawing.Size(0, 13);
+            this.FAILURE_MODE.Size = new System.Drawing.Size(76, 13);
             this.FAILURE_MODE.TabIndex = 93;
+            this.FAILURE_MODE.Text = "failure mode";
             // 
             // label7
             // 
@@ -634,7 +647,7 @@ namespace PROJECT
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(259, 337);
+            this.label7.Location = new System.Drawing.Point(259, 316);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(99, 13);
             this.label7.TabIndex = 92;
@@ -646,10 +659,11 @@ namespace PROJECT
             this.STATUS.BackColor = System.Drawing.Color.Transparent;
             this.STATUS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.STATUS.ForeColor = System.Drawing.Color.Black;
-            this.STATUS.Location = new System.Drawing.Point(389, 371);
+            this.STATUS.Location = new System.Drawing.Point(426, 371);
             this.STATUS.Name = "STATUS";
-            this.STATUS.Size = new System.Drawing.Size(0, 13);
+            this.STATUS.Size = new System.Drawing.Size(41, 13);
             this.STATUS.TabIndex = 95;
+            this.STATUS.Text = "status";
             // 
             // label11
             // 
@@ -669,10 +683,11 @@ namespace PROJECT
             this.ROOTCAUSE.BackColor = System.Drawing.Color.Transparent;
             this.ROOTCAUSE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.ROOTCAUSE.ForeColor = System.Drawing.Color.Black;
-            this.ROOTCAUSE.Location = new System.Drawing.Point(389, 404);
+            this.ROOTCAUSE.Location = new System.Drawing.Point(426, 404);
             this.ROOTCAUSE.Name = "ROOTCAUSE";
-            this.ROOTCAUSE.Size = new System.Drawing.Size(0, 13);
+            this.ROOTCAUSE.Size = new System.Drawing.Size(63, 13);
             this.ROOTCAUSE.TabIndex = 97;
+            this.ROOTCAUSE.Text = "rootcause";
             // 
             // label14
             // 
@@ -771,18 +786,18 @@ namespace PROJECT
             // PO_DISPO
             // 
             this.PO_DISPO.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.PO_DISPO.Controls.Add(this.PO_ROOTCAUSE);
             this.PO_DISPO.Controls.Add(this.ADD_PROOF_FILE);
             this.PO_DISPO.Controls.Add(this.FIXED_PROOF_FILE);
             this.PO_DISPO.Controls.Add(this.label31);
             this.PO_DISPO.Controls.Add(this.DATE_APPROVED);
             this.PO_DISPO.Controls.Add(this.APPROVER);
-            this.PO_DISPO.Controls.Add(this.label30);
-            this.PO_DISPO.Controls.Add(this.label29);
+            this.PO_DISPO.Controls.Add(this.DATE2_TEXT);
+            this.PO_DISPO.Controls.Add(this.APPROVE_TEXT);
             this.PO_DISPO.Controls.Add(this.DISPO_USER);
             this.PO_DISPO.Controls.Add(this.DISPO_DATE);
-            this.PO_DISPO.Controls.Add(this.label21);
-            this.PO_DISPO.Controls.Add(this.label20);
-            this.PO_DISPO.Controls.Add(this.PO_ROOTCAUSE);
+            this.PO_DISPO.Controls.Add(this.CLOSE);
+            this.PO_DISPO.Controls.Add(this.DATE_TEXT);
             this.PO_DISPO.Controls.Add(this.Rootcause_label);
             this.PO_DISPO.Controls.Add(this.PO_COMMENT);
             this.PO_DISPO.Controls.Add(this.label13);
@@ -838,85 +853,88 @@ namespace PROJECT
             this.DATE_APPROVED.AutoSize = true;
             this.DATE_APPROVED.Location = new System.Drawing.Point(448, 42);
             this.DATE_APPROVED.Name = "DATE_APPROVED";
-            this.DATE_APPROVED.Size = new System.Drawing.Size(0, 13);
+            this.DATE_APPROVED.Size = new System.Drawing.Size(82, 13);
             this.DATE_APPROVED.TabIndex = 118;
+            this.DATE_APPROVED.Text = "approve date";
+            this.DATE_APPROVED.Visible = false;
             // 
             // APPROVER
             // 
             this.APPROVER.AutoSize = true;
             this.APPROVER.Location = new System.Drawing.Point(502, 19);
             this.APPROVER.Name = "APPROVER";
-            this.APPROVER.Size = new System.Drawing.Size(0, 13);
+            this.APPROVER.Size = new System.Drawing.Size(57, 13);
             this.APPROVER.TabIndex = 117;
+            this.APPROVER.Text = "approver";
+            this.APPROVER.Visible = false;
             // 
-            // label30
+            // DATE2_TEXT
             // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.ForeColor = System.Drawing.Color.Black;
-            this.label30.Location = new System.Drawing.Point(398, 42);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(44, 13);
-            this.label30.TabIndex = 116;
-            this.label30.Text = "DATE:";
+            this.DATE2_TEXT.AutoSize = true;
+            this.DATE2_TEXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DATE2_TEXT.ForeColor = System.Drawing.Color.Black;
+            this.DATE2_TEXT.Location = new System.Drawing.Point(398, 42);
+            this.DATE2_TEXT.Name = "DATE2_TEXT";
+            this.DATE2_TEXT.Size = new System.Drawing.Size(44, 13);
+            this.DATE2_TEXT.TabIndex = 116;
+            this.DATE2_TEXT.Text = "DATE:";
+            this.DATE2_TEXT.Visible = false;
             // 
-            // label29
+            // APPROVE_TEXT
             // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(398, 19);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(98, 13);
-            this.label29.TabIndex = 115;
-            this.label29.Text = "APPROVED BY:";
+            this.APPROVE_TEXT.AutoSize = true;
+            this.APPROVE_TEXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.APPROVE_TEXT.ForeColor = System.Drawing.Color.Black;
+            this.APPROVE_TEXT.Location = new System.Drawing.Point(398, 19);
+            this.APPROVE_TEXT.Name = "APPROVE_TEXT";
+            this.APPROVE_TEXT.Size = new System.Drawing.Size(98, 13);
+            this.APPROVE_TEXT.TabIndex = 115;
+            this.APPROVE_TEXT.Text = "APPROVED BY:";
+            this.APPROVE_TEXT.Visible = false;
             // 
             // DISPO_USER
             // 
             this.DISPO_USER.AutoSize = true;
             this.DISPO_USER.Location = new System.Drawing.Point(280, 19);
             this.DISPO_USER.Name = "DISPO_USER";
-            this.DISPO_USER.Size = new System.Drawing.Size(0, 13);
+            this.DISPO_USER.Size = new System.Drawing.Size(54, 13);
             this.DISPO_USER.TabIndex = 113;
+            this.DISPO_USER.Text = "close by";
+            this.DISPO_USER.Visible = false;
             // 
             // DISPO_DATE
             // 
             this.DISPO_DATE.AutoSize = true;
             this.DISPO_DATE.Location = new System.Drawing.Point(246, 42);
             this.DISPO_DATE.Name = "DISPO_DATE";
-            this.DISPO_DATE.Size = new System.Drawing.Size(0, 13);
+            this.DISPO_DATE.Size = new System.Drawing.Size(66, 13);
             this.DISPO_DATE.TabIndex = 112;
+            this.DISPO_DATE.Text = "close date";
+            this.DISPO_DATE.Visible = false;
             // 
-            // label21
+            // CLOSE
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(196, 19);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(80, 13);
-            this.label21.TabIndex = 111;
-            this.label21.Text = "CLOSED BY:";
+            this.CLOSE.AutoSize = true;
+            this.CLOSE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CLOSE.ForeColor = System.Drawing.Color.Black;
+            this.CLOSE.Location = new System.Drawing.Point(196, 19);
+            this.CLOSE.Name = "CLOSE";
+            this.CLOSE.Size = new System.Drawing.Size(80, 13);
+            this.CLOSE.TabIndex = 111;
+            this.CLOSE.Text = "CLOSED BY:";
+            this.CLOSE.Visible = false;
             // 
-            // label20
+            // DATE_TEXT
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(196, 42);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(44, 13);
-            this.label20.TabIndex = 110;
-            this.label20.Text = "DATE:";
-            // 
-            // PO_ROOTCAUSE
-            // 
-            this.PO_ROOTCAUSE.BackColor = System.Drawing.SystemColors.Control;
-            this.PO_ROOTCAUSE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.PO_ROOTCAUSE.Location = new System.Drawing.Point(4, 35);
-            this.PO_ROOTCAUSE.Name = "PO_ROOTCAUSE";
-            this.PO_ROOTCAUSE.Size = new System.Drawing.Size(178, 20);
-            this.PO_ROOTCAUSE.TabIndex = 109;
+            this.DATE_TEXT.AutoSize = true;
+            this.DATE_TEXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DATE_TEXT.ForeColor = System.Drawing.Color.Black;
+            this.DATE_TEXT.Location = new System.Drawing.Point(196, 42);
+            this.DATE_TEXT.Name = "DATE_TEXT";
+            this.DATE_TEXT.Size = new System.Drawing.Size(44, 13);
+            this.DATE_TEXT.TabIndex = 110;
+            this.DATE_TEXT.Text = "DATE:";
+            this.DATE_TEXT.Visible = false;
             // 
             // Rootcause_label
             // 
@@ -933,7 +951,7 @@ namespace PROJECT
             // 
             this.PO_COMMENT.BackColor = System.Drawing.SystemColors.Control;
             this.PO_COMMENT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.PO_COMMENT.Location = new System.Drawing.Point(4, 74);
+            this.PO_COMMENT.Location = new System.Drawing.Point(4, 71);
             this.PO_COMMENT.Multiline = true;
             this.PO_COMMENT.Name = "PO_COMMENT";
             this.PO_COMMENT.Size = new System.Drawing.Size(310, 71);
@@ -956,7 +974,7 @@ namespace PROJECT
             this.label23.BackColor = System.Drawing.Color.Transparent;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.Location = new System.Drawing.Point(258, 305);
+            this.label23.Location = new System.Drawing.Point(259, 275);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(78, 13);
             this.label23.TabIndex = 106;
@@ -966,7 +984,7 @@ namespace PROJECT
             // 
             this.TEST_NAME.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.TEST_NAME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TEST_NAME.Location = new System.Drawing.Point(392, 297);
+            this.TEST_NAME.Location = new System.Drawing.Point(392, 267);
             this.TEST_NAME.Multiline = true;
             this.TEST_NAME.Name = "TEST_NAME";
             this.TEST_NAME.ReadOnly = true;
@@ -989,6 +1007,52 @@ namespace PROJECT
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // FAILURE_PERFORMANCE
+            // 
+            this.FAILURE_PERFORMANCE.AutoSize = true;
+            this.FAILURE_PERFORMANCE.BackColor = System.Drawing.Color.Transparent;
+            this.FAILURE_PERFORMANCE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.FAILURE_PERFORMANCE.ForeColor = System.Drawing.Color.Black;
+            this.FAILURE_PERFORMANCE.Location = new System.Drawing.Point(426, 342);
+            this.FAILURE_PERFORMANCE.Name = "FAILURE_PERFORMANCE";
+            this.FAILURE_PERFORMANCE.Size = new System.Drawing.Size(116, 13);
+            this.FAILURE_PERFORMANCE.TabIndex = 111;
+            this.FAILURE_PERFORMANCE.Text = "failure performance";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.Color.Transparent;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(258, 342);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(156, 13);
+            this.label21.TabIndex = 110;
+            this.label21.Text = "FAILURE PERFORMANCE";
+            // 
+            // PO_ROOTCAUSE
+            // 
+            this.PO_ROOTCAUSE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PO_ROOTCAUSE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PO_ROOTCAUSE.FormattingEnabled = true;
+            this.PO_ROOTCAUSE.Items.AddRange(new object[] {
+            "BOARD",
+            "CONTACTOR",
+            "HANDLER",
+            "NETWORK",
+            "PRODUCT",
+            "PURGE AIR",
+            "SYSTEM",
+            "TEMPERATURE",
+            "TEST PROGRAM"});
+            this.PO_ROOTCAUSE.Location = new System.Drawing.Point(4, 36);
+            this.PO_ROOTCAUSE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.PO_ROOTCAUSE.Name = "PO_ROOTCAUSE";
+            this.PO_ROOTCAUSE.Size = new System.Drawing.Size(185, 21);
+            this.PO_ROOTCAUSE.Sorted = true;
+            this.PO_ROOTCAUSE.TabIndex = 112;
+            // 
             // BOARD_DETAILS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -997,6 +1061,8 @@ namespace PROJECT
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1139, 627);
+            this.Controls.Add(this.FAILURE_PERFORMANCE);
+            this.Controls.Add(this.label21);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.TEST_NAME);
             this.Controls.Add(this.label23);
@@ -1021,7 +1087,7 @@ namespace PROJECT
             this.Controls.Add(this.TESTER_ID);
             this.Controls.Add(this.TEST_NUMBER);
             this.Controls.Add(this.BOARD_ID);
-            this.Controls.Add(this.TEST_STEP);
+            this.Controls.Add(this.TEST_STAGE);
             this.Controls.Add(this.VSPEC);
             this.Controls.Add(this.LOT_ID);
             this.Controls.Add(this.PART_NAME);
@@ -1074,7 +1140,7 @@ namespace PROJECT
         private System.Windows.Forms.Label TESTER_ID;
         private System.Windows.Forms.Label TEST_NUMBER;
         private System.Windows.Forms.Label BOARD_ID;
-        private System.Windows.Forms.Label TEST_STEP;
+        private System.Windows.Forms.Label TEST_STAGE;
         private System.Windows.Forms.Label VSPEC;
         private System.Windows.Forms.Label LOT_ID;
         private System.Windows.Forms.Label PART_NAME;
@@ -1103,14 +1169,13 @@ namespace PROJECT
         private System.Windows.Forms.Label OPEN;
         private System.Windows.Forms.Button VIEW;
         private System.Windows.Forms.GroupBox PO_DISPO;
-        private System.Windows.Forms.TextBox PO_ROOTCAUSE;
         private System.Windows.Forms.Label Rootcause_label;
         private System.Windows.Forms.TextBox PO_COMMENT;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label DISPO_USER;
         private System.Windows.Forms.Label DISPO_DATE;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label CLOSE;
+        private System.Windows.Forms.Label DATE_TEXT;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox TEST_NAME;
         private System.Windows.Forms.Label label15;
@@ -1126,9 +1191,12 @@ namespace PROJECT
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label DATE_APPROVED;
         private System.Windows.Forms.Label APPROVER;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label DATE2_TEXT;
+        private System.Windows.Forms.Label APPROVE_TEXT;
         private System.Windows.Forms.Button ADD_PROOF_FILE;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label FAILURE_PERFORMANCE;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox PO_ROOTCAUSE;
     }
 }

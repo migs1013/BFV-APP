@@ -32,16 +32,6 @@
             this.Search_button = new System.Windows.Forms.Button();
             this.ADD_BMS = new System.Windows.Forms.Button();
             this.dataGridViewList = new System.Windows.Forms.DataGridView();
-            this.PART_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TEST_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TEST_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TESTER_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TEST_STEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DATE_ENCOUNTERED = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRODUCT_OWNER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STATUS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CYCLE_TIME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ENDORSEMENT_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.REFRESH = new System.Windows.Forms.Button();
             this.EDIT = new System.Windows.Forms.Button();
             this.FROM_DATE = new System.Windows.Forms.DateTimePicker();
@@ -91,6 +81,16 @@
             this.label16 = new System.Windows.Forms.Label();
             this.QUARTER = new System.Windows.Forms.ComboBox();
             this.ADD_NBMS = new System.Windows.Forms.Button();
+            this.PART_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TEST_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TEST_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TESTER_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TEST_STAGE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATE_ENCOUNTERED = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRODUCT_OWNER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STATUS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CYCLE_TIME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ENDORSEMENT_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -140,7 +140,7 @@
             this.TEST_NUMBER,
             this.TEST_NAME,
             this.TESTER_ID,
-            this.TEST_STEP,
+            this.TEST_STAGE,
             this.DATE_ENCOUNTERED,
             this.PRODUCT_OWNER,
             this.STATUS,
@@ -157,87 +157,6 @@
             this.dataGridViewList.Size = new System.Drawing.Size(1437, 399);
             this.dataGridViewList.TabIndex = 4;
             this.dataGridViewList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Click_data);
-            // 
-            // PART_NAME
-            // 
-            this.PART_NAME.DataPropertyName = "PART_NAME";
-            this.PART_NAME.HeaderText = "PART NAME";
-            this.PART_NAME.MinimumWidth = 8;
-            this.PART_NAME.Name = "PART_NAME";
-            this.PART_NAME.ReadOnly = true;
-            // 
-            // TEST_NUMBER
-            // 
-            this.TEST_NUMBER.DataPropertyName = "TEST_NUMBER";
-            this.TEST_NUMBER.HeaderText = "TEST NUMBER";
-            this.TEST_NUMBER.MinimumWidth = 8;
-            this.TEST_NUMBER.Name = "TEST_NUMBER";
-            this.TEST_NUMBER.ReadOnly = true;
-            // 
-            // TEST_NAME
-            // 
-            this.TEST_NAME.DataPropertyName = "TEST_NAME";
-            this.TEST_NAME.HeaderText = "TEST NAME";
-            this.TEST_NAME.MinimumWidth = 8;
-            this.TEST_NAME.Name = "TEST_NAME";
-            this.TEST_NAME.ReadOnly = true;
-            // 
-            // TESTER_ID
-            // 
-            this.TESTER_ID.DataPropertyName = "TESTER_ID";
-            this.TESTER_ID.HeaderText = "TESTER ID";
-            this.TESTER_ID.MinimumWidth = 8;
-            this.TESTER_ID.Name = "TESTER_ID";
-            this.TESTER_ID.ReadOnly = true;
-            // 
-            // TEST_STEP
-            // 
-            this.TEST_STEP.DataPropertyName = "TEST_STEP";
-            this.TEST_STEP.HeaderText = "TEST STEP";
-            this.TEST_STEP.MinimumWidth = 8;
-            this.TEST_STEP.Name = "TEST_STEP";
-            this.TEST_STEP.ReadOnly = true;
-            // 
-            // DATE_ENCOUNTERED
-            // 
-            this.DATE_ENCOUNTERED.DataPropertyName = "DATE_ENCOUNTERED";
-            this.DATE_ENCOUNTERED.HeaderText = "DATE ENCOUNTERED";
-            this.DATE_ENCOUNTERED.MinimumWidth = 8;
-            this.DATE_ENCOUNTERED.Name = "DATE_ENCOUNTERED";
-            this.DATE_ENCOUNTERED.ReadOnly = true;
-            this.DATE_ENCOUNTERED.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DATE_ENCOUNTERED.ToolTipText = "FIRST";
-            // 
-            // PRODUCT_OWNER
-            // 
-            this.PRODUCT_OWNER.DataPropertyName = "PRODUCT_OWNER";
-            this.PRODUCT_OWNER.HeaderText = "PRODUCT OWNER";
-            this.PRODUCT_OWNER.MinimumWidth = 8;
-            this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
-            this.PRODUCT_OWNER.ReadOnly = true;
-            // 
-            // STATUS
-            // 
-            this.STATUS.DataPropertyName = "STATUS";
-            this.STATUS.HeaderText = "STATUS";
-            this.STATUS.Name = "STATUS";
-            this.STATUS.ReadOnly = true;
-            // 
-            // CYCLE_TIME
-            // 
-            this.CYCLE_TIME.DataPropertyName = "CYCLE_TIME";
-            this.CYCLE_TIME.HeaderText = "CYCLE TIME (DAYS)";
-            this.CYCLE_TIME.Name = "CYCLE_TIME";
-            this.CYCLE_TIME.ReadOnly = true;
-            // 
-            // ENDORSEMENT_NUMBER
-            // 
-            this.ENDORSEMENT_NUMBER.DataPropertyName = "ENDORSEMENT_NUMBER";
-            this.ENDORSEMENT_NUMBER.HeaderText = "ENDORSEMENT NUMBER";
-            this.ENDORSEMENT_NUMBER.MinimumWidth = 8;
-            this.ENDORSEMENT_NUMBER.Name = "ENDORSEMENT_NUMBER";
-            this.ENDORSEMENT_NUMBER.ReadOnly = true;
-            this.ENDORSEMENT_NUMBER.Visible = false;
             // 
             // REFRESH
             // 
@@ -430,7 +349,7 @@
             this.NAME.AutoSize = true;
             this.NAME.BackColor = System.Drawing.Color.Transparent;
             this.NAME.ForeColor = System.Drawing.Color.Black;
-            this.NAME.Location = new System.Drawing.Point(228, 18);
+            this.NAME.Location = new System.Drawing.Point(224, 16);
             this.NAME.Name = "NAME";
             this.NAME.Size = new System.Drawing.Size(0, 13);
             this.NAME.TabIndex = 46;
@@ -911,6 +830,87 @@
             this.ADD_NBMS.UseVisualStyleBackColor = false;
             this.ADD_NBMS.Click += new System.EventHandler(this.button2_Click);
             // 
+            // PART_NAME
+            // 
+            this.PART_NAME.DataPropertyName = "PART_NAME";
+            this.PART_NAME.HeaderText = "PART NAME";
+            this.PART_NAME.MinimumWidth = 8;
+            this.PART_NAME.Name = "PART_NAME";
+            this.PART_NAME.ReadOnly = true;
+            // 
+            // TEST_NUMBER
+            // 
+            this.TEST_NUMBER.DataPropertyName = "TEST_NUMBER";
+            this.TEST_NUMBER.HeaderText = "TEST NUMBER";
+            this.TEST_NUMBER.MinimumWidth = 8;
+            this.TEST_NUMBER.Name = "TEST_NUMBER";
+            this.TEST_NUMBER.ReadOnly = true;
+            // 
+            // TEST_NAME
+            // 
+            this.TEST_NAME.DataPropertyName = "TEST_NAME";
+            this.TEST_NAME.HeaderText = "TEST NAME";
+            this.TEST_NAME.MinimumWidth = 8;
+            this.TEST_NAME.Name = "TEST_NAME";
+            this.TEST_NAME.ReadOnly = true;
+            // 
+            // TESTER_ID
+            // 
+            this.TESTER_ID.DataPropertyName = "TESTER_ID";
+            this.TESTER_ID.HeaderText = "TESTER ID";
+            this.TESTER_ID.MinimumWidth = 8;
+            this.TESTER_ID.Name = "TESTER_ID";
+            this.TESTER_ID.ReadOnly = true;
+            // 
+            // TEST_STAGE
+            // 
+            this.TEST_STAGE.DataPropertyName = "TEST_STAGE";
+            this.TEST_STAGE.HeaderText = "TEST STAGE";
+            this.TEST_STAGE.MinimumWidth = 8;
+            this.TEST_STAGE.Name = "TEST_STAGE";
+            this.TEST_STAGE.ReadOnly = true;
+            // 
+            // DATE_ENCOUNTERED
+            // 
+            this.DATE_ENCOUNTERED.DataPropertyName = "DATE_ENCOUNTERED";
+            this.DATE_ENCOUNTERED.HeaderText = "DATE ENCOUNTERED";
+            this.DATE_ENCOUNTERED.MinimumWidth = 8;
+            this.DATE_ENCOUNTERED.Name = "DATE_ENCOUNTERED";
+            this.DATE_ENCOUNTERED.ReadOnly = true;
+            this.DATE_ENCOUNTERED.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DATE_ENCOUNTERED.ToolTipText = "FIRST";
+            // 
+            // PRODUCT_OWNER
+            // 
+            this.PRODUCT_OWNER.DataPropertyName = "PRODUCT_OWNER";
+            this.PRODUCT_OWNER.HeaderText = "PRODUCT OWNER";
+            this.PRODUCT_OWNER.MinimumWidth = 8;
+            this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
+            this.PRODUCT_OWNER.ReadOnly = true;
+            // 
+            // STATUS
+            // 
+            this.STATUS.DataPropertyName = "STATUS";
+            this.STATUS.HeaderText = "STATUS";
+            this.STATUS.Name = "STATUS";
+            this.STATUS.ReadOnly = true;
+            // 
+            // CYCLE_TIME
+            // 
+            this.CYCLE_TIME.DataPropertyName = "CYCLE_TIME";
+            this.CYCLE_TIME.HeaderText = "CYCLE TIME (DAYS)";
+            this.CYCLE_TIME.Name = "CYCLE_TIME";
+            this.CYCLE_TIME.ReadOnly = true;
+            // 
+            // ENDORSEMENT_NUMBER
+            // 
+            this.ENDORSEMENT_NUMBER.DataPropertyName = "ENDORSEMENT_NUMBER";
+            this.ENDORSEMENT_NUMBER.HeaderText = "ENDORSEMENT NUMBER";
+            this.ENDORSEMENT_NUMBER.MinimumWidth = 8;
+            this.ENDORSEMENT_NUMBER.Name = "ENDORSEMENT_NUMBER";
+            this.ENDORSEMENT_NUMBER.ReadOnly = true;
+            this.ENDORSEMENT_NUMBER.Visible = false;
+            // 
             // SEARCH_BOARD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -1000,16 +1000,6 @@
         private System.Windows.Forms.TextBox TEST_NAME_SEARCH;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox TEST_NUMBER_SEARCH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PART_NAME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TEST_NUMBER;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TEST_NAME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TESTER_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TEST_STEP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DATE_ENCOUNTERED;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCT_OWNER;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STATUS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CYCLE_TIME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ENDORSEMENT_NUMBER;
         private System.Windows.Forms.ComboBox FACTORY;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox VSPEC;
@@ -1019,5 +1009,15 @@
         private System.Windows.Forms.TextBox PRODUCT_OWNER_FILTER;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox SUB_FACTORY_FILTER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PART_NAME;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TEST_NUMBER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TEST_NAME;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TESTER_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TEST_STAGE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DATE_ENCOUNTERED;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCT_OWNER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STATUS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CYCLE_TIME;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ENDORSEMENT_NUMBER;
     }
 }
