@@ -840,7 +840,7 @@
             "GROSS",
             "LOW CPK",
             "OPEN",
-            "SHORTER"});
+            "SHORT"});
             this.FAILURE_PERFORMANCE.Location = new System.Drawing.Point(203, 267);
             this.FAILURE_PERFORMANCE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FAILURE_PERFORMANCE.Name = "FAILURE_PERFORMANCE";

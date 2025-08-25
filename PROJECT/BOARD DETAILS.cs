@@ -2,6 +2,9 @@
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Net.Mail;
+using System.Net;
+using System.Collections.Generic;
 using static System.Windows.Forms.LinkLabel;
 
 namespace PROJECT
@@ -131,6 +134,62 @@ namespace PROJECT
             }
         }
 
+        private void Update_Email_send()
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("HIT.APP@analog.com");
+                //mail.To.Add("johnmichael.so@analog.com");
+                mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
+                mail.Subject = string.Join(" | ","FOR APPROVAL", LOT_ID.Text, TEST_STAGE.Text, FAILURE_MODE.Text,"BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text);
+
+                string Body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).
+
+PARTNAME: {0}
+
+TESTER: {1} HANDLER: {2}
+
+BOARD ID: {3}
+
+BU STRATEGY:
+
+PROBLEM DESCRIPTION: 
+{4}
+
+LOGGED BY: {5}
+----------------------------------------VERIFICATION UPDATE----------------------------------------------------
+
+DISPOSITION: 
+{6}
+
+POTENTIAL ROOTCAUSE: {7}
+
+FAILURE ASSESSMENT: VALID (FOR APPROVAL)
+
+UPDATED/VERIFIED BY: {8}
+
+(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).",
+PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,PROBLEM.Text,UserName,PO_COMMENT.Text,PO_ROOTCAUSE.Text,DISPO_USER.Text);
+
+                mail.Body = Body;
+
+                Attachment AttachFile = new Attachment(New_File_Link);
+                mail.Attachments.Add(AttachFile);
+
+                // Configure SMTP client for Outlook
+                SmtpClient smtpClient = new SmtpClient("mail.analog.com", 25);
+                smtpClient.EnableSsl = false;
+                smtpClient.Credentials = new NetworkCredential("HIT.APP@analog.com", "Ana-@og123");
+                smtpClient.Send(mail);
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error sending email: " + ex.Message);
+            }
+        }
+
         private void Load_Boards(object sender, EventArgs e)
         {
             LoadData();
@@ -256,6 +315,7 @@ namespace PROJECT
                                         }
                                         Connection.CloseConnection();
                                     }
+                                    Update_Email_send();
                                     MessageBox.Show("UPDATED SUCCESSFULLY, PLEASE REFRESH DATA");
                                 }
                                 catch (Exception Error)
@@ -275,6 +335,7 @@ namespace PROJECT
                                     {
                                         command.ExecuteNonQuery();
                                     }
+                                    Update_Email_send();
                                     MessageBox.Show("UPDATED SUCCESSFULLY");
                                     Connection.CloseConnection();
                                 }
@@ -345,7 +406,7 @@ namespace PROJECT
                             BIN_NUMBER.Text,TEST_NUMBER.Text,PRODUCT_OWNER.Text,STATUS.Text));
                     break;
                 case 4:  // UPDATE ROOTCASE
-                    command = new MySqlCommand(string.Format("UPDATE `hit`.`details` SET `PO_COMMENT` = '{0}',`ROOTCAUSE` = '{1}',`DISPO_DATE` = '{2}',`DISPO_USER` = '{3}',`DLOG_PROOF` = @{4},`DLOG_PROOF_NAME` = '{5}'," +
+                    command = new MySqlCommand(string.Format("UPDATE `hit`.`details` SET `PO_COMMENT` = '{0}',`POTENTIAL_ROOTCAUSE` = '{1}',`DISPO_DATE` = '{2}',`DISPO_USER` = '{3}',`DLOG_PROOF` = @{4},`DLOG_PROOF_NAME` = '{5}'," +
                             "`STATUS` = 'FOR APPROVAL' WHERE (`ENDORSEMENT_NUMBER` = '{6}')",
                             PO_COMMENT.Text,PO_ROOTCAUSE.Text,DISPO_DATE.Text,DISPO_USER.Text,PROOF_FILE_LINK = "FILE",Filename(New_File_Link),Endorsement_number));
                     command.Parameters.Add(string.Format("@{0}", PROOF_FILE_LINK), MySqlDbType.LongBlob).Value = SaveFile(New_File_Link);

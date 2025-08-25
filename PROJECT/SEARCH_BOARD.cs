@@ -35,7 +35,6 @@ namespace PROJECT
         {
             try
             {
-
                 Commands(13);
                 Connection.OpenConnection();
                 MySqlDataReader read_data = command.ExecuteReader();
@@ -43,6 +42,16 @@ namespace PROJECT
                 while (read_data.Read())
                 {
                     HITCOUNT.Items.Add(new ListViewItem(new[] { read_data.GetString("PART_NAME"), read_data.GetString("HITCOUNT") }));
+                }
+                Connection.CloseConnection();
+
+                Commands(1);
+                Connection.OpenConnection();
+                read_data = command.ExecuteReader();
+
+                while (read_data.Read())
+                {
+                    TEST_STAGE_FILTER.Items.Add(read_data.GetString("TEST_STAGE"));
                 }
                 Connection.CloseConnection();
 
@@ -108,6 +117,9 @@ namespace PROJECT
                
                 case 0: //TO CHECK IF THERE'S EXISTING DATA SEARCHED
                     command = new MySqlCommand("SELECT COUNT(*) FROM `hit`.`details`",Connection.connect);
+                    break;
+                case 1: // LOAD TEST STAGES
+                    command = new MySqlCommand("select `TEST_STAGE` from `hit`.`details` group by `TEST_STAGE`", Connection.connect);
                     break;
                 case 3:  //FOR UPDATING PURPOSES
                     command = new MySqlCommand("SELECT `PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STAGE`,`DATE_ENCOUNTERED`,`PRODUCT_OWNER`," +
@@ -452,7 +464,7 @@ namespace PROJECT
             TESTER_ID_FILTER.Clear();
             TEST_NUMBER_SEARCH.Clear();
             TEST_NAME_SEARCH.Clear();
-            TEST_STEP_FILTER.Items.Clear();
+            TEST_STAGE_FILTER.Items.Clear();
             VSPEC.Clear();
             STATUS_FILTER.SelectedIndex = -1;
             FROM_DATE.CustomFormat = " ";
@@ -492,9 +504,9 @@ namespace PROJECT
             {
                 Conditions.Add($"`TEST_NAME` LIKE '%{TEST_NAME_SEARCH.Text}%'");
             }
-            if (!string.IsNullOrEmpty(TEST_STEP_FILTER.Text))
+            if (!string.IsNullOrEmpty(TEST_STAGE_FILTER.Text))
             {
-                Conditions.Add($"`TEST_STEP` LIKE '%{TEST_STEP_FILTER.Text}%'");
+                Conditions.Add($"`TEST_STAGE` LIKE '%{TEST_STAGE_FILTER.Text}%'");
             }
             if (!string.IsNullOrEmpty(VSPEC.Text))
             {

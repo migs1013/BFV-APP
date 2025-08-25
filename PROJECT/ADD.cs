@@ -17,7 +17,7 @@ namespace PROJECT
         long FileSize;
         byte[] Data;
         public string tester_platform, FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption, 
-                      hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "",Stage_Temp;
+                      hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "",Stage_Temp,failure,BIN;
         public int Endorsement_Number,FileNameLength, WordCount = 0;
         public string UserName { get; set; }
         public int Device_option { get; set; }
@@ -102,6 +102,8 @@ namespace PROJECT
         }
         private void Email_send()
         {
+            if (FAILURE_ASSESSMENT.SelectedIndex == 0) failure = FAILURE_ASSESSMENT.Text + " (FOR APPROVAL)";
+            else failure = FAILURE_ASSESSMENT.Text;
             try
             {
                 MailMessage mail = new MailMessage();
@@ -109,8 +111,8 @@ namespace PROJECT
                 mail.To.Add("johnmichael.so@analog.com");
                 //mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
                 //mail.To.Add("ADPhilsLinearBMSTPE@analog.com");
-
-                mail.Subject = string.Join(" | ", LOT_ID.Text, TEST_STAGE.Text, Failure_mode.Text, TEST_NUMBER.Text, TEST_NAME.Text);
+                BIN = "BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text;
+                mail.Subject = string.Join(" | ", LOT_ID.Text, TEST_STAGE.Text + " " + TEMPERATURE.Text, Failure_mode.Text,BIN);
                 
                 string Body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).
 
@@ -122,16 +124,20 @@ BOARD ID: {3}
 
 BU STRATEGY:
 
-PROBLEM DESCRIPTION: {4}
+PROBLEM DESCRIPTION: 
+{4}
 
-DISPOSITION: {5}
+DISPOSITION: 
+{5}
 
-STATUS: {6}
+POTENTIAL ROOTCAUSE: {6}
 
-LOGGED BY: {7}
+FAILURE ASSESSMENT: {7}
+
+LOGGED BY: {8}
 
 (THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN)."
-, PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,Problem.Text,Action.Text,FAILURE_ASSESSMENT.Text,UserName);
+, PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,Problem.Text,Action.Text,POTENTIAL_ROOTCAUSE.Text,failure,UserName);
 
 
                 mail.Body = Body;
@@ -203,7 +209,8 @@ LOGGED BY: {7}
                     {
                         DatalogNumber(4); SendData(5);
                     }
-                    //Email_send();
+                    
+                    Email_send();
                     MessageBox.Show("FILE SAVED SUCCESSFULLY");
                     Clear_all();
                     PRODUCT_OWNER.Text = "";

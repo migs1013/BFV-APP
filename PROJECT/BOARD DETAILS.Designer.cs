@@ -87,6 +87,7 @@ namespace PROJECT
             this.OPEN = new System.Windows.Forms.Label();
             this.VIEW = new System.Windows.Forms.Button();
             this.PO_DISPO = new System.Windows.Forms.GroupBox();
+            this.PO_ROOTCAUSE = new System.Windows.Forms.ComboBox();
             this.ADD_PROOF_FILE = new System.Windows.Forms.Button();
             this.FIXED_PROOF_FILE = new System.Windows.Forms.LinkLabel();
             this.label31 = new System.Windows.Forms.Label();
@@ -107,7 +108,6 @@ namespace PROJECT
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.FAILURE_PERFORMANCE = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.PO_ROOTCAUSE = new System.Windows.Forms.ComboBox();
             this.First_box.SuspendLayout();
             this.PO_DISPO.SuspendLayout();
             this.SuspendLayout();
@@ -587,7 +587,7 @@ namespace PROJECT
             this.label22.BackColor = System.Drawing.Color.Transparent;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.Black;
-            this.label22.Location = new System.Drawing.Point(259, 440);
+            this.label22.Location = new System.Drawing.Point(258, 421);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(118, 13);
             this.label22.TabIndex = 79;
@@ -599,7 +599,7 @@ namespace PROJECT
             this.PRODUCT_OWNER.BackColor = System.Drawing.Color.Transparent;
             this.PRODUCT_OWNER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.PRODUCT_OWNER.ForeColor = System.Drawing.Color.Black;
-            this.PRODUCT_OWNER.Location = new System.Drawing.Point(426, 440);
+            this.PRODUCT_OWNER.Location = new System.Drawing.Point(426, 421);
             this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
             this.PRODUCT_OWNER.Size = new System.Drawing.Size(88, 13);
             this.PRODUCT_OWNER.TabIndex = 80;
@@ -659,7 +659,7 @@ namespace PROJECT
             this.STATUS.BackColor = System.Drawing.Color.Transparent;
             this.STATUS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.STATUS.ForeColor = System.Drawing.Color.Black;
-            this.STATUS.Location = new System.Drawing.Point(426, 371);
+            this.STATUS.Location = new System.Drawing.Point(426, 396);
             this.STATUS.Name = "STATUS";
             this.STATUS.Size = new System.Drawing.Size(41, 13);
             this.STATUS.TabIndex = 95;
@@ -671,11 +671,11 @@ namespace PROJECT
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(259, 371);
+            this.label11.Location = new System.Drawing.Point(258, 396);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 13);
+            this.label11.Size = new System.Drawing.Size(146, 13);
             this.label11.TabIndex = 94;
-            this.label11.Text = "STATUS";
+            this.label11.Text = "FAILURE ASSESSMENT";
             // 
             // ROOTCAUSE
             // 
@@ -683,7 +683,7 @@ namespace PROJECT
             this.ROOTCAUSE.BackColor = System.Drawing.Color.Transparent;
             this.ROOTCAUSE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.ROOTCAUSE.ForeColor = System.Drawing.Color.Black;
-            this.ROOTCAUSE.Location = new System.Drawing.Point(426, 404);
+            this.ROOTCAUSE.Location = new System.Drawing.Point(425, 370);
             this.ROOTCAUSE.Name = "ROOTCAUSE";
             this.ROOTCAUSE.Size = new System.Drawing.Size(63, 13);
             this.ROOTCAUSE.TabIndex = 97;
@@ -695,7 +695,7 @@ namespace PROJECT
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(259, 404);
+            this.label14.Location = new System.Drawing.Point(258, 370);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(83, 13);
             this.label14.TabIndex = 96;
@@ -705,7 +705,7 @@ namespace PROJECT
             // 
             this.UPDATE.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.UPDATE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UPDATE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UPDATE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UPDATE.Location = new System.Drawing.Point(559, 42);
             this.UPDATE.Name = "UPDATE";
             this.UPDATE.Size = new System.Drawing.Size(95, 48);
@@ -810,6 +810,28 @@ namespace PROJECT
             this.PO_DISPO.TabIndex = 105;
             this.PO_DISPO.TabStop = false;
             this.PO_DISPO.Text = "PRODUCT OWNER DISPO";
+            // 
+            // PO_ROOTCAUSE
+            // 
+            this.PO_ROOTCAUSE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PO_ROOTCAUSE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PO_ROOTCAUSE.FormattingEnabled = true;
+            this.PO_ROOTCAUSE.Items.AddRange(new object[] {
+            "BOARD",
+            "CONTACTOR",
+            "HANDLER",
+            "NETWORK",
+            "PRODUCT",
+            "PURGE AIR",
+            "SYSTEM",
+            "TEMPERATURE",
+            "TEST PROGRAM"});
+            this.PO_ROOTCAUSE.Location = new System.Drawing.Point(4, 36);
+            this.PO_ROOTCAUSE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.PO_ROOTCAUSE.Name = "PO_ROOTCAUSE";
+            this.PO_ROOTCAUSE.Size = new System.Drawing.Size(185, 21);
+            this.PO_ROOTCAUSE.Sorted = true;
+            this.PO_ROOTCAUSE.TabIndex = 112;
             // 
             // ADD_PROOF_FILE
             // 
@@ -1031,28 +1053,6 @@ namespace PROJECT
             this.label21.TabIndex = 110;
             this.label21.Text = "FAILURE PERFORMANCE";
             // 
-            // PO_ROOTCAUSE
-            // 
-            this.PO_ROOTCAUSE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PO_ROOTCAUSE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PO_ROOTCAUSE.FormattingEnabled = true;
-            this.PO_ROOTCAUSE.Items.AddRange(new object[] {
-            "BOARD",
-            "CONTACTOR",
-            "HANDLER",
-            "NETWORK",
-            "PRODUCT",
-            "PURGE AIR",
-            "SYSTEM",
-            "TEMPERATURE",
-            "TEST PROGRAM"});
-            this.PO_ROOTCAUSE.Location = new System.Drawing.Point(4, 36);
-            this.PO_ROOTCAUSE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.PO_ROOTCAUSE.Name = "PO_ROOTCAUSE";
-            this.PO_ROOTCAUSE.Size = new System.Drawing.Size(185, 21);
-            this.PO_ROOTCAUSE.Sorted = true;
-            this.PO_ROOTCAUSE.TabIndex = 112;
-            // 
             // BOARD_DETAILS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1074,9 +1074,9 @@ namespace PROJECT
             this.Controls.Add(this.ROOTCAUSE);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.STATUS);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.FAILURE_MODE);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.ACTION);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.PRODUCT_OWNER);
