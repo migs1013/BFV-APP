@@ -144,33 +144,36 @@ namespace PROJECT
                 mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
                 mail.Subject = string.Join(" | ","FOR APPROVAL", LOT_ID.Text, TEST_STAGE.Text, FAILURE_MODE.Text,"BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text);
 
-                string Body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).
+                string Body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).<br><br>
 
-PARTNAME: {0}
+<b>PARTNAME:</b> {0}<br><br>
 
-TESTER: {1} HANDLER: {2}
+<b>TESTER:</b> {1}   <b>HANDLER:</b> {2}<br><br>
 
-BOARD ID: {3}
+<b>BOARD ID:</b> {3}<br><br>
 
-BU STRATEGY:
+<b>BU STRATEGY:</b><br><br>
 
-PROBLEM DESCRIPTION: 
-{4}
+<b>PROBLEM DESCRIPTION:</b> 
+{4}<br><br>
 
-LOGGED BY: {5}
-----------------------------------------VERIFICATION UPDATE----------------------------------------------------
+<b>LOGGED BY:</b> {5}<br><br>
 
-DISPOSITION: 
-{6}
+----------------------------------------VERIFICATION UPDATE----------------------------------------------------<br><br>
 
-POTENTIAL ROOTCAUSE: {7}
+<b>DISPOSITION:</b> 
+{6}<br><br>
 
-FAILURE ASSESSMENT: VALID (FOR APPROVAL)
+<b>POTENTIAL ROOTCAUSE:</b> {7}<br><br>
 
-UPDATED/VERIFIED BY: {8}
+<b>FAILURE ASSESSMENT:</b> VALID (FOR APPROVAL)<br><br>
+
+<b>UPDATED/VERIFIED BY:</b> {8}<br><br>
 
 (THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).",
 PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,PROBLEM.Text,UserName,PO_COMMENT.Text,PO_ROOTCAUSE.Text,DISPO_USER.Text);
+
+                mail.IsBodyHtml = true;
 
                 mail.Body = Body;
 
