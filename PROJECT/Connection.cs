@@ -5,6 +5,13 @@ namespace PROJECT
 {
     class Connection
     {
+        public static string[] F2_Sub_Factories = { "BMS","LTX","NBMS/NI/ETS88" };
+        public static string[] F3_Sub_Factories = { "NBMS","HPCA", "HPCC", "HPCS", "INT", "COM", "STR", "RFC", "MPD", "PRB","WLT","STD","MIC_WIL","MIC_SC","AERO" };
+
+        public static string[] LTX_Emails = { "LTXTS88PETechnicians@analog.com", "servil.saulog@analog.com" };
+        public static string[] BMS_Emails = { "ADPhilsLinearBMSTPE@analog.com", "ADPhilsLinearBMSTPETech@analog.com", "MayanaJoy.Duran@analog.com" };
+        public static string[] NbmsNIETS88_Emails = { "ADPhilsLinearBMSTPETech@analog.com", "MayanaJoy.Duran@analog.com", "ADPhils_Linear_nBMSB3_ETS88_NI@analog.com" };
+
         // LOCAL HOST
         public static MySqlConnection connect = new MySqlConnection("server=localhost;user id=root;password=onemigso1013;database=hit;persistsecurityinfo=True");
 

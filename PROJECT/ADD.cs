@@ -18,6 +18,9 @@ namespace PROJECT
         byte[] Data;
         public string tester_platform, FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption, 
                       hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "",Stage_Temp,failure,BIN;
+
+        readonly MailMessage mail = new MailMessage();
+
         public int Endorsement_Number,FileNameLength, WordCount = 0;
         public string UserName { get; set; }
         public int Device_option { get; set; }
@@ -102,43 +105,65 @@ namespace PROJECT
         }
         private void Email_send()
         {
+
             if (FAILURE_ASSESSMENT.SelectedIndex == 0) failure = FAILURE_ASSESSMENT.Text + " (FOR APPROVAL)";
             else failure = FAILURE_ASSESSMENT.Text;
             try
             {
-                MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("HIT.APP@analog.com");
+
+                if (SUB_FACTORY.Text == "BMS")
+                {
+                    //mail.To.Add("Florano.Rani@analog.com");
+                    //foreach (string Email in Connection.BMS_Emails)
+                      //  mail.To.Add(Email);
+                }
+                else if (SUB_FACTORY.Text == "LTX")
+                {
+                    //mail.To.Add("RonDexter.Ramos@analog.com");
+                    //foreach (string Email in Connection.LTX_Emails)
+                      //  mail.To.Add(Email);
+                }
+                else if (SUB_FACTORY.Text == "NBMS/NI/ETS88")
+                {
+                    //mail.To.Add("Cyrus.Reodique@analog.com");
+                    //foreach (string Email in Connection.NbmsNIETS88_Emails)
+                      //  mail.To.Add(Email);
+                }
+
+                //mail.To.Add("RalphYaz.Diaz@analog.com");
                 mail.To.Add("johnmichael.so@analog.com");
-                //mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
-                //mail.To.Add("ADPhilsLinearBMSTPE@analog.com");
+                //mail.To.Add(additional_email);
+                
                 BIN = "BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text;
                 mail.Subject = string.Join(" | ", LOT_ID.Text, TEST_STAGE.Text + " " + TEMPERATURE.Text, Failure_mode.Text,BIN);
                 
-                string Body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).
+                string Body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).<br><br>
 
-PARTNAME: {0}
+<b>PARTNAME:</b> {0}<br><br>
 
-TESTER: {1} HANDLER: {2}
+<b>TESTER:</b> {1} <b>HANDLER:</b> {2}<br><br>
 
-BOARD ID: {3}
+<b>BOARD ID:</b> {3}<br><br>
 
-BU STRATEGY:
+<b>BU STRATEGY:</b><br><br>
 
-PROBLEM DESCRIPTION: 
-{4}
+<b>PROBLEM DESCRIPTION:</b> 
+{4}<br><br>
 
-DISPOSITION: 
-{5}
+<b>DISPOSITION:</b> 
+{5}<br><br>
 
-POTENTIAL ROOTCAUSE: {6}
+<b>POTENTIAL ROOTCAUSE:</b> {6}<br><br>
 
-FAILURE ASSESSMENT: {7}
+<b>FAILURE ASSESSMENT:</b> {7}<br><br>
 
-LOGGED BY: {8}
+<b>LOGGED BY:</b> {8}<br><br>
 
 (THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN)."
 , PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,Problem.Text,Action.Text,POTENTIAL_ROOTCAUSE.Text,failure,UserName);
 
+                mail.IsBodyHtml = true;
 
                 mail.Body = Body;
 
@@ -272,6 +297,9 @@ LOGGED BY: {8}
                 case 10: // LOAD TESTER PLATFORMS
                     command = new MySqlCommand("SELECT `TEST_SYSTEM` FROM `DETAILS` GROUP BY `TEST_SYSTEM`");
                     break;
+                case 11: // LOAD PRODUCT OWNER BASED ON SELECTED FACTORY
+                    command = new MySqlCommand(string.Format("SELECT `PRODUCT_OWNER` FROM `details` WHERE `FACTORY` = '{0}' and `SUB_FACTORY` = '{1}' GROUP BY `PRODUCT_OWNER` order by `PRODUCT_OWNER`",FACTORY.Text,SUB_FACTORY.Text));
+                    break;
             }
         }
         private bool CheckDetails()
@@ -320,12 +348,38 @@ LOGGED BY: {8}
                 }
                 else continue;
             }
-            if (first_verif_link.Text == string.Empty || FACTORY.Text == string.Empty)
+            if (first_verif_link.Text == string.Empty || FACTORY.Text == string.Empty || SUB_FACTORY.Text == string.Empty)
             {
                 Error();
                 return false;
             }
             return true;
+        }
+
+        private void SUB_FACTORY_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                PRODUCT_OWNER.Items.Clear();
+                PRODUCT_OWNER.Items.Add("NOT APPLICABLE");
+
+                Commands(11);
+                Connection.OpenConnection();
+                MySqlDataReader read_data = command.ExecuteReader();
+
+                while (read_data.Read())
+                {
+                    PRODUCT_OWNER.Items.Add(read_data.GetString("PRODUCT_OWNER"));
+                }
+                Connection.CloseConnection();
+
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.ToString());
+                Connection.CloseConnection();
+            }
+
         }
 
         private void InsertDatalog(LinkLabel DlogName,Label Date)
@@ -461,10 +515,17 @@ LOGGED BY: {8}
 
         private void FACTORY_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (FACTORY.Text == "F1")
-                SUB_FACTORY_TEXT.Visible = SUB_FACTORY.Visible = true;
-            else 
-                SUB_FACTORY_TEXT.Visible = SUB_FACTORY.Visible = false;
+            SUB_FACTORY.Items.Clear();
+            if (FACTORY.Text == "F2")
+            {
+                foreach (string sub_factory in Connection.F2_Sub_Factories)
+                    SUB_FACTORY.Items.Add(sub_factory);
+            }
+            else if (FACTORY.Text == "F3")
+            {
+                foreach (string sub_factory in Connection.F3_Sub_Factories)
+                    SUB_FACTORY.Items.Add(sub_factory);
+            }
         }
 
         private void ADD_SECOND_DLOG_CLICK(object sender, EventArgs e)
@@ -553,6 +614,12 @@ LOGGED BY: {8}
                             {
                                 label.Text = " ";
                             }
+                        }
+                        else if (c is ComboBox)
+                        {
+                            ComboBox comboBox = c as ComboBox;
+                            comboBox.SelectedIndex = -1;
+                            comboBox.Text = "";
                         }
                         else continue;
                     }

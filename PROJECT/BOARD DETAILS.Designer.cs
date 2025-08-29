@@ -226,8 +226,8 @@ namespace PROJECT
             this.First_box.Controls.Add(this.Third_dlog);
             this.First_box.Controls.Add(this.label19);
             this.First_box.Controls.Add(this.First_verif_link);
-            this.First_box.Controls.Add(this.label9);
             this.First_box.Controls.Add(this.Second_dlog);
+            this.First_box.Controls.Add(this.label9);
             this.First_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.First_box.Location = new System.Drawing.Point(679, 12);
             this.First_box.Name = "First_box";
@@ -242,7 +242,7 @@ namespace PROJECT
             this.SUB_FACTORY.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SUB_FACTORY.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SUB_FACTORY.LinkColor = System.Drawing.Color.Black;
-            this.SUB_FACTORY.Location = new System.Drawing.Point(405, 147);
+            this.SUB_FACTORY.Location = new System.Drawing.Point(357, 147);
             this.SUB_FACTORY.Name = "SUB_FACTORY";
             this.SUB_FACTORY.Size = new System.Drawing.Size(0, 16);
             this.SUB_FACTORY.TabIndex = 117;
@@ -253,7 +253,7 @@ namespace PROJECT
             this.label28.BackColor = System.Drawing.Color.Transparent;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.Color.Black;
-            this.label28.Location = new System.Drawing.Point(302, 151);
+            this.label28.Location = new System.Drawing.Point(256, 151);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(97, 13);
             this.label28.TabIndex = 116;
@@ -300,7 +300,7 @@ namespace PROJECT
             this.DATE_VERIFIED.AutoSize = true;
             this.DATE_VERIFIED.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DATE_VERIFIED.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.DATE_VERIFIED.Location = new System.Drawing.Point(163, 132);
+            this.DATE_VERIFIED.Location = new System.Drawing.Point(163, 151);
             this.DATE_VERIFIED.Name = "DATE_VERIFIED";
             this.DATE_VERIFIED.Size = new System.Drawing.Size(0, 13);
             this.DATE_VERIFIED.TabIndex = 40;
@@ -324,7 +324,7 @@ namespace PROJECT
             this.FACTORY.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FACTORY.ForeColor = System.Drawing.Color.Black;
-            this.FACTORY.Location = new System.Drawing.Point(376, 132);
+            this.FACTORY.Location = new System.Drawing.Point(357, 132);
             this.FACTORY.Name = "FACTORY";
             this.FACTORY.Size = new System.Drawing.Size(0, 13);
             this.FACTORY.TabIndex = 111;
@@ -335,7 +335,7 @@ namespace PROJECT
             this.label25.BackColor = System.Drawing.Color.Transparent;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(302, 132);
+            this.label25.Location = new System.Drawing.Point(283, 132);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(68, 13);
             this.label25.TabIndex = 110;
@@ -344,7 +344,7 @@ namespace PROJECT
             // USER_LOG
             // 
             this.USER_LOG.AutoSize = true;
-            this.USER_LOG.Location = new System.Drawing.Point(163, 150);
+            this.USER_LOG.Location = new System.Drawing.Point(104, 131);
             this.USER_LOG.Name = "USER_LOG";
             this.USER_LOG.Size = new System.Drawing.Size(0, 13);
             this.USER_LOG.TabIndex = 38;
@@ -376,11 +376,11 @@ namespace PROJECT
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(18, 132);
+            this.label19.Location = new System.Drawing.Point(18, 151);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(138, 13);
+            this.label19.Size = new System.Drawing.Size(142, 13);
             this.label19.TabIndex = 35;
-            this.label19.Text = "DATE ENCOUNTERED";
+            this.label19.Text = "DATE ENCOUNTERED:";
             // 
             // First_verif_link
             // 
@@ -397,11 +397,11 @@ namespace PROJECT
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 151);
+            this.label9.Location = new System.Drawing.Point(18, 132);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(78, 13);
+            this.label9.Size = new System.Drawing.Size(82, 13);
             this.label9.TabIndex = 27;
-            this.label9.Text = "LOGGED BY";
+            this.label9.Text = "LOGGED BY:";
             // 
             // Second_dlog
             // 
@@ -444,9 +444,9 @@ namespace PROJECT
             this.Exit_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Exit_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Exit_btn.Location = new System.Drawing.Point(559, 97);
+            this.Exit_btn.Location = new System.Drawing.Point(536, 97);
             this.Exit_btn.Name = "Exit_btn";
-            this.Exit_btn.Size = new System.Drawing.Size(95, 48);
+            this.Exit_btn.Size = new System.Drawing.Size(118, 48);
             this.Exit_btn.TabIndex = 66;
             this.Exit_btn.Text = "EXIT";
             this.Exit_btn.UseVisualStyleBackColor = false;
@@ -706,9 +706,9 @@ namespace PROJECT
             this.UPDATE.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.UPDATE.Cursor = System.Windows.Forms.Cursors.Hand;
             this.UPDATE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UPDATE.Location = new System.Drawing.Point(559, 42);
+            this.UPDATE.Location = new System.Drawing.Point(536, 42);
             this.UPDATE.Name = "UPDATE";
-            this.UPDATE.Size = new System.Drawing.Size(95, 48);
+            this.UPDATE.Size = new System.Drawing.Size(118, 48);
             this.UPDATE.TabIndex = 98;
             this.UPDATE.Text = "UPDATE";
             this.UPDATE.UseVisualStyleBackColor = false;

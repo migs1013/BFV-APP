@@ -16,7 +16,7 @@ namespace PROJECT
         byte[] Data;
         public string DATALOG,PROOF_FILE_LINK;
         public int Endorsement_number { get; set; }
-        public string DLOG1 ,DLOG2 ,DLOG3 ,DLOG4, OPEN_COUNT,CLOSED_COUNT,STATUS_OPTION,DATE_ENCOUNTER,DATE_DIFFERENCE,Add_File_Proof,New_File_Link;
+        public string DLOG1 ,DLOG2 ,DLOG3 ,DLOG4, OPEN_COUNT,CLOSED_COUNT,STATUS_OPTION,DATE_ENCOUNTER,DATE_DIFFERENCE,Add_File_Proof,New_File_Link,approver,rootcause_comment,dispo;
         public string UserName { get; set; }
         public string Approver { get; set; }
         private DateTime Date = new DateTime();
@@ -84,7 +84,7 @@ namespace PROJECT
                 FACTORY.Text = read_data["FACTORY"].ToString();
                 SUB_FACTORY.Text = read_data["SUB_FACTORY"].ToString();
                 
-                if (STATUS.Text == "CLOSED")
+                if (STATUS.Text == "VALID")
                 {
                     PO_COMMENT.Text = read_data["PO_COMMENT"].ToString();
                     Dispo_Date = Convert.ToDateTime(read_data["DISPO_DATE"].ToString());
@@ -108,10 +108,10 @@ namespace PROJECT
                     DISPO_DATE.Text = Dispo_Date.ToString("yyyy-MM-dd");
                     CLOSE.Visible = DATE_TEXT.Visible = DISPO_USER.Visible = DISPO_DATE.Visible = true;
                     UPDATE.Text = "APPROVE";
-                    ROOTCAUSE.Text += " (POTENTIAL)";
                     Rootcause_label.Visible = PO_ROOTCAUSE.Visible = false;
                     APPROVER.Text = UserName;
                     DATE_APPROVED.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    PO_COMMENT.ReadOnly = true;
                 }
                 else
                 {
@@ -138,17 +138,51 @@ namespace PROJECT
         {
             try
             {
+
+                if (string.IsNullOrEmpty(PO_ROOTCAUSE.Text)) rootcause_comment = ROOTCAUSE.Text;
+                else rootcause_comment = PO_ROOTCAUSE.Text;
+
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("HIT.APP@analog.com");
-                //mail.To.Add("johnmichael.so@analog.com");
-                mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
-                mail.Subject = string.Join(" | ","FOR APPROVAL", LOT_ID.Text, TEST_STAGE.Text, FAILURE_MODE.Text,"BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text);
+                mail.To.Add("johnmichael.so@analog.com");
+
+                if (PO_COMMENT.Text == "PLEASE REFER TO DISPOSITION")
+                    dispo = ACTION.Text;
+                else
+                    dispo = PO_COMMENT.Text;
+
+                if (UPDATE.Text == "APPROVE")
+                {
+
+
+                    approver = "<b>----------------------------------------APPROVAL UPDATE----------------------------------------------------</b><br><br>" +
+                        "<b>FAILURE ASSESSMENT:</b> VALID<br><br>" +
+                        "<b>REVIEWED AND APPROVED BY:</b> " + APPROVER.Text + "<br><br>" +
+                        "<b>DATE:</b> " + DATE_APPROVED.Text + "<br><br>";
+
+
+
+                    mail.Subject = string.Join(" | ", "FAILURE ASSESSMENT APPROVED", LOT_ID.Text, TEST_STAGE.Text, FAILURE_MODE.Text, "BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text);
+ 
+                }
+                else
+                {
+                    approver = "";
+                    mail.Subject = string.Join(" | ", "FOR APPROVAL", LOT_ID.Text, TEST_STAGE.Text, FAILURE_MODE.Text, "BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text);
+
+                    Attachment AttachFile = new Attachment(New_File_Link);
+                    mail.Attachments.Add(AttachFile);
+                }
+
+                //mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
 
                 string Body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).<br><br>
 
+<b>----------------------------------------PROBLEM ENCOUNTERED----------------------------------------------------</b><br><br>
+
 <b>PARTNAME:</b> {0}<br><br>
 
-<b>TESTER:</b> {1}   <b>HANDLER:</b> {2}<br><br>
+<b>TESTER:</b> {1}    <b>HANDLER:</b> {2}<br><br>
 
 <b>BOARD ID:</b> {3}<br><br>
 
@@ -159,26 +193,29 @@ namespace PROJECT
 
 <b>LOGGED BY:</b> {5}<br><br>
 
-----------------------------------------VERIFICATION UPDATE----------------------------------------------------<br><br>
+<b>DATE:</b> {6}<br><br>
+
+<b>----------------------------------------VERIFICATION UPDATE----------------------------------------------------</b><br><br>
 
 <b>DISPOSITION:</b> 
-{6}<br><br>
+{7}<br><br>
 
-<b>POTENTIAL ROOTCAUSE:</b> {7}<br><br>
+<b>POTENTIAL ROOTCAUSE:</b> {8}<br><br>
 
 <b>FAILURE ASSESSMENT:</b> VALID (FOR APPROVAL)<br><br>
 
-<b>UPDATED/VERIFIED BY:</b> {8}<br><br>
+<b>UPDATED/VERIFIED BY:</b> {9}<br><br>
+
+<b>DATE:</b> {10}<br><br>
+
+{11}
 
 (THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).",
-PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,PROBLEM.Text,UserName,PO_COMMENT.Text,PO_ROOTCAUSE.Text,DISPO_USER.Text);
+PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,PROBLEM.Text,UserName,DATE_VERIFIED.Text,dispo,rootcause_comment,DISPO_USER.Text,DISPO_DATE.Text,approver);
 
                 mail.IsBodyHtml = true;
 
                 mail.Body = Body;
-
-                Attachment AttachFile = new Attachment(New_File_Link);
-                mail.Attachments.Add(AttachFile);
 
                 // Configure SMTP client for Outlook
                 SmtpClient smtpClient = new SmtpClient("mail.analog.com", 25);
@@ -214,7 +251,7 @@ PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,PROBLEM.Text,UserNam
 
                 OPEN.Text = "TOTAL TRANSACTION " + string.Format("({0})", OPEN_COUNT);
 
-                if (STATUS.Text == "OPEN")
+                if (STATUS.Text != "VALID")
                 {
                     if (Convert.ToInt32(DATE_DIFFERENCE) < 15)
                         ATTENTION.Text = "THIS ISSUE WAS FIRST ENCOUNTERED " + DATE_DIFFERENCE + " DAY/S AGO";
@@ -279,6 +316,7 @@ PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,PROBLEM.Text,UserNam
                                 command.ExecuteNonQuery();
                             }
                             Connection.CloseConnection();
+                            Update_Email_send();
                             MessageBox.Show("APPROVED SUCCESSFULLY, PLEASE REFRESH DATA");
                         }
                         catch (Exception Error)
@@ -339,7 +377,7 @@ PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,PROBLEM.Text,UserNam
                                         command.ExecuteNonQuery();
                                     }
                                     Update_Email_send();
-                                    MessageBox.Show("UPDATED SUCCESSFULLY");
+                                    MessageBox.Show("UPDATED SUCCESSFULLY, PLEASE REFRESH DATA");
                                     Connection.CloseConnection();
                                 }
                                 catch (Exception Error)
@@ -415,7 +453,7 @@ PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,PROBLEM.Text,UserNam
                     command.Parameters.Add(string.Format("@{0}", PROOF_FILE_LINK), MySqlDbType.LongBlob).Value = SaveFile(New_File_Link);
                     break;
                 case 5:  // APPROVE ROOTCAUSE ISSUE
-                    command = new MySqlCommand("UPDATE `hit`.`details` SET `STATUS` = 'CLOSED',`APPROVER` = '" + APPROVER.Text + "',`DATE_APPROVED` = '" + DATE_APPROVED.Text + "' where `ENDORSEMENT_NUMBER` = '" + Endorsement_number + "'");
+                    command = new MySqlCommand("UPDATE `hit`.`details` SET `STATUS` = 'VALID',`APPROVER` = '" + APPROVER.Text + "',`DATE_APPROVED` = '" + DATE_APPROVED.Text + "' where `ENDORSEMENT_NUMBER` = '" + Endorsement_number + "'");
                     break;
             }
         }

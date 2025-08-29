@@ -79,7 +79,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.TEST_NAME = new System.Windows.Forms.TextBox();
-            this.PRODUCT_OWNER = new System.Windows.Forms.Label();
             this.VSPEC = new System.Windows.Forms.TextBox();
             this.TESTER_ID = new System.Windows.Forms.TextBox();
             this.BIN_NUMBER = new System.Windows.Forms.ComboBox();
@@ -94,6 +93,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.POTENTIAL_ROOTCAUSE = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.PRODUCT_OWNER = new System.Windows.Forms.ComboBox();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -318,27 +318,11 @@
             this.SUB_FACTORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SUB_FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.SUB_FACTORY.FormattingEnabled = true;
-            this.SUB_FACTORY.Items.AddRange(new object[] {
-            "HPCA",
-            "HPCC",
-            "HPCS",
-            "INT",
-            "COM",
-            "STR",
-            "RFC",
-            "MPD",
-            "PRB",
-            "WLT",
-            "STD",
-            "MIC_WIL",
-            "MIC_SC",
-            "AERO",
-            "N/A"});
             this.SUB_FACTORY.Location = new System.Drawing.Point(126, 173);
             this.SUB_FACTORY.Name = "SUB_FACTORY";
             this.SUB_FACTORY.Size = new System.Drawing.Size(108, 21);
             this.SUB_FACTORY.TabIndex = 94;
-            this.SUB_FACTORY.Visible = false;
+            this.SUB_FACTORY.SelectedIndexChanged += new System.EventHandler(this.SUB_FACTORY_SelectedIndexChanged);
             // 
             // SUB_FACTORY_TEXT
             // 
@@ -349,7 +333,6 @@
             this.SUB_FACTORY_TEXT.Size = new System.Drawing.Size(115, 19);
             this.SUB_FACTORY_TEXT.TabIndex = 93;
             this.SUB_FACTORY_TEXT.Text = "SUB FACTORY:";
-            this.SUB_FACTORY_TEXT.Visible = false;
             // 
             // FACTORY
             // 
@@ -362,7 +345,8 @@
             "F3"});
             this.FACTORY.Location = new System.Drawing.Point(95, 145);
             this.FACTORY.Name = "FACTORY";
-            this.FACTORY.Size = new System.Drawing.Size(56, 21);
+            this.FACTORY.Size = new System.Drawing.Size(139, 21);
+            this.FACTORY.Sorted = true;
             this.FACTORY.TabIndex = 88;
             this.FACTORY.SelectionChangeCommitted += new System.EventHandler(this.FACTORY_SelectionChangeCommitted);
             // 
@@ -586,6 +570,7 @@
             // 
             // Failure_mode
             // 
+            this.Failure_mode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Failure_mode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Failure_mode.FormattingEnabled = true;
             this.Failure_mode.Items.AddRange(new object[] {
@@ -629,9 +614,9 @@
             this.label18.ForeColor = System.Drawing.Color.Black;
             this.label18.Location = new System.Drawing.Point(12, 97);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(98, 19);
+            this.label18.Size = new System.Drawing.Size(139, 19);
             this.label18.TabIndex = 51;
-            this.label18.Text = "TEST SYSTEM";
+            this.label18.Text = "TESTER PLATFORM";
             // 
             // BOARD_ID
             // 
@@ -701,17 +686,6 @@
             this.TEST_NAME.Name = "TEST_NAME";
             this.TEST_NAME.Size = new System.Drawing.Size(187, 20);
             this.TEST_NAME.TabIndex = 14;
-            // 
-            // PRODUCT_OWNER
-            // 
-            this.PRODUCT_OWNER.AutoSize = true;
-            this.PRODUCT_OWNER.BackColor = System.Drawing.Color.Transparent;
-            this.PRODUCT_OWNER.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.PRODUCT_OWNER.ForeColor = System.Drawing.Color.Black;
-            this.PRODUCT_OWNER.Location = new System.Drawing.Point(162, 497);
-            this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
-            this.PRODUCT_OWNER.Size = new System.Drawing.Size(0, 19);
-            this.PRODUCT_OWNER.TabIndex = 78;
             // 
             // VSPEC
             // 
@@ -894,6 +868,16 @@
             this.label20.TabIndex = 93;
             this.label20.Text = "POTENTIAL ROOTCAUSE";
             // 
+            // PRODUCT_OWNER
+            // 
+            this.PRODUCT_OWNER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PRODUCT_OWNER.FormattingEnabled = true;
+            this.PRODUCT_OWNER.Location = new System.Drawing.Point(162, 495);
+            this.PRODUCT_OWNER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
+            this.PRODUCT_OWNER.Size = new System.Drawing.Size(226, 21);
+            this.PRODUCT_OWNER.TabIndex = 94;
+            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -902,6 +886,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(989, 581);
+            this.Controls.Add(this.PRODUCT_OWNER);
             this.Controls.Add(this.POTENTIAL_ROOTCAUSE);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.FAILURE_PERFORMANCE);
@@ -916,7 +901,6 @@
             this.Controls.Add(this.BIN_NUMBER);
             this.Controls.Add(this.TESTER_ID);
             this.Controls.Add(this.VSPEC);
-            this.Controls.Add(this.PRODUCT_OWNER);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.TEST_NAME);
             this.Controls.Add(this.label2);
@@ -997,7 +981,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox TEST_NAME;
-        private System.Windows.Forms.Label PRODUCT_OWNER;
         private System.Windows.Forms.TextBox VSPEC;
         private System.Windows.Forms.TextBox TESTER_ID;
         private System.Windows.Forms.ComboBox BIN_NUMBER;
@@ -1020,5 +1003,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox POTENTIAL_ROOTCAUSE;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox PRODUCT_OWNER;
     }
 }

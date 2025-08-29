@@ -246,6 +246,7 @@ namespace PROJECT
             this.CATEGORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CATEGORY.FormattingEnabled = true;
             this.CATEGORY.Items.AddRange(new object[] {
+            "PE/AREA",
             "PRODUCT OWNER",
             "TESTER/HOSTNAME"});
             this.CATEGORY.Location = new System.Drawing.Point(186, 35);
