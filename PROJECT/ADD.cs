@@ -115,23 +115,33 @@ namespace PROJECT
                 if (SUB_FACTORY.Text == "BMS")
                 {
                     //mail.To.Add("Florano.Rani@analog.com");
-                    //foreach (string Email in Connection.BMS_Emails)
-                      //  mail.To.Add(Email);
+                    foreach (string Email in Connection.BMS_Emails)
+                        mail.To.Add(Email);
                 }
                 else if (SUB_FACTORY.Text == "LTX")
                 {
                     //mail.To.Add("RonDexter.Ramos@analog.com");
-                    //foreach (string Email in Connection.LTX_Emails)
-                      //  mail.To.Add(Email);
+                    foreach (string Email in Connection.LTX_Emails)
+                        mail.To.Add(Email);
                 }
                 else if (SUB_FACTORY.Text == "NBMS/NI/ETS88")
                 {
                     //mail.To.Add("Cyrus.Reodique@analog.com");
-                    //foreach (string Email in Connection.NbmsNIETS88_Emails)
-                      //  mail.To.Add(Email);
+                    foreach (string Email in Connection.NbmsNIETS88_Emails)
+                        mail.To.Add(Email);
+                }
+                else if (SUB_FACTORY.Text == "NBMS")
+                {
+                    foreach (string Email in Connection.Nbms_B1_Emails)
+                        mail.To.Add(Email);
+                }
+                else
+                {
+                    foreach (string Email in Connection.Legacy_B1_Emails)
+                        mail.To.Add(Email);
                 }
 
-                //mail.To.Add("RalphYaz.Diaz@analog.com");
+                mail.To.Add("RalphYaz.Diaz@analog.com");
                 mail.To.Add("johnmichael.so@analog.com");
                 //mail.To.Add(additional_email);
                 
@@ -146,22 +156,24 @@ namespace PROJECT
 
 <b>BOARD ID:</b> {3}<br><br>
 
-<b>BU STRATEGY:</b><br><br>
+<b>FAILURE MODE:</b> {4}<br><br>
+
+<b>FAILURE PERFORMANCE:</b> {5}<br><br>
 
 <b>PROBLEM DESCRIPTION:</b> 
-{4}<br><br>
+{6}<br><br>
 
 <b>DISPOSITION:</b> 
-{5}<br><br>
+{7}<br><br>
 
-<b>POTENTIAL ROOTCAUSE:</b> {6}<br><br>
+<b>POTENTIAL ROOTCAUSE:</b> {8}<br><br>
 
-<b>FAILURE ASSESSMENT:</b> {7}<br><br>
+<b>FAILURE ASSESSMENT:</b> {9}<br><br>
 
-<b>LOGGED BY:</b> {8}<br><br>
+<b>LOGGED BY:</b> {10}<br><br>
 
 (THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN)."
-, PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,Problem.Text,Action.Text,POTENTIAL_ROOTCAUSE.Text,failure,UserName);
+, PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text, Failure_mode.Text, FAILURE_PERFORMANCE.Text, Problem.Text,Action.Text,POTENTIAL_ROOTCAUSE.Text,failure,UserName);
 
                 mail.IsBodyHtml = true;
 
@@ -300,6 +312,9 @@ namespace PROJECT
                 case 11: // LOAD PRODUCT OWNER BASED ON SELECTED FACTORY
                     command = new MySqlCommand(string.Format("SELECT `PRODUCT_OWNER` FROM `details` WHERE `FACTORY` = '{0}' and `SUB_FACTORY` = '{1}' GROUP BY `PRODUCT_OWNER` order by `PRODUCT_OWNER`",FACTORY.Text,SUB_FACTORY.Text));
                     break;
+                case 12: // CHECK PRODUCT OWNER BASED ON SELECTED SUB FACTORY
+                    command = new MySqlCommand(string.Format("SELECT if((select count(*) from `details` WHERE `FACTORY` = '{0}' and `SUB_FACTORY` = '{1}' GROUP BY `PRODUCT_OWNER` order by `PRODUCT_OWNER`) = null,'1','0') as `COUNT` FROM `details` group by `COUNT`",FACTORY.Text,SUB_FACTORY.Text));
+                    break;
             }
         }
         private bool CheckDetails()
@@ -358,20 +373,35 @@ namespace PROJECT
 
         private void SUB_FACTORY_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string check_count;
             try
             {
+                
                 PRODUCT_OWNER.Items.Clear();
                 PRODUCT_OWNER.Items.Add("NOT APPLICABLE");
 
-                Commands(11);
+                Commands(12);
+                command.Connection = Connection.connect;
                 Connection.OpenConnection();
                 MySqlDataReader read_data = command.ExecuteReader();
+                read_data.Read();
 
-                while (read_data.Read())
-                {
-                    PRODUCT_OWNER.Items.Add(read_data.GetString("PRODUCT_OWNER"));
-                }
+                check_count = read_data["COUNT"].ToString();
+
                 Connection.CloseConnection();
+
+                if (check_count == "1")
+                {
+                    Commands(11);
+                    Connection.OpenConnection();
+                    read_data = command.ExecuteReader();
+
+                    while (read_data.Read())
+                    {
+                        PRODUCT_OWNER.Items.Add(read_data.GetString("PRODUCT_OWNER"));
+                    }
+                    Connection.CloseConnection();
+                }
 
             }
             catch (Exception error)

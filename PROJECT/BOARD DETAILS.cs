@@ -98,6 +98,12 @@ namespace PROJECT
                     PO_ROOTCAUSE.Visible = Rootcause_label.Visible = false;
                     PO_COMMENT.ReadOnly = true;
                     UPDATE.Visible = false;
+
+                    if (FIXED_PROOF_FILE.Text.Length > 21)
+                    {
+                        FIXED_PROOF_FILE.Text = FIXED_PROOF_FILE.Text.Remove(15, FIXED_PROOF_FILE.Text.Length - 20) + ".....";
+                    }
+
                 }
                 else if (STATUS.Text == "FOR APPROVAL")
                 {
@@ -112,6 +118,15 @@ namespace PROJECT
                     APPROVER.Text = UserName;
                     DATE_APPROVED.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     PO_COMMENT.ReadOnly = true;
+
+                    if (FIXED_PROOF_FILE.Text.Length > 21)
+                    {
+                        FIXED_PROOF_FILE.Text = FIXED_PROOF_FILE.Text.Remove(15, FIXED_PROOF_FILE.Text.Length - 20) + ".....";
+                    }
+
+                    if (Approver == "0")
+                        UPDATE.Visible = false;
+
                 }
                 else
                 {
@@ -186,32 +201,35 @@ namespace PROJECT
 
 <b>BOARD ID:</b> {3}<br><br>
 
-<b>BU STRATEGY:</b><br><br>
+<b>FAILURE MODE:</b> {4}<br><br>
+
+<b>FAILURE PERFORMANCE:</b> {5}<br><br>
 
 <b>PROBLEM DESCRIPTION:</b> 
-{4}<br><br>
+{6}<br><br>
 
-<b>LOGGED BY:</b> {5}<br><br>
+<b>LOGGED BY:</b> {7}<br><br>
 
-<b>DATE:</b> {6}<br><br>
+<b>DATE:</b> {8}<br><br>
 
 <b>----------------------------------------VERIFICATION UPDATE----------------------------------------------------</b><br><br>
 
 <b>DISPOSITION:</b> 
-{7}<br><br>
+{9}<br><br>
 
-<b>POTENTIAL ROOTCAUSE:</b> {8}<br><br>
+<b>POTENTIAL ROOTCAUSE:</b> {10}<br><br>
 
 <b>FAILURE ASSESSMENT:</b> VALID (FOR APPROVAL)<br><br>
 
-<b>UPDATED/VERIFIED BY:</b> {9}<br><br>
+<b>UPDATED/VERIFIED BY:</b> {11}<br><br>
 
-<b>DATE:</b> {10}<br><br>
+<b>DATE:</b> {12}<br><br>
 
-{11}
+{13}
 
 (THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).",
-PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text,PROBLEM.Text,UserName,DATE_VERIFIED.Text,dispo,rootcause_comment,DISPO_USER.Text,DISPO_DATE.Text,approver);
+PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text, FAILURE_MODE.Text, FAILURE_PERFORMANCE.Text, 
+PROBLEM.Text,UserName,DATE_VERIFIED.Text,dispo,rootcause_comment,DISPO_USER.Text,DISPO_DATE.Text,approver);
 
                 mail.IsBodyHtml = true;
 

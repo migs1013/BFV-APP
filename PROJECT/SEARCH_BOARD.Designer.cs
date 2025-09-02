@@ -124,6 +124,7 @@
             this.ADD_BMS.TabIndex = 2;
             this.ADD_BMS.Text = "TRANSACT BMS";
             this.ADD_BMS.UseVisualStyleBackColor = false;
+            this.ADD_BMS.Visible = false;
             this.ADD_BMS.Click += new System.EventHandler(this.Add_btn_Click);
             // 
             // dataGridViewList
