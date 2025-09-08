@@ -267,6 +267,7 @@
             this.EDIT.TabIndex = 24;
             this.EDIT.Text = "ADD TESTER / DEVICE";
             this.EDIT.UseVisualStyleBackColor = false;
+            this.EDIT.Visible = false;
             this.EDIT.Click += new System.EventHandler(this.EDIT_Click);
             // 
             // FROM_DATE
@@ -295,7 +296,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 24);
             this.label1.TabIndex = 27;
-            this.label1.Text = "VERSION 1.0.5";
+            this.label1.Text = "VERSION 1.0.6";
             // 
             // button1
             // 

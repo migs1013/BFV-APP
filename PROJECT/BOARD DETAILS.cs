@@ -22,6 +22,7 @@ namespace PROJECT
         private DateTime Date = new DateTime();
         private DateTime Dispo_Date = new DateTime();
         private DateTime Date_Approved = new DateTime();
+        readonly MailMessage mail = new MailMessage();
 
         public BOARD_DETAILS(string number,String User,string Approver_access)
         {
@@ -157,8 +158,38 @@ namespace PROJECT
                 if (string.IsNullOrEmpty(PO_ROOTCAUSE.Text)) rootcause_comment = ROOTCAUSE.Text;
                 else rootcause_comment = PO_ROOTCAUSE.Text;
 
-                MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("HIT.APP@analog.com");
+
+                if (SUB_FACTORY.Text == "BMS")
+                {
+                    
+                    foreach (string Email in Connection.BMS_Emails)
+                        mail.To.Add(Email);
+                }
+                else if (SUB_FACTORY.Text == "LTX")
+                {
+                    
+                    foreach (string Email in Connection.LTX_Emails)
+                        mail.To.Add(Email);
+                }
+                else if (SUB_FACTORY.Text == "NBMS/NI/ETS88")
+                {
+                   
+                    foreach (string Email in Connection.NbmsNIETS88_Emails)
+                        mail.To.Add(Email);
+                }
+                else if (SUB_FACTORY.Text == "NBMS")
+                {
+                    foreach (string Email in Connection.Nbms_B1_Emails)
+                        mail.To.Add(Email);
+                }
+                else
+                {
+                    foreach (string Email in Connection.Legacy_B1_Emails)
+                        mail.To.Add(Email);
+                }
+
+                mail.To.Add("RalphYaz.Diaz@analog.com");
                 mail.To.Add("johnmichael.so@analog.com");
 
                 if (PO_COMMENT.Text == "PLEASE REFER TO DISPOSITION")

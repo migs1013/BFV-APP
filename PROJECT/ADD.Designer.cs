@@ -86,7 +86,7 @@
             this.FAILURE_ASSESSMENT = new System.Windows.Forms.ComboBox();
             this.TEST_NUMBER = new System.Windows.Forms.ComboBox();
             this.TEST_STAGE = new System.Windows.Forms.ComboBox();
-            this.Test_system = new System.Windows.Forms.ComboBox();
+            this.Tester_platform = new System.Windows.Forms.ComboBox();
             this.TEMPERATURE = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.FAILURE_PERFORMANCE = new System.Windows.Forms.ComboBox();
@@ -574,6 +574,7 @@
             this.Failure_mode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Failure_mode.FormattingEnabled = true;
             this.Failure_mode.Items.AddRange(new object[] {
+            "BOARD CAL/CHECK FAILURE",
             "COLLAPSE",
             "ILSF",
             "INTERMITTENT",
@@ -769,16 +770,17 @@
             this.TEST_STAGE.Sorted = true;
             this.TEST_STAGE.TabIndex = 6;
             // 
-            // Test_system
+            // Tester_platform
             // 
-            this.Test_system.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Test_system.FormattingEnabled = true;
-            this.Test_system.Location = new System.Drawing.Point(203, 95);
-            this.Test_system.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Test_system.Name = "Test_system";
-            this.Test_system.Size = new System.Drawing.Size(185, 21);
-            this.Test_system.Sorted = true;
-            this.Test_system.TabIndex = 4;
+            this.Tester_platform.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tester_platform.FormattingEnabled = true;
+            this.Tester_platform.Location = new System.Drawing.Point(203, 95);
+            this.Tester_platform.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Tester_platform.Name = "Tester_platform";
+            this.Tester_platform.Size = new System.Drawing.Size(185, 21);
+            this.Tester_platform.Sorted = true;
+            this.Tester_platform.TabIndex = 4;
+            this.Tester_platform.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tester_platform_KeyPress);
             // 
             // TEMPERATURE
             // 
@@ -812,7 +814,10 @@
             "BIMODAL",
             "DEGRADING",
             "GROSS",
-            "LOW CPK",
+            "HIGH SD",
+            "LOW CPK (HIGH SD)",
+            "LOW CPK (LOWER LIMIT)",
+            "LOW CPK (UPPER LIMIT)",
             "OPEN",
             "SHORT"});
             this.FAILURE_PERFORMANCE.Location = new System.Drawing.Point(203, 267);
@@ -877,6 +882,7 @@
             this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
             this.PRODUCT_OWNER.Size = new System.Drawing.Size(226, 21);
             this.PRODUCT_OWNER.TabIndex = 94;
+            this.PRODUCT_OWNER.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PRODUCT_OWNER_KeyPress);
             // 
             // ADD
             // 
@@ -893,7 +899,7 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.TEMPERATURE);
-            this.Controls.Add(this.Test_system);
+            this.Controls.Add(this.Tester_platform);
             this.Controls.Add(this.TEST_STAGE);
             this.Controls.Add(this.TEST_NUMBER);
             this.Controls.Add(this.FAILURE_ASSESSMENT);
@@ -994,7 +1000,7 @@
         private System.Windows.Forms.Button ADD_FILE4;
         private System.Windows.Forms.Button ADD_FILE3;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox Test_system;
+        private System.Windows.Forms.ComboBox Tester_platform;
         private System.Windows.Forms.ComboBox SUB_FACTORY;
         private System.Windows.Forms.Label SUB_FACTORY_TEXT;
         private System.Windows.Forms.TextBox TEMPERATURE;

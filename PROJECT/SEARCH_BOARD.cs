@@ -458,13 +458,14 @@ namespace PROJECT
         private void ClearFilter()
         {
             FACTORY.SelectedIndex = -1;
+            SUB_FACTORY_FILTER.SelectedIndex = -1;
             PRODUCT_OWNER_FILTER.Clear();
             PART_NAME_FILTER.Clear();
             TESTER_PLATFORM_FILTER.Clear();
             TESTER_ID_FILTER.Clear();
             TEST_NUMBER_SEARCH.Clear();
             TEST_NAME_SEARCH.Clear();
-            TEST_STAGE_FILTER.Items.Clear();
+            TEST_STAGE_FILTER.SelectedIndex = -1;
             VSPEC.Clear();
             STATUS_FILTER.SelectedIndex = -1;
             FROM_DATE.CustomFormat = " ";
@@ -480,6 +481,10 @@ namespace PROJECT
             {
                 Conditions.Add($"`FACTORY` LIKE '%{FACTORY.Text}%'");
             }
+            if (!string.IsNullOrEmpty(SUB_FACTORY_FILTER.Text))
+            {
+                Conditions.Add($"`SUB_FACTORY` LIKE '%{SUB_FACTORY_FILTER.Text}%'");
+            }
             if (!string.IsNullOrEmpty(PRODUCT_OWNER_FILTER.Text))
             {
                 Conditions.Add($"`PRODUCT_OWNER` LIKE '%{PRODUCT_OWNER_FILTER.Text}%'");
@@ -494,7 +499,7 @@ namespace PROJECT
             }
             if (!string.IsNullOrEmpty(TESTER_ID_FILTER.Text))
             {
-                Conditions.Add($"`TESTER_ID` LIKE '%{TESTER_ID_FILTER}%'");
+                Conditions.Add($"`TESTER_ID` LIKE '%{TESTER_ID_FILTER.Text}%'");
             }
             if (!string.IsNullOrEmpty(TEST_NUMBER_SEARCH.Text))
             {
@@ -514,7 +519,10 @@ namespace PROJECT
             }
             if (!string.IsNullOrEmpty(STATUS_FILTER.Text))
             {
-                Conditions.Add($"`STATUS` LIKE '%{STATUS_FILTER.Text}%'");
+                if (STATUS_FILTER.Text == "CLOSED")
+                    Conditions.Add($"`STATUS` = 'VALID'");
+                else
+                    Conditions.Add($"`STATUS` = '{STATUS_FILTER.Text}'");
             }
             if (!string.IsNullOrWhiteSpace(FROM_DATE.Text))
             {

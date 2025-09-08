@@ -261,7 +261,7 @@ namespace PROJECT
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LOGIN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "VERSION 1.0.5";
+            this.Text = "VERSION 1.0.6";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit);
             this.Load += new System.EventHandler(this.LOGIN_Load);
             this.groupBox1.ResumeLayout(false);

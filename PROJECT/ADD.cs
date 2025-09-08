@@ -16,7 +16,7 @@ namespace PROJECT
         MySqlCommand command;
         long FileSize;
         byte[] Data;
-        public string tester_platform, FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption, 
+        public string FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption, 
                       hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "",Stage_Temp,failure,BIN;
 
         readonly MailMessage mail = new MailMessage();
@@ -114,19 +114,19 @@ namespace PROJECT
 
                 if (SUB_FACTORY.Text == "BMS")
                 {
-                    //mail.To.Add("Florano.Rani@analog.com");
+                    
                     foreach (string Email in Connection.BMS_Emails)
                         mail.To.Add(Email);
                 }
                 else if (SUB_FACTORY.Text == "LTX")
                 {
-                    //mail.To.Add("RonDexter.Ramos@analog.com");
+                    
                     foreach (string Email in Connection.LTX_Emails)
                         mail.To.Add(Email);
                 }
                 else if (SUB_FACTORY.Text == "NBMS/NI/ETS88")
                 {
-                    //mail.To.Add("Cyrus.Reodique@analog.com");
+                    
                     foreach (string Email in Connection.NbmsNIETS88_Emails)
                         mail.To.Add(Email);
                 }
@@ -143,12 +143,12 @@ namespace PROJECT
 
                 mail.To.Add("RalphYaz.Diaz@analog.com");
                 mail.To.Add("johnmichael.so@analog.com");
-                //mail.To.Add(additional_email);
+                
                 
                 BIN = "BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text;
                 mail.Subject = string.Join(" | ", LOT_ID.Text, TEST_STAGE.Text + " " + TEMPERATURE.Text, Failure_mode.Text,BIN);
                 
-                string Body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).<br><br>
+                string Body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL.<br><br>
 
 <b>PARTNAME:</b> {0}<br><br>
 
@@ -281,9 +281,9 @@ namespace PROJECT
                     break;
                 case 6: // INSERT NEW TRANSACTION WITH OPEN STATUS
                     command = new MySqlCommand("INSERT INTO `hit`.`details` " +
-                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STAGE`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_PERFORMANCE`,`BOARD_ID`," +
+                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STAGE`,`TESTER_PLATFORM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_PERFORMANCE`,`BOARD_ID`," +
                         "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`POTENTIAL_ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FACTORY`,`SUB_FACTORY`) " +
-                        "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + Stage_Temp + "','" + Test_system.Text + "'," +
+                        "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + Stage_Temp + "','" + Tester_platform.Text + "'," +
                         "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + FAILURE_PERFORMANCE.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
                         "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + FAILURE_ASSESSMENT.Text + "','" + POTENTIAL_ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
                         "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "')");
@@ -297,23 +297,23 @@ namespace PROJECT
                     break;
                 case 9:  // INSERT NEW TRANSACTION WITH CLOSED STATUS
                     command = new MySqlCommand("INSERT INTO `hit`.`details` " +
-                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STAGE`,`TEST_SYSTEM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_PERFORMANCE`,`BOARD_ID`," +
+                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STAGE`,`TESTER_PLATFORM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_PERFORMANCE`,`BOARD_ID`," +
                         "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`POTENTIAL_ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`," +
                         "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER`,`FACTORY`,`SUB_FACTORY`) " +
-                        "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + Stage_Temp + "','" + Test_system.Text + "'," +
+                        "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + Stage_Temp + "','" + Tester_platform.Text + "'," +
                         "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + FAILURE_PERFORMANCE.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
                         "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','FOR APPROVAL','" + POTENTIAL_ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
                         "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','PLEASE REFER TO DISPOSITION'," +
                         "'" + DateTime.Today.ToString("yyyy-MM-dd") + "','" + UserName + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "')");
                     break;
                 case 10: // LOAD TESTER PLATFORMS
-                    command = new MySqlCommand("SELECT `TEST_SYSTEM` FROM `DETAILS` GROUP BY `TEST_SYSTEM`");
+                    command = new MySqlCommand("SELECT `TESTER_PLATFORM` FROM `DETAILS` GROUP BY `TESTER_PLATFORM`");
                     break;
                 case 11: // LOAD PRODUCT OWNER BASED ON SELECTED FACTORY
                     command = new MySqlCommand(string.Format("SELECT `PRODUCT_OWNER` FROM `details` WHERE `FACTORY` = '{0}' and `SUB_FACTORY` = '{1}' GROUP BY `PRODUCT_OWNER` order by `PRODUCT_OWNER`",FACTORY.Text,SUB_FACTORY.Text));
                     break;
                 case 12: // CHECK PRODUCT OWNER BASED ON SELECTED SUB FACTORY
-                    command = new MySqlCommand(string.Format("SELECT if((select count(*) from `details` WHERE `FACTORY` = '{0}' and `SUB_FACTORY` = '{1}' GROUP BY `PRODUCT_OWNER` order by `PRODUCT_OWNER`) = null,'1','0') as `COUNT` FROM `details` group by `COUNT`",FACTORY.Text,SUB_FACTORY.Text));
+                    command = new MySqlCommand(string.Format("SELECT COUNT(*) AS `COUNT` FROM `DETAILS` WHERE `FACTORY` = '{0}' AND `SUB_FACTORY` = '{1}' AND `PRODUCT_OWNER` <> 'NOT APPLICABLE'", FACTORY.Text,SUB_FACTORY.Text));
                     break;
             }
         }
@@ -373,7 +373,7 @@ namespace PROJECT
 
         private void SUB_FACTORY_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string check_count;
+            int check_count;
             try
             {
                 
@@ -386,13 +386,14 @@ namespace PROJECT
                 MySqlDataReader read_data = command.ExecuteReader();
                 read_data.Read();
 
-                check_count = read_data["COUNT"].ToString();
+                check_count = Convert.ToInt32(read_data["COUNT"].ToString());
 
                 Connection.CloseConnection();
 
-                if (check_count == "1")
+                if (check_count >= 1)
                 {
                     Commands(11);
+                    command.Connection = Connection.connect;
                     Connection.OpenConnection();
                     read_data = command.ExecuteReader();
 
@@ -438,6 +439,17 @@ namespace PROJECT
                 Date.Text = WriteTime.ToString("yyyy-MM-dd");
             }
         }
+
+        private void Tester_platform_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ChangeLetterToUpperCase(e);
+        }
+
+        private void PRODUCT_OWNER_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ChangeLetterToUpperCase(e);
+        }
+
         private void Add_first_verif_Click(object sender, EventArgs e)
         {
 
@@ -492,7 +504,7 @@ namespace PROJECT
                     MySqlDataReader read_data = command.ExecuteReader();
                     read_data.Read();
                     TESTER_ID.Text = read_data.GetString("TESTER");
-                    Test_system.Text = read_data.GetString("TESTER_PLATFORM");
+                    Tester_platform.Text = read_data.GetString("TESTER_PLATFORM");
                     Connection.CloseConnection();
 
                     Commands(3);
@@ -722,7 +734,7 @@ namespace PROJECT
 
                 while (Read_data.Read())
                 {
-                    Test_system.Items.Add(Read_data.GetString("TEST_SYSTEM"));
+                    Tester_platform.Items.Add(Read_data.GetString("TESTER_PLATFORM"));
                 }
                 Connection.CloseConnection();
             }
