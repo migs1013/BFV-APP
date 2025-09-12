@@ -1,12 +1,14 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Squirrel;
+using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using Squirrel;
-using System.Text.RegularExpressions;
-using System.Net.Mail;
 using System.Net;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PROJECT
 {
@@ -15,6 +17,8 @@ namespace PROJECT
         MySqlCommand command;
         public int count;
         public string UserName,Approver;
+       
+
         public LOGIN()
         {
             InitializeComponent();
@@ -149,11 +153,29 @@ namespace PROJECT
             Application.Exit();
         }
 
-        private void UPDATE_BTN_Click(object sender, EventArgs e)
+        private async void UPDATE_BTN_Click(object sender, EventArgs e)
         {
-            CheckForUpdates();
-            MessageBox.Show("THIS APP WILL CLOSED, WAIT FOR A FEW SECOND AND OPEN IT AGAIN.");
-            this.Close();
+            progressBar1.Visible = true;
+            progressBar1.Value = 0;
+
+            var progress = new Progress<int>(value =>
+            {
+                progressBar1.Value = value;
+            });
+
+            await SaveDataAsync(progress);
+
+            progressBar1.Visible = false;
+            MessageBox.Show("Save complete!");
+        }
+
+        private async Task SaveDataAsync(IProgress<int> progress)
+        {
+            for (int i = 0; i <= 10; i += 1)
+            {
+                await Task.Delay(1000);
+                progress.Report(i);  // Report % complete
+            }
         }
 
         private async void CheckForUpdates()

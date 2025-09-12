@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Data;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using Squirrel;
-using System.Reflection;
 
 namespace PROJECT
 {

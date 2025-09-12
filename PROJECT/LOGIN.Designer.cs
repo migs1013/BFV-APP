@@ -47,6 +47,7 @@ namespace PROJECT
             this.UPDATE_BTN = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +59,7 @@ namespace PROJECT
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(9, 79);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 16);
+            this.label1.Size = new System.Drawing.Size(92, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "USERNAME";
             // 
@@ -70,7 +71,7 @@ namespace PROJECT
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(9, 120);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 16);
+            this.label2.Size = new System.Drawing.Size(94, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "PASSWORD";
             // 
@@ -110,6 +111,7 @@ namespace PROJECT
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.progressBar1);
             this.groupBox1.Controls.Add(this.ALERT);
             this.groupBox1.Controls.Add(this.REG_CONFIRM);
             this.groupBox1.Controls.Add(this.REG_PASS);
@@ -166,7 +168,7 @@ namespace PROJECT
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(17, 100);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 16);
+            this.label5.Size = new System.Drawing.Size(166, 16);
             this.label5.TabIndex = 3;
             this.label5.Text = "CONFIRM PASSWORD";
             // 
@@ -175,7 +177,7 @@ namespace PROJECT
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(17, 72);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 16);
+            this.label4.Size = new System.Drawing.Size(94, 16);
             this.label4.TabIndex = 2;
             this.label4.Text = "PASSWORD";
             // 
@@ -184,7 +186,7 @@ namespace PROJECT
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(17, 44);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 16);
+            this.label3.Size = new System.Drawing.Size(92, 16);
             this.label3.TabIndex = 1;
             this.label3.Text = "USERNAME";
             // 
@@ -211,7 +213,6 @@ namespace PROJECT
             this.UPDATE_BTN.TabIndex = 6;
             this.UPDATE_BTN.Text = "UPDATE APP";
             this.UPDATE_BTN.UseVisualStyleBackColor = false;
-            this.UPDATE_BTN.Visible = false;
             this.UPDATE_BTN.Click += new System.EventHandler(this.UPDATE_BTN_Click);
             // 
             // label6
@@ -222,7 +223,7 @@ namespace PROJECT
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(128, 43);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 16);
+            this.label6.Size = new System.Drawing.Size(52, 16);
             this.label6.TabIndex = 7;
             this.label6.Text = "LOGIN";
             // 
@@ -238,6 +239,15 @@ namespace PROJECT
             this.button2.Text = "EXIT";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(196, 125);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 8;
+            this.progressBar1.Visible = false;
             // 
             // LOGIN
             // 
@@ -261,7 +271,7 @@ namespace PROJECT
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LOGIN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "VERSION 1.0.6";
+            this.Text = "VERSION 1.0.7";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit);
             this.Load += new System.EventHandler(this.LOGIN_Load);
             this.groupBox1.ResumeLayout(false);
@@ -290,5 +300,6 @@ namespace PROJECT
         private System.Windows.Forms.Label ALERT;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

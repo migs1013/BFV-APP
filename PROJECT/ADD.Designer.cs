@@ -94,6 +94,8 @@
             this.POTENTIAL_ROOTCAUSE = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.PRODUCT_OWNER = new System.Windows.Forms.ComboBox();
+            this.SAVING = new System.Windows.Forms.ProgressBar();
+            this.SAVING_TEXT = new System.Windows.Forms.Label();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -717,6 +719,7 @@
             this.BIN_NUMBER.Name = "BIN_NUMBER";
             this.BIN_NUMBER.Size = new System.Drawing.Size(185, 21);
             this.BIN_NUMBER.TabIndex = 12;
+            this.BIN_NUMBER.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BIN_NUMBER_KeyPress);
             // 
             // label11
             // 
@@ -752,6 +755,7 @@
             this.TEST_NUMBER.Name = "TEST_NUMBER";
             this.TEST_NUMBER.Size = new System.Drawing.Size(185, 21);
             this.TEST_NUMBER.TabIndex = 13;
+            this.TEST_NUMBER.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TEST_NUMBER_KeyPress);
             // 
             // TEST_STAGE
             // 
@@ -884,6 +888,28 @@
             this.PRODUCT_OWNER.TabIndex = 94;
             this.PRODUCT_OWNER.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PRODUCT_OWNER_KeyPress);
             // 
+            // SAVING
+            // 
+            this.SAVING.Location = new System.Drawing.Point(233, 536);
+            this.SAVING.Name = "SAVING";
+            this.SAVING.Size = new System.Drawing.Size(100, 23);
+            this.SAVING.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.SAVING.TabIndex = 95;
+            this.SAVING.Visible = false;
+            // 
+            // SAVING_TEXT
+            // 
+            this.SAVING_TEXT.AutoSize = true;
+            this.SAVING_TEXT.BackColor = System.Drawing.Color.Transparent;
+            this.SAVING_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SAVING_TEXT.ForeColor = System.Drawing.Color.Black;
+            this.SAVING_TEXT.Location = new System.Drawing.Point(11, 540);
+            this.SAVING_TEXT.Name = "SAVING_TEXT";
+            this.SAVING_TEXT.Size = new System.Drawing.Size(216, 19);
+            this.SAVING_TEXT.TabIndex = 96;
+            this.SAVING_TEXT.Text = "SAVING DATA. PLEASE WAIT";
+            this.SAVING_TEXT.Visible = false;
+            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -892,6 +918,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(989, 581);
+            this.Controls.Add(this.SAVING_TEXT);
+            this.Controls.Add(this.SAVING);
             this.Controls.Add(this.PRODUCT_OWNER);
             this.Controls.Add(this.POTENTIAL_ROOTCAUSE);
             this.Controls.Add(this.label20);
@@ -955,60 +983,62 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button ADD_FILE1;
-        private System.Windows.Forms.LinkLabel first_verif_link;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox Problem;
         private System.Windows.Forms.GroupBox First_box;
-        private System.Windows.Forms.ComboBox HANDLER_ID;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox Failure_mode;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         public System.Windows.Forms.TextBox PART_NAME;
         public System.Windows.Forms.TextBox LOT_ID;
-        private System.Windows.Forms.ComboBox BOARD_ID;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label FirstDate;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label ADD2;
         private System.Windows.Forms.Label ADD3;
         private System.Windows.Forms.Label ADD4;
-        private System.Windows.Forms.LinkLabel SECOND_DLOG;
-        private System.Windows.Forms.LinkLabel THIRD_DLOG;
-        private System.Windows.Forms.LinkLabel FOURTH_DLOG;
         private System.Windows.Forms.Label USERNAME;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox Action;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox TEST_NAME;
-        private System.Windows.Forms.TextBox VSPEC;
-        private System.Windows.Forms.TextBox TESTER_ID;
-        private System.Windows.Forms.ComboBox BIN_NUMBER;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox FAILURE_ASSESSMENT;
-        private System.Windows.Forms.ComboBox TEST_NUMBER;
-        private System.Windows.Forms.ComboBox FACTORY;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox TEST_STAGE;
         private System.Windows.Forms.Button ADD_FILE2;
         private System.Windows.Forms.Button ADD_FILE4;
         private System.Windows.Forms.Button ADD_FILE3;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox Tester_platform;
-        private System.Windows.Forms.ComboBox SUB_FACTORY;
         private System.Windows.Forms.Label SUB_FACTORY_TEXT;
-        private System.Windows.Forms.TextBox TEMPERATURE;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox FAILURE_PERFORMANCE;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox POTENTIAL_ROOTCAUSE;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.ComboBox PRODUCT_OWNER;
+        private System.Windows.Forms.ProgressBar SAVING;
+        private System.Windows.Forms.Label SAVING_TEXT;
+        public System.Windows.Forms.LinkLabel first_verif_link;
+        public System.Windows.Forms.TextBox Problem;
+        public System.Windows.Forms.ComboBox HANDLER_ID;
+        public System.Windows.Forms.ComboBox Failure_mode;
+        public System.Windows.Forms.ComboBox BOARD_ID;
+        public System.Windows.Forms.LinkLabel SECOND_DLOG;
+        public System.Windows.Forms.LinkLabel THIRD_DLOG;
+        public System.Windows.Forms.LinkLabel FOURTH_DLOG;
+        public System.Windows.Forms.TextBox Action;
+        public System.Windows.Forms.TextBox TEST_NAME;
+        public System.Windows.Forms.TextBox VSPEC;
+        public System.Windows.Forms.TextBox TESTER_ID;
+        public System.Windows.Forms.ComboBox BIN_NUMBER;
+        public System.Windows.Forms.ComboBox FAILURE_ASSESSMENT;
+        public System.Windows.Forms.ComboBox TEST_NUMBER;
+        public System.Windows.Forms.ComboBox FACTORY;
+        public System.Windows.Forms.ComboBox TEST_STAGE;
+        public System.Windows.Forms.ComboBox Tester_platform;
+        public System.Windows.Forms.ComboBox SUB_FACTORY;
+        public System.Windows.Forms.TextBox TEMPERATURE;
+        public System.Windows.Forms.ComboBox FAILURE_PERFORMANCE;
+        public System.Windows.Forms.ComboBox POTENTIAL_ROOTCAUSE;
+        public System.Windows.Forms.ComboBox PRODUCT_OWNER;
+        public System.Windows.Forms.Label FirstDate;
     }
 }

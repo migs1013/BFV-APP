@@ -1,12 +1,14 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows.Forms;
-using System.IO;
-using MySql.Data.MySqlClient;
-using System.Text.RegularExpressions;
-using System.Net.Mail;
-using System.Net;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
 
 
 namespace PROJECT
@@ -16,7 +18,7 @@ namespace PROJECT
         MySqlCommand command;
         long FileSize;
         byte[] Data;
-        public string FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption, 
+        public string FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption,subject,body, 
                       hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "",Stage_Temp,failure,BIN;
 
         readonly MailMessage mail = new MailMessage();
@@ -88,67 +90,109 @@ namespace PROJECT
         {
             Commands(InputCommand);
             command.Connection = Connection.connect;
-            if (Connection.OpenConnection())
-            {
-                try
-                {
-                    command.ExecuteNonQuery();
-                }
-                catch (MySqlException m)
-                {
-                    MessageBox.Show(m.ToString());
-                    Connection.CloseConnection();
-                    return;
-                }
-                Connection.CloseConnection();
-            }
+
+            Connection.OpenConnection();
+
+            command.ExecuteNonQuery();
+
+
+            Connection.CloseConnection();
+
         }
-        private void Email_send()
+
+
+        private bool Email_send()
         {
 
-            if (FAILURE_ASSESSMENT.SelectedIndex == 0) failure = FAILURE_ASSESSMENT.Text + " (FOR APPROVAL)";
-            else failure = FAILURE_ASSESSMENT.Text;
-            try
+            mail.From = new MailAddress("HIT.APP@analog.com");
+            
+            //mail.To.Add("RalphYaz.Diaz@analog.com");
+            
+            //mail.To.Add(Email);
+            mail.To.Add("johnmichael.so@analog.com");
+
+            mail.Subject = subject;
+
+            mail.IsBodyHtml = true;
+
+            mail.Body = body;
+
+            foreach (string file in Files)
             {
-                mail.From = new MailAddress("HIT.APP@analog.com");
+                Attachment AttachFile = new Attachment(file);
+                mail.Attachments.Add(AttachFile);
+            }
 
-                if (SUB_FACTORY.Text == "BMS")
-                {
-                    
-                    foreach (string Email in Connection.BMS_Emails)
-                        mail.To.Add(Email);
-                }
-                else if (SUB_FACTORY.Text == "LTX")
-                {
-                    
-                    foreach (string Email in Connection.LTX_Emails)
-                        mail.To.Add(Email);
-                }
-                else if (SUB_FACTORY.Text == "NBMS/NI/ETS88")
-                {
-                    
-                    foreach (string Email in Connection.NbmsNIETS88_Emails)
-                        mail.To.Add(Email);
-                }
-                else if (SUB_FACTORY.Text == "NBMS")
-                {
-                    foreach (string Email in Connection.Nbms_B1_Emails)
-                        mail.To.Add(Email);
-                }
-                else
-                {
-                    foreach (string Email in Connection.Legacy_B1_Emails)
-                        mail.To.Add(Email);
-                }
+            // Configure SMTP client for Outlook
+            SmtpClient smtpClient = new SmtpClient("mail.analog.com", 25);
+            smtpClient.EnableSsl = false;
+            smtpClient.Credentials = new NetworkCredential("HIT.APP@analog.com", "Ana-@og123");
+            smtpClient.Timeout = 10000;
+            smtpClient.Send(mail);
+            return true;
+            //MessageBox.Show("email sent!");
 
-                mail.To.Add("RalphYaz.Diaz@analog.com");
-                mail.To.Add("johnmichael.so@analog.com");
-                
-                
-                BIN = "BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text;
-                mail.Subject = string.Join(" | ", LOT_ID.Text, TEST_STAGE.Text + " " + TEMPERATURE.Text, Failure_mode.Text,BIN);
-                
-                string Body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL.<br><br>
+        }
+        private async void Save_btn_Click(object sender, EventArgs e)
+        {
+            if (!CheckDetails()) return;
+            TEMPERATURE.Text += "C";
+            Stage_Temp = string.Join(" ", TEST_STAGE.Text, TEMPERATURE.Text);
+            DialogResult yes_no = MessageBox.Show(("PLEASE DOUBLE CHECK YOUR DATA,THIS WILL BE SAVE PERMANENTLY. SAVE IT?"), "ATTENTION", MessageBoxButtons.YesNo);
+            switch (yes_no)
+            {
+                case DialogResult.Yes:
+                    try
+                    {
+                        
+                        if (FACTORY.Text != "F1")
+                            SUB_FACTORY.Text = "N/A";
+                        if (FAILURE_ASSESSMENT.SelectedIndex == 1)
+                        {
+                            SendData(6);
+
+                        }
+                        else SendData(9);
+
+                        Commands(1);
+                        command.Connection = Connection.connect;
+                        Connection.OpenConnection();
+
+                        MySqlDataReader read_status = command.ExecuteReader();
+                        read_status.Read();
+
+                        Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT_NUMBER"].ToString());
+
+                        Connection.CloseConnection();
+
+                        if (dlog1.Contains("\\"))
+                        {
+                            DatalogNumber(1); SendData(5);
+                        }
+                        if (dlog2.Contains("\\"))
+                        {
+                            DatalogNumber(2); SendData(5);
+                        }
+                        if (dlog3.Contains("\\"))
+                        {
+                            DatalogNumber(3); SendData(5);
+                        }
+                        if (dlog4.Contains("\\"))
+                        {
+                            DatalogNumber(4); SendData(5);
+                        }
+                        
+                        SAVING.Visible = true;
+                        SAVING_TEXT.Visible = true;
+
+                        if (FAILURE_ASSESSMENT.SelectedIndex == 0) failure = FAILURE_ASSESSMENT.Text + " (FOR APPROVAL)";
+                        else failure = FAILURE_ASSESSMENT.Text;
+
+                        BIN = "BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text;
+
+                        subject = string.Join(" | ", LOT_ID.Text, TEST_STAGE.Text + " " + TEMPERATURE.Text, Failure_mode.Text, BIN);
+
+                        body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL.<br><br>
 
 <b>PARTNAME:</b> {0}<br><br>
 
@@ -173,89 +217,70 @@ namespace PROJECT
 <b>LOGGED BY:</b> {10}<br><br>
 
 (THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN)."
-, PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text, Failure_mode.Text, FAILURE_PERFORMANCE.Text, Problem.Text,Action.Text,POTENTIAL_ROOTCAUSE.Text,failure,UserName);
+, PART_NAME.Text, TESTER_ID.Text, HANDLER_ID.Text, BOARD_ID.Text, Failure_mode.Text, FAILURE_PERFORMANCE.Text, Problem.Text, Action.Text, POTENTIAL_ROOTCAUSE.Text, failure, UserName);
 
-                mail.IsBodyHtml = true;
+                        if (!string.IsNullOrWhiteSpace(dlog1)) Files.Add(dlog1);
+                        if (!string.IsNullOrWhiteSpace(dlog2)) Files.Add(dlog2);
+                        if (!string.IsNullOrWhiteSpace(dlog3)) Files.Add(dlog3);
+                        if (!string.IsNullOrWhiteSpace(dlog4)) Files.Add(dlog4);
+                        /*
+                        if (SUB_FACTORY.Text == "BMS")
+                        {
 
-                mail.Body = Body;
+                            foreach (string Email in Connection.BMS_Emails)
+                                mail.To.Add(Email);
+                        }
+                        else if (SUB_FACTORY.Text == "LTX")
+                        {
 
-                if (!string.IsNullOrWhiteSpace(dlog1)) Files.Add(dlog1);
-                if (!string.IsNullOrWhiteSpace(dlog2)) Files.Add(dlog2);
-                if (!string.IsNullOrWhiteSpace(dlog3)) Files.Add(dlog3);
-                if (!string.IsNullOrWhiteSpace(dlog4)) Files.Add(dlog4);
-                
-                foreach (string file in Files)
-                {
-                    Attachment AttachFile = new Attachment(file);
-                    mail.Attachments.Add(AttachFile);
-                }
+                            foreach (string Email in Connection.LTX_Emails)
+                                mail.To.Add(Email);
+                        }
+                        else if (SUB_FACTORY.Text == "NBMS/NI/ETS88")
+                        {
 
-                // Configure SMTP client for Outlook
-                SmtpClient smtpClient = new SmtpClient("mail.analog.com", 25);
-                smtpClient.EnableSsl = false;
-                smtpClient.Credentials = new NetworkCredential("HIT.APP@analog.com", "Ana-@og123");
-                smtpClient.Send(mail);
+                            foreach (string Email in Connection.NbmsNIETS88_Emails)
+                                mail.To.Add(Email);
+                        }
+                        else if (SUB_FACTORY.Text == "NBMS")
+                        {
+                            foreach (string Email in Connection.Nbms_B1_Emails)
+                                mail.To.Add(Email);
+                        }
+                        else
+                        {
+                            foreach (string Email in Connection.Legacy_B1_Emails)
+                                mail.To.Add(Email);
+                        }
+                        */
+                        bool email_sent = await Task.Run(() => Email_send());
 
-                //MessageBox.Show("email sent!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error sending email: " + ex.Message);
-            }
-        }
-        private void Save_btn_Click(object sender, EventArgs e)
-        {
-            if (!CheckDetails()) return;
-            TEMPERATURE.Text += "C";
-            Stage_Temp = string.Join(" ", TEST_STAGE.Text, TEMPERATURE.Text);
-            DialogResult yes_no = MessageBox.Show(("PLEASE DOUBLE CHECK YOUR DATA,THIS WILL BE SAVE PERMANENTLY. SAVE IT?"), "ATTENTION", MessageBoxButtons.YesNo);
-            switch (yes_no)
-            {
-                case DialogResult.Yes:
-                    if (FACTORY.Text != "F1")
-                        SUB_FACTORY.Text = "N/A";
-                    if (FAILURE_ASSESSMENT.SelectedIndex == 1)
-                    {
-                        SendData(6);
-                    }
-                    else SendData(9);
-                     
-                    Commands(1);
-                    command.Connection = Connection.connect;
-                    if (Connection.OpenConnection())
-                    {
-                        MySqlDataReader read_status = command.ExecuteReader();
-                        read_status.Read();
+                        if (email_sent)
+                        {
+                            MessageBox.Show("FILE SAVED SUCCESSFULLY");
+                        }
 
-                        Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT_NUMBER"].ToString());
                     }
-                    Connection.CloseConnection();
-                    if (dlog1.Contains("\\"))
+                    catch (MySqlException ex)
                     {
-                        DatalogNumber(1); SendData(5);
+                        MessageBox.Show(ex.ToString());
                     }
-                    if (dlog2.Contains("\\"))
+                    finally
                     {
-                        DatalogNumber(2); SendData(5);
+                        SAVING.Visible = false;
+                        SAVING_TEXT.Visible = false;
+                        Save_btn.Enabled = true;
+                        Connection.ClearAll(this);
+                        PRODUCT_OWNER.Text = "";
+                        Connection.CloseConnection();
                     }
-                    if (dlog3.Contains("\\"))
-                    {
-                        DatalogNumber(3); SendData(5);
-                    }
-                    if (dlog4.Contains("\\"))
-                    {
-                        DatalogNumber(4); SendData(5);
-                    }
-                    
-                    Email_send();
-                    MessageBox.Show("FILE SAVED SUCCESSFULLY");
-                    Clear_all();
-                    PRODUCT_OWNER.Text = "";
                     break;
                 case DialogResult.No:
                     return;
             }
         }
+
+        
         private void Commands(int Pick)
         {
             switch (Pick)
@@ -440,6 +465,16 @@ namespace PROJECT
             }
         }
 
+        private void BIN_NUMBER_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ChangeLetterToUpperCase(e);
+        }
+
+        private void TEST_NUMBER_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ChangeLetterToUpperCase(e);
+        }
+
         private void Tester_platform_KeyPress(object sender, KeyPressEventArgs e)
         {
             ChangeLetterToUpperCase(e);
@@ -613,7 +648,7 @@ namespace PROJECT
         {
             this.Hide();
         }
-
+        
         private void Clear_all()
         {
             foreach (Control c in this.Controls)
