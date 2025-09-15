@@ -1,13 +1,18 @@
 ﻿using MySql.Data.MySqlClient;
-using System.Windows.Forms;
-using System.Threading.Tasks;
+using System.Net;
+using System.Net.Mail;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Web.UI.DataVisualization.Charting;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace PROJECT
 {
     class Connection
     {
+        public static readonly MailMessage mail = new MailMessage();
+
         public static string[] F2_Sub_Factories = { "BMS", "LTX", "NBMS/NI/ETS88" };
         public static string[] F3_Sub_Factories = { "NBMS", "HPCA", "HPCC", "HPCS", "INT", "COM", "STR", "RFC", "MPD", "PRB", "WLT", "STD", "MIC_WIL", "MIC_SC", "AERO" };
 
@@ -16,6 +21,7 @@ namespace PROJECT
         public static string[] NbmsNIETS88_Emails = { "ADPhilsLinearBMSTPETech@analog.com", "MayanaJoy.Duran@analog.com", "ADPhils_Linear_nBMSB3_ETS88_NI@analog.com" };
         public static string[] Nbms_B1_Emails = { "Nadinejean.Ebarle@analog.com", "ADPhils_Linear_PE_ETS_NonBMS@analog.com", "NMBS_PE_TECH@analog.com" };
         public static string[] Legacy_B1_Emails = { "COM_INT_PROD-TECH@analog.com", "Strip_ProductTechnicians@analog.com", "Joefer.Joven@analog.com" };
+        public static string[] HPC = { "HPCC_PROD-TECH@analog.com", "Dexter.Guevarra@analog.com" };
 
         // LOCAL HOST
         public static MySqlConnection connect = new MySqlConnection("server=localhost;user id=root;password=onemigso1013;database=hit;persistsecurityinfo=True");
@@ -70,7 +76,9 @@ namespace PROJECT
                     case TextBox tb:
                         tb.Clear(); break;
                     case ComboBox cb:
-                        cb.SelectedIndex = -1; break;
+                        cb.SelectedIndex = -1;
+                        cb.Text = "";
+                        break;
                     case LinkLabel lb:
                         lb.Text = null; break;
                     case Label label:
@@ -86,6 +94,5 @@ namespace PROJECT
                 }
             }
         }
-        
     }
 }

@@ -16,13 +16,12 @@ namespace PROJECT
         byte[] Data;
         public string DATALOG,PROOF_FILE_LINK;
         public int Endorsement_number { get; set; }
-        public string DLOG1 ,DLOG2 ,DLOG3 ,DLOG4, OPEN_COUNT,CLOSED_COUNT,STATUS_OPTION,DATE_ENCOUNTER,DATE_DIFFERENCE,Add_File_Proof,New_File_Link,approver,rootcause_comment,dispo;
+        public static string DLOG1 ,DLOG2 ,DLOG3 ,DLOG4, OPEN_COUNT,CLOSED_COUNT,STATUS_OPTION,DATE_ENCOUNTER,DATE_DIFFERENCE,Add_File_Proof,New_File_Link,approver,rootcause_comment,dispo,body,subject;
         public string UserName { get; set; }
         public string Approver { get; set; }
         private DateTime Date = new DateTime();
         private DateTime Dispo_Date = new DateTime();
         private DateTime Date_Approved = new DateTime();
-        readonly MailMessage mail = new MailMessage();
 
         public BOARD_DETAILS(string number,String User,string Approver_access)
         {
@@ -152,77 +151,33 @@ namespace PROJECT
 
         private void Update_Email_send()
         {
-            try
+
+            if (string.IsNullOrEmpty(PO_ROOTCAUSE.Text)) rootcause_comment = ROOTCAUSE.Text;
+            else rootcause_comment = PO_ROOTCAUSE.Text;
+
+            if (PO_COMMENT.Text == "PLEASE REFER TO DISPOSITION")
+                dispo = ACTION.Text;
+            else
+                dispo = PO_COMMENT.Text;
+
+            if (UPDATE.Text == "APPROVE")
             {
+                approver = "<b>----------------------------------------APPROVAL UPDATE----------------------------------------------------</b><br><br>" +
+                    "<b>FAILURE ASSESSMENT:</b> VALID<br><br>" +
+                    "<b>REVIEWED AND APPROVED BY:</b> " + APPROVER.Text + "<br><br>" +
+                    "<b>DATE:</b> " + DATE_APPROVED.Text + "<br><br>";
 
-                if (string.IsNullOrEmpty(PO_ROOTCAUSE.Text)) rootcause_comment = ROOTCAUSE.Text;
-                else rootcause_comment = PO_ROOTCAUSE.Text;
+                subject = string.Join(" | ", "FAILURE ASSESSMENT APPROVED", LOT_ID.Text, TEST_STAGE.Text, FAILURE_MODE.Text, "BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text);
 
-                mail.From = new MailAddress("HIT.APP@analog.com");
+            }
+            else
+            {
+                approver = "";
+                subject = string.Join(" | ", "FOR APPROVAL", LOT_ID.Text, TEST_STAGE.Text, FAILURE_MODE.Text, "BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text);
 
-                if (SUB_FACTORY.Text == "BMS")
-                {
-                    
-                    foreach (string Email in Connection.BMS_Emails)
-                        mail.To.Add(Email);
-                }
-                else if (SUB_FACTORY.Text == "LTX")
-                {
-                    
-                    foreach (string Email in Connection.LTX_Emails)
-                        mail.To.Add(Email);
-                }
-                else if (SUB_FACTORY.Text == "NBMS/NI/ETS88")
-                {
-                   
-                    foreach (string Email in Connection.NbmsNIETS88_Emails)
-                        mail.To.Add(Email);
-                }
-                else if (SUB_FACTORY.Text == "NBMS")
-                {
-                    foreach (string Email in Connection.Nbms_B1_Emails)
-                        mail.To.Add(Email);
-                }
-                else
-                {
-                    foreach (string Email in Connection.Legacy_B1_Emails)
-                        mail.To.Add(Email);
-                }
+            }
 
-                mail.To.Add("RalphYaz.Diaz@analog.com");
-                mail.To.Add("johnmichael.so@analog.com");
-
-                if (PO_COMMENT.Text == "PLEASE REFER TO DISPOSITION")
-                    dispo = ACTION.Text;
-                else
-                    dispo = PO_COMMENT.Text;
-
-                if (UPDATE.Text == "APPROVE")
-                {
-
-
-                    approver = "<b>----------------------------------------APPROVAL UPDATE----------------------------------------------------</b><br><br>" +
-                        "<b>FAILURE ASSESSMENT:</b> VALID<br><br>" +
-                        "<b>REVIEWED AND APPROVED BY:</b> " + APPROVER.Text + "<br><br>" +
-                        "<b>DATE:</b> " + DATE_APPROVED.Text + "<br><br>";
-
-
-
-                    mail.Subject = string.Join(" | ", "FAILURE ASSESSMENT APPROVED", LOT_ID.Text, TEST_STAGE.Text, FAILURE_MODE.Text, "BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text);
- 
-                }
-                else
-                {
-                    approver = "";
-                    mail.Subject = string.Join(" | ", "FOR APPROVAL", LOT_ID.Text, TEST_STAGE.Text, FAILURE_MODE.Text, "BIN " + BIN_NUMBER.Text + " TP#" + TEST_NUMBER.Text + " " + TEST_NAME.Text);
-
-                    Attachment AttachFile = new Attachment(New_File_Link);
-                    mail.Attachments.Add(AttachFile);
-                }
-
-                //mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
-
-                string Body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).<br><br>
+            body = String.Format(@"(THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).<br><br>
 
 <b>----------------------------------------PROBLEM ENCOUNTERED----------------------------------------------------</b><br><br>
 
@@ -259,24 +214,22 @@ namespace PROJECT
 {13}
 
 (THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).",
-PART_NAME.Text,TESTER_ID.Text,HANDLER_ID.Text,BOARD_ID.Text, FAILURE_MODE.Text, FAILURE_PERFORMANCE.Text, 
-PROBLEM.Text,UserName,DATE_VERIFIED.Text,dispo,rootcause_comment,DISPO_USER.Text,DISPO_DATE.Text,approver);
+PART_NAME.Text, TESTER_ID.Text, HANDLER_ID.Text, BOARD_ID.Text, FAILURE_MODE.Text, FAILURE_PERFORMANCE.Text,
+PROBLEM.Text, UserName, DATE_VERIFIED.Text, dispo, rootcause_comment, DISPO_USER.Text, DISPO_DATE.Text, approver);
 
-                mail.IsBodyHtml = true;
-
-                mail.Body = Body;
-
-                // Configure SMTP client for Outlook
-                SmtpClient smtpClient = new SmtpClient("mail.analog.com", 25);
-                smtpClient.EnableSsl = false;
-                smtpClient.Credentials = new NetworkCredential("HIT.APP@analog.com", "Ana-@og123");
-                smtpClient.Send(mail);
-                
-            }
-            catch (Exception ex)
+            if (UPDATE.Text == "APPROVE")
             {
-                MessageBox.Show("Error sending email: " + ex.Message);
+
+                SavingWindow save = new SavingWindow(2,SUB_FACTORY.Text);
+                save.ShowDialog();
             }
+            else
+            {
+
+                SavingWindow save = new SavingWindow(3, SUB_FACTORY.Text);
+                save.ShowDialog();
+            }
+
         }
 
         private void Load_Boards(object sender, EventArgs e)
@@ -366,14 +319,13 @@ PROBLEM.Text,UserName,DATE_VERIFIED.Text,dispo,rootcause_comment,DISPO_USER.Text
                             }
                             Connection.CloseConnection();
                             Update_Email_send();
-                            MessageBox.Show("APPROVED SUCCESSFULLY, PLEASE REFRESH DATA");
                         }
                         catch (Exception Error)
                         {
                             MessageBox.Show(Error.ToString());
                             Connection.CloseConnection();
+                            this.Close();
                         }
-                        this.Hide();
                         break;
                     case DialogResult.No:
                         break;
@@ -406,35 +358,33 @@ PROBLEM.Text,UserName,DATE_VERIFIED.Text,dispo,rootcause_comment,DISPO_USER.Text
                                         Connection.CloseConnection();
                                     }
                                     Update_Email_send();
-                                    MessageBox.Show("UPDATED SUCCESSFULLY, PLEASE REFRESH DATA");
                                 }
                                 catch (Exception Error)
                                 {
                                     MessageBox.Show(Error.ToString());
                                     Connection.CloseConnection();
+                                    this.Close();
                                 }
-                                this.Hide();
                                 break;
                             case DialogResult.No:
                                 try
                                 {
                                     Commands(4);
-                                    
+
                                     command.Connection = Connection.connect;
                                     if (Connection.OpenConnection())
                                     {
                                         command.ExecuteNonQuery();
                                     }
-                                    Update_Email_send();
-                                    MessageBox.Show("UPDATED SUCCESSFULLY, PLEASE REFRESH DATA");
                                     Connection.CloseConnection();
+                                    Update_Email_send();
                                 }
                                 catch (Exception Error)
                                 {
                                     MessageBox.Show(Error.ToString());
                                     Connection.CloseConnection();
+                                    this.Close();
                                 }
-                                this.Hide();
                                 break;
                         }
                         break;

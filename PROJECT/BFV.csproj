@@ -154,6 +154,12 @@
     <Compile Include="LOGIN.Designer.cs">
       <DependentUpon>LOGIN.cs</DependentUpon>
     </Compile>
+    <Compile Include="SavingWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SavingWindow.Designer.cs">
+      <DependentUpon>SavingWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="SEARCH_BOARD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SavingWindow.resx">
+      <DependentUpon>SavingWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SEARCH_BOARD.resx">
       <DependentUpon>SEARCH_BOARD.cs</DependentUpon>

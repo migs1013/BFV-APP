@@ -94,8 +94,6 @@
             this.POTENTIAL_ROOTCAUSE = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.PRODUCT_OWNER = new System.Windows.Forms.ComboBox();
-            this.SAVING = new System.Windows.Forms.ProgressBar();
-            this.SAVING_TEXT = new System.Windows.Forms.Label();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -888,28 +886,6 @@
             this.PRODUCT_OWNER.TabIndex = 94;
             this.PRODUCT_OWNER.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PRODUCT_OWNER_KeyPress);
             // 
-            // SAVING
-            // 
-            this.SAVING.Location = new System.Drawing.Point(233, 536);
-            this.SAVING.Name = "SAVING";
-            this.SAVING.Size = new System.Drawing.Size(100, 23);
-            this.SAVING.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.SAVING.TabIndex = 95;
-            this.SAVING.Visible = false;
-            // 
-            // SAVING_TEXT
-            // 
-            this.SAVING_TEXT.AutoSize = true;
-            this.SAVING_TEXT.BackColor = System.Drawing.Color.Transparent;
-            this.SAVING_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SAVING_TEXT.ForeColor = System.Drawing.Color.Black;
-            this.SAVING_TEXT.Location = new System.Drawing.Point(11, 540);
-            this.SAVING_TEXT.Name = "SAVING_TEXT";
-            this.SAVING_TEXT.Size = new System.Drawing.Size(216, 19);
-            this.SAVING_TEXT.TabIndex = 96;
-            this.SAVING_TEXT.Text = "SAVING DATA. PLEASE WAIT";
-            this.SAVING_TEXT.Visible = false;
-            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -918,8 +894,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(989, 581);
-            this.Controls.Add(this.SAVING_TEXT);
-            this.Controls.Add(this.SAVING);
             this.Controls.Add(this.PRODUCT_OWNER);
             this.Controls.Add(this.POTENTIAL_ROOTCAUSE);
             this.Controls.Add(this.label20);
@@ -1014,8 +988,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.ProgressBar SAVING;
-        private System.Windows.Forms.Label SAVING_TEXT;
         public System.Windows.Forms.LinkLabel first_verif_link;
         public System.Windows.Forms.TextBox Problem;
         public System.Windows.Forms.ComboBox HANDLER_ID;

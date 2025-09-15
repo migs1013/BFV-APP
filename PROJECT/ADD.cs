@@ -18,16 +18,15 @@ namespace PROJECT
         MySqlCommand command;
         long FileSize;
         byte[] Data;
-        public string FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption,subject,body, 
+        public static string FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption,subject,body, 
                       hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "",Stage_Temp,failure,BIN;
-
-        readonly MailMessage mail = new MailMessage();
 
         public int Endorsement_Number,FileNameLength, WordCount = 0;
         public string UserName { get; set; }
         public int Device_option { get; set; }
-        public List<string> Files = new List<string>();
+        public static List<string> Files = new List<string>();
         public DateTime WriteTime = new DateTime();
+
         public ADD(int Option,string User)
         {
             InitializeComponent();
@@ -100,40 +99,7 @@ namespace PROJECT
 
         }
 
-
-        private bool Email_send()
-        {
-
-            mail.From = new MailAddress("HIT.APP@analog.com");
-            
-            //mail.To.Add("RalphYaz.Diaz@analog.com");
-            
-            //mail.To.Add(Email);
-            mail.To.Add("johnmichael.so@analog.com");
-
-            mail.Subject = subject;
-
-            mail.IsBodyHtml = true;
-
-            mail.Body = body;
-
-            foreach (string file in Files)
-            {
-                Attachment AttachFile = new Attachment(file);
-                mail.Attachments.Add(AttachFile);
-            }
-
-            // Configure SMTP client for Outlook
-            SmtpClient smtpClient = new SmtpClient("mail.analog.com", 25);
-            smtpClient.EnableSsl = false;
-            smtpClient.Credentials = new NetworkCredential("HIT.APP@analog.com", "Ana-@og123");
-            smtpClient.Timeout = 10000;
-            smtpClient.Send(mail);
-            return true;
-            //MessageBox.Show("email sent!");
-
-        }
-        private async void Save_btn_Click(object sender, EventArgs e)
+        private void Save_btn_Click(object sender, EventArgs e)
         {
             if (!CheckDetails()) return;
             TEMPERATURE.Text += "C";
@@ -168,22 +134,23 @@ namespace PROJECT
                         if (dlog1.Contains("\\"))
                         {
                             DatalogNumber(1); SendData(5);
+                            Files.Add(dlog1);
                         }
                         if (dlog2.Contains("\\"))
                         {
                             DatalogNumber(2); SendData(5);
+                            Files.Add(dlog2);
                         }
                         if (dlog3.Contains("\\"))
                         {
                             DatalogNumber(3); SendData(5);
+                            Files.Add(dlog3);
                         }
                         if (dlog4.Contains("\\"))
                         {
                             DatalogNumber(4); SendData(5);
+                            Files.Add(dlog4);
                         }
-                        
-                        SAVING.Visible = true;
-                        SAVING_TEXT.Visible = true;
 
                         if (FAILURE_ASSESSMENT.SelectedIndex == 0) failure = FAILURE_ASSESSMENT.Text + " (FOR APPROVAL)";
                         else failure = FAILURE_ASSESSMENT.Text;
@@ -219,46 +186,11 @@ namespace PROJECT
 (THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN)."
 , PART_NAME.Text, TESTER_ID.Text, HANDLER_ID.Text, BOARD_ID.Text, Failure_mode.Text, FAILURE_PERFORMANCE.Text, Problem.Text, Action.Text, POTENTIAL_ROOTCAUSE.Text, failure, UserName);
 
-                        if (!string.IsNullOrWhiteSpace(dlog1)) Files.Add(dlog1);
-                        if (!string.IsNullOrWhiteSpace(dlog2)) Files.Add(dlog2);
-                        if (!string.IsNullOrWhiteSpace(dlog3)) Files.Add(dlog3);
-                        if (!string.IsNullOrWhiteSpace(dlog4)) Files.Add(dlog4);
-                        /*
-                        if (SUB_FACTORY.Text == "BMS")
-                        {
+                        Connection.ClearAll(this);
+                        Connection.CloseConnection();
 
-                            foreach (string Email in Connection.BMS_Emails)
-                                mail.To.Add(Email);
-                        }
-                        else if (SUB_FACTORY.Text == "LTX")
-                        {
-
-                            foreach (string Email in Connection.LTX_Emails)
-                                mail.To.Add(Email);
-                        }
-                        else if (SUB_FACTORY.Text == "NBMS/NI/ETS88")
-                        {
-
-                            foreach (string Email in Connection.NbmsNIETS88_Emails)
-                                mail.To.Add(Email);
-                        }
-                        else if (SUB_FACTORY.Text == "NBMS")
-                        {
-                            foreach (string Email in Connection.Nbms_B1_Emails)
-                                mail.To.Add(Email);
-                        }
-                        else
-                        {
-                            foreach (string Email in Connection.Legacy_B1_Emails)
-                                mail.To.Add(Email);
-                        }
-                        */
-                        bool email_sent = await Task.Run(() => Email_send());
-
-                        if (email_sent)
-                        {
-                            MessageBox.Show("FILE SAVED SUCCESSFULLY");
-                        }
+                        SavingWindow save = new SavingWindow(1,SUB_FACTORY.Text);
+                        save.ShowDialog();
 
                     }
                     catch (MySqlException ex)
@@ -267,11 +199,6 @@ namespace PROJECT
                     }
                     finally
                     {
-                        SAVING.Visible = false;
-                        SAVING_TEXT.Visible = false;
-                        Save_btn.Enabled = true;
-                        Connection.ClearAll(this);
-                        PRODUCT_OWNER.Text = "";
                         Connection.CloseConnection();
                     }
                     break;
@@ -647,61 +574,6 @@ namespace PROJECT
         private void Exit_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-        }
-        
-        private void Clear_all()
-        {
-            foreach (Control c in this.Controls)
-            {
-                if (c is TextBox)
-                {
-                    TextBox textBox = c as TextBox;
-                    textBox.Clear();
-                }
-                else if (c is LinkLabel)
-                {
-                    LinkLabel DlogLink = c as LinkLabel;
-                    DlogLink.Text = null;
-                }
-                else if (c is ComboBox)
-                {
-                    ComboBox comboBox = c as ComboBox;
-                    comboBox.SelectedIndex = -1;
-                    comboBox.Text = "";
-                }
-                else if (c is GroupBox)
-                {
-                    GroupBox groupBox = c as GroupBox;
-                    foreach (Control b in groupBox.Controls)
-                    {
-                        if (b is LinkLabel)
-                        {
-                            LinkLabel link = b as LinkLabel;
-                            link.Text = null;
-                        }
-                        else if (b is TextBox)
-                        {
-                            TextBox textBox = b as TextBox;
-                            textBox.Clear();
-                        }
-                        else if (b is Label)
-                        {
-                            Label label = b as Label;
-                            if (label == FirstDate)
-                            {
-                                label.Text = " ";
-                            }
-                        }
-                        else if (c is ComboBox)
-                        {
-                            ComboBox comboBox = c as ComboBox;
-                            comboBox.SelectedIndex = -1;
-                            comboBox.Text = "";
-                        }
-                        else continue;
-                    }
-                }
-            }
         }
 
         private void OtherDatalog(LinkLabel Link)
