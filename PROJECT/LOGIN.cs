@@ -153,10 +153,39 @@ namespace PROJECT
             Application.Exit();
         }
 
-        private async void UPDATE_BTN_Click(object sender, EventArgs e)
+        private void UPDATE_BTN_Click(object sender, EventArgs e)
         {
-            await CheckForUpdates();
-                 
+            try
+            {
+                SmtpClient smtpClient = new SmtpClient("mail.analog.com", 25)
+                {
+                    EnableSsl = false,
+                    Credentials = new NetworkCredential("HIT.APP@analog.com", "Ana-@og123"),
+                    Timeout = 10000
+                };
+
+                Connection.mail.From = new MailAddress("HIT.APP@analog.com");
+
+                Connection.mail.To.Add("ADPhils_Linear_nBMSB3_ETS88_NI@analog.com");
+                Connection.mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
+                Connection.mail.To.Add("ADPhilsLinearBMSTPE@analog.com");
+
+                Connection.mail.Subject = "SAMPLE";
+
+                Connection.mail.IsBodyHtml = true;
+
+                Connection.mail.Body = "SAMPLE";
+
+                smtpClient.Send(Connection.mail);
+
+                MessageBox.Show("EMAIL SENT");
+            }
+            catch (Exception me )
+            {
+                MessageBox.Show(me.ToString());
+            }
+            //await CheckForUpdates();
+
         }
 
         private async Task CheckForUpdates()

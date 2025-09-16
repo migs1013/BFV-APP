@@ -27,8 +27,8 @@ namespace PROJECT
         }
 
         private async void Send_email()
-        {
-         /*   
+        {   
+            
             if (CheckSubFactory == "BMS")
             {
                 foreach (string Email in Connection.BMS_Emails)
@@ -56,15 +56,30 @@ namespace PROJECT
                 foreach (string Email in Connection.HPC)
                     Connection.mail.To.Add(Email);
             }
-            else
+            else if (CheckSubFactory == "RFC")
             {
-                foreach (string Email in Connection.Legacy_B1_Emails)
+                foreach (string Email in Connection.RFC)
                     Connection.mail.To.Add(Email);
             }
-         */
+            else if (CheckSubFactory == "MPD" || CheckSubFactory == "AUTO" || CheckSubFactory == "AERO" || CheckSubFactory == "MIC_WIL" || CheckSubFactory == "MIC_SC")
+            {
+                foreach (string Email in Connection.MpdAutoAeroMic)
+                    Connection.mail.To.Add(Email);
+            }
+            else if (CheckSubFactory == "INT" || CheckSubFactory == "COM" || CheckSubFactory == "STR")
+            {
+                foreach (string Email in Connection.ComIntStrip)
+                    Connection.mail.To.Add(Email);
+            }
+            else if (CheckSubFactory == "PRA" || CheckSubFactory == "PRD" || CheckSubFactory == "SMRT" || CheckSubFactory == "INS" || CheckSubFactory == "ATE")
+            {
+                foreach (string Email in Connection.SMRT)
+                    Connection.mail.To.Add(Email);
+            }
+
             Connection.mail.From = new MailAddress("HIT.APP@analog.com");
 
-            //Connection.mail.To.Add("RalphYaz.Diaz@analog.com");
+            Connection.mail.To.Add("RalphYaz.Diaz@analog.com");
 
             Connection.mail.To.Add("johnmichael.so@analog.com");
 
@@ -89,7 +104,7 @@ namespace PROJECT
             switch (checkform)
             {
                 case 1:
-
+                   
                     Connection.mail.Subject = ADD.subject;
 
                     Connection.mail.IsBodyHtml = true;

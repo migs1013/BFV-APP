@@ -190,6 +190,7 @@ namespace PROJECT
                         Connection.CloseConnection();
 
                         SavingWindow save = new SavingWindow(1,SUB_FACTORY.Text);
+                        SUB_FACTORY.SelectedIndex = -1;
                         save.ShowDialog();
 
                     }
@@ -525,9 +526,9 @@ namespace PROJECT
                 foreach (string sub_factory in Connection.F2_Sub_Factories)
                     SUB_FACTORY.Items.Add(sub_factory);
             }
-            else if (FACTORY.Text == "F3")
+            else if (FACTORY.Text == "F1")
             {
-                foreach (string sub_factory in Connection.F3_Sub_Factories)
+                foreach (string sub_factory in Connection.F1_Sub_Factories)
                     SUB_FACTORY.Items.Add(sub_factory);
             }
         }

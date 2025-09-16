@@ -341,8 +341,7 @@
             this.FACTORY.FormattingEnabled = true;
             this.FACTORY.Items.AddRange(new object[] {
             "F1",
-            "F2",
-            "F3"});
+            "F2"});
             this.FACTORY.Location = new System.Drawing.Point(95, 145);
             this.FACTORY.Name = "FACTORY";
             this.FACTORY.Size = new System.Drawing.Size(139, 21);

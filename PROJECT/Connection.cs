@@ -14,23 +14,26 @@ namespace PROJECT
         public static readonly MailMessage mail = new MailMessage();
 
         public static string[] F2_Sub_Factories = { "BMS", "LTX", "NBMS/NI/ETS88" };
-        public static string[] F3_Sub_Factories = { "NBMS", "HPCA", "HPCC", "HPCS", "INT", "COM", "STR", "RFC", "MPD", "PRB", "WLT", "STD", "MIC_WIL", "MIC_SC", "AERO" };
+        public static string[] F1_Sub_Factories = { "NBMS", "HPCA", "HPCC", "HPCS", "INT", "COM", "STR", "RFC", "MPD", "PRB", "WLT", "STD", "MIC_WIL", "MIC_SC", "AERO", "ATE", "INS", "SMRT", "PRD", "PRA" };
 
         public static string[] LTX_Emails = { "LTXTS88PETechnicians@analog.com", "LTXTS88PETestEngineers@analog.com", "LTXTS88ProductEngineers@analog.com", "servil.saulog@analog.com" };
         public static string[] BMS_Emails = { "ADPhilsLinearBMSTPE@analog.com", "ADPhilsLinearBMSTPETech@analog.com", "MayanaJoy.Duran@analog.com" };
-        public static string[] NbmsNIETS88_Emails = { "ADPhilsLinearBMSTPETech@analog.com", "MayanaJoy.Duran@analog.com", "ADPhils_Linear_nBMSB3_ETS88_NI@analog.com" };
+        public static string[] NbmsNIETS88_Emails = { "ADPhils_Linear_nBMSB3_ETS88_NI@analog.com", "ADPhilsLinearBMSTPETech@analog.com", "MayanaJoy.Duran@analog.com" };
         public static string[] Nbms_B1_Emails = { "Nadinejean.Ebarle@analog.com", "ADPhils_Linear_PE_ETS_NonBMS@analog.com", "NMBS_PE_TECH@analog.com" };
-        public static string[] Legacy_B1_Emails = { "COM_INT_PROD-TECH@analog.com", "Strip_ProductTechnicians@analog.com", "Joefer.Joven@analog.com" };
+        public static string[] ComIntStrip = { "COM_INT_PROD-TECH@analog.com", "Strip_ProductTechnicians@analog.com", "Joefer.Joven@analog.com" };
         public static string[] HPC = { "HPCC_PROD-TECH@analog.com", "Dexter.Guevarra@analog.com" };
+        public static string[] RFC = { "ADGT_COMTG_PE@analog.com " };
+        public static string[] MpdAutoAeroMic = { "ADGT_ADEF_PE@analog.com", "ADGTAutoEng@analog.com" , "AEGTGPE@analog.com" };
+        public static string[] SMRT = { "SMRT-OSMPEADGT@analog.com", "PCT-DAC_PE_ADGT@analog.com", "PCT_ADC_PE@analog.com", "Converters_TPE_F1_Phils@analog.com" };
 
         // LOCAL HOST
-        public static MySqlConnection connect = new MySqlConnection("server=localhost;user id=root;password=onemigso1013;database=hit;persistsecurityinfo=True");
+        // public static MySqlConnection connect = new MySqlConnection("server=localhost;user id=root;password=onemigso1013;database=hit;persistsecurityinfo=True");
 
         // OLD SERVER
         // public static MySqlConnection connect = new MySqlConnection("server=CAV-BMS-D01;user id=root;password=onemigso1013;database=hit");
 
         // NEW SERVER
-        // public static MySqlConnection connect = new MySqlConnection("server=CAV-LTC-D09;user id=root;password=Adgt1234;database=hit");
+        public static MySqlConnection connect = new MySqlConnection("server=CAV-LTC-D09;user id=root;password=Adgt1234;database=hit");
 
         public static bool OpenConnection()
         {
@@ -76,6 +79,7 @@ namespace PROJECT
                     case TextBox tb:
                         tb.Clear(); break;
                     case ComboBox cb:
+                        if (cb.Name == "SUB_FACTORY") continue;
                         cb.SelectedIndex = -1;
                         cb.Text = "";
                         break;
