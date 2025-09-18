@@ -211,6 +211,7 @@ namespace PROJECT
             this.UPDATE_BTN.TabIndex = 6;
             this.UPDATE_BTN.Text = "UPDATE APP";
             this.UPDATE_BTN.UseVisualStyleBackColor = false;
+            this.UPDATE_BTN.Visible = false;
             this.UPDATE_BTN.Click += new System.EventHandler(this.UPDATE_BTN_Click);
             // 
             // label6
@@ -260,7 +261,7 @@ namespace PROJECT
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LOGIN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "VERSION 1.0.7";
+            this.Text = "VERSION 1.0.8";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit);
             this.Load += new System.EventHandler(this.LOGIN_Load);
             this.groupBox1.ResumeLayout(false);

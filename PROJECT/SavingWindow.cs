@@ -42,7 +42,6 @@ namespace PROJECT
             }
             else if (CheckSubFactory == "NBMS/NI/ETS88")
             {
-
                 foreach (string Email in Connection.NbmsNIETS88_Emails)
                     Connection.mail.To.Add(Email);
             }
@@ -71,12 +70,13 @@ namespace PROJECT
                 foreach (string Email in Connection.ComIntStrip)
                     Connection.mail.To.Add(Email);
             }
+            /*
             else if (CheckSubFactory == "PRA" || CheckSubFactory == "PRD" || CheckSubFactory == "SMRT" || CheckSubFactory == "INS" || CheckSubFactory == "ATE")
             {
                 foreach (string Email in Connection.SMRT)
                     Connection.mail.To.Add(Email);
             }
-
+            */
             Connection.mail.From = new MailAddress("HIT.APP@analog.com");
 
             Connection.mail.To.Add("RalphYaz.Diaz@analog.com");

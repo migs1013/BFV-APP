@@ -153,8 +153,9 @@ namespace PROJECT
             Application.Exit();
         }
 
-        private void UPDATE_BTN_Click(object sender, EventArgs e)
+        private async void UPDATE_BTN_Click(object sender, EventArgs e)
         {
+            /*
             try
             {
                 SmtpClient smtpClient = new SmtpClient("mail.analog.com", 25)
@@ -168,7 +169,7 @@ namespace PROJECT
 
                 Connection.mail.To.Add("ADPhils_Linear_nBMSB3_ETS88_NI@analog.com");
                 Connection.mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
-                Connection.mail.To.Add("ADPhilsLinearBMSTPE@analog.com");
+                //Connection.mail.To.Add("ADPhilsLinearBMSTPE@analog.com");
 
                 Connection.mail.Subject = "SAMPLE";
 
@@ -183,8 +184,8 @@ namespace PROJECT
             catch (Exception me )
             {
                 MessageBox.Show(me.ToString());
-            }
-            //await CheckForUpdates();
+            }*/
+            await CheckForUpdates();
 
         }
 
