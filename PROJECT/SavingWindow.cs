@@ -16,6 +16,7 @@ namespace PROJECT
     {
         public static int CheckForm {  get; set; }
         public static string CheckSubFactory { get; set; }
+        public static string CheckFactory { get; set; }
         public static bool email_sent;
 
         public SavingWindow(int WindowOption,string SubFactory)
@@ -23,6 +24,7 @@ namespace PROJECT
             InitializeComponent();
             CheckForm = WindowOption;
             CheckSubFactory = SubFactory;
+            //CheckFactory = Factory;
             Send_email();
         }
 
@@ -55,9 +57,9 @@ namespace PROJECT
                 foreach (string Email in Connection.HPC)
                     Connection.mail.To.Add(Email);
             }
-            else if (CheckSubFactory == "RFC")
+            else if (CheckSubFactory == "RFC" )
             {
-                foreach (string Email in Connection.RFC)
+                foreach (string Email in Connection.RFC_SUB)
                     Connection.mail.To.Add(Email);
             }
             else if (CheckSubFactory == "MPD" || CheckSubFactory == "AUTO" || CheckSubFactory == "AERO" || CheckSubFactory == "MIC_WIL" || CheckSubFactory == "MIC_SC")

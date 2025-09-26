@@ -94,6 +94,8 @@
             this.POTENTIAL_ROOTCAUSE = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.PRODUCT_OWNER = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,10 +104,10 @@
             this.Save_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Save_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Save_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Save_btn.Location = new System.Drawing.Point(396, 499);
+            this.Save_btn.Location = new System.Drawing.Point(396, 515);
             this.Save_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Save_btn.Name = "Save_btn";
-            this.Save_btn.Size = new System.Drawing.Size(141, 77);
+            this.Save_btn.Size = new System.Drawing.Size(141, 61);
             this.Save_btn.TabIndex = 0;
             this.Save_btn.Text = "SAVE";
             this.Save_btn.UseVisualStyleBackColor = false;
@@ -116,10 +118,10 @@
             this.Exit_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Exit_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Exit_btn.Location = new System.Drawing.Point(845, 493);
+            this.Exit_btn.Location = new System.Drawing.Point(845, 515);
             this.Exit_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Exit_btn.Name = "Exit_btn";
-            this.Exit_btn.Size = new System.Drawing.Size(141, 77);
+            this.Exit_btn.Size = new System.Drawing.Size(141, 55);
             this.Exit_btn.TabIndex = 60;
             this.Exit_btn.Text = "EXIT";
             this.Exit_btn.UseVisualStyleBackColor = false;
@@ -258,7 +260,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(2, 195);
+            this.label10.Location = new System.Drawing.Point(2, 215);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(179, 19);
             this.label10.TabIndex = 30;
@@ -268,7 +270,7 @@
             // 
             this.Problem.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.Problem.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Problem.Location = new System.Drawing.Point(6, 216);
+            this.Problem.Location = new System.Drawing.Point(6, 237);
             this.Problem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Problem.Multiline = true;
             this.Problem.Name = "Problem";
@@ -278,6 +280,8 @@
             // First_box
             // 
             this.First_box.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.First_box.Controls.Add(this.comboBox1);
+            this.First_box.Controls.Add(this.label22);
             this.First_box.Controls.Add(this.SUB_FACTORY);
             this.First_box.Controls.Add(this.SUB_FACTORY_TEXT);
             this.First_box.Controls.Add(this.FACTORY);
@@ -308,7 +312,7 @@
             this.First_box.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.First_box.Name = "First_box";
             this.First_box.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.First_box.Size = new System.Drawing.Size(590, 480);
+            this.First_box.Size = new System.Drawing.Size(590, 496);
             this.First_box.TabIndex = 41;
             this.First_box.TabStop = false;
             this.First_box.Text = "VERIFICATION DETAILS";
@@ -318,9 +322,9 @@
             this.SUB_FACTORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SUB_FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.SUB_FACTORY.FormattingEnabled = true;
-            this.SUB_FACTORY.Location = new System.Drawing.Point(126, 173);
+            this.SUB_FACTORY.Location = new System.Drawing.Point(126, 170);
             this.SUB_FACTORY.Name = "SUB_FACTORY";
-            this.SUB_FACTORY.Size = new System.Drawing.Size(108, 21);
+            this.SUB_FACTORY.Size = new System.Drawing.Size(122, 21);
             this.SUB_FACTORY.TabIndex = 94;
             this.SUB_FACTORY.SelectedIndexChanged += new System.EventHandler(this.SUB_FACTORY_SelectedIndexChanged);
             // 
@@ -328,7 +332,7 @@
             // 
             this.SUB_FACTORY_TEXT.AutoSize = true;
             this.SUB_FACTORY_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.SUB_FACTORY_TEXT.Location = new System.Drawing.Point(10, 173);
+            this.SUB_FACTORY_TEXT.Location = new System.Drawing.Point(10, 170);
             this.SUB_FACTORY_TEXT.Name = "SUB_FACTORY_TEXT";
             this.SUB_FACTORY_TEXT.Size = new System.Drawing.Size(115, 19);
             this.SUB_FACTORY_TEXT.TabIndex = 93;
@@ -342,7 +346,7 @@
             this.FACTORY.Items.AddRange(new object[] {
             "F1",
             "F2"});
-            this.FACTORY.Location = new System.Drawing.Point(95, 145);
+            this.FACTORY.Location = new System.Drawing.Point(95, 142);
             this.FACTORY.Name = "FACTORY";
             this.FACTORY.Size = new System.Drawing.Size(139, 21);
             this.FACTORY.Sorted = true;
@@ -365,7 +369,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label12.Location = new System.Drawing.Point(11, 145);
+            this.label12.Location = new System.Drawing.Point(11, 142);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(84, 19);
             this.label12.TabIndex = 73;
@@ -388,11 +392,11 @@
             // 
             this.Action.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.Action.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Action.Location = new System.Drawing.Point(6, 352);
+            this.Action.Location = new System.Drawing.Point(6, 372);
             this.Action.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Action.Multiline = true;
             this.Action.Name = "Action";
-            this.Action.Size = new System.Drawing.Size(578, 122);
+            this.Action.Size = new System.Drawing.Size(578, 116);
             this.Action.TabIndex = 18;
             // 
             // USERNAME
@@ -428,7 +432,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(4, 332);
+            this.label1.Location = new System.Drawing.Point(6, 351);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 19);
             this.label1.TabIndex = 71;
@@ -885,6 +889,26 @@
             this.PRODUCT_OWNER.TabIndex = 94;
             this.PRODUCT_OWNER.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PRODUCT_OWNER_KeyPress);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(126, 194);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(122, 21);
+            this.comboBox1.TabIndex = 96;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label22.Location = new System.Drawing.Point(10, 194);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(79, 19);
+            this.label22.TabIndex = 95;
+            this.label22.Text = "BU STRAT:";
+            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1011,5 +1035,7 @@
         public System.Windows.Forms.ComboBox POTENTIAL_ROOTCAUSE;
         public System.Windows.Forms.ComboBox PRODUCT_OWNER;
         public System.Windows.Forms.Label FirstDate;
+        public System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label22;
     }
 }

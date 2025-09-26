@@ -53,8 +53,8 @@ namespace PROJECT
             this.Third_dlog = new System.Windows.Forms.LinkLabel();
             this.label19 = new System.Windows.Forms.Label();
             this.First_verif_link = new System.Windows.Forms.LinkLabel();
-            this.label9 = new System.Windows.Forms.Label();
             this.Second_dlog = new System.Windows.Forms.LinkLabel();
+            this.label9 = new System.Windows.Forms.Label();
             this.PROBLEM = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.Exit_btn = new System.Windows.Forms.Button();
@@ -242,7 +242,7 @@ namespace PROJECT
             this.SUB_FACTORY.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SUB_FACTORY.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SUB_FACTORY.LinkColor = System.Drawing.Color.Black;
-            this.SUB_FACTORY.Location = new System.Drawing.Point(357, 147);
+            this.SUB_FACTORY.Location = new System.Drawing.Point(355, 147);
             this.SUB_FACTORY.Name = "SUB_FACTORY";
             this.SUB_FACTORY.Size = new System.Drawing.Size(0, 16);
             this.SUB_FACTORY.TabIndex = 117;
@@ -253,7 +253,7 @@ namespace PROJECT
             this.label28.BackColor = System.Drawing.Color.Transparent;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.Color.Black;
-            this.label28.Location = new System.Drawing.Point(256, 151);
+            this.label28.Location = new System.Drawing.Point(254, 151);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(97, 13);
             this.label28.TabIndex = 116;
@@ -324,7 +324,7 @@ namespace PROJECT
             this.FACTORY.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FACTORY.ForeColor = System.Drawing.Color.Black;
-            this.FACTORY.Location = new System.Drawing.Point(357, 132);
+            this.FACTORY.Location = new System.Drawing.Point(355, 132);
             this.FACTORY.Name = "FACTORY";
             this.FACTORY.Size = new System.Drawing.Size(0, 13);
             this.FACTORY.TabIndex = 111;
@@ -335,7 +335,7 @@ namespace PROJECT
             this.label25.BackColor = System.Drawing.Color.Transparent;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(283, 132);
+            this.label25.Location = new System.Drawing.Point(281, 132);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(68, 13);
             this.label25.TabIndex = 110;
@@ -394,15 +394,6 @@ namespace PROJECT
             this.First_verif_link.TabIndex = 17;
             this.First_verif_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.First_verif_link_LinkClicked);
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 132);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(82, 13);
-            this.label9.TabIndex = 27;
-            this.label9.Text = "LOGGED BY:";
-            // 
             // Second_dlog
             // 
             this.Second_dlog.AutoSize = true;
@@ -414,6 +405,15 @@ namespace PROJECT
             this.Second_dlog.Size = new System.Drawing.Size(0, 16);
             this.Second_dlog.TabIndex = 86;
             this.Second_dlog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ThirdDlog);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(18, 132);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(82, 13);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "LOGGED BY:";
             // 
             // PROBLEM
             // 

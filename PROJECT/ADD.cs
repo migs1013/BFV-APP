@@ -102,7 +102,6 @@ namespace PROJECT
         private void Save_btn_Click(object sender, EventArgs e)
         {
             if (!CheckDetails()) return;
-            TEMPERATURE.Text += "C";
             Stage_Temp = string.Join(" ", TEST_STAGE.Text, TEMPERATURE.Text);
             DialogResult yes_no = MessageBox.Show(("PLEASE DOUBLE CHECK YOUR DATA,THIS WILL BE SAVE PERMANENTLY. SAVE IT?"), "ATTENTION", MessageBoxButtons.YesNo);
             switch (yes_no)
@@ -110,7 +109,6 @@ namespace PROJECT
                 case DialogResult.Yes:
                     try
                     {
-                        
                         if (FACTORY.Text != "F1")
                             SUB_FACTORY.Text = "N/A";
                         if (FAILURE_ASSESSMENT.SelectedIndex == 1)
