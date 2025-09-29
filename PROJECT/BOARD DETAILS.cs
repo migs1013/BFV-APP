@@ -271,7 +271,7 @@ PROBLEM.Text, UserName, DATE_VERIFIED.Text, dispo, rootcause_comment, DISPO_USER
                 while (ReadData.Read())
                 {
                     Date = Convert.ToDateTime(ReadData["DATE_ENCOUNTERED"].ToString());
-                    OTHER_TRANSACTION.Items.Add(new ListViewItem(new[] { DATE_ENCOUNTER = Date.ToString("yyyy-MM-dd"), ReadData.GetString("USER"), ReadData.GetString("ENDORSEMENT_NUMBER") }));
+                    OTHER_TRANSACTION.Items.Add(new ListViewItem(new[] { DATE_ENCOUNTER = Date.ToString("yyyy-MM-dd"), ReadData["USER"].ToString(), ReadData["ENDORSEMENT_NUMBER"].ToString() }));
                 }
                 Connection.CloseConnection();
 

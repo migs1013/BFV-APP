@@ -30,7 +30,7 @@ namespace PROJECT
 
         private async void Send_email()
         {   
-            
+            Connection.mail.To.Clear();
             if (CheckSubFactory == "BMS")
             {
                 foreach (string Email in Connection.BMS_Emails)

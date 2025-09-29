@@ -39,7 +39,7 @@ namespace PROJECT
 
                 while (read_data.Read())
                 {
-                    HITCOUNT.Items.Add(new ListViewItem(new[] { read_data.GetString("PART_NAME"), read_data.GetString("HITCOUNT") }));
+                    HITCOUNT.Items.Add(new ListViewItem(new[] { read_data["PART_NAME"].ToString(), read_data["HITCOUNT"].ToString() }));
                 }
                 Connection.CloseConnection();
 

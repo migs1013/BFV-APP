@@ -48,6 +48,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.Problem = new System.Windows.Forms.TextBox();
             this.First_box = new System.Windows.Forms.GroupBox();
+            this.BU_STRAT = new System.Windows.Forms.ComboBox();
+            this.BU_TEXT = new System.Windows.Forms.Label();
             this.SUB_FACTORY = new System.Windows.Forms.ComboBox();
             this.SUB_FACTORY_TEXT = new System.Windows.Forms.Label();
             this.FACTORY = new System.Windows.Forms.ComboBox();
@@ -94,8 +96,6 @@
             this.POTENTIAL_ROOTCAUSE = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.PRODUCT_OWNER = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
             this.First_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -280,8 +280,8 @@
             // First_box
             // 
             this.First_box.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.First_box.Controls.Add(this.comboBox1);
-            this.First_box.Controls.Add(this.label22);
+            this.First_box.Controls.Add(this.BU_STRAT);
+            this.First_box.Controls.Add(this.BU_TEXT);
             this.First_box.Controls.Add(this.SUB_FACTORY);
             this.First_box.Controls.Add(this.SUB_FACTORY_TEXT);
             this.First_box.Controls.Add(this.FACTORY);
@@ -317,6 +317,35 @@
             this.First_box.TabStop = false;
             this.First_box.Text = "VERIFICATION DETAILS";
             // 
+            // BU_STRAT
+            // 
+            this.BU_STRAT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BU_STRAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.BU_STRAT.FormattingEnabled = true;
+            this.BU_STRAT.Items.AddRange(new object[] {
+            "N/A",
+            "PAG",
+            "CONVERTERS",
+            "POWER",
+            "ISOLATOR",
+            "VET",
+            "RFC"});
+            this.BU_STRAT.Location = new System.Drawing.Point(126, 194);
+            this.BU_STRAT.Name = "BU_STRAT";
+            this.BU_STRAT.Size = new System.Drawing.Size(122, 21);
+            this.BU_STRAT.TabIndex = 96;
+            this.BU_STRAT.SelectionChangeCommitted += new System.EventHandler(this.BU_STRAT_SelectionChangeCommitted);
+            // 
+            // BU_TEXT
+            // 
+            this.BU_TEXT.AutoSize = true;
+            this.BU_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.BU_TEXT.Location = new System.Drawing.Point(10, 194);
+            this.BU_TEXT.Name = "BU_TEXT";
+            this.BU_TEXT.Size = new System.Drawing.Size(79, 19);
+            this.BU_TEXT.TabIndex = 95;
+            this.BU_TEXT.Text = "BU STRAT:";
+            // 
             // SUB_FACTORY
             // 
             this.SUB_FACTORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -326,7 +355,7 @@
             this.SUB_FACTORY.Name = "SUB_FACTORY";
             this.SUB_FACTORY.Size = new System.Drawing.Size(122, 21);
             this.SUB_FACTORY.TabIndex = 94;
-            this.SUB_FACTORY.SelectedIndexChanged += new System.EventHandler(this.SUB_FACTORY_SelectedIndexChanged);
+            this.SUB_FACTORY.SelectionChangeCommitted += new System.EventHandler(this.SUB_FACTORY_SelectionChangeCommitted);
             // 
             // SUB_FACTORY_TEXT
             // 
@@ -889,26 +918,6 @@
             this.PRODUCT_OWNER.TabIndex = 94;
             this.PRODUCT_OWNER.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PRODUCT_OWNER_KeyPress);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(126, 194);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(122, 21);
-            this.comboBox1.TabIndex = 96;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label22.Location = new System.Drawing.Point(10, 194);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(79, 19);
-            this.label22.TabIndex = 95;
-            this.label22.Text = "BU STRAT:";
-            // 
             // ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1035,7 +1044,7 @@
         public System.Windows.Forms.ComboBox POTENTIAL_ROOTCAUSE;
         public System.Windows.Forms.ComboBox PRODUCT_OWNER;
         public System.Windows.Forms.Label FirstDate;
-        public System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label22;
+        public System.Windows.Forms.ComboBox BU_STRAT;
+        private System.Windows.Forms.Label BU_TEXT;
     }
 }

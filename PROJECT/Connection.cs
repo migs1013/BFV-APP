@@ -14,8 +14,7 @@ namespace PROJECT
         public static readonly MailMessage mail = new MailMessage();
 
         public static string[] F2_Sub_Factories = { "BMS", "LTX", "NBMS/NI/ETS88","NBMS" };
-        public static string[] F1_Sub_Factories = { "HPCA", "HPCC", "HPCS", "INT", "COM", "STR", "RFC", "MPD", "MIC_WIL", "MIC_SC", "AERO" };
-        public static string[] F1_BU_STRAT = { "PAG", "CONVERTERS", "POWER", "ISOLATOR", "VET", "RFC" };
+        public static string[] F1_Sub_Factories = { "N/A", "HPCA", "HPCC", "HPCS", "INT", "COM", "STR", "RFC", "MPD", "MIC_WIL", "MIC_SC", "AERO" };
 
         public static string[] LTX_Emails = { "LTXTS88PETechnicians@analog.com", "LTXTS88PETestEngineers@analog.com", "LTXTS88ProductEngineers@analog.com", "servil.saulog@analog.com" };
         public static string[] BMS_Emails = { "ADPhilsLinearBMSTPE@analog.com", "ADPhilsLinearBMSTPETech@analog.com", "MayanaJoy.Duran@analog.com" };
@@ -25,21 +24,21 @@ namespace PROJECT
         public static string[] HPC = { "HPCC_PROD-TECH@analog.com", "Dexter.Guevarra@analog.com" };
         public static string[] RFC_SUB = { "ADGT_COMTG_PE@analog.com ", "Randy.Bukis@analog.com" };
         public static string[] MpdAutoAeroMic = { "ADGT_ADEF_PE@analog.com", "ADGTAutoEng@analog.com" , "AEGTGPE@analog.com" };
-        public static string[] PAG = { "ADGT_PAG_TPE@analog.com" };
-        public static string[] Converters = { "Converters_TPE_F1_Phils" };
-        public static string[] POWER = { "ADGT_PPGTG_PE@analog.com" };
-        public static string[] ISOLATOR = { "AEGTGPE@analog.com" };
+        public static string[] PAG = { "ADGT_PAG_TPE@analog.com", "COM_INT_PROD-TECH@analog.com" };
+        public static string[] Converters = { "Converters_TPE_F1_Phils", "Strip_ProductTechnicians@analog.com" };
+        public static string[] POWER = { "ADGT_PPGTG_PE@analog.com", "HPCC_PROD-TECH@analog.com" };
+        public static string[] ISOLATOR = { "AEGTGPE@analog.com", "HPCS_PROD-TECH@analog.com" };
         public static string[] VET = { "adgtautoeng@analog.com", "ADGTB3ProdTech@analog.com" };
         public static string[] RFC = { "ADGT_MCG_PE@analog.com", "rfcprodtech@analog.com" };    
 
         // LOCAL HOST
-        public static MySqlConnection connect = new MySqlConnection("server=localhost;user id=root;password=onemigso1013;database=hit;persistsecurityinfo=True");
+        // public static MySqlConnection connect = new MySqlConnection("server=localhost;user id=root;password=onemigso1013;database=hit;persistsecurityinfo=True");
 
         // OLD SERVER
         // public static MySqlConnection connect = new MySqlConnection("server=CAV-BMS-D01;user id=root;password=onemigso1013;database=hit");
 
         // NEW SERVER
-        // public static MySqlConnection connect = new MySqlConnection("server=CAV-LTC-D09;user id=root;password=Adgt1234;database=hit");
+        public static MySqlConnection connect = new MySqlConnection("server=CAV-LTC-D09;user id=root;password=Adgt1234;database=hit");
 
         public static bool OpenConnection()
         {

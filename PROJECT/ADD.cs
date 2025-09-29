@@ -233,11 +233,11 @@ namespace PROJECT
                 case 6: // INSERT NEW TRANSACTION WITH OPEN STATUS
                     command = new MySqlCommand("INSERT INTO `hit`.`details` " +
                         "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STAGE`,`TESTER_PLATFORM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_PERFORMANCE`,`BOARD_ID`," +
-                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`POTENTIAL_ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FACTORY`,`SUB_FACTORY`) " +
+                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`POTENTIAL_ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FACTORY`,`SUB_FACTORY`,`BU_STRAT`) " +
                         "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + Stage_Temp + "','" + Tester_platform.Text + "'," +
                         "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + FAILURE_PERFORMANCE.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
                         "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + FAILURE_ASSESSMENT.Text + "','" + POTENTIAL_ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
-                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "')");
+                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "','" + BU_STRAT.Text + "')");
                     break;
                 case 7: // LOAD PRODUCT OWNER
                     command = new MySqlCommand(string.Format("select `PRODUCT_OWNER` from `device` where locate(`DEVICE`,'{0}') = 1",PART_NAME.Text));
@@ -250,21 +250,27 @@ namespace PROJECT
                     command = new MySqlCommand("INSERT INTO `hit`.`details` " +
                         "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STAGE`,`TESTER_PLATFORM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_PERFORMANCE`,`BOARD_ID`," +
                         "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`POTENTIAL_ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`," +
-                        "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER`,`FACTORY`,`SUB_FACTORY`) " +
+                        "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER`,`FACTORY`,`SUB_FACTORY`,`BU_STRAT`) " +
                         "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + Stage_Temp + "','" + Tester_platform.Text + "'," +
                         "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + FAILURE_PERFORMANCE.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
                         "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','FOR APPROVAL','" + POTENTIAL_ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
                         "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','PLEASE REFER TO DISPOSITION'," +
-                        "'" + DateTime.Today.ToString("yyyy-MM-dd") + "','" + UserName + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "')");
+                        "'" + DateTime.Today.ToString("yyyy-MM-dd") + "','" + UserName + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "','" + BU_STRAT.Text + "')");
                     break;
                 case 10: // LOAD TESTER PLATFORMS
                     command = new MySqlCommand("SELECT `TESTER_PLATFORM` FROM `DETAILS` GROUP BY `TESTER_PLATFORM`");
                     break;
-                case 11: // LOAD PRODUCT OWNER BASED ON SELECTED FACTORY
+                case 11: // LOAD PRODUCT OWNER BASED ON SELECTED SUB FACTORY
                     command = new MySqlCommand(string.Format("SELECT `PRODUCT_OWNER` FROM `details` WHERE `FACTORY` = '{0}' and `SUB_FACTORY` = '{1}' GROUP BY `PRODUCT_OWNER` order by `PRODUCT_OWNER`",FACTORY.Text,SUB_FACTORY.Text));
                     break;
-                case 12: // CHECK PRODUCT OWNER BASED ON SELECTED SUB FACTORY
+                case 12: // CHECK PRODUCT OWNER COUNT BASED ON SELECTED SUB FACTORY
                     command = new MySqlCommand(string.Format("SELECT COUNT(*) AS `COUNT` FROM `DETAILS` WHERE `FACTORY` = '{0}' AND `SUB_FACTORY` = '{1}' AND `PRODUCT_OWNER` <> 'NOT APPLICABLE'", FACTORY.Text,SUB_FACTORY.Text));
+                    break;
+                case 13: // LOAD PRODUCT OWNER BASED ON SELECTED BU STRAT
+                    command = new MySqlCommand(string.Format("SELECT `PRODUCT_OWNER` FROM `details` WHERE `FACTORY` = '{0}' and `SUB_FACTORY` = '{1}' GROUP BY `PRODUCT_OWNER` order by `PRODUCT_OWNER`", FACTORY.Text, SUB_FACTORY.Text));
+                    break;
+                case 14: // CHECK PRODUCT OWNER COUNT BASED ON SELECTED BU STRAT
+                    command = new MySqlCommand(string.Format("SELECT COUNT(*) AS `COUNT` FROM `DETAILS` WHERE `FACTORY` = '{0}' AND `SUB_FACTORY` = '{1}' AND `PRODUCT_OWNER` <> 'NOT APPLICABLE'", FACTORY.Text, SUB_FACTORY.Text));
                     break;
             }
         }
@@ -322,16 +328,25 @@ namespace PROJECT
             return true;
         }
 
-        private void SUB_FACTORY_SelectedIndexChanged(object sender, EventArgs e)
+        private void SUB_FACTORY_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            SelectProductOwner(12, 11);
+        }
+
+        private void BU_STRAT_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            SelectProductOwner(14, 13);
+        }
+
+        private void SelectProductOwner(int counts,int PO)
         {
             int check_count;
             try
             {
-                
                 PRODUCT_OWNER.Items.Clear();
                 PRODUCT_OWNER.Items.Add("NOT APPLICABLE");
 
-                Commands(12);
+                Commands(counts);
                 command.Connection = Connection.connect;
                 Connection.OpenConnection();
                 MySqlDataReader read_data = command.ExecuteReader();
@@ -343,7 +358,7 @@ namespace PROJECT
 
                 if (check_count >= 1)
                 {
-                    Commands(11);
+                    Commands(PO);
                     command.Connection = Connection.connect;
                     Connection.OpenConnection();
                     read_data = command.ExecuteReader();
@@ -361,7 +376,6 @@ namespace PROJECT
                 MessageBox.Show(error.ToString());
                 Connection.CloseConnection();
             }
-
         }
 
         private void InsertDatalog(LinkLabel DlogName,Label Date)
@@ -521,11 +535,15 @@ namespace PROJECT
             SUB_FACTORY.Items.Clear();
             if (FACTORY.Text == "F2")
             {
+                BU_STRAT.SelectedIndex = 0;
+                BU_STRAT.Enabled = false;
                 foreach (string sub_factory in Connection.F2_Sub_Factories)
                     SUB_FACTORY.Items.Add(sub_factory);
             }
             else if (FACTORY.Text == "F1")
             {
+                BU_STRAT.SelectedIndex = -1;
+                BU_STRAT.Enabled = true;
                 foreach (string sub_factory in Connection.F1_Sub_Factories)
                     SUB_FACTORY.Items.Add(sub_factory);
             }
