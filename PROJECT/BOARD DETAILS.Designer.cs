@@ -108,6 +108,8 @@ namespace PROJECT
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.FAILURE_PERFORMANCE = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.BU_STRAT = new System.Windows.Forms.LinkLabel();
+            this.label20 = new System.Windows.Forms.Label();
             this.First_box.SuspendLayout();
             this.PO_DISPO.SuspendLayout();
             this.SuspendLayout();
@@ -212,6 +214,8 @@ namespace PROJECT
             // 
             this.First_box.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.First_box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.First_box.Controls.Add(this.BU_STRAT);
+            this.First_box.Controls.Add(this.label20);
             this.First_box.Controls.Add(this.SUB_FACTORY);
             this.First_box.Controls.Add(this.label28);
             this.First_box.Controls.Add(this.label27);
@@ -1053,6 +1057,29 @@ namespace PROJECT
             this.label21.TabIndex = 110;
             this.label21.Text = "FAILURE PERFORMANCE";
             // 
+            // BU_STRAT
+            // 
+            this.BU_STRAT.AutoSize = true;
+            this.BU_STRAT.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BU_STRAT.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BU_STRAT.LinkColor = System.Drawing.Color.Black;
+            this.BU_STRAT.Location = new System.Drawing.Point(353, 166);
+            this.BU_STRAT.Name = "BU_STRAT";
+            this.BU_STRAT.Size = new System.Drawing.Size(0, 16);
+            this.BU_STRAT.TabIndex = 119;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.Transparent;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(253, 168);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(98, 13);
+            this.label20.TabIndex = 118;
+            this.label20.Text = "BU STRATEGY:";
+            // 
             // BOARD_DETAILS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1198,5 +1225,7 @@ namespace PROJECT
         private System.Windows.Forms.Label FAILURE_PERFORMANCE;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox PO_ROOTCAUSE;
+        private System.Windows.Forms.LinkLabel BU_STRAT;
+        private System.Windows.Forms.Label label20;
     }
 }

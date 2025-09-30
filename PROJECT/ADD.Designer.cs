@@ -320,6 +320,7 @@
             // BU_STRAT
             // 
             this.BU_STRAT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BU_STRAT.Enabled = false;
             this.BU_STRAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.BU_STRAT.FormattingEnabled = true;
             this.BU_STRAT.Items.AddRange(new object[] {

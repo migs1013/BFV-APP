@@ -83,6 +83,7 @@ namespace PROJECT
                 
                 FACTORY.Text = read_data["FACTORY"].ToString();
                 SUB_FACTORY.Text = read_data["SUB_FACTORY"].ToString();
+                BU_STRAT.Text = read_data["BU_STRAT"].ToString();
                 
                 if (STATUS.Text == "VALID")
                 {
@@ -220,13 +221,13 @@ PROBLEM.Text, UserName, DATE_VERIFIED.Text, dispo, rootcause_comment, DISPO_USER
             if (UPDATE.Text == "APPROVE")
             {
 
-                SavingWindow save = new SavingWindow(2,SUB_FACTORY.Text);
+                SavingWindow save = new SavingWindow(2,SUB_FACTORY.Text,BU_STRAT.Text);
                 save.ShowDialog();
             }
             else
             {
 
-                SavingWindow save = new SavingWindow(3, SUB_FACTORY.Text);
+                SavingWindow save = new SavingWindow(3, SUB_FACTORY.Text,BU_STRAT.Text);
                 save.ShowDialog();
             }
 
@@ -505,7 +506,7 @@ PROBLEM.Text, UserName, DATE_VERIFIED.Text, dispo, rootcause_comment, DISPO_USER
                 while (ReadData.Read())
                 {
                     Date = Convert.ToDateTime(ReadData["DATE_ENCOUNTERED"].ToString());
-                    OTHER_TRANSACTION.Items.Add(new ListViewItem(new[] { DATE_ENCOUNTER = Date.ToString("yyyy-MM-dd"), ReadData.GetString("USER"), ReadData.GetString("ENDORSEMENT_NUMBER") }));
+                    OTHER_TRANSACTION.Items.Add(new ListViewItem(new[] { DATE_ENCOUNTER = Date.ToString("yyyy-MM-dd"), ReadData["USER"].ToString(), ReadData["ENDORSEMENT_NUMBER"].ToString() }));
                 }
                 Connection.CloseConnection();
             }

@@ -187,7 +187,7 @@ namespace PROJECT
                         Connection.ClearAll(this);
                         Connection.CloseConnection();
 
-                        SavingWindow save = new SavingWindow(1,SUB_FACTORY.Text);
+                        SavingWindow save = new SavingWindow(1,SUB_FACTORY.Text,BU_STRAT.Text);
                         SUB_FACTORY.SelectedIndex = -1;
                         save.ShowDialog();
 
@@ -330,12 +330,18 @@ namespace PROJECT
 
         private void SUB_FACTORY_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            SelectProductOwner(12, 11);
+            if (SUB_FACTORY.Text != "N/A")
+                BU_STRAT.SelectedIndex = 0;
+            else BU_STRAT.SelectedIndex = -1;
+                SelectProductOwner(12, 11);
         }
 
         private void BU_STRAT_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            SelectProductOwner(14, 13);
+            if (BU_STRAT.Text != "N/A")
+                SUB_FACTORY.SelectedIndex = 0;
+            else SUB_FACTORY.SelectedIndex = -1;
+                SelectProductOwner(14, 13);
         }
 
         private void SelectProductOwner(int counts,int PO)
@@ -365,7 +371,7 @@ namespace PROJECT
 
                     while (read_data.Read())
                     {
-                        PRODUCT_OWNER.Items.Add(read_data.GetString("PRODUCT_OWNER"));
+                        PRODUCT_OWNER.Items.Add(read_data["PRODUCT_OWNER"].ToString());
                     }
                     Connection.CloseConnection();
                 }
@@ -478,8 +484,8 @@ namespace PROJECT
                     Connection.OpenConnection();
                     MySqlDataReader read_data = command.ExecuteReader();
                     read_data.Read();
-                    TESTER_ID.Text = read_data.GetString("TESTER");
-                    Tester_platform.Text = read_data.GetString("TESTER_PLATFORM");
+                    TESTER_ID.Text = read_data["TESTER"].ToString();
+                    Tester_platform.Text = read_data["TESTER_PLATFORM"].ToString();
                     Connection.CloseConnection();
 
                     Commands(3);
@@ -488,7 +494,7 @@ namespace PROJECT
                     read_data = command.ExecuteReader();
                     while (read_data.Read())
                     {
-                        HANDLER_ID.Items.Add(read_data.GetString("HANDLER_ID"));
+                        HANDLER_ID.Items.Add(read_data["HANDLER_ID"].ToString());
                     }
                     Connection.CloseConnection();
 
@@ -498,7 +504,7 @@ namespace PROJECT
                     read_data = command.ExecuteReader();
                     while (read_data.Read())
                     {
-                        BOARD_ID.Items.Add(read_data.GetString("BOARD_ID"));
+                        BOARD_ID.Items.Add(read_data["BOARD_ID"].ToString());
                     }
                     Connection.CloseConnection();
 
@@ -508,7 +514,7 @@ namespace PROJECT
                     read_data = command.ExecuteReader();
                     while (read_data.Read())
                     {
-                        BIN_NUMBER.Items.Add(read_data.GetString("BIN_NUMBER"));
+                        BIN_NUMBER.Items.Add(read_data["BIN_NUMBER"].ToString());
                     }
                     Connection.CloseConnection();
 
@@ -518,7 +524,7 @@ namespace PROJECT
                     Connection.OpenConnection();
                     read_data = command.ExecuteReader();
                     read_data.Read();
-                    PRODUCT_OWNER.Text = read_data.GetString("PRODUCT_OWNER");
+                    PRODUCT_OWNER.Text = read_data["PRODUCT_OWNER"].ToString();
                     Connection.CloseConnection();
                 }
 
@@ -658,7 +664,7 @@ namespace PROJECT
 
                 while (Read_data.Read())
                 {
-                    Tester_platform.Items.Add(Read_data.GetString("TESTER_PLATFORM"));
+                    Tester_platform.Items.Add(Read_data["TESTER_PLATFORM"].ToString());
                 }
                 Connection.CloseConnection();
             }

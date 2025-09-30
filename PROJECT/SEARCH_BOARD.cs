@@ -16,6 +16,8 @@ namespace PROJECT
         public string UserAccount { get; set; }
         public string Approver { get; set; }
 
+        readonly List<string> Conditions = new List<string>();
+
         MySqlCommand command;
         public SEARCH_BOARD(string User,string Approver_access)
         {
@@ -49,7 +51,7 @@ namespace PROJECT
 
                 while (read_data.Read())
                 {
-                    TEST_STAGE_FILTER.Items.Add(read_data.GetString("TEST_STAGE"));
+                    TEST_STAGE_FILTER.Items.Add(read_data["TEST_STAGE"].ToString());
                 }
                 Connection.CloseConnection();
 
@@ -286,7 +288,7 @@ namespace PROJECT
                 MySqlDataReader Read_data = command.ExecuteReader();
                 while (Read_data.Read())
                 {
-                    HITCOUNT.Items.Add(new ListViewItem(new[] { Read_data.GetString("PART_NAME"), Read_data.GetString("HITCOUNT") }));
+                    HITCOUNT.Items.Add(new ListViewItem(new[] { Read_data["PART_NAME"].ToString(), Read_data["HITCOUNT"].ToString() }));
                 }
                 Connection.CloseConnection();
             }
@@ -399,7 +401,7 @@ namespace PROJECT
                 MySqlDataReader Read_data = command.ExecuteReader();
                 while (Read_data.Read())
                 {
-                    HITCOUNT.Items.Add(new ListViewItem(new[] { Read_data.GetString("PART_NAME"), Read_data.GetString("HITCOUNT") }));
+                    HITCOUNT.Items.Add(new ListViewItem(new[] { Read_data["PART_NAME"].ToString(), Read_data["HITCOUNT"].ToString() }));
                 }
                 Connection.CloseConnection();
             }
@@ -472,7 +474,7 @@ namespace PROJECT
 
         private void CommandComboBox()
         {
-            List<string> Conditions = new List<string>();
+            Conditions.Clear();
             FullTextCommand = "";
 
             if (!string.IsNullOrEmpty(FACTORY.Text))
@@ -482,6 +484,10 @@ namespace PROJECT
             if (!string.IsNullOrEmpty(SUB_FACTORY_FILTER.Text))
             {
                 Conditions.Add($"`SUB_FACTORY` LIKE '%{SUB_FACTORY_FILTER.Text}%'");
+            }
+            if (!string.IsNullOrEmpty(BU_STRATEGY.Text))
+            {
+                Conditions.Add($"`SUB_FACTORY` LIKE '%{BU_STRATEGY.Text}%'");
             }
             if (!string.IsNullOrEmpty(PRODUCT_OWNER_FILTER.Text))
             {

@@ -16,15 +16,15 @@ namespace PROJECT
     {
         public static int CheckForm {  get; set; }
         public static string CheckSubFactory { get; set; }
-        public static string CheckFactory { get; set; }
+        public static string BU_STRAT { get; set; }
         public static bool email_sent;
 
-        public SavingWindow(int WindowOption,string SubFactory)
+        public SavingWindow(int WindowOption,string SubFactory,String BU)
         {
             InitializeComponent();
             CheckForm = WindowOption;
             CheckSubFactory = SubFactory;
-            //CheckFactory = Factory;
+            BU_STRAT = BU;
             Send_email();
         }
 
@@ -72,13 +72,37 @@ namespace PROJECT
                 foreach (string Email in Connection.ComIntStrip)
                     Connection.mail.To.Add(Email);
             }
-            /*
-            else if (CheckSubFactory == "PRA" || CheckSubFactory == "PRD" || CheckSubFactory == "SMRT" || CheckSubFactory == "INS" || CheckSubFactory == "ATE")
+            else if (BU_STRAT == "PAG")
             {
-                foreach (string Email in Connection.SMRT)
+                foreach (string Email in Connection.PAG)
                     Connection.mail.To.Add(Email);
             }
-            */
+            else if (BU_STRAT == "CONVERTERS")
+            {
+                foreach (string Email in Connection.Converters)
+                    Connection.mail.To.Add(Email);
+            }
+            else if (BU_STRAT == "POWER")
+            {
+                foreach (string Email in Connection.POWER)
+                    Connection.mail.To.Add(Email);
+            }
+            else if (BU_STRAT == "ISOLATOR")
+            {
+                foreach (string Email in Connection.ISOLATOR)
+                    Connection.mail.To.Add(Email);
+            }
+            else if (BU_STRAT == "VET")
+            {
+                foreach (string Email in Connection.VET)
+                    Connection.mail.To.Add(Email);
+            }
+            else if (BU_STRAT == "RFC")
+            {
+                foreach (string Email in Connection.RFC)
+                    Connection.mail.To.Add(Email);
+            }
+
             Connection.mail.From = new MailAddress("HIT.APP@analog.com");
 
             Connection.mail.To.Add("RalphYaz.Diaz@analog.com");
