@@ -65,6 +65,8 @@
             this.STATUS_FILTER = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BU_STRATEGY = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.SUB_FACTORY_FILTER = new System.Windows.Forms.ComboBox();
             this.VSPEC = new System.Windows.Forms.TextBox();
@@ -91,8 +93,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.QUARTER = new System.Windows.Forms.ComboBox();
             this.ADD_NBMS = new System.Windows.Forms.Button();
-            this.label20 = new System.Windows.Forms.Label();
-            this.BU_STRATEGY = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -280,7 +280,7 @@
             this.FROM_DATE.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.FROM_DATE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FROM_DATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FROM_DATE.Location = new System.Drawing.Point(471, 140);
+            this.FROM_DATE.Location = new System.Drawing.Point(471, 139);
             this.FROM_DATE.Name = "FROM_DATE";
             this.FROM_DATE.Size = new System.Drawing.Size(115, 22);
             this.FROM_DATE.TabIndex = 26;
@@ -576,6 +576,39 @@
             this.groupBox1.TabIndex = 58;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SEARCH FILTER";
+            // 
+            // BU_STRATEGY
+            // 
+            this.BU_STRATEGY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BU_STRATEGY.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BU_STRATEGY.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BU_STRATEGY.FormattingEnabled = true;
+            this.BU_STRATEGY.Items.AddRange(new object[] {
+            "",
+            "CONVERTERS",
+            "ISOLATOR",
+            "PAG",
+            "POWER",
+            "RFC",
+            "VET"});
+            this.BU_STRATEGY.Location = new System.Drawing.Point(161, 77);
+            this.BU_STRATEGY.Name = "BU_STRATEGY";
+            this.BU_STRATEGY.Size = new System.Drawing.Size(188, 24);
+            this.BU_STRATEGY.Sorted = true;
+            this.BU_STRATEGY.TabIndex = 73;
+            // 
+            // label20
+            // 
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.Transparent;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(10, 78);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(118, 16);
+            this.label20.TabIndex = 72;
+            this.label20.Text = "BU STRATEGY:";
             // 
             // label13
             // 
@@ -902,39 +935,6 @@
             this.ADD_NBMS.Text = "TRANSACT NEW ISSUE";
             this.ADD_NBMS.UseVisualStyleBackColor = false;
             this.ADD_NBMS.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label20
-            // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(10, 78);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(118, 16);
-            this.label20.TabIndex = 72;
-            this.label20.Text = "BU STRATEGY:";
-            // 
-            // BU_STRATEGY
-            // 
-            this.BU_STRATEGY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BU_STRATEGY.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BU_STRATEGY.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BU_STRATEGY.FormattingEnabled = true;
-            this.BU_STRATEGY.Items.AddRange(new object[] {
-            "",
-            "CONVERTERS",
-            "ISOLATOR",
-            "PAG",
-            "POWER",
-            "RFC",
-            "VET"});
-            this.BU_STRATEGY.Location = new System.Drawing.Point(161, 77);
-            this.BU_STRATEGY.Name = "BU_STRATEGY";
-            this.BU_STRATEGY.Size = new System.Drawing.Size(188, 24);
-            this.BU_STRATEGY.Sorted = true;
-            this.BU_STRATEGY.TabIndex = 73;
             // 
             // SEARCH_BOARD
             // 

@@ -31,6 +31,7 @@ namespace PROJECT
         private async void Send_email()
         {   
             Connection.mail.To.Clear();
+            
             if (CheckSubFactory == "BMS")
             {
                 foreach (string Email in Connection.BMS_Emails)
@@ -106,7 +107,7 @@ namespace PROJECT
             Connection.mail.From = new MailAddress("HIT.APP@analog.com");
 
             Connection.mail.To.Add("RalphYaz.Diaz@analog.com");
-
+            
             Connection.mail.To.Add("johnmichael.so@analog.com");
 
             email_sent = await Task.Run(async () => await SavingWindow.Email_send(CheckForm));

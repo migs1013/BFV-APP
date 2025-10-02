@@ -102,13 +102,16 @@ namespace PROJECT
         private void Save_btn_Click(object sender, EventArgs e)
         {
             if (!CheckDetails()) return;
-            Stage_Temp = string.Join(" ", TEST_STAGE.Text, TEMPERATURE.Text);
+
             DialogResult yes_no = MessageBox.Show(("PLEASE DOUBLE CHECK YOUR DATA,THIS WILL BE SAVE PERMANENTLY. SAVE IT?"), "ATTENTION", MessageBoxButtons.YesNo);
             switch (yes_no)
             {
                 case DialogResult.Yes:
                     try
                     {
+                        Stage_Temp = string.Join(" ", TEST_STAGE.Text, TEMPERATURE.Text);
+                        Stage_Temp = Stage_Temp.TrimEnd('C');
+                        Stage_Temp += "C";
                         if (FACTORY.Text != "F1")
                             SUB_FACTORY.Text = "N/A";
                         if (FAILURE_ASSESSMENT.SelectedIndex == 1)
@@ -189,6 +192,7 @@ namespace PROJECT
 
                         SavingWindow save = new SavingWindow(1,SUB_FACTORY.Text,BU_STRAT.Text);
                         SUB_FACTORY.SelectedIndex = -1;
+                        BU_STRAT.SelectedIndex = -1;
                         save.ShowDialog();
 
                     }
@@ -284,8 +288,14 @@ namespace PROJECT
 
                     textBox.Text.Trim();
 
+                    textBox.Text.Replace("'", "");
+                    textBox.Text.Replace("`", "");
+
                     if (textBox == Problem || textBox == Action || textBox == TEST_NAME)
-                        continue;
+                    {
+                        textBox.Text.Replace("'", "");
+                        textBox.Text.Replace("`", "");
+                    }
                     else
                     {
                         if (string.IsNullOrWhiteSpace(textBox.Text))
@@ -307,6 +317,9 @@ namespace PROJECT
 
                     comboBox.Text.Trim();
 
+                    comboBox.Text.Replace("'", "");
+                    comboBox.Text.Replace("`", "");
+
                     if (string.IsNullOrWhiteSpace(comboBox.Text))
                     {
                         Error();
@@ -320,7 +333,7 @@ namespace PROJECT
                 }
                 else continue;
             }
-            if (first_verif_link.Text == string.Empty || FACTORY.Text == string.Empty || SUB_FACTORY.Text == string.Empty)
+            if (first_verif_link.Text == string.Empty || FACTORY.Text == string.Empty || SUB_FACTORY.Text == string.Empty || BU_STRAT.Text == string.Empty)
             {
                 Error();
                 return false;

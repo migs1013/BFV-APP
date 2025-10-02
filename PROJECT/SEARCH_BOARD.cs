@@ -134,7 +134,7 @@ namespace PROJECT
                         "FROM `hit`.`details` {0} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 30",FullTextCommand), Connection.connect);
                     break;
                 case 7: //NEXT BUTTON
-                    command = new MySqlCommand(string.Format("Select PRODUCT_OWNER`,`PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STAGE`," +
+                    command = new MySqlCommand(string.Format("Select `PART_NAME`,`TEST_NUMBER`,`TEST_NAME`,`TESTER_ID`,`TEST_STAGE`,`PRODUCT_OWNER`," +
                         "`DATE_ENCOUNTERED`,if(`STATUS` = 'VALID','CLOSED',`STATUS`) as `STATUS`,if(`STATUS` = 'FOR FURTHER INVESTIGATION',datediff(curdate(),`DATE_ENCOUNTERED`),datediff(`DATE_APPROVED`,`DATE_ENCOUNTERED`)) as `CYCLE_TIME`,`ENDORSEMENT_NUMBER` " +
                         "FROM `hit`.`details` {0} ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT {1},30", FullTextCommand, range), Connection.connect);
                     break;

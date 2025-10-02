@@ -84,7 +84,7 @@ namespace PROJECT
                     case TextBox tb:
                         tb.Clear(); break;
                     case ComboBox cb:
-                        if (cb.Name == "SUB_FACTORY") continue;
+                        if (cb.Name == "SUB_FACTORY" || cb.Name == "BU_STRAT") continue;
                         cb.SelectedIndex = -1;
                         cb.Text = "";
                         break;
