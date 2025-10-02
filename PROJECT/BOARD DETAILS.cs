@@ -153,6 +153,9 @@ namespace PROJECT
         private void Update_Email_send()
         {
 
+            PO_COMMENT.Text.Replace("'", "").Replace("`", "");
+            PO_ROOTCAUSE.Text.Replace("'", "").Replace("`", "");
+
             if (string.IsNullOrEmpty(PO_ROOTCAUSE.Text)) rootcause_comment = ROOTCAUSE.Text;
             else rootcause_comment = PO_ROOTCAUSE.Text;
 
