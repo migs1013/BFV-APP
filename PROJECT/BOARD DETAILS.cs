@@ -66,6 +66,7 @@ namespace PROJECT
                 BOARD_ID.Text = read_data["BOARD_ID"].ToString();
                 PROBLEM.Text = read_data["PROBLEM"].ToString();
                 ACTION.Text = read_data["ACTION"].ToString();
+                ANALYSIS.Text = read_data["ANALYSIS"].ToString();
                 BIN_NUMBER.Text = read_data["BIN_NUMBER"].ToString();
                 TEST_NUMBER.Text = read_data["TEST_NUMBER"].ToString();
                 TEST_NAME.Text = read_data["TEST_NAME"].ToString();
@@ -198,28 +199,31 @@ namespace PROJECT
 <b>PROBLEM DESCRIPTION:</b> 
 {6}<br><br>
 
-<b>LOGGED BY:</b> {7}<br><br>
+<b>ANALYSIS:</b> 
+{7}<br><br>
 
-<b>DATE:</b> {8}<br><br>
+<b>LOGGED BY:</b> {8}<br><br>
+
+<b>DATE:</b> {9}<br><br>
 
 <b>----------------------------------------VERIFICATION UPDATE----------------------------------------------------</b><br><br>
 
 <b>DISPOSITION:</b> 
-{9}<br><br>
+{10}<br><br>
 
-<b>POTENTIAL ROOTCAUSE:</b> {10}<br><br>
+<b>POTENTIAL ROOTCAUSE:</b> {11}<br><br>
 
 <b>FAILURE ASSESSMENT:</b> VALID (FOR APPROVAL)<br><br>
 
-<b>UPDATED/VERIFIED BY:</b> {11}<br><br>
+<b>UPDATED/VERIFIED BY:</b> {12}<br><br>
 
-<b>DATE:</b> {12}<br><br>
+<b>DATE:</b> {13}<br><br>
 
-{13}
+{14}
 
 (THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN).",
 PART_NAME.Text, TESTER_ID.Text, HANDLER_ID.Text, BOARD_ID.Text, FAILURE_MODE.Text, FAILURE_PERFORMANCE.Text,
-PROBLEM.Text, UserName, DATE_VERIFIED.Text, dispo, rootcause_comment, DISPO_USER.Text, DISPO_DATE.Text, approver);
+PROBLEM.Text, ANALYSIS.Text, USER_LOG.Text, DATE_VERIFIED.Text, dispo, rootcause_comment, DISPO_USER.Text, DISPO_DATE.Text, approver);
 
             if (UPDATE.Text == "APPROVE")
             {
@@ -482,7 +486,7 @@ PROBLEM.Text, UserName, DATE_VERIFIED.Text, dispo, rootcause_comment, DISPO_USER
                 Data = (byte[])read_data[SQL_COLUMN_NAME];
                 Connection.CloseConnection();
 
-                string DatalogFile = string.Format("C:\\Users\\{0}\\Desktop\\{1}", Environment.UserName, link);
+                string DatalogFile = string.Format("C:\\Users\\{0}\\Downloads\\{1}", Environment.UserName, link);
                 File.WriteAllBytes(DatalogFile, Data);
                 System.Diagnostics.Process.Start(DatalogFile);
             }

@@ -18,7 +18,7 @@ namespace PROJECT
         MySqlCommand command;
         long FileSize;
         byte[] Data;
-        public static string FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption,subject,body, 
+        public static string SQL_Command,FileName, database, DATALOG, Dataloglink, UpdateData, FileNameNumber, WordCheck,Temp,TestOption,subject,body, 
                       hostname, dlog1 = "", dlog2 = "", dlog3 = "", dlog4 = "",Stage_Temp,failure,BIN;
 
         public int Endorsement_Number,FileNameLength, WordCount = 0;
@@ -92,11 +92,25 @@ namespace PROJECT
 
             Connection.OpenConnection();
 
-            command.ExecuteNonQuery();
+            MySqlDataReader read_status = command.ExecuteReader();
+            read_status.Read();
 
+            Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT_NUMBER"].ToString());
 
             Connection.CloseConnection();
 
+        }
+
+        private void SendFile(int InputCommand)
+        {
+            Commands(InputCommand);
+            command.Connection = Connection.connect;
+
+            Connection.OpenConnection();
+
+            command.ExecuteNonQuery();
+
+            Connection.CloseConnection();
         }
 
         private void Save_btn_Click(object sender, EventArgs e)
@@ -117,39 +131,27 @@ namespace PROJECT
                         if (FAILURE_ASSESSMENT.SelectedIndex == 1)
                         {
                             SendData(6);
-
                         }
                         else SendData(9);
 
-                        Commands(1);
-                        command.Connection = Connection.connect;
-                        Connection.OpenConnection();
-
-                        MySqlDataReader read_status = command.ExecuteReader();
-                        read_status.Read();
-
-                        Endorsement_Number = Convert.ToInt32(read_status["ENDORSEMENT_NUMBER"].ToString());
-
-                        Connection.CloseConnection();
-
                         if (dlog1.Contains("\\"))
                         {
-                            DatalogNumber(1); SendData(5);
+                            DatalogNumber(1); SendFile(5); //SendData(5);
                             Files.Add(dlog1);
                         }
                         if (dlog2.Contains("\\"))
                         {
-                            DatalogNumber(2); SendData(5);
+                            DatalogNumber(2); SendFile(5); //SendData(5);
                             Files.Add(dlog2);
                         }
                         if (dlog3.Contains("\\"))
                         {
-                            DatalogNumber(3); SendData(5);
+                            DatalogNumber(3); SendFile(5); //SendData(5);
                             Files.Add(dlog3);
                         }
                         if (dlog4.Contains("\\"))
                         {
-                            DatalogNumber(4); SendData(5);
+                            DatalogNumber(4); SendFile(5); //SendData(5);
                             Files.Add(dlog4);
                         }
 
@@ -175,26 +177,29 @@ namespace PROJECT
 <b>PROBLEM DESCRIPTION:</b> 
 {6}<br><br>
 
-<b>DISPOSITION:</b> 
+<b>ANALYSIS:</b> 
 {7}<br><br>
 
-<b>POTENTIAL ROOTCAUSE:</b> {8}<br><br>
+<b>DISPOSITION:</b> 
+{8}<br><br>
 
-<b>FAILURE ASSESSMENT:</b> {9}<br><br>
+<b>POTENTIAL ROOTCAUSE:</b> {9}<br><br>
 
-<b>LOGGED BY:</b> {10}<br><br>
+<b>FAILURE ASSESSMENT:</b> {10}<br><br>
+
+<b>LOGGED BY:</b> {11}<br><br>
 
 (THIS IS A SYSTEM GENERATED EMAIL. DO NOT REPLY TO THIS EMAIL. PLEASE CONTACT JOHN MICHAEL SO FOR ANY CONCERN)."
-, PART_NAME.Text, TESTER_ID.Text, HANDLER_ID.Text, BOARD_ID.Text, Failure_mode.Text, FAILURE_PERFORMANCE.Text, Problem.Text, Action.Text, POTENTIAL_ROOTCAUSE.Text, failure, UserName);
+, PART_NAME.Text, TESTER_ID.Text, HANDLER_ID.Text, BOARD_ID.Text, Failure_mode.Text, FAILURE_PERFORMANCE.Text, Problem.Text, ANALYSIS.Text, Action.Text, POTENTIAL_ROOTCAUSE.Text, failure, UserName);
 
-                        Connection.ClearAll(this);
                         Connection.CloseConnection();
+                        Connection.ClearAll(this);
 
-                        SavingWindow save = new SavingWindow(1,SUB_FACTORY.Text,BU_STRAT.Text);
+                        //SavingWindow save = new SavingWindow(1,SUB_FACTORY.Text,BU_STRAT.Text);
                         SUB_FACTORY.SelectedIndex = -1;
                         BU_STRAT.SelectedIndex = -1;
-                        save.ShowDialog();
-
+                        //save.ShowDialog();
+                        MessageBox.Show("saved");
                     }
                     catch (MySqlException ex)
                     {
@@ -235,13 +240,37 @@ namespace PROJECT
                     command.Parameters.Add(string.Format("@{0}", UpdateData), MySqlDbType.LongBlob).Value = SaveFile(Dataloglink);
                     break;
                 case 6: // INSERT NEW TRANSACTION WITH OPEN STATUS
-                    command = new MySqlCommand("INSERT INTO `hit`.`details` " +
-                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STAGE`,`TESTER_PLATFORM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_PERFORMANCE`,`BOARD_ID`," +
-                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`POTENTIAL_ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`FACTORY`,`SUB_FACTORY`,`BU_STRAT`) " +
-                        "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + Stage_Temp + "','" + Tester_platform.Text + "'," +
-                        "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + FAILURE_PERFORMANCE.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
-                        "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','" + FAILURE_ASSESSMENT.Text + "','" + POTENTIAL_ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
-                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "','" + BU_STRAT.Text + "')");
+                    command = new MySqlCommand(@"USE `HIT`; " +
+                        "INSERT INTO `details` (`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STAGE`,`TESTER_PLATFORM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_PERFORMANCE`,`BOARD_ID`," +
+                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`POTENTIAL_ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`ANALYSIS`,`FACTORY`,`SUB_FACTORY`,`BU_STRAT`) " +
+                        "VALUES (@PartName, @LotID,@VSPEC,@StageTemp,@TesterPlatform,@TesterID,@Handler,@FailureMode,@FailurePerformance,@BoardID,@BinNumber," +
+                        "@TestNumber,@Testname,@FailureAssessment,@PotentialRootcause,@ProductOwner,@Time,@Username,@Problem,@Action,@Analysis,@Factory,@SubFactory,@BUStrat);" +
+                        "SELECT `ENDORSEMENT_NUMBER` FROM `details` WHERE (`PART_NAME` = @PartName and `LOT_ID` = @LotID) ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 1");
+
+                    command.Parameters.AddWithValue("@PartName", PART_NAME.Text);
+                    command.Parameters.AddWithValue("@LotID", LOT_ID.Text);
+                    command.Parameters.AddWithValue("@VSPEC", VSPEC.Text);
+                    command.Parameters.AddWithValue("@StageTemp", Stage_Temp);
+                    command.Parameters.AddWithValue("@TesterPlatform", Tester_platform.Text);
+                    command.Parameters.AddWithValue("@TesterID", TESTER_ID.Text);
+                    command.Parameters.AddWithValue("@Handler", HANDLER_ID.Text);
+                    command.Parameters.AddWithValue("@FailureMode", Failure_mode.Text);
+                    command.Parameters.AddWithValue("@FailurePerformance", FAILURE_PERFORMANCE.Text);
+                    command.Parameters.AddWithValue("@BoardID", BOARD_ID.Text);
+                    command.Parameters.AddWithValue("@BinNumber", BIN_NUMBER.Text);
+                    command.Parameters.AddWithValue("@TestNumber", TEST_NUMBER.Text);
+                    command.Parameters.AddWithValue("@Testname", TEST_NAME.Text);
+                    command.Parameters.AddWithValue("@FailureAssessment", FAILURE_ASSESSMENT.Text);
+                    command.Parameters.AddWithValue("@PotentialRootcause", POTENTIAL_ROOTCAUSE.Text);
+                    command.Parameters.AddWithValue("@ProductOwner", PRODUCT_OWNER.Text);
+                    command.Parameters.AddWithValue("@Time", WriteTime.Date);
+                    command.Parameters.AddWithValue("@Username", USERNAME.Text);
+                    command.Parameters.AddWithValue("@Problem", Problem.Text);
+                    command.Parameters.AddWithValue("@Action", Action.Text);
+                    command.Parameters.AddWithValue("@Analysis", ANALYSIS.Text);
+                    command.Parameters.AddWithValue("@Factory", FACTORY.Text);
+                    command.Parameters.AddWithValue("@SubFactory", SUB_FACTORY.Text);
+                    command.Parameters.AddWithValue("@BUStrat", BU_STRAT.Text);
                     break;
                 case 7: // LOAD PRODUCT OWNER
                     command = new MySqlCommand(string.Format("select `PRODUCT_OWNER` from `device` where locate(`DEVICE`,'{0}') = 1",PART_NAME.Text));
@@ -251,30 +280,27 @@ namespace PROJECT
                         "GROUP BY `BIN_NUMBER`", PART_NAME.Text, TEST_STAGE.Text));
                     break;
                 case 9:  // INSERT NEW TRANSACTION WITH CLOSED STATUS
-                    command = new MySqlCommand("INSERT INTO `hit`.`details` " +
-                        "(`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STAGE`,`TESTER_PLATFORM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_PERFORMANCE`,`BOARD_ID`," +
-                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`POTENTIAL_ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`," +
+                    command = new MySqlCommand("USE `HIT`;" +
+                        "INSERT INTO `hit`.`details` (`PART_NAME`,`LOT_ID`,`VSPEC`,`TEST_STAGE`,`TESTER_PLATFORM`,`TESTER_ID`,`HANDLER_ID`,`FAILURE_MODE`,`FAILURE_PERFORMANCE`,`BOARD_ID`," +
+                        "`BIN_NUMBER`,`TEST_NUMBER`,`TEST_NAME`,`STATUS`,`POTENTIAL_ROOTCAUSE`,`PRODUCT_OWNER`,`DATE_ENCOUNTERED`,`USER`,`PROBLEM`,`ACTION`,`ANALYSIS`," +
                         "`PO_COMMENT`,`DISPO_DATE`,`DISPO_USER`,`FACTORY`,`SUB_FACTORY`,`BU_STRAT`) " +
                         "VALUES ('" + PART_NAME.Text + "', '" + LOT_ID.Text + "','" + VSPEC.Text + "','" + Stage_Temp + "','" + Tester_platform.Text + "'," +
                         "'" + TESTER_ID.Text + "','" + HANDLER_ID.Text + "','" + Failure_mode.Text + "','" + FAILURE_PERFORMANCE.Text + "','" + BOARD_ID.Text + "','" + BIN_NUMBER.Text + "'," +
                         "'" + TEST_NUMBER.Text + "','" + TEST_NAME.Text + "','FOR APPROVAL','" + POTENTIAL_ROOTCAUSE.Text + "','" + PRODUCT_OWNER.Text + "'," +
-                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','PLEASE REFER TO DISPOSITION'," +
-                        "'" + DateTime.Today.ToString("yyyy-MM-dd") + "','" + UserName + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "','" + BU_STRAT.Text + "')");
+                        "'" + WriteTime.ToString("yyyy-MM-dd") + "','" + UserName + "','" + Problem.Text + "','" + Action.Text + "','" + ANALYSIS.Text + "','PLEASE REFER TO DISPOSITION'," +
+                        "'" + DateTime.Today.ToString("yyyy-MM-dd") + "','" + UserName + "','" + FACTORY.Text + "','" + SUB_FACTORY.Text + "','" + BU_STRAT.Text + "');" +
+                        "SELECT `ENDORSEMENT_NUMBER` FROM `hit`.`details` WHERE (`PART_NAME` = '" + PART_NAME.Text + "' and `LOT_ID` = '" + LOT_ID.Text + "') ORDER BY `ENDORSEMENT_NUMBER` DESC LIMIT 1");
+
+                    
                     break;
                 case 10: // LOAD TESTER PLATFORMS
                     command = new MySqlCommand("SELECT `TESTER_PLATFORM` FROM `DETAILS` GROUP BY `TESTER_PLATFORM`");
                     break;
-                case 11: // LOAD PRODUCT OWNER BASED ON SELECTED SUB FACTORY
-                    command = new MySqlCommand(string.Format("SELECT `PRODUCT_OWNER` FROM `details` WHERE `FACTORY` = '{0}' and `SUB_FACTORY` = '{1}' GROUP BY `PRODUCT_OWNER` order by `PRODUCT_OWNER`",FACTORY.Text,SUB_FACTORY.Text));
+                case 11: // LOAD PRODUCT OWNER
+                    command = new MySqlCommand(string.Format("SELECT `PRODUCT_OWNER` FROM `details` WHERE `FACTORY` = '{0}' and `SUB_FACTORY` = '{1}' and `BU_STRAT` = '{2}' GROUP BY `PRODUCT_OWNER` order by `PRODUCT_OWNER`",FACTORY.Text,SUB_FACTORY.Text,BU_STRAT.Text));
                     break;
-                case 12: // CHECK PRODUCT OWNER COUNT BASED ON SELECTED SUB FACTORY
-                    command = new MySqlCommand(string.Format("SELECT COUNT(*) AS `COUNT` FROM `DETAILS` WHERE `FACTORY` = '{0}' AND `SUB_FACTORY` = '{1}' AND `PRODUCT_OWNER` <> 'NOT APPLICABLE'", FACTORY.Text,SUB_FACTORY.Text));
-                    break;
-                case 13: // LOAD PRODUCT OWNER BASED ON SELECTED BU STRAT
-                    command = new MySqlCommand(string.Format("SELECT `PRODUCT_OWNER` FROM `details` WHERE `FACTORY` = '{0}' and `SUB_FACTORY` = '{1}' GROUP BY `PRODUCT_OWNER` order by `PRODUCT_OWNER`", FACTORY.Text, SUB_FACTORY.Text));
-                    break;
-                case 14: // CHECK PRODUCT OWNER COUNT BASED ON SELECTED BU STRAT
-                    command = new MySqlCommand(string.Format("SELECT COUNT(*) AS `COUNT` FROM `DETAILS` WHERE `FACTORY` = '{0}' AND `SUB_FACTORY` = '{1}' AND `PRODUCT_OWNER` <> 'NOT APPLICABLE'", FACTORY.Text, SUB_FACTORY.Text));
+                case 12: // CHECK PRODUCT OWNER COUNT
+                    command = new MySqlCommand(string.Format("SELECT COUNT(*) AS `COUNT` FROM `DETAILS` WHERE `FACTORY` = '{0}' AND `SUB_FACTORY` = '{1}' and `BU_STRAT` = '{2}' AND `PRODUCT_OWNER` <> 'NOT APPLICABLE'", FACTORY.Text,SUB_FACTORY.Text,BU_STRAT.Text));
                     break;
             }
         }
@@ -286,39 +312,25 @@ namespace PROJECT
                 {
                     TextBox textBox = c as TextBox;
 
-                    textBox.Text.Trim();
+                    textBox.Text = textBox.Text.Replace("'", "").Replace("`", "").Trim();
 
-                    textBox.Text.Replace("'", "");
-                    textBox.Text.Replace("`", "");
+                    if (string.IsNullOrWhiteSpace(textBox.Text))
+                    {
+                        Error();
+                        return false;
+                    }
+                    else if (textBox.Text.Length > 60)
+                    {
+                        MessageBox.Show("TOO LONG INPUT!");
+                        return false;
+                    }
 
-                    if (textBox == Problem || textBox == Action || textBox == TEST_NAME)
-                    {
-                        textBox.Text.Replace("'", "");
-                        textBox.Text.Replace("`", "");
-                    }
-                    else
-                    {
-                        if (string.IsNullOrWhiteSpace(textBox.Text))
-                        {
-                            Error();
-                            return false;
-                        }
-                        else if (textBox.Text.Length > 60)
-                        {
-                            MessageBox.Show("TOO LONG INPUT!");
-                            return false;
-                        }
-                        else continue;
-                    }
                 }
                 else if (c is ComboBox)
                 {
                     ComboBox comboBox = c as ComboBox;
 
-                    comboBox.Text.Trim();
-
-                    comboBox.Text.Replace("'", "");
-                    comboBox.Text.Replace("`", "");
+                    comboBox.Text = comboBox.Text.Replace("'", "").Replace("`", "").Replace("TP#", "").Replace("BIN", "").Replace("TP", "").Replace("T#", "").Trim();
 
                     if (string.IsNullOrWhiteSpace(comboBox.Text))
                     {
@@ -333,29 +345,23 @@ namespace PROJECT
                 }
                 else continue;
             }
-            if (first_verif_link.Text == string.Empty || FACTORY.Text == string.Empty || SUB_FACTORY.Text == string.Empty || BU_STRAT.Text == string.Empty)
+            if (first_verif_link.Text == string.Empty || Action.Text == string.Empty || Problem.Text == string.Empty || ANALYSIS.Text == string.Empty)
             {
                 Error();
                 return false;
             }
+            if (SUB_FACTORY.Text == "N/A" && BU_STRAT.Text == "N/A")
+            {
+                MessageBox.Show("PLEASE CHOOSE SUB FACTORY OR BU STRAT");
+                return false;
+            }
+            Problem.Text = Problem.Text.Replace("`", "").Replace("'", "").Trim();
+            Action.Text = Action.Text.Replace("`", "").Replace("'", "").Trim();
+            ANALYSIS.Text = ANALYSIS.Text.Replace("`", "").Replace("'", "").Trim();
             return true;
         }
 
-        private void SUB_FACTORY_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (SUB_FACTORY.Text != "N/A")
-                BU_STRAT.SelectedIndex = 0;
-            else BU_STRAT.SelectedIndex = -1;
-                SelectProductOwner(12, 11);
-        }
 
-        private void BU_STRAT_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (BU_STRAT.Text != "N/A")
-                SUB_FACTORY.SelectedIndex = 0;
-            else SUB_FACTORY.SelectedIndex = -1;
-                SelectProductOwner(14, 13);
-        }
 
         private void SelectProductOwner(int counts,int PO)
         {
@@ -422,6 +428,16 @@ namespace PROJECT
                 WriteTime = System.IO.File.GetLastWriteTime(openFileDialog1.FileName);
                 Date.Text = WriteTime.ToString("yyyy-MM-dd");
             }
+        }
+
+        private void SUB_FACTORY_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectProductOwner(12, 11);
+        }
+
+        private void BU_STRAT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectProductOwner(12, 11);
         }
 
         private void BIN_NUMBER_KeyPress(object sender, KeyPressEventArgs e)

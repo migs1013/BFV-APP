@@ -13,21 +13,21 @@ namespace PROJECT
     {
         public static readonly MailMessage mail = new MailMessage();
 
-        public static string[] F2_Sub_Factories = { "BMS", "LTX", "NBMS/NI/ETS88","NBMS" };
-        public static string[] F1_Sub_Factories = { "N/A", "HPCA", "HPCC", "HPCS", "INT", "COM", "STR", "RFC", "MPD", "MIC_WIL", "MIC_SC", "AERO" };
+        public static string[] F2_Sub_Factories = { "", "BMS", "LTX", "NBMS (B3)", "NI", "ETS88", "NBMS (B1)" };
+        public static string[] F1_Sub_Factories = { "", "HPCA", "HPCC", "HPCS", "INT", "COM", "STR", "RFC", "MPD", "MIC_WIL", "MIC_SC", "AERO" };
 
         public static string[] LTX_Emails = { "LTXTS88PETechnicians@analog.com", "LTXTS88PETestEngineers@analog.com", "LTXTS88ProductEngineers@analog.com", "servil.saulog@analog.com" };
-        public static string[] BMS_Emails = { "ADPhilsLinearBMSTPE@analog.com", "ADPhilsLinearBMSTPETech@analog.com", "MayanaJoy.Duran@analog.com" };
-        public static string[] NbmsNIETS88_Emails = { "ADPhils_Linear_nBMSB3_ETS88_NI@analog.com", "ADPhilsLinearBMSTPETech@analog.com", "MayanaJoy.Duran@analog.com" };
+        public static string[] BMS_Emails = { "ADPhilsLinearBMSTPE@analog.com", "ADPhilsLinearBMSTPETech@analog.com", "bms_linetechnician@analog.com", "MayanaJoy.Duran@analog.com" };
+        public static string[] NbmsNIETS88_Emails = { "ADPhils_Linear_nBMSB3_ETS88_NI@analog.com", "ADPhilsLinearBMSTPETech@analog.com", "bms_linetechnician@analog.com", "MayanaJoy.Duran@analog.com" };
         public static string[] Nbms_B1_Emails = { "Nadinejean.Ebarle@analog.com", "ADPhils_Linear_PE_ETS_NonBMS@analog.com", "NMBS_PE_TECH@analog.com" };
         public static string[] ComIntStrip = { "COM_INT_PROD-TECH@analog.com", "Strip_ProductTechnicians@analog.com", "Joefer.Joven@analog.com" };
-        public static string[] HPC = { "HPCC_PROD-TECH@analog.com", "Dexter.Guevarra@analog.com" };
-        public static string[] RFC_SUB = { "ADGT_COMTG_PE@analog.com ", "Randy.Bukis@analog.com" };
+        public static string[] HPC = { "HPCC_PROD-TECH@analog.com", "HPCS_PROD-TECH@analog.com", "Dexter.Guevarra@analog.com" };
+        public static string[] RFC_SUB = { "ADGT_COMTG_PE@analog.com ", "COM_INT_PROD-TECH@analog.com" };
         public static string[] MpdAutoAeroMic = { "ADGT_ADEF_PE@analog.com", "ADGTAutoEng@analog.com" , "AEGTGPE@analog.com" };
         public static string[] PAG = { "ADGT_PAG_TPE@analog.com", "COM_INT_PROD-TECH@analog.com" };
-        public static string[] Converters = { "Converters_TPE_F1_Phils", "Strip_ProductTechnicians@analog.com" };
-        public static string[] POWER = { "ADGT_PPGTG_PE@analog.com", "HPCC_PROD-TECH@analog.com" };
-        public static string[] ISOLATOR = { "AEGTGPE@analog.com", "HPCS_PROD-TECH@analog.com" };
+        public static string[] Converters = { "Converters_TPE_F1_Phils@analog.com" };
+        public static string[] POWER = { "ADGT_PPGTG_PE@analog.com"};
+        public static string[] ISOLATOR = { "AEGTGPE@analog.com" };
         public static string[] VET = { "adgtautoeng@analog.com", "ADGTB3ProdTech@analog.com" };
         public static string[] RFC = { "ADGT_MCG_PE@analog.com", "rfcprodtech@analog.com" };    
 

@@ -48,13 +48,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.Problem = new System.Windows.Forms.TextBox();
             this.First_box = new System.Windows.Forms.GroupBox();
-            this.BU_STRAT = new System.Windows.Forms.ComboBox();
-            this.BU_TEXT = new System.Windows.Forms.Label();
-            this.SUB_FACTORY = new System.Windows.Forms.ComboBox();
-            this.SUB_FACTORY_TEXT = new System.Windows.Forms.Label();
-            this.FACTORY = new System.Windows.Forms.ComboBox();
+            this.ANALYSIS = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.ADD_FILE4 = new System.Windows.Forms.Button();
             this.Action = new System.Windows.Forms.TextBox();
             this.USERNAME = new System.Windows.Forms.Label();
@@ -70,6 +66,12 @@
             this.THIRD_DLOG = new System.Windows.Forms.LinkLabel();
             this.ADD4 = new System.Windows.Forms.Label();
             this.FOURTH_DLOG = new System.Windows.Forms.LinkLabel();
+            this.BU_STRAT = new System.Windows.Forms.ComboBox();
+            this.BU_TEXT = new System.Windows.Forms.Label();
+            this.SUB_FACTORY = new System.Windows.Forms.ComboBox();
+            this.SUB_FACTORY_TEXT = new System.Windows.Forms.Label();
+            this.FACTORY = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.HANDLER_ID = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.Failure_mode = new System.Windows.Forms.ComboBox();
@@ -107,7 +109,7 @@
             this.Save_btn.Location = new System.Drawing.Point(396, 515);
             this.Save_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Save_btn.Name = "Save_btn";
-            this.Save_btn.Size = new System.Drawing.Size(141, 61);
+            this.Save_btn.Size = new System.Drawing.Size(141, 54);
             this.Save_btn.TabIndex = 0;
             this.Save_btn.Text = "SAVE";
             this.Save_btn.UseVisualStyleBackColor = false;
@@ -118,7 +120,7 @@
             this.Exit_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Exit_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Exit_btn.Location = new System.Drawing.Point(845, 515);
+            this.Exit_btn.Location = new System.Drawing.Point(845, 512);
             this.Exit_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Exit_btn.Name = "Exit_btn";
             this.Exit_btn.Size = new System.Drawing.Size(141, 55);
@@ -239,7 +241,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(12, 497);
+            this.label8.Location = new System.Drawing.Point(12, 548);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(144, 19);
             this.label8.TabIndex = 22;
@@ -249,7 +251,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(11, 116);
+            this.label9.Location = new System.Drawing.Point(11, 137);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 19);
             this.label9.TabIndex = 27;
@@ -260,7 +262,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(2, 215);
+            this.label10.Location = new System.Drawing.Point(2, 198);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(179, 19);
             this.label10.TabIndex = 30;
@@ -270,23 +272,20 @@
             // 
             this.Problem.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.Problem.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Problem.Location = new System.Drawing.Point(6, 237);
+            this.Problem.Location = new System.Drawing.Point(6, 221);
             this.Problem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Problem.Multiline = true;
             this.Problem.Name = "Problem";
-            this.Problem.Size = new System.Drawing.Size(578, 112);
+            this.Problem.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Problem.Size = new System.Drawing.Size(271, 128);
             this.Problem.TabIndex = 17;
             // 
             // First_box
             // 
             this.First_box.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.First_box.Controls.Add(this.BU_STRAT);
-            this.First_box.Controls.Add(this.BU_TEXT);
-            this.First_box.Controls.Add(this.SUB_FACTORY);
-            this.First_box.Controls.Add(this.SUB_FACTORY_TEXT);
-            this.First_box.Controls.Add(this.FACTORY);
+            this.First_box.Controls.Add(this.ANALYSIS);
+            this.First_box.Controls.Add(this.label22);
             this.First_box.Controls.Add(this.label13);
-            this.First_box.Controls.Add(this.label12);
             this.First_box.Controls.Add(this.ADD_FILE4);
             this.First_box.Controls.Add(this.Action);
             this.First_box.Controls.Add(this.USERNAME);
@@ -317,71 +316,28 @@
             this.First_box.TabStop = false;
             this.First_box.Text = "VERIFICATION DETAILS";
             // 
-            // BU_STRAT
+            // ANALYSIS
             // 
-            this.BU_STRAT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BU_STRAT.Enabled = false;
-            this.BU_STRAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.BU_STRAT.FormattingEnabled = true;
-            this.BU_STRAT.Items.AddRange(new object[] {
-            "N/A",
-            "PAG",
-            "CONVERTERS",
-            "POWER",
-            "ISOLATOR",
-            "VET",
-            "RFC"});
-            this.BU_STRAT.Location = new System.Drawing.Point(126, 194);
-            this.BU_STRAT.Name = "BU_STRAT";
-            this.BU_STRAT.Size = new System.Drawing.Size(122, 21);
-            this.BU_STRAT.TabIndex = 96;
-            this.BU_STRAT.SelectionChangeCommitted += new System.EventHandler(this.BU_STRAT_SelectionChangeCommitted);
+            this.ANALYSIS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.ANALYSIS.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ANALYSIS.Location = new System.Drawing.Point(283, 221);
+            this.ANALYSIS.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ANALYSIS.Multiline = true;
+            this.ANALYSIS.Name = "ANALYSIS";
+            this.ANALYSIS.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ANALYSIS.Size = new System.Drawing.Size(301, 128);
+            this.ANALYSIS.TabIndex = 94;
             // 
-            // BU_TEXT
+            // label22
             // 
-            this.BU_TEXT.AutoSize = true;
-            this.BU_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.BU_TEXT.Location = new System.Drawing.Point(10, 194);
-            this.BU_TEXT.Name = "BU_TEXT";
-            this.BU_TEXT.Size = new System.Drawing.Size(79, 19);
-            this.BU_TEXT.TabIndex = 95;
-            this.BU_TEXT.Text = "BU STRAT:";
-            // 
-            // SUB_FACTORY
-            // 
-            this.SUB_FACTORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SUB_FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.SUB_FACTORY.FormattingEnabled = true;
-            this.SUB_FACTORY.Location = new System.Drawing.Point(126, 170);
-            this.SUB_FACTORY.Name = "SUB_FACTORY";
-            this.SUB_FACTORY.Size = new System.Drawing.Size(122, 21);
-            this.SUB_FACTORY.TabIndex = 94;
-            this.SUB_FACTORY.SelectionChangeCommitted += new System.EventHandler(this.SUB_FACTORY_SelectionChangeCommitted);
-            // 
-            // SUB_FACTORY_TEXT
-            // 
-            this.SUB_FACTORY_TEXT.AutoSize = true;
-            this.SUB_FACTORY_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.SUB_FACTORY_TEXT.Location = new System.Drawing.Point(10, 170);
-            this.SUB_FACTORY_TEXT.Name = "SUB_FACTORY_TEXT";
-            this.SUB_FACTORY_TEXT.Size = new System.Drawing.Size(115, 19);
-            this.SUB_FACTORY_TEXT.TabIndex = 93;
-            this.SUB_FACTORY_TEXT.Text = "SUB FACTORY:";
-            // 
-            // FACTORY
-            // 
-            this.FACTORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.FACTORY.FormattingEnabled = true;
-            this.FACTORY.Items.AddRange(new object[] {
-            "F1",
-            "F2"});
-            this.FACTORY.Location = new System.Drawing.Point(95, 142);
-            this.FACTORY.Name = "FACTORY";
-            this.FACTORY.Size = new System.Drawing.Size(139, 21);
-            this.FACTORY.Sorted = true;
-            this.FACTORY.TabIndex = 88;
-            this.FACTORY.SelectionChangeCommitted += new System.EventHandler(this.FACTORY_SelectionChangeCommitted);
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(279, 196);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(82, 19);
+            this.label22.TabIndex = 93;
+            this.label22.Text = "ANALYSIS";
             // 
             // label13
             // 
@@ -394,16 +350,6 @@
             this.label13.Size = new System.Drawing.Size(49, 19);
             this.label13.TabIndex = 92;
             this.label13.Text = "FILE 1";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label12.Location = new System.Drawing.Point(11, 142);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(84, 19);
-            this.label12.TabIndex = 73;
-            this.label12.Text = "FACTORY:";
             // 
             // ADD_FILE4
             // 
@@ -426,6 +372,7 @@
             this.Action.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Action.Multiline = true;
             this.Action.Name = "Action";
+            this.Action.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Action.Size = new System.Drawing.Size(578, 116);
             this.Action.TabIndex = 18;
             // 
@@ -433,7 +380,7 @@
             // 
             this.USERNAME.AutoSize = true;
             this.USERNAME.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.USERNAME.Location = new System.Drawing.Point(89, 116);
+            this.USERNAME.Location = new System.Drawing.Point(89, 137);
             this.USERNAME.Name = "USERNAME";
             this.USERNAME.Size = new System.Drawing.Size(0, 19);
             this.USERNAME.TabIndex = 40;
@@ -442,7 +389,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label21.Location = new System.Drawing.Point(11, 90);
+            this.label21.Location = new System.Drawing.Point(11, 111);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(165, 19);
             this.label21.TabIndex = 37;
@@ -452,7 +399,7 @@
             // 
             this.FirstDate.AutoSize = true;
             this.FirstDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.FirstDate.Location = new System.Drawing.Point(180, 90);
+            this.FirstDate.Location = new System.Drawing.Point(180, 111);
             this.FirstDate.Name = "FirstDate";
             this.FirstDate.Size = new System.Drawing.Size(0, 19);
             this.FirstDate.TabIndex = 36;
@@ -577,6 +524,85 @@
             this.FOURTH_DLOG.TabIndex = 69;
             this.FOURTH_DLOG.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FourthDlog);
             // 
+            // BU_STRAT
+            // 
+            this.BU_STRAT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BU_STRAT.Enabled = false;
+            this.BU_STRAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.BU_STRAT.FormattingEnabled = true;
+            this.BU_STRAT.Items.AddRange(new object[] {
+            "N/A",
+            "PAG",
+            "CONVERTERS",
+            "POWER",
+            "ISOLATOR",
+            "VET",
+            "RFC"});
+            this.BU_STRAT.Location = new System.Drawing.Point(203, 520);
+            this.BU_STRAT.Name = "BU_STRAT";
+            this.BU_STRAT.Size = new System.Drawing.Size(185, 21);
+            this.BU_STRAT.TabIndex = 96;
+            this.BU_STRAT.SelectedIndexChanged += new System.EventHandler(this.BU_STRAT_SelectedIndexChanged);
+            // 
+            // BU_TEXT
+            // 
+            this.BU_TEXT.AutoSize = true;
+            this.BU_TEXT.BackColor = System.Drawing.Color.Transparent;
+            this.BU_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.BU_TEXT.Location = new System.Drawing.Point(12, 522);
+            this.BU_TEXT.Name = "BU_TEXT";
+            this.BU_TEXT.Size = new System.Drawing.Size(79, 19);
+            this.BU_TEXT.TabIndex = 95;
+            this.BU_TEXT.Text = "BU STRAT:";
+            // 
+            // SUB_FACTORY
+            // 
+            this.SUB_FACTORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SUB_FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.SUB_FACTORY.FormattingEnabled = true;
+            this.SUB_FACTORY.Location = new System.Drawing.Point(203, 493);
+            this.SUB_FACTORY.Name = "SUB_FACTORY";
+            this.SUB_FACTORY.Size = new System.Drawing.Size(185, 21);
+            this.SUB_FACTORY.TabIndex = 94;
+            this.SUB_FACTORY.SelectedIndexChanged += new System.EventHandler(this.SUB_FACTORY_SelectedIndexChanged);
+            // 
+            // SUB_FACTORY_TEXT
+            // 
+            this.SUB_FACTORY_TEXT.AutoSize = true;
+            this.SUB_FACTORY_TEXT.BackColor = System.Drawing.Color.Transparent;
+            this.SUB_FACTORY_TEXT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.SUB_FACTORY_TEXT.Location = new System.Drawing.Point(12, 495);
+            this.SUB_FACTORY_TEXT.Name = "SUB_FACTORY_TEXT";
+            this.SUB_FACTORY_TEXT.Size = new System.Drawing.Size(115, 19);
+            this.SUB_FACTORY_TEXT.TabIndex = 93;
+            this.SUB_FACTORY_TEXT.Text = "SUB FACTORY:";
+            // 
+            // FACTORY
+            // 
+            this.FACTORY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.FACTORY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.FACTORY.FormattingEnabled = true;
+            this.FACTORY.Items.AddRange(new object[] {
+            "F1",
+            "F2"});
+            this.FACTORY.Location = new System.Drawing.Point(203, 466);
+            this.FACTORY.Name = "FACTORY";
+            this.FACTORY.Size = new System.Drawing.Size(185, 21);
+            this.FACTORY.Sorted = true;
+            this.FACTORY.TabIndex = 88;
+            this.FACTORY.SelectionChangeCommitted += new System.EventHandler(this.FACTORY_SelectionChangeCommitted);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label12.Location = new System.Drawing.Point(12, 468);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(84, 19);
+            this.label12.TabIndex = 73;
+            this.label12.Text = "FACTORY:";
+            // 
             // HANDLER_ID
             // 
             this.HANDLER_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -693,7 +719,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(13, 356);
+            this.label2.Location = new System.Drawing.Point(12, 356);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 19);
             this.label2.TabIndex = 75;
@@ -718,7 +744,7 @@
             this.TEST_NAME.Location = new System.Drawing.Point(203, 383);
             this.TEST_NAME.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TEST_NAME.Name = "TEST_NAME";
-            this.TEST_NAME.Size = new System.Drawing.Size(187, 20);
+            this.TEST_NAME.Size = new System.Drawing.Size(185, 20);
             this.TEST_NAME.TabIndex = 14;
             // 
             // VSPEC
@@ -912,7 +938,7 @@
             // 
             this.PRODUCT_OWNER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PRODUCT_OWNER.FormattingEnabled = true;
-            this.PRODUCT_OWNER.Location = new System.Drawing.Point(162, 495);
+            this.PRODUCT_OWNER.Location = new System.Drawing.Point(162, 548);
             this.PRODUCT_OWNER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PRODUCT_OWNER.Name = "PRODUCT_OWNER";
             this.PRODUCT_OWNER.Size = new System.Drawing.Size(226, 21);
@@ -926,13 +952,19 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(989, 581);
+            this.ClientSize = new System.Drawing.Size(989, 575);
+            this.Controls.Add(this.BU_STRAT);
             this.Controls.Add(this.PRODUCT_OWNER);
+            this.Controls.Add(this.BU_TEXT);
             this.Controls.Add(this.POTENTIAL_ROOTCAUSE);
+            this.Controls.Add(this.SUB_FACTORY);
             this.Controls.Add(this.label20);
+            this.Controls.Add(this.SUB_FACTORY_TEXT);
             this.Controls.Add(this.FAILURE_PERFORMANCE);
+            this.Controls.Add(this.FACTORY);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.TEMPERATURE);
             this.Controls.Add(this.Tester_platform);
             this.Controls.Add(this.TEST_STAGE);
@@ -969,6 +1001,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1005, 614);
+            this.MinimumSize = new System.Drawing.Size(1005, 614);
             this.Name = "ADD";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ADD NEW ISSUE";
@@ -1047,5 +1081,7 @@
         public System.Windows.Forms.Label FirstDate;
         public System.Windows.Forms.ComboBox BU_STRAT;
         private System.Windows.Forms.Label BU_TEXT;
+        public System.Windows.Forms.TextBox ANALYSIS;
+        private System.Windows.Forms.Label label22;
     }
 }

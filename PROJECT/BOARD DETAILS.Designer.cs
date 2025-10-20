@@ -39,6 +39,8 @@ namespace PROJECT
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.First_box = new System.Windows.Forms.GroupBox();
+            this.BU_STRAT = new System.Windows.Forms.LinkLabel();
+            this.label20 = new System.Windows.Forms.Label();
             this.SUB_FACTORY = new System.Windows.Forms.LinkLabel();
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -108,8 +110,8 @@ namespace PROJECT
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.FAILURE_PERFORMANCE = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.BU_STRAT = new System.Windows.Forms.LinkLabel();
-            this.label20 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.ANALYSIS = new System.Windows.Forms.TextBox();
             this.First_box.SuspendLayout();
             this.PO_DISPO.SuspendLayout();
             this.SuspendLayout();
@@ -239,6 +241,29 @@ namespace PROJECT
             this.First_box.TabIndex = 65;
             this.First_box.TabStop = false;
             this.First_box.Text = "DATALOGS";
+            // 
+            // BU_STRAT
+            // 
+            this.BU_STRAT.AutoSize = true;
+            this.BU_STRAT.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BU_STRAT.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BU_STRAT.LinkColor = System.Drawing.Color.Black;
+            this.BU_STRAT.Location = new System.Drawing.Point(353, 166);
+            this.BU_STRAT.Name = "BU_STRAT";
+            this.BU_STRAT.Size = new System.Drawing.Size(0, 16);
+            this.BU_STRAT.TabIndex = 119;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.Transparent;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(253, 168);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(98, 13);
+            this.label20.TabIndex = 118;
+            this.label20.Text = "BU STRATEGY:";
             // 
             // SUB_FACTORY
             // 
@@ -424,11 +449,12 @@ namespace PROJECT
             this.PROBLEM.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.PROBLEM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.PROBLEM.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PROBLEM.Location = new System.Drawing.Point(678, 226);
+            this.PROBLEM.Location = new System.Drawing.Point(678, 217);
             this.PROBLEM.Multiline = true;
             this.PROBLEM.Name = "PROBLEM";
             this.PROBLEM.ReadOnly = true;
-            this.PROBLEM.Size = new System.Drawing.Size(459, 170);
+            this.PROBLEM.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.PROBLEM.Size = new System.Drawing.Size(459, 103);
             this.PROBLEM.TabIndex = 63;
             // 
             // label10
@@ -437,11 +463,11 @@ namespace PROJECT
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(676, 210);
+            this.label10.Location = new System.Drawing.Point(676, 201);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(196, 13);
+            this.label10.Size = new System.Drawing.Size(154, 13);
             this.label10.TabIndex = 62;
-            this.label10.Text = "PROBLEM AND OBSERVATIONS";
+            this.label10.Text = "PROBLEM DESCRIPTION";
             // 
             // Exit_btn
             // 
@@ -614,11 +640,12 @@ namespace PROJECT
             this.ACTION.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ACTION.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.ACTION.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ACTION.Location = new System.Drawing.Point(678, 421);
+            this.ACTION.Location = new System.Drawing.Point(678, 483);
             this.ACTION.Multiline = true;
             this.ACTION.Name = "ACTION";
             this.ACTION.ReadOnly = true;
-            this.ACTION.Size = new System.Drawing.Size(458, 197);
+            this.ACTION.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ACTION.Size = new System.Drawing.Size(458, 135);
             this.ACTION.TabIndex = 91;
             // 
             // label12
@@ -627,7 +654,7 @@ namespace PROJECT
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(676, 405);
+            this.label12.Location = new System.Drawing.Point(675, 467);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(87, 13);
             this.label12.TabIndex = 90;
@@ -980,6 +1007,7 @@ namespace PROJECT
             this.PO_COMMENT.Location = new System.Drawing.Point(4, 71);
             this.PO_COMMENT.Multiline = true;
             this.PO_COMMENT.Name = "PO_COMMENT";
+            this.PO_COMMENT.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.PO_COMMENT.Size = new System.Drawing.Size(310, 71);
             this.PO_COMMENT.TabIndex = 107;
             // 
@@ -1057,28 +1085,30 @@ namespace PROJECT
             this.label21.TabIndex = 110;
             this.label21.Text = "FAILURE PERFORMANCE";
             // 
-            // BU_STRAT
+            // label29
             // 
-            this.BU_STRAT.AutoSize = true;
-            this.BU_STRAT.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BU_STRAT.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BU_STRAT.LinkColor = System.Drawing.Color.Black;
-            this.BU_STRAT.Location = new System.Drawing.Point(353, 166);
-            this.BU_STRAT.Name = "BU_STRAT";
-            this.BU_STRAT.Size = new System.Drawing.Size(0, 16);
-            this.BU_STRAT.TabIndex = 119;
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.Black;
+            this.label29.Location = new System.Drawing.Point(675, 322);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(67, 13);
+            this.label29.TabIndex = 112;
+            this.label29.Text = "ANALYSIS";
             // 
-            // label20
+            // ANALYSIS
             // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(253, 168);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(98, 13);
-            this.label20.TabIndex = 118;
-            this.label20.Text = "BU STRATEGY:";
+            this.ANALYSIS.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ANALYSIS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.ANALYSIS.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ANALYSIS.Location = new System.Drawing.Point(679, 338);
+            this.ANALYSIS.Multiline = true;
+            this.ANALYSIS.Name = "ANALYSIS";
+            this.ANALYSIS.ReadOnly = true;
+            this.ANALYSIS.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ANALYSIS.Size = new System.Drawing.Size(459, 123);
+            this.ANALYSIS.TabIndex = 113;
             // 
             // BOARD_DETAILS
             // 
@@ -1088,6 +1118,8 @@ namespace PROJECT
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1139, 627);
+            this.Controls.Add(this.ANALYSIS);
+            this.Controls.Add(this.label29);
             this.Controls.Add(this.FAILURE_PERFORMANCE);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label15);
@@ -1227,5 +1259,7 @@ namespace PROJECT
         private System.Windows.Forms.ComboBox PO_ROOTCAUSE;
         private System.Windows.Forms.LinkLabel BU_STRAT;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox ANALYSIS;
     }
 }

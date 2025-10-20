@@ -153,9 +153,9 @@ namespace PROJECT
             Application.Exit();
         }
 
-        private async void UPDATE_BTN_Click(object sender, EventArgs e)
+        private void UPDATE_BTN_Click(object sender, EventArgs e)
         {
-            /*
+            
             try
             {
                 SmtpClient smtpClient = new SmtpClient("mail.analog.com", 25)
@@ -167,15 +167,20 @@ namespace PROJECT
 
                 Connection.mail.From = new MailAddress("HIT.APP@analog.com");
 
-                Connection.mail.To.Add("ADPhils_Linear_nBMSB3_ETS88_NI@analog.com");
-                Connection.mail.To.Add("ADPhilsLinearBMSTPETech@analog.com");
-                //Connection.mail.To.Add("ADPhilsLinearBMSTPE@analog.com");
+                Connection.mail.To.Add("bms_linetechnician@analog.com");
+                Connection.mail.To.Add("adphilstpef1@analog.com");
+                Connection.mail.To.Add("adphilstpef2@analog.com");
+                Connection.mail.To.Add("adphilstpef3@analog.com");
+                Connection.mail.To.Add("adphilstpeproducttech@analog.com");
 
-                Connection.mail.Subject = "SAMPLE";
+                Connection.mail.To.Add("johnmichael.so@analog.com");
+                
+
+                Connection.mail.Subject = "SAMPLE MAIL. PLEASE DISREGARD";
 
                 Connection.mail.IsBodyHtml = true;
 
-                Connection.mail.Body = "SAMPLE";
+                Connection.mail.Body = "SAMPLE MAIL. PLEASE DISREGARD";
 
                 smtpClient.Send(Connection.mail);
 
@@ -184,8 +189,8 @@ namespace PROJECT
             catch (Exception me )
             {
                 MessageBox.Show(me.ToString());
-            }*/
-            await CheckForUpdates();
+            }
+            //await CheckForUpdates();
 
         }
 

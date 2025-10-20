@@ -130,7 +130,7 @@ namespace PROJECT
             // ALERT
             // 
             this.ALERT.AutoSize = true;
-            this.ALERT.Location = new System.Drawing.Point(112, 170);
+            this.ALERT.Location = new System.Drawing.Point(75, 170);
             this.ALERT.Name = "ALERT";
             this.ALERT.Size = new System.Drawing.Size(0, 16);
             this.ALERT.TabIndex = 7;
@@ -246,7 +246,7 @@ namespace PROJECT
             this.BackColor = System.Drawing.Color.SeaShell;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(712, 260);
+            this.ClientSize = new System.Drawing.Size(710, 254);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.UPDATE_BTN);
@@ -259,9 +259,11 @@ namespace PROJECT
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(730, 297);
+            this.MinimumSize = new System.Drawing.Size(730, 297);
             this.Name = "LOGIN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "VERSION 1.0.8";
+            this.Text = "VERSION 1.0.9";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit);
             this.Load += new System.EventHandler(this.LOGIN_Load);
             this.groupBox1.ResumeLayout(false);

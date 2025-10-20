@@ -65,6 +65,10 @@
             this.STATUS_FILTER = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BOARD_ID = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.HANDLER_ID = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.BU_STRATEGY = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -105,7 +109,7 @@
             this.Search_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Search_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.Search_button.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Search_button.Location = new System.Drawing.Point(471, 201);
+            this.Search_button.Location = new System.Drawing.Point(471, 229);
             this.Search_button.Name = "Search_button";
             this.Search_button.Size = new System.Drawing.Size(150, 27);
             this.Search_button.TabIndex = 0;
@@ -151,13 +155,13 @@
             this.ENDORSEMENT_NUMBER});
             this.dataGridViewList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridViewList.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dataGridViewList.Location = new System.Drawing.Point(7, 252);
+            this.dataGridViewList.Location = new System.Drawing.Point(7, 278);
             this.dataGridViewList.Name = "dataGridViewList";
             this.dataGridViewList.ReadOnly = true;
             this.dataGridViewList.RowHeadersVisible = false;
             this.dataGridViewList.RowHeadersWidth = 62;
             this.dataGridViewList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewList.Size = new System.Drawing.Size(1437, 399);
+            this.dataGridViewList.Size = new System.Drawing.Size(1437, 373);
             this.dataGridViewList.TabIndex = 4;
             this.dataGridViewList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Click_data);
             // 
@@ -280,7 +284,7 @@
             this.FROM_DATE.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.FROM_DATE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FROM_DATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FROM_DATE.Location = new System.Drawing.Point(471, 139);
+            this.FROM_DATE.Location = new System.Drawing.Point(471, 170);
             this.FROM_DATE.Name = "FROM_DATE";
             this.FROM_DATE.Size = new System.Drawing.Size(115, 22);
             this.FROM_DATE.TabIndex = 26;
@@ -298,7 +302,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 24);
             this.label1.TabIndex = 27;
-            this.label1.Text = "VERSION 1.0.8";
+            this.label1.Text = "VERSION 1.0.9";
             // 
             // button1
             // 
@@ -333,7 +337,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(8, 187);
+            this.label4.Location = new System.Drawing.Point(10, 186);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(91, 16);
             this.label4.TabIndex = 35;
@@ -346,7 +350,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(7, 161);
+            this.label5.Location = new System.Drawing.Point(9, 160);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(157, 16);
             this.label5.TabIndex = 36;
@@ -359,7 +363,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(358, 145);
+            this.label6.Location = new System.Drawing.Point(358, 176);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 16);
             this.label6.TabIndex = 39;
@@ -410,7 +414,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(358, 171);
+            this.label7.Location = new System.Drawing.Point(358, 202);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 18);
             this.label7.TabIndex = 44;
@@ -422,7 +426,7 @@
             this.TO_DATE.CustomFormat = "yyyy-MM-dd";
             this.TO_DATE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TO_DATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TO_DATE.Location = new System.Drawing.Point(471, 168);
+            this.TO_DATE.Location = new System.Drawing.Point(471, 199);
             this.TO_DATE.Name = "TO_DATE";
             this.TO_DATE.Size = new System.Drawing.Size(115, 22);
             this.TO_DATE.TabIndex = 45;
@@ -448,7 +452,7 @@
             this.TEST_STAGE_FILTER.FormattingEnabled = true;
             this.TEST_STAGE_FILTER.Items.AddRange(new object[] {
             ""});
-            this.TEST_STAGE_FILTER.Location = new System.Drawing.Point(471, 47);
+            this.TEST_STAGE_FILTER.Location = new System.Drawing.Point(471, 78);
             this.TEST_STAGE_FILTER.Name = "TEST_STAGE_FILTER";
             this.TEST_STAGE_FILTER.Size = new System.Drawing.Size(191, 24);
             this.TEST_STAGE_FILTER.Sorted = true;
@@ -461,7 +465,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(358, 53);
+            this.label3.Location = new System.Drawing.Point(358, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 16);
             this.label3.TabIndex = 47;
@@ -499,7 +503,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(358, 79);
+            this.label11.Location = new System.Drawing.Point(358, 110);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(71, 16);
             this.label11.TabIndex = 54;
@@ -517,7 +521,7 @@
             "FOR FURTHER INVESTIGATION",
             "CLOSED",
             "FOR APPROVAL"});
-            this.STATUS_FILTER.Location = new System.Drawing.Point(471, 106);
+            this.STATUS_FILTER.Location = new System.Drawing.Point(471, 137);
             this.STATUS_FILTER.Name = "STATUS_FILTER";
             this.STATUS_FILTER.Size = new System.Drawing.Size(191, 24);
             this.STATUS_FILTER.TabIndex = 57;
@@ -529,7 +533,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(358, 109);
+            this.label12.Location = new System.Drawing.Point(358, 140);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(72, 16);
             this.label12.TabIndex = 56;
@@ -539,6 +543,10 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.BOARD_ID);
+            this.groupBox1.Controls.Add(this.label22);
+            this.groupBox1.Controls.Add(this.HANDLER_ID);
+            this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.BU_STRATEGY);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label13);
@@ -572,15 +580,62 @@
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
             this.groupBox1.Location = new System.Drawing.Point(771, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(668, 238);
+            this.groupBox1.Size = new System.Drawing.Size(668, 264);
             this.groupBox1.TabIndex = 58;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SEARCH FILTER";
+            // 
+            // BOARD_ID
+            // 
+            this.BOARD_ID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BOARD_ID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.BOARD_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BOARD_ID.Location = new System.Drawing.Point(163, 236);
+            this.BOARD_ID.Name = "BOARD_ID";
+            this.BOARD_ID.Size = new System.Drawing.Size(187, 20);
+            this.BOARD_ID.TabIndex = 77;
+            // 
+            // label22
+            // 
+            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.Transparent;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(10, 237);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(123, 16);
+            this.label22.TabIndex = 76;
+            this.label22.Text = "PERFBOARD ID:";
+            // 
+            // HANDLER_ID
+            // 
+            this.HANDLER_ID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.HANDLER_ID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.HANDLER_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HANDLER_ID.Location = new System.Drawing.Point(163, 211);
+            this.HANDLER_ID.Name = "HANDLER_ID";
+            this.HANDLER_ID.Size = new System.Drawing.Size(187, 20);
+            this.HANDLER_ID.TabIndex = 75;
+            // 
+            // label21
+            // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.Color.Transparent;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(10, 212);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(102, 16);
+            this.label21.TabIndex = 74;
+            this.label21.Text = "HANDLER ID:";
             // 
             // BU_STRATEGY
             // 
             this.BU_STRATEGY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BU_STRATEGY.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BU_STRATEGY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.BU_STRATEGY.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BU_STRATEGY.FormattingEnabled = true;
             this.BU_STRATEGY.Items.AddRange(new object[] {
@@ -591,9 +646,9 @@
             "POWER",
             "RFC",
             "VET"});
-            this.BU_STRATEGY.Location = new System.Drawing.Point(161, 77);
+            this.BU_STRATEGY.Location = new System.Drawing.Point(163, 77);
             this.BU_STRATEGY.Name = "BU_STRATEGY";
-            this.BU_STRATEGY.Size = new System.Drawing.Size(188, 24);
+            this.BU_STRATEGY.Size = new System.Drawing.Size(186, 24);
             this.BU_STRATEGY.Sorted = true;
             this.BU_STRATEGY.TabIndex = 73;
             // 
@@ -617,7 +672,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(10, 51);
+            this.label13.Location = new System.Drawing.Point(10, 50);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(117, 16);
             this.label13.TabIndex = 71;
@@ -627,30 +682,14 @@
             // 
             this.SUB_FACTORY_FILTER.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SUB_FACTORY_FILTER.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SUB_FACTORY_FILTER.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SUB_FACTORY_FILTER.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SUB_FACTORY_FILTER.FormattingEnabled = true;
             this.SUB_FACTORY_FILTER.Items.AddRange(new object[] {
-            "",
-            "HPCA",
-            "HPCC",
-            "HPCS",
-            "INT",
-            "COM",
-            "STR",
-            "RFC",
-            "MPD",
-            "PRB",
-            "WLT",
-            "STD",
-            "MIC_WIL",
-            "MIC_SC",
-            "AERO",
-            "BMS",
-            "NBMS",
-            "LTX"});
-            this.SUB_FACTORY_FILTER.Location = new System.Drawing.Point(162, 47);
+            ""});
+            this.SUB_FACTORY_FILTER.Location = new System.Drawing.Point(163, 47);
             this.SUB_FACTORY_FILTER.Name = "SUB_FACTORY_FILTER";
-            this.SUB_FACTORY_FILTER.Size = new System.Drawing.Size(188, 24);
+            this.SUB_FACTORY_FILTER.Size = new System.Drawing.Size(187, 24);
             this.SUB_FACTORY_FILTER.TabIndex = 70;
             // 
             // VSPEC
@@ -658,7 +697,7 @@
             this.VSPEC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.VSPEC.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.VSPEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VSPEC.Location = new System.Drawing.Point(471, 77);
+            this.VSPEC.Location = new System.Drawing.Point(471, 108);
             this.VSPEC.Name = "VSPEC";
             this.VSPEC.Size = new System.Drawing.Size(191, 20);
             this.VSPEC.TabIndex = 69;
@@ -688,9 +727,9 @@
             this.PART_NAME_FILTER.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PART_NAME_FILTER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.PART_NAME_FILTER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PART_NAME_FILTER.Location = new System.Drawing.Point(162, 133);
+            this.PART_NAME_FILTER.Location = new System.Drawing.Point(163, 133);
             this.PART_NAME_FILTER.Name = "PART_NAME_FILTER";
-            this.PART_NAME_FILTER.Size = new System.Drawing.Size(187, 20);
+            this.PART_NAME_FILTER.Size = new System.Drawing.Size(186, 20);
             this.PART_NAME_FILTER.TabIndex = 66;
             // 
             // PRODUCT_OWNER_FILTER
@@ -698,9 +737,9 @@
             this.PRODUCT_OWNER_FILTER.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PRODUCT_OWNER_FILTER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.PRODUCT_OWNER_FILTER.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PRODUCT_OWNER_FILTER.Location = new System.Drawing.Point(162, 107);
+            this.PRODUCT_OWNER_FILTER.Location = new System.Drawing.Point(163, 107);
             this.PRODUCT_OWNER_FILTER.Name = "PRODUCT_OWNER_FILTER";
-            this.PRODUCT_OWNER_FILTER.Size = new System.Drawing.Size(187, 20);
+            this.PRODUCT_OWNER_FILTER.Size = new System.Drawing.Size(186, 20);
             this.PRODUCT_OWNER_FILTER.TabIndex = 65;
             // 
             // FACTORY
@@ -715,10 +754,11 @@
             "F1",
             "F2",
             "F3"});
-            this.FACTORY.Location = new System.Drawing.Point(162, 19);
+            this.FACTORY.Location = new System.Drawing.Point(163, 19);
             this.FACTORY.Name = "FACTORY";
-            this.FACTORY.Size = new System.Drawing.Size(188, 24);
+            this.FACTORY.Size = new System.Drawing.Size(187, 24);
             this.FACTORY.TabIndex = 64;
+            this.FACTORY.SelectionChangeCommitted += new System.EventHandler(this.FACTORY_SelectionChangeCommitted);
             // 
             // label10
             // 
@@ -740,7 +780,7 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(357, 22);
+            this.label19.Location = new System.Drawing.Point(357, 53);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(98, 16);
             this.label19.TabIndex = 62;
@@ -751,7 +791,7 @@
             this.TEST_NAME_SEARCH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TEST_NAME_SEARCH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TEST_NAME_SEARCH.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TEST_NAME_SEARCH.Location = new System.Drawing.Point(471, 21);
+            this.TEST_NAME_SEARCH.Location = new System.Drawing.Point(471, 52);
             this.TEST_NAME_SEARCH.Name = "TEST_NAME_SEARCH";
             this.TEST_NAME_SEARCH.Size = new System.Drawing.Size(191, 20);
             this.TEST_NAME_SEARCH.TabIndex = 61;
@@ -763,7 +803,7 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(8, 213);
+            this.label18.Location = new System.Drawing.Point(358, 25);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(120, 16);
             this.label18.TabIndex = 60;
@@ -774,9 +814,9 @@
             this.TEST_NUMBER_SEARCH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TEST_NUMBER_SEARCH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TEST_NUMBER_SEARCH.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TEST_NUMBER_SEARCH.Location = new System.Drawing.Point(163, 211);
+            this.TEST_NUMBER_SEARCH.Location = new System.Drawing.Point(484, 23);
             this.TEST_NUMBER_SEARCH.Name = "TEST_NUMBER_SEARCH";
-            this.TEST_NUMBER_SEARCH.Size = new System.Drawing.Size(187, 20);
+            this.TEST_NUMBER_SEARCH.Size = new System.Drawing.Size(178, 20);
             this.TEST_NUMBER_SEARCH.TabIndex = 59;
             // 
             // HITCOUNT
@@ -786,7 +826,7 @@
             this.HIT_COUNT});
             this.HITCOUNT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HITCOUNT.HideSelection = false;
-            this.HITCOUNT.Location = new System.Drawing.Point(7, 64);
+            this.HITCOUNT.Location = new System.Drawing.Point(7, 90);
             this.HITCOUNT.Name = "HITCOUNT";
             this.HITCOUNT.Size = new System.Drawing.Size(313, 182);
             this.HITCOUNT.TabIndex = 61;
@@ -824,7 +864,7 @@
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(8, 41);
+            this.label14.Location = new System.Drawing.Point(8, 67);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(147, 20);
             this.label14.TabIndex = 63;
@@ -852,7 +892,7 @@
             this.groupBox2.Controls.Add(this.QUARTER);
             this.groupBox2.Controls.Add(this.SEARCH_PARETO);
             this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Location = new System.Drawing.Point(326, 84);
+            this.groupBox2.Location = new System.Drawing.Point(326, 110);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(271, 162);
             this.groupBox2.TabIndex = 65;
@@ -1046,5 +1086,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ENDORSEMENT_NUMBER;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox BU_STRATEGY;
+        private System.Windows.Forms.TextBox HANDLER_ID;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox BOARD_ID;
+        private System.Windows.Forms.Label label22;
     }
 }

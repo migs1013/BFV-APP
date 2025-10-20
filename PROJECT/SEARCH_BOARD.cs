@@ -247,8 +247,9 @@ namespace PROJECT
 
             foreach (Control CheckText in this.groupBox1.Controls)
             {
-                if (CheckText is TextBox)
-                    CheckText.Text.Trim();
+                if (CheckText is TextBox || CheckText is ComboBox)
+                    CheckText.Text = CheckText.Text.Replace("`", "").Replace("'", "").Trim();
+
             }
             CommandComboBox();
 
@@ -312,6 +313,26 @@ namespace PROJECT
             }
             else
                 e.SuppressKeyPress = true;
+        }
+
+        private void FACTORY_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (FACTORY.Text == "F1")
+            {
+                SUB_FACTORY_FILTER.Items.Clear();
+                foreach (string subfac in Connection.F1_Sub_Factories)
+                {
+                    SUB_FACTORY_FILTER.Items.Add(subfac);
+                }
+            }
+            else if (FACTORY.Text == "F2")
+            {
+                SUB_FACTORY_FILTER.Items.Clear();
+                foreach (string subfac in Connection.F2_Sub_Factories)
+                {
+                    SUB_FACTORY_FILTER.Items.Add(subfac);
+                }
+            }
         }
 
         private void Select_FirstDate(object sender, EventArgs e)
@@ -483,11 +504,11 @@ namespace PROJECT
             }
             if (!string.IsNullOrEmpty(SUB_FACTORY_FILTER.Text))
             {
-                Conditions.Add($"`SUB_FACTORY` LIKE '%{SUB_FACTORY_FILTER.Text}%'");
+                Conditions.Add($"`SUB_FACTORY` = '{SUB_FACTORY_FILTER.Text}'");
             }
             if (!string.IsNullOrEmpty(BU_STRATEGY.Text))
             {
-                Conditions.Add($"`SUB_FACTORY` LIKE '%{BU_STRATEGY.Text}%'");
+                Conditions.Add($"`BU_STRAT` = '{BU_STRATEGY.Text}'");
             }
             if (!string.IsNullOrEmpty(PRODUCT_OWNER_FILTER.Text))
             {
@@ -504,6 +525,14 @@ namespace PROJECT
             if (!string.IsNullOrEmpty(TESTER_ID_FILTER.Text))
             {
                 Conditions.Add($"`TESTER_ID` LIKE '%{TESTER_ID_FILTER.Text}%'");
+            }
+            if (!string.IsNullOrEmpty(HANDLER_ID.Text))
+            {
+                Conditions.Add($"`HANDLER_ID` LIKE '%{HANDLER_ID.Text}%'");
+            }
+            if (!string.IsNullOrEmpty(BOARD_ID.Text))
+            {
+                Conditions.Add($"`BOARD_ID` LIKE '%{BOARD_ID.Text}%'");
             }
             if (!string.IsNullOrEmpty(TEST_NUMBER_SEARCH.Text))
             {

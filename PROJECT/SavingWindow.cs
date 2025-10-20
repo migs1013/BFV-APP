@@ -31,81 +31,79 @@ namespace PROJECT
         private async void Send_email()
         {   
             Connection.mail.To.Clear();
+            Connection.mail.From = new MailAddress("HIT.APP@analog.com");
             
             if (CheckSubFactory == "BMS")
             {
                 foreach (string Email in Connection.BMS_Emails)
                     Connection.mail.To.Add(Email);
             }
-            else if (CheckSubFactory == "LTX")
+            if (CheckSubFactory == "LTX")
             {
-
                 foreach (string Email in Connection.LTX_Emails)
                     Connection.mail.To.Add(Email);
             }
-            else if (CheckSubFactory == "NBMS/NI/ETS88")
+            if (CheckSubFactory == "NBMS (B3)" || CheckSubFactory == "NI" || CheckSubFactory == "ETS88")
             {
                 foreach (string Email in Connection.NbmsNIETS88_Emails)
                     Connection.mail.To.Add(Email);
             }
-            else if (CheckSubFactory == "NBMS")
+            if (CheckSubFactory == "NBMS (B1)")
             {
                 foreach (string Email in Connection.Nbms_B1_Emails)
                     Connection.mail.To.Add(Email);
             }
-            else if (CheckSubFactory == "HPCA" || CheckSubFactory == "HPCC" || CheckSubFactory == "HPCS")
+            if (CheckSubFactory == "HPCA" || CheckSubFactory == "HPCC" || CheckSubFactory == "HPCS")
             {
                 foreach (string Email in Connection.HPC)
                     Connection.mail.To.Add(Email);
             }
-            else if (CheckSubFactory == "RFC" )
+            if (CheckSubFactory == "RFC" )
             {
                 foreach (string Email in Connection.RFC_SUB)
                     Connection.mail.To.Add(Email);
             }
-            else if (CheckSubFactory == "MPD" || CheckSubFactory == "AUTO" || CheckSubFactory == "AERO" || CheckSubFactory == "MIC_WIL" || CheckSubFactory == "MIC_SC")
+            if (CheckSubFactory == "MPD" || CheckSubFactory == "AUTO" || CheckSubFactory == "AERO" || CheckSubFactory == "MIC_WIL" || CheckSubFactory == "MIC_SC")
             {
                 foreach (string Email in Connection.MpdAutoAeroMic)
                     Connection.mail.To.Add(Email);
             }
-            else if (CheckSubFactory == "INT" || CheckSubFactory == "COM" || CheckSubFactory == "STR")
+            if (CheckSubFactory == "INT" || CheckSubFactory == "COM" || CheckSubFactory == "STR")
             {
                 foreach (string Email in Connection.ComIntStrip)
                     Connection.mail.To.Add(Email);
             }
-            else if (BU_STRAT == "PAG")
+            if (BU_STRAT == "PAG")
             {
                 foreach (string Email in Connection.PAG)
                     Connection.mail.To.Add(Email);
             }
-            else if (BU_STRAT == "CONVERTERS")
+            if (BU_STRAT == "CONVERTERS")
             {
                 foreach (string Email in Connection.Converters)
                     Connection.mail.To.Add(Email);
             }
-            else if (BU_STRAT == "POWER")
+            if (BU_STRAT == "POWER")
             {
                 foreach (string Email in Connection.POWER)
                     Connection.mail.To.Add(Email);
             }
-            else if (BU_STRAT == "ISOLATOR")
+            if (BU_STRAT == "ISOLATOR")
             {
                 foreach (string Email in Connection.ISOLATOR)
                     Connection.mail.To.Add(Email);
             }
-            else if (BU_STRAT == "VET")
+            if (BU_STRAT == "VET")
             {
                 foreach (string Email in Connection.VET)
                     Connection.mail.To.Add(Email);
             }
-            else if (BU_STRAT == "RFC")
+            if (BU_STRAT == "RFC")
             {
                 foreach (string Email in Connection.RFC)
                     Connection.mail.To.Add(Email);
             }
-
-            Connection.mail.From = new MailAddress("HIT.APP@analog.com");
-
+            
             Connection.mail.To.Add("RalphYaz.Diaz@analog.com");
             
             Connection.mail.To.Add("johnmichael.so@analog.com");
