@@ -195,11 +195,10 @@ namespace PROJECT
                         Connection.CloseConnection();
                         Connection.ClearAll(this);
 
-                        //SavingWindow save = new SavingWindow(1,SUB_FACTORY.Text,BU_STRAT.Text);
+                        SavingWindow save = new SavingWindow(1,SUB_FACTORY.Text,BU_STRAT.Text);
                         SUB_FACTORY.SelectedIndex = -1;
                         BU_STRAT.SelectedIndex = -1;
-                        //save.ShowDialog();
-                        MessageBox.Show("saved");
+                        save.ShowDialog();
                     }
                     catch (MySqlException ex)
                     {

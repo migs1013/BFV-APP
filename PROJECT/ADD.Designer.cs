@@ -635,6 +635,7 @@
             this.Failure_mode.Items.AddRange(new object[] {
             "BOARD CAL/CHECK FAILURE",
             "COLLAPSE",
+            "DICE",
             "ILSF",
             "INTERMITTENT",
             "LOW YIELD",
@@ -874,13 +875,17 @@
             "ALARM",
             "BIMODAL",
             "DEGRADING",
+            "DUPLICATE",
+            "FLATLINE",
             "GROSS",
             "HIGH SD",
             "LOW CPK (HIGH SD)",
             "LOW CPK (LOWER LIMIT)",
             "LOW CPK (UPPER LIMIT)",
             "OPEN",
-            "SHORT"});
+            "OTHERS",
+            "SHORT",
+            "STUCK-UP"});
             this.FAILURE_PERFORMANCE.Location = new System.Drawing.Point(203, 267);
             this.FAILURE_PERFORMANCE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FAILURE_PERFORMANCE.Name = "FAILURE_PERFORMANCE";

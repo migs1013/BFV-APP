@@ -302,7 +302,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 24);
             this.label1.TabIndex = 27;
-            this.label1.Text = "VERSION 1.0.9";
+            this.label1.Text = "VERSION 1.1.0";
             // 
             // button1
             // 
