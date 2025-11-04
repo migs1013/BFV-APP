@@ -89,6 +89,7 @@ namespace PROJECT
             this.OPEN = new System.Windows.Forms.Label();
             this.VIEW = new System.Windows.Forms.Button();
             this.PO_DISPO = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.PO_ROOTCAUSE = new System.Windows.Forms.ComboBox();
             this.ADD_PROOF_FILE = new System.Windows.Forms.Button();
             this.FIXED_PROOF_FILE = new System.Windows.Forms.LinkLabel();
@@ -474,9 +475,9 @@ namespace PROJECT
             this.Exit_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.Exit_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Exit_btn.Location = new System.Drawing.Point(536, 97);
+            this.Exit_btn.Location = new System.Drawing.Point(546, 114);
             this.Exit_btn.Name = "Exit_btn";
-            this.Exit_btn.Size = new System.Drawing.Size(118, 48);
+            this.Exit_btn.Size = new System.Drawing.Size(108, 28);
             this.Exit_btn.TabIndex = 66;
             this.Exit_btn.Text = "EXIT";
             this.Exit_btn.UseVisualStyleBackColor = false;
@@ -737,12 +738,13 @@ namespace PROJECT
             this.UPDATE.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
             this.UPDATE.Cursor = System.Windows.Forms.Cursors.Hand;
             this.UPDATE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UPDATE.Location = new System.Drawing.Point(536, 42);
+            this.UPDATE.Location = new System.Drawing.Point(432, 114);
             this.UPDATE.Name = "UPDATE";
-            this.UPDATE.Size = new System.Drawing.Size(118, 48);
+            this.UPDATE.Size = new System.Drawing.Size(108, 28);
             this.UPDATE.TabIndex = 98;
             this.UPDATE.Text = "UPDATE";
             this.UPDATE.UseVisualStyleBackColor = false;
+            this.UPDATE.Visible = false;
             this.UPDATE.Click += new System.EventHandler(this.UPDATE_Click);
             // 
             // OTHER_TRANSACTION
@@ -817,6 +819,7 @@ namespace PROJECT
             // PO_DISPO
             // 
             this.PO_DISPO.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.PO_DISPO.Controls.Add(this.button1);
             this.PO_DISPO.Controls.Add(this.PO_ROOTCAUSE);
             this.PO_DISPO.Controls.Add(this.ADD_PROOF_FILE);
             this.PO_DISPO.Controls.Add(this.FIXED_PROOF_FILE);
@@ -841,6 +844,19 @@ namespace PROJECT
             this.PO_DISPO.TabIndex = 105;
             this.PO_DISPO.TabStop = false;
             this.PO_DISPO.Text = "PRODUCT OWNER DISPO";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(105)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(318, 115);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(108, 27);
+            this.button1.TabIndex = 121;
+            this.button1.Text = "HISTORY";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
             // 
             // PO_ROOTCAUSE
             // 
@@ -904,7 +920,7 @@ namespace PROJECT
             // DATE_APPROVED
             // 
             this.DATE_APPROVED.AutoSize = true;
-            this.DATE_APPROVED.Location = new System.Drawing.Point(448, 42);
+            this.DATE_APPROVED.Location = new System.Drawing.Point(466, 42);
             this.DATE_APPROVED.Name = "DATE_APPROVED";
             this.DATE_APPROVED.Size = new System.Drawing.Size(82, 13);
             this.DATE_APPROVED.TabIndex = 118;
@@ -914,7 +930,7 @@ namespace PROJECT
             // APPROVER
             // 
             this.APPROVER.AutoSize = true;
-            this.APPROVER.Location = new System.Drawing.Point(502, 19);
+            this.APPROVER.Location = new System.Drawing.Point(520, 19);
             this.APPROVER.Name = "APPROVER";
             this.APPROVER.Size = new System.Drawing.Size(57, 13);
             this.APPROVER.TabIndex = 117;
@@ -926,7 +942,7 @@ namespace PROJECT
             this.DATE2_TEXT.AutoSize = true;
             this.DATE2_TEXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DATE2_TEXT.ForeColor = System.Drawing.Color.Black;
-            this.DATE2_TEXT.Location = new System.Drawing.Point(398, 42);
+            this.DATE2_TEXT.Location = new System.Drawing.Point(421, 42);
             this.DATE2_TEXT.Name = "DATE2_TEXT";
             this.DATE2_TEXT.Size = new System.Drawing.Size(44, 13);
             this.DATE2_TEXT.TabIndex = 116;
@@ -938,7 +954,7 @@ namespace PROJECT
             this.APPROVE_TEXT.AutoSize = true;
             this.APPROVE_TEXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.APPROVE_TEXT.ForeColor = System.Drawing.Color.Black;
-            this.APPROVE_TEXT.Location = new System.Drawing.Point(398, 19);
+            this.APPROVE_TEXT.Location = new System.Drawing.Point(421, 19);
             this.APPROVE_TEXT.Name = "APPROVE_TEXT";
             this.APPROVE_TEXT.Size = new System.Drawing.Size(98, 13);
             this.APPROVE_TEXT.TabIndex = 115;
@@ -948,7 +964,7 @@ namespace PROJECT
             // DISPO_USER
             // 
             this.DISPO_USER.AutoSize = true;
-            this.DISPO_USER.Location = new System.Drawing.Point(280, 19);
+            this.DISPO_USER.Location = new System.Drawing.Point(275, 19);
             this.DISPO_USER.Name = "DISPO_USER";
             this.DISPO_USER.Size = new System.Drawing.Size(54, 13);
             this.DISPO_USER.TabIndex = 113;
@@ -958,7 +974,7 @@ namespace PROJECT
             // DISPO_DATE
             // 
             this.DISPO_DATE.AutoSize = true;
-            this.DISPO_DATE.Location = new System.Drawing.Point(246, 42);
+            this.DISPO_DATE.Location = new System.Drawing.Point(240, 42);
             this.DISPO_DATE.Name = "DISPO_DATE";
             this.DISPO_DATE.Size = new System.Drawing.Size(66, 13);
             this.DISPO_DATE.TabIndex = 112;
@@ -1261,5 +1277,6 @@ namespace PROJECT
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.TextBox ANALYSIS;
+        private System.Windows.Forms.Button button1;
     }
 }

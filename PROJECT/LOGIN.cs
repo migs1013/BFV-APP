@@ -167,14 +167,14 @@ namespace PROJECT
 
                 Connection.mail.From = new MailAddress("HIT.APP@analog.com");
 
-                Connection.mail.To.Add("bms_linetechnician@analog.com");
-                Connection.mail.To.Add("adphilstpef1@analog.com");
-                Connection.mail.To.Add("adphilstpef2@analog.com");
-                Connection.mail.To.Add("adphilstpef3@analog.com");
-                Connection.mail.To.Add("adphilstpeproducttech@analog.com");
-
                 Connection.mail.To.Add("johnmichael.so@analog.com");
-                
+
+                //Connection.mail.To.Add("BMS_LineTechnician@analog.com");
+                //Connection.mail.To.Add("MaryGrace.Mendoza@analog.com");
+                //Connection.mail.To.Add("adphilstpef2@analog.com");
+                //Connection.mail.To.Add("adphilstpef3@analog.com");
+                //Connection.mail.To.Add("adphilstpeproducttech@analog.com");
+
 
                 Connection.mail.Subject = "SAMPLE MAIL. PLEASE DISREGARD";
 

@@ -302,7 +302,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 24);
             this.label1.TabIndex = 27;
-            this.label1.Text = "VERSION 1.1.0";
+            this.label1.Text = "VERSION 1.1.1";
             // 
             // button1
             // 
@@ -974,6 +974,7 @@
             this.ADD_NBMS.TabIndex = 66;
             this.ADD_NBMS.Text = "TRANSACT NEW ISSUE";
             this.ADD_NBMS.UseVisualStyleBackColor = false;
+            this.ADD_NBMS.Visible = false;
             this.ADD_NBMS.Click += new System.EventHandler(this.button2_Click);
             // 
             // SEARCH_BOARD

@@ -911,10 +911,12 @@
             this.POTENTIAL_ROOTCAUSE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.POTENTIAL_ROOTCAUSE.FormattingEnabled = true;
             this.POTENTIAL_ROOTCAUSE.Items.AddRange(new object[] {
+            "ASSEMBLY",
             "BOARD",
             "CONTACTOR",
             "HANDLER",
             "NETWORK",
+            "PROCESS",
             "PRODUCT",
             "PURGE AIR",
             "SYSTEM",

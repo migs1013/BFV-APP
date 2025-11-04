@@ -128,7 +128,6 @@ namespace PROJECT
 
                     if (Approver == "0")
                         UPDATE.Visible = false;
-
                 }
                 else
                 {
@@ -138,7 +137,7 @@ namespace PROJECT
                     ADD_PROOF_FILE.Visible = true;
                 }
                 Connection.CloseConnection();
-
+                UPDATE.Visible = false;
                 DATE_VERIFIED.Text = Date.ToString("yyyy-MM-dd");
                 Dlog(First_verif_link, DLOG1);
                 Dlog(Second_dlog, DLOG2);

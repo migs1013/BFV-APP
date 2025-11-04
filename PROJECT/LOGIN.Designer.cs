@@ -263,7 +263,7 @@ namespace PROJECT
             this.MinimumSize = new System.Drawing.Size(730, 297);
             this.Name = "LOGIN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "VERSION 1.1.0";
+            this.Text = "VERSION 1.1.1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exit);
             this.Load += new System.EventHandler(this.LOGIN_Load);
             this.groupBox1.ResumeLayout(false);
